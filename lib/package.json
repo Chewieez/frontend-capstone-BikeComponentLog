@@ -9,6 +9,14 @@
   "author": "Greg Lawrence",
   "license": "MIT",
   "dependencies": {
+    "angular": "^1.6.7",
+    "angular-route": "^1.6.7",
     "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-notify": "^0.4.5",
+    "gruntify-eslint": "^4.0.0"
   }
 }

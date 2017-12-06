@@ -1,0 +1,14 @@
+{
+  "name": "bikecomponentlog",
+  "version": "1.0.0",
+  "description": "App to allow users to track the age and mileage of individual component on their bicycle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Greg Lawrence",
+  "license": "MIT",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  }
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="./styles/base-styles.css" rel="stylsheet">
+    <title>Bike Component Log</title>
+</head>
+<body ng-app="BikeLogApp" ng-cloak>
+
+    <!-- <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar"></nav> -->
+
+    <div ng-view>
+    </div>
+
+    <script src="./lib/node_modules/angular/angular.min.js"></script>
+    <script src="./lib/node_modules/firebase/firebase.js"></script>
+    <script src="./lib/node_modules/angular-route/angular-route.js"></script>
+    <script src="./app/app.js"></script>
+    <script src="./app/app.Config.js"></script>
+    <script src="./app/auth/factories/AuthFactory.js"></script>
+    <script src="./app/auth/controllers/AuthCtrl.js"></script>
+    <script src="./app/profile/factories/ProfileFactory.js"></script>
+    <script src="./app/profile/controllers/profileCtrl.js"></script>
+    <script src="./app/profile/controllers/updateProfileCtrl.js"></script>
+</body>
+</html>

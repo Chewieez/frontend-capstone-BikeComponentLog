@@ -1,0 +1,6 @@
+<div class="profile">
+    <p> First Name: <span ng-model="currentUserProfile.firstName" contenteditable="true"> {{ currentUserProfile.firstName }}</span></p>
+    <p>Last Name: <span ng-model="currentUserProfile.lastName" contenteditable="true">{{ currentUserProfile.lastName }}</span></p>
+    <p ng-if="currentUserProfile.stravaId"> Strava Account Linked </p>
+</div>
+<button ng-click="updateProfile()">Update Profile</button>

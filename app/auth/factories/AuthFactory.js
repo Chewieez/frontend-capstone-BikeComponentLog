@@ -1,14 +1,13 @@
-angular.module("EmployeeApp")
-.factory("AuthFactory", function ($http, $timeout, $location, $route) {
+angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $location, $route) {
     let currentUserData = null
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             currentUserData = user
             console.log("User is authenticated")
-            if ($location.url() !== "/employees/list") {
+            if ($location.url() !== "/profile") {
                 $timeout(function () {
-                    $location.url("/employees/list")
+                    $location.url("/profile")
                 }, 500)
             } else {
                 $route.reload()
@@ -30,8 +29,8 @@ angular.module("EmployeeApp")
                 return user ? true : false
             }
         },
-        getUser: {
-            value: () => firebase.auth().currentUser
+        getUser: { 
+            value: () => currentUserData
         },
         logout: {
             value: () => firebase.auth().signOut()
@@ -40,16 +39,16 @@ angular.module("EmployeeApp")
             value: credentials =>
                 firebase.auth()
                     .signInWithEmailAndPassword(
-                    credentials.email,
-                    credentials.password
+                        credentials.email,
+                        credentials.password
                     )
         },
         registerWithEmail: {
             value: user =>
                 firebase.auth()
                     .createUserWithEmailAndPassword(
-                    user.email,
-                    user.password
+                        user.email,
+                        user.password
                     )
         }
     })

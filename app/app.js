@@ -20,16 +20,21 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
      * Configure all Angular application routes here
      */
     $routeProvider
-        // .when("/", {
-        //     templateUrl: "app/employees/partials/list.html",
-        //     controller: "EmployeeListCtrl",
-        //     resolve: { isAuth }
-        // })
-        .when('/auth', {
-            templateUrl: 'app/auth/partials/register.html',
-            controller: 'AuthCtrl'
+        .when("/profile", {
+            templateUrl: "app/profile/partials/profile.html",
+            controller: "profileCtrl",
+            //resolve: { isAuth }
         })
-        .otherwise('/auth')
+        .when("/update-profile", {
+            templateUrl: "app/profile/partials/updateProfile.html",
+            controller: "updateProfileCtrl",
+            //resolve: { isAuth }
+        })
+        .when("/auth", {
+            templateUrl: "app/auth/partials/register.html",
+            controller: "AuthCtrl"
+        })
+        .otherwise("/auth")
 })
 
 

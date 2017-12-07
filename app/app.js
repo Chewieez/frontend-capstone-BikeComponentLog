@@ -44,7 +44,7 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
             templateUrl: "app/auth/partials/register.html",
             controller: "AuthCtrl"
         })
-        .otherwise("/auth")
+        .otherwise("/strava-response")
 })
 
 

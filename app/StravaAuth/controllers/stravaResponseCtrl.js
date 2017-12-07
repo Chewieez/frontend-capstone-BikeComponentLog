@@ -1,6 +1,6 @@
 angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, $location, $timeout, StravaOAuthFactory, ProfileFactory, AuthFactory) {
 
-    console.log("Loaded now")
+    //console.log("Loaded now")
     let stravaToken = ""
     let stravaId = ""
     // parse the Auth code out of the returned URL
@@ -18,16 +18,24 @@ angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, 
         })
     })
 
+    // function runs on OK button click
     $scope.addStraveToProfile = function() {
-        let user = firebase.auth().currentUser
-        let userProfile
+        // let user = firebase.auth().currentUser
+        let user = AuthFactory.getUser()
+        let userProfile = ProfileFactory.profileCache
+        
+
         ProfileFactory.getProfile(user.uid).then(response => {
             
-            userProfile = response
+            let userProfile = response
             // add strava ID to the current user Profile
             userProfile.stravaId = stravaId
             // store the updated user profile in Firebase
-            ProfileFactory.editProfile(userProfile)
+            ProfileFactory.editProfile(userProfile).then(()=>{
+                console.log("Strava id uploaded")
+            })
+            $location.url("/profile")
+            
         })
     }
 

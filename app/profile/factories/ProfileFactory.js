@@ -2,12 +2,16 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
     // store firebase url for later user
     const firebaseURL = "https://bike-component-log.firebaseio.com/users"
 
+    let profileCache = null
+
+    console.log("init")
+
     // create object with methods we'll use to manage user profiles in firebase
     return Object.create(null, {
         "profileCache": {
-            "value": "",
-            "writable": true,
-            "enumerable": true
+            get: () => {
+                return profileCache
+            }
         },
         "addProfile": {
             value: (userProfile, fbUID) => {
@@ -57,7 +61,8 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                         currentUserProfile = response.data[key]
                         currentUserProfile.fbId = key
                     }
-                    this.profileCache = currentUserProfile
+                    profileCache = currentUserProfile
+                    debugger
                     return currentUserProfile
                 })
             }

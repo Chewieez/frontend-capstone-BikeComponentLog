@@ -26,8 +26,13 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
             resolve: { isAuth }
         })
         .when("/", {
-            templateUrl: "app/profile/partials/profile.html",
-            controller: "profileCtrl",
+            templateUrl: "app/dashboard/partials/dashboard.html",
+            controller: "dashCtrl",
+            resolve: { isAuth }
+        })
+        .when("/dashboard", {
+            templateUrl: "app/dashboard/partials/dashboard.html",
+            controller: "dashboardCtrl",
             resolve: { isAuth }
         })
         .when("/strava-link", {

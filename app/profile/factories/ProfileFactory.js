@@ -6,7 +6,8 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
     return Object.create(null, {
         "profileCache": {
             "value": "",
-            "writable": true
+            "writable": true,
+            "enumerable": true
         },
         "addProfile": {
             value: (userProfile, fbUID) => {
@@ -43,8 +44,6 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                     }).then(function(){
                         console.log("profile updated")
                     })
-
-                
             }
         },
         "getProfile": {
@@ -58,11 +57,24 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                         currentUserProfile = response.data[key]
                         currentUserProfile.fbId = key
                     }
-                    debugger
                     this.profileCache = currentUserProfile
                     return currentUserProfile
                 })
             }
         }
+        // "addStravaId": {
+        //     value: function(UID) {
+        //         return firebase.auth().currentUser.getIdToken(true)
+        //         .then(idToken => {
+        //             return $http({
+        //                 "method": "PUT",
+        //                 "url": `${firebaseURL}/${userProfile.fbId}/stravaId.json?auth=${idToken}`,
+        //                 "data": stravaId
+        //             })
+        //         }).then(function(){
+        //             console.log("profile updated")
+        //         })
+        //     }
+        // },
     })
 })

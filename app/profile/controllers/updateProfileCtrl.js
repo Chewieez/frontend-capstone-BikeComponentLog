@@ -19,10 +19,10 @@ angular.module("BikeLogApp").controller("updateProfileCtrl", function ($scope, $
             "lastName": $scope.user.lastName,
         }
 
-        if ($scope.stravaId) {
-            userProfile.stravaId = $scope.stravaId
-        }
-        ProfileFactory.addProfile(userProfile, fbUser.uid)
+        // if ($scope.stravaId) {
+        //     userProfile.stravaId = $scope.stravaId
+        // }
+        // ProfileFactory.addProfile(userProfile, fbUser.uid)
     }
 
 

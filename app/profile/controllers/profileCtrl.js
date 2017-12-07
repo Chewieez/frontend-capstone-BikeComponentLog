@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $routeParams, ProfileFactory, AuthFactory, $location) {
+angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $routeParams, ProfileFactory, AuthFactory, StravaOAuthFactory) {
 
     $scope.currentUserProfile = {}
 
@@ -13,6 +13,11 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $routeP
         //     $scope.currentUserProfile = response.data[key]
         // }
     })
+
+    $scope.link = function() {
+        StravaOAuthFactory.getCode()
+    }
+
 
 
     // create a function to handle the click on profile.html when a user wants to edit their profile

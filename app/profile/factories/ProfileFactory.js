@@ -62,7 +62,6 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                         currentUserProfile.fbId = key
                     }
                     profileCache = currentUserProfile
-                    debugger
                     return currentUserProfile
                 })
             }

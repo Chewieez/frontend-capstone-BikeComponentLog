@@ -2,7 +2,7 @@ angular.module("BikeLogApp").controller("updateProfileCtrl", function ($scope, $
 
     // $scope.linkStrava = function() {
     //     window.href = "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/#!/strava-response&approval_prompt=auto"
-    // }
+    //}
 
     $scope.stravaId = ""
     if (StravaOAuthFactory.stravaId) {

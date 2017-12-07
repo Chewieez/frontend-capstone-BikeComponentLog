@@ -6,6 +6,16 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRA
             writable: true,
             enumerable: true
         },
+        "getCode": {
+            value: function() {
+                return $http({
+                    "method": "GET",
+                    "url": "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/#!/strava-response&state=logged&approval_prompt=auto"
+                }).then(r =>{
+                    console.log(r)
+                })
+            }
+        },
         "getToken": {
             value: (stravaCode) => {
                 return $http({

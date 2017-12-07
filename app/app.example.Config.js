@@ -1,4 +1,4 @@
-angular.module(").constant("FIREBASE_CONFIG", {
+angular.module("").constant("FIREBASE_CONFIG", {
     apiKey: "",
     authDomain: "",
     databaseURL: "",

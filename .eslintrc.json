@@ -27,7 +27,7 @@
         "$": true,
         "firebase": true,
         "angular": true,
-        "$angular": true
+        "$scope": true
     }
 }
 

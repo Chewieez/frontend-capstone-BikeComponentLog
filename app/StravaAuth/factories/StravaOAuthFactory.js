@@ -1,12 +1,29 @@
-angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, $timeout, $location, $route) {
+angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRAVA_CONFIG, $location, $route) {
 
     return Object.create(null, {
-        "link": {
-            value: () => {
+        "stravaId": {
+            value: "",
+            writable: true,
+            enumerable: true
+        },
+        "getToken": {
+            value: (stravaCode) => {
                 return $http({
-                    "url": "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/#!/strava-link&approval_prompt=auto"
-                }).then((response)=>{
-                    console.log("response to strava auth", response)
+                    "method": "POST",
+                    "url": "https://www.strava.com/oauth/token",
+                    "data": {
+                        client_id: STRAVA_CONFIG.clientId,
+                        client_secret: STRAVA_CONFIG.clientSecret,
+                        code: stravaCode
+                    }
+                })
+            }
+        },
+        "getStravaProfile": {
+            value: (token) => {
+                return $http({
+                    "method": "GET",
+                    "url": `https://www.strava.com/api/v3/athlete?access_token=${token}`,
                 })
             }
         }

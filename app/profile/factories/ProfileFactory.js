@@ -4,6 +4,10 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
 
     // create object with methods we'll use to manage user profiles in firebase
     return Object.create(null, {
+        "profileCache": {
+            "value": "",
+            "writable": true
+        },
         "addProfile": {
             value: (userProfile, fbUID) => {
                 // get token for current user, then post profile data to db
@@ -16,7 +20,7 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                                 "firstName": userProfile.firstName,
                                 "lastName": userProfile.lastName,
                                 "photo": 0,
-                                "stravaId": 0,
+                                "stravaId": userProfile.stravaId || 0,
                                 "fbUID": fbUID
                             }
                         })
@@ -28,7 +32,7 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
             }
         },
         "editProfile": {
-            value: (userProfile) => {
+            value: function (userProfile) {
                 return firebase.auth().currentUser.getIdToken(true)
                     .then(idToken => {
                         return $http({
@@ -44,7 +48,7 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
             }
         },
         "getProfile": {
-            value: (UID) => {
+            value: function (UID) {
                 let currentUserProfile = {}
                 return $http({
                     "method": "GET",
@@ -54,6 +58,8 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                         currentUserProfile = response.data[key]
                         currentUserProfile.fbId = key
                     }
+                    debugger
+                    this.profileCache = currentUserProfile
                     return currentUserProfile
                 })
             }

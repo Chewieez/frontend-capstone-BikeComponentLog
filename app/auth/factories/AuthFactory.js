@@ -7,7 +7,7 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
             console.log("User is authenticated")
             if ($location.url() !== "/profile") {
                 $timeout(function () {
-                    $location.url("/profile")
+                    $location.url("/*")
                 }, 500)
             } else {
                 $route.reload()
@@ -30,7 +30,8 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
             }
         },
         getUser: { 
-            value: () => currentUserData
+            // value: () => currentUserData
+            value: () => firebase.auth().currentUser
         },
         logout: {
             value: () => firebase.auth().signOut()

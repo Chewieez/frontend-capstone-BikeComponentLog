@@ -16,9 +16,9 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $routeP
 
 
     // create a function to handle the click on profile.html when a user wants to edit their profile
-    $scope.updateProfile = function() {
-    
-        ProfileFactory.editProfile($scope.currentUserProfile)
-    }
+    // $scope.updateProfile = function() {
+    //     $location.url("/updateProfile")
+    //     ProfileFactory.editProfile($scope.currentUserProfile)
+    // }
 
 })

@@ -1,16 +1,14 @@
-angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, AuthFactory, BikeFactory) {
+angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, AuthFactory, BikeFactory, ComponentFactory) {
+    
+    
+    // get the users components from firebase
+    const user = AuthFactory.getUser()
+    $scope.components
+    ComponentFactory.getUserComponents(user.uid).then((response)=>{
+        $scope.components = response
+        console.log("$scope.components", $scope.components)
+    })
+    
 
-    $scope.addBike = function() {
-        const user = AuthFactory.getUser()
-        
-        let newBike = {
-            brandName: $scope.newBikeBrand,
-            modelName: $scope.newBikeModel,
-            info: $scope.newBikeInfo,
-            stravaId: 0,
-            userId: user.uid
-        } 
 
-        BikeFactory.addBike(newBike)        
-    }
 })    

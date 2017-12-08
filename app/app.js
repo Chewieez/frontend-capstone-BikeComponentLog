@@ -20,9 +20,18 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
      * Configure all Angular application routes here
      */
     $routeProvider
+        .when("/auth", {
+            templateUrl: "app/auth/partials/register.html",
+            controller: "AuthCtrl"
+        })
         .when("/profile", {
             templateUrl: "app/profile/partials/profile.html",
             controller: "profileCtrl",
+            resolve: { isAuth }
+        })
+        .when("/update-profile", {
+            templateUrl: "app/profile/partials/updateProfile.html",
+            controller: "updateProfileCtrl",
             resolve: { isAuth }
         })
         .when("/", {
@@ -35,6 +44,16 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
             controller: "dashboardCtrl",
             resolve: { isAuth }
         })
+        .when("/addBike", {
+            templateUrl: "app/dashboard/partials/addBike.html",
+            controller: "addBikeCtrl",
+            resolve: { isAuth }
+        })
+        .when("/addComponent", {
+            templateUrl: "app/dashboard/partials/addComponent.html",
+            controller: "addComponentCtrl",
+            resolve: { isAuth }
+        })
         .when("/strava-link", {
             templateUrl: "app/StravaAuth/partials/stravaLink.html",
             controller: "stravaLinkCtrl",
@@ -44,15 +63,6 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
             templateUrl: "app/StravaAuth/partials/stravaResponse.html",
             controller: "stravaResponseCtrl",
             resolve: { isAuth }
-        })
-        .when("/update-profile", {
-            templateUrl: "app/profile/partials/updateProfile.html",
-            controller: "updateProfileCtrl",
-            resolve: { isAuth }
-        })
-        .when("/auth", {
-            templateUrl: "app/auth/partials/register.html",
-            controller: "AuthCtrl"
         })
         .otherwise("/strava-response")
 })

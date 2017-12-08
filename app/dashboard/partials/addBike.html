@@ -1,0 +1,17 @@
+<h1> Add a new Bike to Track</h1>
+
+<form ng-submit="addBike()">
+    <label>Brand:</label>
+    <input type="text" ng-model="newBikeBrand" required/>
+    <label>Model:</label>
+    <input type="text" ng-model="newBikeModel" />
+    <label>Current Mileage:</label>
+    <input type="number" ng-model="newBikeMileage"/>
+    <label>Purchase Date:</label>
+    <input type="date" ng-model="newBikePurchaseDate"/>
+    <label>Info:</label>
+    <textarea ng-model="newBikeInfo"></textarea>
+
+    <input type="submit" value="Add Bike">
+    <input type="reset">
+</form>

@@ -1,9 +1,10 @@
 <h1> Welcome to your dashboard</h1>
 
-<input type="text" ng-model="newBikeBrand"/>
-<label>Brand</label>
-<input type="text" ng-model="newBikeModel"/>
-<label>Model</label>
-<textarea ng-model="newBikeInfo"></textarea>
-<label>Info</label>
-<button ng-click="addBike()">Track a Bike</button>
+
+<!-- Maybe make this a ng-options dropdown list of all the users tracked components -->
+<div ng-repeat="comp in components">
+   <p> Component: {{ comp.type }} </p>
+   <p> Name: {{ comp.brandName }} {{ comp.modelName}} </p>
+   <p> purchased: {{ comp.purchaseDate | date }} </p>
+   <p> Mileage: {{ comp.mileage }} </p>
+</div>

@@ -12,6 +12,8 @@ angular.module("BikeLogApp").controller("updateProfileCtrl", function ($scope, $
             "firstName": $scope.user.firstName,
             "lastName": $scope.user.lastName,
         }
+
+        ProfileFactory.addProfile(userProfile, fbUser.uid)
     }
 
 

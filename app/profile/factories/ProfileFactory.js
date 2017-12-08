@@ -4,8 +4,6 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
 
     let profileCache = null
 
-    console.log("init")
-
     // create object with methods we'll use to manage user profiles in firebase
     return Object.create(null, {
         "profileCache": {

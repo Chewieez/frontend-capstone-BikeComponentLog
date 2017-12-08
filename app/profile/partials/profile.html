@@ -1,14 +1,16 @@
 <div class="profile">
-    <p> First Name: <span ng-model="currentUserProfile.firstName" contenteditable="true"> {{ currentUserProfile.firstName }}</span></p>
-    <p>Last Name: <span ng-model="currentUserProfile.lastName" contenteditable="true">{{ currentUserProfile.lastName }}</span></p>
-    <p ng-if="currentUserProfile.stravaId"> Strava Account Linked </p>
+    <p> First Name:  {{ currentUserProfile.firstName }}</p>
+    <p>Last Name: {{ currentUserProfile.lastName }}</p>
 </div>
 
 
-
-<!-- link to allow user to Link Strava Account -->
-<a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto">Link Strava</a>
-
+<div>
+    <!-- link to allow user to Link Strava Account -->
+    <div ng-if="!currentUserProfile.stravaId">
+        <a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto">Connect with Strava</a>
+    </div>
+    <p ng-if="currentUserProfile.stravaId"> Strava Account Connected </p>
+</div>
 <!-- <button ng-click="link()">Link To Strava</button> -->
 
 

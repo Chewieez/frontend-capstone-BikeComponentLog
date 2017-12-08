@@ -31,7 +31,7 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
         })
         .when("/", {
             templateUrl: "app/dashboard/partials/dashboard.html",
-            controller: "dashCtrl",
+            controller: "dashboardCtrl",
             resolve: { isAuth }
         })
         .when("/dashboard", {

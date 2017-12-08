@@ -38,6 +38,7 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
         }
     
         ProfileFactory.addProfile(userProfile, userId.uid).then(()=>{
+            //reload view so user can get confirmation their profile was created
             $route.reload()
         })
     }
@@ -45,12 +46,9 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
     // function to edit profile
     $scope.editProfile = function () {
         $scope.editMode = true
-        // debugger
-        // $scope.user.firstName = "testing this"
-        // $scope.user.lastName = "more tests"
-        
-        
     }
+
+     
     $scope.updateProfile = function() {
 
         ProfileFactory.editProfile($scope.currentUserProfile).then(()=>{

@@ -12,7 +12,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, AuthFac
             mileage: $scope.newBikeMileage,
             purchaseDate: $scope.newBikePurchaseDate,
             info: $scope.newBikeInfo,
-            stravaId: 0,
+            stravaBikeId: 0,
             userId: user.uid,
             photo: 0
         }

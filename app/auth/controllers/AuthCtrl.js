@@ -10,7 +10,7 @@ angular.module("BikeLogApp")
         $scope.logMeIn = function () {
             AuthFactory.authenticate($scope.auth).then(function (didLogin) {
                 $scope.login = {}
-                ProfileFactory.getProfile(AuthFactory.getUser().uid).then((response)=>{
+                ProfileFactory.getProfile(firebase.auth().currentUser.uid).then((response)=>{
                     if (response) {
                         $location.url("/")
                     } else {

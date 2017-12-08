@@ -4,12 +4,13 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
 
     // create object with methods we'll use to manage user profiles in firebase
     return Object.create(null, {
-        "componentCache": {
+        "componentsCache": {
             value: 0,
             writable: true,
             enumerable: true
         },
         "componentTypes": {
+            // make these objects and add links to installation tips
             value: [
                 "tires",
                 "front wheel",
@@ -34,20 +35,19 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
         },
         "getUserComponents": {
             "value": function (UID) {
-                console.log("UID", UID)
                 return $http({
                     method: "GET",
                     url: `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"`
                 }).then(response => {
                     const components = response.data
                     if (components) {
-                        this.componentCache = Object.keys(components)
+                        this.componentsCache = Object.keys(components)
                             .map(key => {
                                 components[key].fbId = key
                                 return components[key]
                             })
-                        console.log("componentCache: ", this.componentCache)
-                        return this.componentCache
+                        console.log("components cached")
+                        return this.componentsCache
                     }
                 })
             }

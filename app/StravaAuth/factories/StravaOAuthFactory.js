@@ -2,16 +2,21 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRA
 
     return Object.create(null, {
         "stravaId": {
-            value: "",
+            value: null,
             writable: true,
             enumerable: true
+        },
+        "stravaToken": {
+            value: null,
+            writable: true,
+            enumerable: true     
         },
         "getCode": {
             value: function() {
                 return $http({
                     "method": "GET",
                     "url": "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/#!/strava-response&state=logged&approval_prompt=auto"
-                }).then(r =>{
+                }).then(r => {
                     console.log(r)
                 })
             }
@@ -27,13 +32,25 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRA
                         code: stravaCode
                     }
                 })
+                // .then(response => {
+                //  this.stravaToken = response.data.access_token
+                //     return this.stravaToken
+                // })
             }
         },
         "getStravaProfile": {
-            value: (token) => {
+            value: (stravaToken) => {
                 return $http({
                     "method": "GET",
-                    "url": `https://www.strava.com/api/v3/athlete?access_token=${token}`,
+                    "url": `https://www.strava.com/api/v3/athlete?access_token=${stravaToken}`,
+                })
+            }
+        },
+        "getBikeData": {
+            value: (bikeId, token) => {
+                return $http({
+                    "method": "GET",
+                    "url": `https://www.strava.com/api/v3/gear/${bikeId}?access_token=${token}`
                 })
             }
         }

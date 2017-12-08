@@ -42,8 +42,6 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                             "url": `${firebaseURL}/${userProfile.fbId}/.json?auth=${idToken}`,
                             "data": userProfile
                         })
-                    }).then(function () {
-                        console.log("profile updated")
                     })
             }
         },

@@ -12,7 +12,7 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
             }
         },
         "addProfile": {
-            value: (userProfile, fbUID) => {
+            value: (userProfile, userId) => {
                 // get token for current user, then post profile data to db
                 return firebase.auth().currentUser.getIdToken(true)
                     .then(idToken => {
@@ -20,18 +20,19 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                             method: "POST",
                             url: `${firebaseURL}.json?auth=${idToken}`,
                             data: {
-                                "firstName": userProfile.firstName,
-                                "lastName": userProfile.lastName,
-                                "photo": 0,
-                                "stravaId": userProfile.stravaId || 0,
-                                "fbUID": fbUID
+                                
                             }
+                        }).then(response => {
+                            // add fbId from response
+                            userProfile.fbId = response.data.name
+                            // put the userProfile back up to firebase, now with a fb id attached
+                            return $http({
+                                "method": "PUT",
+                                "url": `${firebaseURL}/${userProfile.fbId}/.json?auth=${idToken}`,
+                                "data": userProfile
+                            })
                         })
-                    }).then(
-                        function() {
-                            console.log("profile stored")
-                        }
-                    )
+                    })
             }
         },
         "editProfile": {
@@ -43,7 +44,7 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                             "url": `${firebaseURL}/${userProfile.fbId}/.json?auth=${idToken}`,
                             "data": userProfile
                         })
-                    }).then(function(){
+                    }).then(function () {
                         console.log("profile updated")
                     })
             }
@@ -53,12 +54,9 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
                 let currentUserProfile = {}
                 return $http({
                     "method": "GET",
-                    "url": `${firebaseURL}/.json?orderBy="fbUID"&equalTo="${UID}"`
+                    "url": `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"`
                 }).then(response => {
-                    for (let key in response.data) {
-                        currentUserProfile = response.data[key]
-                        currentUserProfile.fbId = key
-                    }
+                    // cache user profile
                     profileCache = currentUserProfile
                     return currentUserProfile
                 })

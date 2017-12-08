@@ -11,7 +11,7 @@
 
     <!-- <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar"></nav> -->
 
-    <div ng-view>
+    <div ng-view ng-cloak>
     </div>
 
     <script src="./lib/node_modules/angular/angular.min.js"></script>
@@ -27,7 +27,6 @@
     <script src="./app/dashboard/factories/ComponentFactory.js"></script>
     <script src="./app/auth/controllers/AuthCtrl.js"></script>
     <script src="./app/profile/controllers/profileCtrl.js"></script>
-    <script src="./app/profile/controllers/updateProfileCtrl.js"></script>
     <script src="./app/StravaAuth/controllers/stravaLinkCtrl.js"></script>
     <script src="./app/StravaAuth/controllers/stravaResponseCtrl.js"></script>
     <script src="./app/dashboard/controllers/dashboardCtrl.js"></script>

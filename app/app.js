@@ -29,11 +29,6 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
             controller: "profileCtrl",
             resolve: { isAuth }
         })
-        .when("/update-profile", {
-            templateUrl: "app/profile/partials/updateProfile.html",
-            controller: "updateProfileCtrl",
-            resolve: { isAuth }
-        })
         .when("/", {
             templateUrl: "app/dashboard/partials/dashboard.html",
             controller: "dashCtrl",

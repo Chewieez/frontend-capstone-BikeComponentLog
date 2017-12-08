@@ -5,13 +5,14 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
         if (user) {
             currentUserData = user
             console.log("User is authenticated")
-            if ($location.url() !== "/profile") {
-                $timeout(function () {
-                    $location.url("/profile")
-                }, 500)
-            } else {
-                $route.reload()
-            }
+            // if ($location.url() !== "/profile") {
+            //     $timeout(function () {
+            //         $location.url("/*")
+            //     }, 500)
+            // } else {
+            //     $route.reload()
+            // }
+            $route.reload()
 
         } else {
             currentUserData = null
@@ -31,6 +32,7 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
         },
         getUser: { 
             value: () => currentUserData
+            // value: () => firebase.auth().currentUser
         },
         logout: {
             value: () => firebase.auth().signOut()

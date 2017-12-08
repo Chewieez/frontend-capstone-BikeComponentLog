@@ -1,3 +1,4 @@
 node_modules
 ds_store
 app.Config.js
+strava.Client.js

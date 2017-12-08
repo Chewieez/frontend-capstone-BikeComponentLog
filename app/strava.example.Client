@@ -1,0 +1,4 @@
+angular.module("BikeLogApp").constant("STRAVA_CONFIG", {
+    clientId: "",
+    clientSecret: "",
+}

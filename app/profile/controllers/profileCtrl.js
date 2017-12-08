@@ -1,24 +1,15 @@
-angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $routeParams, ProfileFactory, AuthFactory, $location) {
-
+angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $routeParams, ProfileFactory, AuthFactory, StravaOAuthFactory) {
+    // create variable to hold the user profile
     $scope.currentUserProfile = {}
 
-    // get profile of current user and store in $scope variable
+    // get current user 
     const currentUser = AuthFactory.getUser()
     
     ProfileFactory.getProfile(currentUser.uid).then(response=> {
-        console.log(response)
-
+        // assign the returned userProfile to the scope variable to display in partial
         $scope.currentUserProfile = response
-        // for (let key in response.data) {
-        //     $scope.currentUserProfile = response.data[key]
-        // }
     })
 
-
-    // create a function to handle the click on profile.html when a user wants to edit their profile
-    $scope.updateProfile = function() {
     
-        ProfileFactory.editProfile($scope.currentUserProfile)
-    }
 
 })

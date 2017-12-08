@@ -3,7 +3,10 @@
     <label>First Name</label>
     <input type="name" name="lastName" ng-model="user.lastName" />
     <label>Last Name</label>
+    <div ng-if="stravaId">You're linked Strava Id is: {{ stravaId }}</div>
     <!-- Photo upload for avatar -->
+    
+    
     <button ng-click="addProfile()">Create Profile</button>
-    <button ng-click="updateProfile()">Update Profile</button>
+    <!-- <button ng-click="updateProfile()">Update Profile</button> -->
 </div>

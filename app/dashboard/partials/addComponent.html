@@ -1,8 +1,8 @@
-<h1> Add a new Component to Track</h1>
+<h3>Add a component to track from your {{currentBike.brandName + ' ' + currentBike.modelName }}</h3>
 
 <!-- <option ng-options="bikes"></option> -->
 
-<form ng-submit="addComponent()">
+<form ng-submit="addComponent()" name="componentForm">
     <label>Type</label>
     <select ng-model="newComponentType" ng-options="comp.name for comp in componentTypes"></select>
     <label>Brand</label>
@@ -16,7 +16,7 @@
     <label>Info</label>
     <textarea ng-model="newComponentInfo"></textarea>
 
-<input type="submit" value="Add Component">
-<input type="reset">
+    <input type="submit" value="Add Component">
+    <input type="reset">
 
 </form>

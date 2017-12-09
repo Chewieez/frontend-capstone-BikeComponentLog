@@ -7,13 +7,13 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
     $scope.newComponentPurchaseDate = new Date(new Date().toISOString().split("T")[0])
 
     // get the current bike id and attach it to the new component object
-
+    $scope.currentBike = BikeFactory.currentBike
     
     $scope.addComponent = function () {
         const user = AuthFactory.getUser()
         
         let newComponent = {
-            bikeFbId: BikeFactory.currentBikeId,
+            bikeFbId: $scope.currentBike.fbId,
             type: $scope.newComponentType,
             brandName: $scope.newComponentBrand,
             modelName: $scope.newComponentModel,
@@ -24,7 +24,8 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
             photo: 0
         }
         
-        
+        $scope.componentForm = {}
+        $scope.componentForm.$setPristine();
         
         
         // Post this new component to firebase

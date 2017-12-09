@@ -78,7 +78,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                     // })
                                 }       /* end of IF statement to check if new mileage is greater */
                                 
-                                console.log("bike.mileage: ", bike.mileage)
                                 BikeFactory.editBikeMileage(bike).then(r=>{
                                     console.log("response from bike mileage update: ", r)
 
@@ -113,27 +112,28 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     })
 
-    // ProfileFactory.getProfile(user.uid).then(profile=> {  
-    //     currentUserProfile = profile
-        
-    //     BikeFactory.getUserBikes(user.uid).then(response => {
-    //         let allBikes = response
-
-    //         ComponentFactory.getUserComponents(user.uid).then(r=>{
-    //             console.log("components loaded: ", r)
-            
-    //         })
-    //     })
-    // })
-
 
     // put this call inside a function that is called when the user selects a bike from the dropdown list    
+    $scope.getComponents = function() {
+        // set the current Bike id to use later when adding components
+        BikeFactory.currentBike = $scope.currentBike
 
-    // get the users components from firebase
-    ComponentFactory.getUserComponents(user.uid).then((response)=>{
-        $scope.components = response
-        // console.log("$scope.components", $scope.components)
-    })
+        // get the users components from firebase
+        ComponentFactory.getUserComponents(user.uid).then(response => {
+            
+            // filter through components and get the ones attached to the current Bike
+            let thisBikesComponents = response.filter(comp => {
+                return comp.bikeFbId === $scope.currentBike.fbId
+            })
+            // setup $scope.components to hold an array of components
+            $scope.components = []
+
+            // loop over the matching components and push them to the $scope.components array
+            thisBikesComponents.forEach(comp =>{
+                $scope.components.push(comp)
+            })
+        })
+    }
     
     // function to send the user to the Add Bike page
     $scope.sendToAddBike = function() {
@@ -145,7 +145,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     // function to send the user to the addComponent Page
     $scope.sendToAddComponent = function(currentBike) {
-        //BikeFactory.currentBikeId = currentBike.fbId
         $location.url("/addComponent")
     }
 

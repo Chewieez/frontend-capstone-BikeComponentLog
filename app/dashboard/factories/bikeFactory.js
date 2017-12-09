@@ -9,7 +9,7 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
             writable: true,
             enumerable: true
         },
-        "currentBikeId": {
+        "currentBike": {
             value: 0,
             writable: true,
             enumerable: true

@@ -1,21 +1,26 @@
 <h1> Welcome to your dashboard</h1>
 
-<select ng-model="currentBike" ng-options="bike.brandName + ' ' + bike.modelName for bike in bikes">
+<select ng-model="currentBike" ng-options="bike.brandName + ' ' + bike.modelName for bike in bikes" ng-change="getComponents()">
         <option value="">Select Option</option>
 </select>
+
+<div ng-model="currentBike">
+    <h3>{{ currentBike.brandName + currentBike.modelName}} </h3>
+    
+    <p ng-if="currentBike">Bike Mileage: {{currentBike.mileage}}</p>
+    <hr ng-if="currentBike">
+</div>
 <!-- <div ng-repeat="bike in bikes">
-    <p>Bike Brand: {{bike.brandName}}</p>
-    <p>Bike Model: {{bike.modelName}}</p>
-    <p>Bike Mileage: {{bike.mileage}}</p>
     <hr>
 </div> -->
 
 <!-- Maybe make this a ng-options dropdown list of all the users tracked components -->
 <div ng-repeat="comp in components">
-   <p> Component: {{ comp.type }} </p>
+   <p> Component: {{ comp.type.name }} </p>
    <p> Name: {{ comp.brandName }} {{ comp.modelName}} </p>
    <p> purchased: {{ comp.purchaseDate | date }} </p>
    <p> Mileage: {{ comp.mileage }} </p>
+   <p ng-if=comp.type.tips><a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a></p>
    <hr>
 </div>
 

@@ -1,4 +1,5 @@
 angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, AuthFactory, ComponentFactory, BikeFactory) {
+    // initalize the newComponent object to use in form
     $scope.newComponent = {}
 
     // store component types in an array to populate dropdown list
@@ -37,6 +38,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
         // Reset the form after successful upload
         //document.forms["componentForm"].reset();
         $scope.newComponent = {}
+        // prepopulate the mileage box to 0
         $scope.newComponent.mileage = 0
         $scope.componentForm.$setPristine();
         

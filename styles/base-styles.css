@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-
 
 .navbar {
     background-color: blue;
@@ -25,3 +25,19 @@ body {
 .navbar a {
     color: white;
 }
+
+/* Generic form styling to make them all block elements
+    Change later when in styling mode
+*/
+form {
+    display: block;
+    margin:0; 
+    padding:0; 
+}
+
+input, textarea, select {
+    display: block;
+    margin:.3em; 
+    padding:.3em; 
+}
+

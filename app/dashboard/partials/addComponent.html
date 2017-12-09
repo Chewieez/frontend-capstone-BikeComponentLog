@@ -1,22 +1,25 @@
-<h3>Add a component to track on your {{currentBike.brandName + ' ' + currentBike.modelName }}</h3>
+<div class="addComponent">
 
-<!-- <option ng-options="bikes"></option> -->
+    <h3 class="addComponent__header">Add a component to track on your {{currentBike.brandName + ' ' + currentBike.modelName }}</h3>
 
-<form ng-submit="addComponent()" name="componentForm" ng-model="componentForm">
-    <label>Type</label>
-    <select ng-model="newComponent.type" ng-options="comp.name for comp in componentTypes"></select>
-    <label>Brand</label>
-    <input type="text" ng-model="newComponent.brand"/>
-    <label>Model</label>
-    <input type="text" ng-model="newComponent.model"/>
-    <label>Current Mileage:</label>
-    <input type="number" ng-model="newComponent.mileage" />
-    <label>Purchase Date:</label>
-    <input type="date" ng-model="newComponent.purchaseDate" />
-    <label>Info</label>
-    <textarea ng-model="newComponent.info"></textarea>
+    <!-- <option ng-options="bikes"></option> -->
 
-    <input type="submit" value="Add Component">
-    <input type="reset">
+    <form ng-submit="addComponent()" name="componentForm" ng-model="componentForm">
+        <label>Type:</label>
+        <select ng-model="newComponent.type" ng-options="comp.name for comp in componentTypes"></select>
+        <label>Brand:</label>
+        <input type="text" ng-model="newComponent.brand"/>
+        <label>Model:</label>
+        <input type="text" ng-model="newComponent.model"/>
+        <label>Current Mileage:</label>
+        <input type="number" ng-model="newComponent.mileage" />
+        <label>Purchase Date:</label>
+        <input type="date" ng-model="newComponent.purchaseDate" />
+        <label>Info:</label>
+        <textarea ng-model="newComponent.info"></textarea>
 
-</form>
+        <input type="submit" value="Add Component">
+        <input type="reset">
+
+    </form>
+</div>

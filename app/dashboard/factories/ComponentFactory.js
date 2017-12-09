@@ -9,17 +9,6 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
             writable: true,
             enumerable: true
         },
-        "componentTypes": {
-            // make these objects and add links to installation tips
-            value: [
-                "tires",
-                "front wheel",
-                "rear wheel",
-                "pedals",
-                "chain",
-            ],
-            enumerable: true
-        },
         "addComponent": {
             "value": function (newComponent) {
                 return firebase.auth().currentUser.getIdToken(true).then(idToken => {
@@ -27,6 +16,28 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                         method: "POST",
                         url: `${firebaseURL}.json?auth=${idToken}`,
                         data: newComponent
+                    }).then(response => {
+                        // add fbId from response
+                        newComponent.fbId = response.data.name
+                        // put the component back up to firebase, now with a fb id attached
+                        return $http({
+                            "method": "PUT",
+                            "url": `${firebaseURL}/${newComponent.fbId}/.json?auth=${idToken}`,
+                            "data": newComponent
+                        })
+                    }).then(r => {
+                        console.log("component uploaded")
+                    })
+                })
+            }
+        },
+        "updateComponent": {
+            "value": function (component) {
+                return firebase.auth().currentUser.getIdToken(true).then(idToken => {
+                    return $http({
+                        method: "PUT",
+                        url: `${firebaseURL}/${component.fbId}.json?auth=${idToken}`,
+                        data: component
                     }).then(r => {
                         console.log("component uploaded")
                     })
@@ -43,14 +54,47 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                     if (components) {
                         this.componentsCache = Object.keys(components)
                             .map(key => {
-                                components[key].fbId = key
+                                // components[key].fbId = key
                                 return components[key]
                             })
-                        console.log("components cached")
+                        console.log("components cached", this.componentsCache)
                         return this.componentsCache
                     }
                 })
             }
+        },"componentTypes": {
+            // make these objects and add links to installation tips
+            value: [
+                {
+                    "name": "tires",
+                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation"},
+                {
+                    "name": "front wheel",
+                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
+                },
+                {
+                    "name": "rear wheel",
+                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
+                },
+                {
+                    "name": "pedals",
+                    "tips": "https://www.parktool.com/blog/repair-help/pedal-installation-and-removal"
+                },
+                {
+                    "name": "chain",
+                    "tips": "https://www.parktool.com/blog/repair-help/chain-replacement-derailleur-bikes" 
+                },
+                {
+                    "name": "cassette",
+                    "tips": "https://www.parktool.com/blog/repair-help/cassette-removal-and-installation" 
+                },
+                {
+                    "name": "crankset",
+                    "tips": "https://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank" 
+                },
+
+            ],
+            enumerable: true
         }
 
     })

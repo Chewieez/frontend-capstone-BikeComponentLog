@@ -9,6 +9,11 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
             writable: true,
             enumerable: true
         },
+        "currentBikeId": {
+            value: 0,
+            writable: true,
+            enumerable: true
+        },
         "addBike": {
             "value": function(newBike) {
                 return firebase.auth().currentUser.getIdToken(true).then(idToken => {
@@ -16,6 +21,15 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                         method: "POST",
                         url: `${firebaseURL}.json?auth=${idToken}`,
                         data: newBike
+                    }).then(response => {
+                        // add fbId from response
+                        newBike.fbId = response.data.name
+                        // put the newBike back up to firebase, now with a fb id attached
+                        return $http({
+                            "method": "PUT",
+                            "url": `${firebaseURL}/${newBike.fbId}/.json?auth=${idToken}`,
+                            "data": newBike
+                        })
                     }).then(r =>{
                         console.log("bike uploaded")
                     })
@@ -31,7 +45,7 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                         const bikes = response.data
                         this.bikesCache = Object.keys(bikes)
                             .map(key => {
-                                bikes[key].fbId = key
+                                // bikes[key].fbId = key
                                 return bikes[key]
                             })
                         console.log("bikes cached")

@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, AuthFactory, ComponentFactory) {
+angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, AuthFactory, ComponentFactory, BikeFactory) {
     
     // store component types in an array to populate dropdown list
     $scope.componentTypes = ComponentFactory.componentTypes
@@ -13,6 +13,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
         const user = AuthFactory.getUser()
         
         let newComponent = {
+            bikeFbId: BikeFactory.currentBikeId,
             type: $scope.newComponentType,
             brandName: $scope.newComponentBrand,
             modelName: $scope.newComponentModel,
@@ -23,7 +24,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
             photo: 0
         }
         
-        // add switch statement to match up component type with a link to install/maintenance tips
+        
         
         
         // Post this new component to firebase

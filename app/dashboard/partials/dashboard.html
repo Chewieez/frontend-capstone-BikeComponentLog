@@ -1,5 +1,14 @@
 <h1> Welcome to your dashboard</h1>
 
+<select ng-model="currentBike" ng-options="bike.brandName + ' ' + bike.modelName for bike in bikes">
+        <option value="">Select Option</option>
+</select>
+<!-- <div ng-repeat="bike in bikes">
+    <p>Bike Brand: {{bike.brandName}}</p>
+    <p>Bike Model: {{bike.modelName}}</p>
+    <p>Bike Mileage: {{bike.mileage}}</p>
+    <hr>
+</div> -->
 
 <!-- Maybe make this a ng-options dropdown list of all the users tracked components -->
 <div ng-repeat="comp in components">
@@ -7,4 +16,8 @@
    <p> Name: {{ comp.brandName }} {{ comp.modelName}} </p>
    <p> purchased: {{ comp.purchaseDate | date }} </p>
    <p> Mileage: {{ comp.mileage }} </p>
+   <hr>
 </div>
+
+<button ng-click="sendToAddBike()">Add a Bike</button>
+<button ng-click="sendToAddComponent(selectedBike)">Add a Component</button>

@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $location, $route) {
+angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $location) {
     // store firebase url for later user
     const firebaseURL = "https://bike-component-log.firebaseio.com/users"
 
@@ -47,13 +47,12 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $locatio
         },
         "getProfile": {
             value: function (UID) {
-                let currentUserProfile = {}
+                // let currentUserProfile = {}
                 return $http({
                     "method": "GET",
                     "url": `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"`
                 }).then(response => {
                     // cache user profile
-                    // console.log("profile: ", response)
                     for (let key in response.data) {
                         this.profileCache = response.data[key]
                     }

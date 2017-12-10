@@ -1,3 +1,7 @@
+
+<!-- Refresh button -->
+<button ng-click="refresh()">Refresh</button>
+
 <h1> Welcome to your dashboard</h1>
 
 <!-- Dropdown list of the users tracked bikes -->
@@ -5,9 +9,14 @@
     <option value="">Select A Bike</option>
 </select>
 
+
 <!-- Button to add a tracked bike -->
 <button ng-click="sendToAddBike()">Add a Bike</button>
 <button ng-if= "currentBike" ng-click="sendToAddComponent()">Add a Component</button>
+
+<!-- Import a bike from Strava -->
+<button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">Import Bikes From Strava</button>
+
 
 <div ng-model="currentBike">
     <h3>{{ currentBike.brandName + currentBike.modelName}} </h3>

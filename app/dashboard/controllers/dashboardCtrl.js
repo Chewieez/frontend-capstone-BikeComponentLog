@@ -1,7 +1,7 @@
 angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
     // get the current user
     const user = AuthFactory.getUser()
-    let currentUserProfile 
+    $scope.currentUserProfile 
 
     // set the $scope.currentBike to the currently selected bike in the Dashboard dropdown list
     $scope.currentBike  
@@ -16,7 +16,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     // get current user Profile to check for a link to Strava. Update the mileage of any bikes the user has stored in Strava and Bike Log
     ProfileFactory.getProfile(user.uid).then(profile=> {  
-        currentUserProfile = profile
+        $scope.currentUserProfile = profile
 
         // if the user can linked Strava, go and get their bike data and update the mileage on firebase to reflect their miles on Strava
         BikeFactory.getUserBikes(user.uid).then(response => {
@@ -27,7 +27,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 console.log("components loaded: ", r)
 
                 // check if the user has a Strava Id attached
-                if (currentUserProfile.stravaId) {
+                if ($scope.currentUserProfile.stravaId) {
                     // check if the user has bikes linked to Strava
                     let linkedBikes = []
                     
@@ -43,7 +43,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                         linkedBikes.forEach(bike => {
                             // get the stravaBikeId & get the strava Token
                             let stravaBikeId = bike.stravaBikeId
-                            let stravaToken = currentUserProfile.stravaToken
+                            let stravaToken = $scope.currentUserProfile.stravaToken
 
                             // reach out to Strava for updated mileage
                             StravaOAuthFactory.getBikeData(stravaBikeId, stravaToken).then(bikeData => {
@@ -160,6 +160,11 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             $scope.currentBike = {}
             $route.reload()
         })
+    }
+
+    // function to refresh the page and run Strava sync 
+    $scope.refresh = function() {
+        $route.reload()
     }
 
 })    

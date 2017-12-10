@@ -27,6 +27,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
             modelName: $scope.newComponent.model,
             mileage: $scope.newComponent.mileage,
             purchaseDate: $scope.newComponent.purchaseDate,
+            serial: $scope.newComponent.serial,
             info: $scope.newComponent.info,
             userId: user.uid,
             photo: 0

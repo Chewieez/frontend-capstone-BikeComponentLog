@@ -62,12 +62,24 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                     }
                 })
             }
-        },"componentTypes": {
+        },
+        "deleteComponent": {
+            "value": function (fbId) {
+                return firebase.auth().currentUser.getIdToken(true).then(idToken => {
+                    return $http({
+                        method: "DELETE",
+                        url: `${firebaseURL}/${fbId}/.json?auth=${idToken}`,
+                    })
+                })
+            }
+        }, 
+        "componentTypes": {
             // make these objects and add links to installation tips
             value: [
                 {
                     "name": "tires",
-                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation"},
+                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation"
+                },
                 {
                     "name": "front wheel",
                     "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
@@ -82,15 +94,15 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                 },
                 {
                     "name": "chain",
-                    "tips": "https://www.parktool.com/blog/repair-help/chain-replacement-derailleur-bikes" 
+                    "tips": "https://www.parktool.com/blog/repair-help/chain-replacement-derailleur-bikes"
                 },
                 {
                     "name": "cassette",
-                    "tips": "https://www.parktool.com/blog/repair-help/cassette-removal-and-installation" 
+                    "tips": "https://www.parktool.com/blog/repair-help/cassette-removal-and-installation"
                 },
                 {
                     "name": "crankset",
-                    "tips": "https://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank" 
+                    "tips": "https://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank"
                 },
 
             ],

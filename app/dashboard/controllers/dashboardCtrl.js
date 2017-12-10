@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
+angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
     // get the current user
     const user = AuthFactory.getUser()
     let currentUserProfile 
@@ -140,12 +140,26 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         $location.url("/addBike")
     }
 
-
-    /* NEED TO FIND A WAY TO PASS IN THE CURRENT BIKE TO KNOW WHAT BIKE TO ADD THE COMPONENT TO */
-
     // function to send the user to the addComponent Page
-    $scope.sendToAddComponent = function(currentBike) {
+    $scope.sendToAddComponent = function() {
         $location.url("/addComponent")
+    }
+
+    // function to delete a component
+    $scope.deleteComponent = function(fbId) {
+        
+        ComponentFactory.deleteComponent(fbId).then(()=>{
+            $scope.getComponents()
+        })
+    }
+
+    // function to delete a bike
+    $scope.deleteBike = function(fbId) {
+        
+        BikeFactory.deleteBike(fbId).then(()=>{
+            $scope.currentBike = {}
+            $route.reload()
+        })
     }
 
 })    

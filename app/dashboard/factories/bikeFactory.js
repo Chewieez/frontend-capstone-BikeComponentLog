@@ -64,7 +64,17 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                     })
                 })
             }
-        }
+        },
+        "deleteBike": {
+            "value": function (fbId) {
+                return firebase.auth().currentUser.getIdToken(true).then(idToken => {
+                    return $http({
+                        method: "DELETE",
+                        url: `${firebaseURL}/${fbId}/.json?auth=${idToken}`,
+                    })
+                })
+            }
+        } 
         
     })
     

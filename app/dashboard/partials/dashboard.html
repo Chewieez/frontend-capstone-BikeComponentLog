@@ -12,8 +12,11 @@
 <div ng-model="currentBike">
     <h3>{{ currentBike.brandName + currentBike.modelName}} </h3>
     
-    <p ng-if="currentBike">Bike Mileage: {{currentBike.mileage}} miles</p>
+    <p ng-if="currentBike.mileage">Bike Mileage: {{currentBike.mileage}} miles</p>
+    <p ng-if="currentBike.serial">Bike Serial Number: {{currentBike.serial}}</p>
+    <button ng-if="currentBike" ng-click="deleteBike(currentBike.fbId)">Delete</button>
     <hr ng-if="currentBike">
+
 </div>
 
 
@@ -24,6 +27,8 @@
    <p> Name: {{ comp.brandName }} {{ comp.modelName}} </p>
    <p> purchased: {{ comp.purchaseDate | date }} </p>
    <p> Mileage: {{ comp.mileage }} miles </p>
+   <p ng-if="currentBike.serial">Bike Mileage: {{currentBike.serial}} miles</p>
    <p ng-if=comp.type.tips><a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a></p>
+   <button ng-click="deleteComponent(comp.fbId)">Delete</button>
    <hr>
 </div>

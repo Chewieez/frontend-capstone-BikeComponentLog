@@ -22,6 +22,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, AuthFac
             info: $scope.newBike.info,
             stravaBikeId: 0,
             userId: user.uid,
+            serial: $scope.newBike.serial,
             photo: 0
         }
 

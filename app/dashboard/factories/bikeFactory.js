@@ -48,7 +48,7 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                                 // bikes[key].fbId = key
                                 return bikes[key]
                             })
-                        console.log("bikes cached")
+                        console.log("bikes cached: ",this.bikesCache)
                         return this.bikesCache
                     }
                 })

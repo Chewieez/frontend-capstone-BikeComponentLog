@@ -59,6 +59,11 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
             controller: "stravaResponseCtrl",
             resolve: { isAuth }
         })
+        .when("/importStravaBikes", {
+            templateUrl: "app/StravaAuth/partials/importStravaBikes.html",
+            controller: "importStravaBikesCtrl",
+            resolve: { isAuth }
+        })
         .otherwise("/strava-response")
 })
 

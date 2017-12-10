@@ -3,14 +3,15 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     const user = AuthFactory.getUser()
     $scope.currentUserProfile 
 
-    // set the $scope.currentBike to the currently selected bike in the Dashboard dropdown list
-    $scope.currentBike  
+    // // set the $scope.currentBike to the currently selected bike in the Dashboard dropdown list
+    // $scope.currentBike  
 
     // variable to hold the currently selected bike (to use to pass into the Add Component function to tie the component to the bike)
-    let currentBike = $scope.currentBike
+    // let currentBike = $scope.currentBike
 
     // set $scope.bikes to an array to hold bikes
     $scope.bikes = []
+
     // set a variable to hold an array of updated bikes with updated Strava details
     let updatedStravaBikes = []
 
@@ -18,7 +19,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     ProfileFactory.getProfile(user.uid).then(profile=> {  
         $scope.currentUserProfile = profile
 
-        // if the user can linked Strava, go and get their bike data and update the mileage on firebase to reflect their miles on Strava
+        // if the user has linked Strava, go and get their bike data and update the mileage on firebase to reflect their miles on Strava
         BikeFactory.getUserBikes(user.uid).then(response => {
             let allBikes = response
             
@@ -165,6 +166,11 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     // function to refresh the page and run Strava sync 
     $scope.refresh = function() {
         $route.reload()
+    }
+
+    // function to send user to the Import Strava Bike page
+    $scope.importBikes = function() {
+        $location.url("importStravaBikes")
     }
 
 })    

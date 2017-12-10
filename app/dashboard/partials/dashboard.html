@@ -1,9 +1,29 @@
 <h1> Welcome to your dashboard</h1>
 
-<input type="text" ng-model="newBikeBrand"/>
-<label>Brand</label>
-<input type="text" ng-model="newBikeModel"/>
-<label>Model</label>
-<textarea ng-model="newBikeInfo"></textarea>
-<label>Info</label>
-<button ng-click="addBike()">Track a Bike</button>
+<!-- Dropdown list of the users tracked bikes -->
+<select ng-model="currentBike" ng-options="bike.brandName + ' ' + bike.modelName for bike in bikes" ng-change="getComponents()">
+    <option value="">Select A Bike</option>
+</select>
+
+<!-- Button to add a tracked bike -->
+<button ng-click="sendToAddBike()">Add a Bike</button>
+<button ng-if= "currentBike" ng-click="sendToAddComponent()">Add a Component</button>
+
+<div ng-model="currentBike">
+    <h3>{{ currentBike.brandName + currentBike.modelName}} </h3>
+    
+    <p ng-if="currentBike">Bike Mileage: {{currentBike.mileage}} miles</p>
+    <hr ng-if="currentBike">
+</div>
+
+
+
+<!-- Maybe make this a ng-options dropdown list of all the users tracked components -->
+<div ng-repeat="comp in components">
+   <p> Component: {{ comp.type.name }} </p>
+   <p> Name: {{ comp.brandName }} {{ comp.modelName}} </p>
+   <p> purchased: {{ comp.purchaseDate | date }} </p>
+   <p> Mileage: {{ comp.mileage }} miles </p>
+   <p ng-if=comp.type.tips><a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a></p>
+   <hr>
+</div>

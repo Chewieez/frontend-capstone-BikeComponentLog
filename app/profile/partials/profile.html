@@ -1,13 +1,30 @@
-<div class="profile">
-    <p> First Name:  {{ currentUserProfile.firstName }}</p>
-    <p>Last Name: {{ currentUserProfile.lastName }}</p>
-</div>
+<div>
+    <div ng-if="profileFlag && !editMode" class="profile">
+        <p>First Name:  {{ currentUserProfile.firstName }}</p>
+        <p>Last Name: {{ currentUserProfile.lastName }}</p>
+        <button ng-click="editProfile()">Edit Profile</button>
+    </div>
 
+    <div ng-if="editMode || !profileFlag" class="profile">
+        <input type="name" name="firstName" ng-model="currentUserProfile.firstName"  />
+        <label>First Name</label>
+        <input type="name" name="lastName" ng-model="currentUserProfile.lastName" />
+        <label>Last Name</label>
+        <!-- Photo upload for avatar -->
+        <input type="file" ng-model="avatar" />
+        
+        <button ng-if="!editMode" ng-click="addProfile()">Create Profile</button>
+        
+        <button ng-if="editMode" ng-click="updateProfile()">Update Profile</button>
+        <button ng-if="editMode" ng-click="cancelUpdate()">Cancel</button>
+    </div>
+    
+</div>
 
 <div>
     <!-- link to allow user to Link Strava Account -->
     <div ng-if="!currentUserProfile.stravaId">
-        <a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto">Connect with Strava</a>
+        <a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto"><img src="./images/LinkWithStrava.png" width="175px"></a>
     </div>
     <p ng-if="currentUserProfile.stravaId"> Strava Account Connected </p>
 </div>
@@ -15,5 +32,5 @@
 
 
 <!-- Link to allow user to update their profile -->
-<a href="/#!/update-profile">Update Profile</a>
-
+<!-- <a href="/#!/update-profile">Update Profile</a>
+<button ng-click="updateProfile()">Update Profile</button> -->

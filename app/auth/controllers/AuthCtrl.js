@@ -1,5 +1,5 @@
 angular.module("BikeLogApp")
-    .controller("AuthCtrl", function($scope, $location, AuthFactory) {
+    .controller("AuthCtrl", function ($scope, $location, AuthFactory, ProfileFactory) {
         $scope.auth = {}
 
         $scope.logoutUser = function () {
@@ -10,14 +10,19 @@ angular.module("BikeLogApp")
         $scope.logMeIn = function () {
             AuthFactory.authenticate($scope.auth).then(function (didLogin) {
                 $scope.login = {}
-                $location.path("/employees/list")
+                ProfileFactory.getProfile(firebase.auth().currentUser.uid).then((response)=>{
+                    if (response) {
+                        $location.url("/")
+                    } else {
+                        $location.url("/profile")
+                    }
+                })
             })
         }
 
-        $scope.registerUser = function(registerNewUser) {
+        $scope.registerUser = function (registerNewUser) {
             AuthFactory.registerWithEmail(registerNewUser).then(function (didRegister) {
                 $scope.logMeIn(registerNewUser)
             })
         }
-
     })

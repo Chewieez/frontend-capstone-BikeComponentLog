@@ -1,6 +1,6 @@
 angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, AuthFactory, BikeFactory) {
 
-    
+
     // check if we are in Edit Bike Mode
     if (!BikeFactory.editBikeMode) {
         // set local Edit mode variable to true to show the user a Save Edits button and not a Add Bike Button
@@ -20,7 +20,10 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.editMode = true
         // set the $scope new Bike variable to the current bike chosen to edit
         $scope.newBike = BikeFactory.currentBike 
-        $scope.newBike.purchaseDate = new Date(BikeFactory.currentBike.purchaseDate.split("T")[0])
+        // if the bike currently has a date, populate the date window with that date info
+        if (BikeFactory.currentBike.purchaseDate) {
+            $scope.newBike.purchaseDate = new Date(BikeFactory.currentBike.purchaseDate.split("T")[0])
+        }
     }
 
 

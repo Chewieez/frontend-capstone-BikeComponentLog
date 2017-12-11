@@ -187,19 +187,24 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     }
 
     // function to start editing a bike, and send user to the AddBike controller
-    $scope.sendToEditBike = function() {
-        
-        BikeFactory.currentBike = $scope.currentBike
+    $scope.sendToEditBike = function(bike) {
+        // storing the current Bike in the Bike factory
+        BikeFactory.currentBike = bike
+        // set edit mode to true in the Bike Factory
         BikeFactory.editBikeMode = true
+        // redirect user to the Add Bike form to enter edits
         $location.url("/addBike")
     }
 
     // function to start editing a component, and send user to the AddComponent controller
     $scope.sendToEditComponent = function(component) {
-        
+        // storing the current Bike in the Bike factory
         BikeFactory.currentBike = $scope.currentBike
+        // storing the current component in the Component factory
         ComponentFactory.currentComponent = component
+        // set edit mode to true in the Component Factory
         ComponentFactory.editCompMode = true
+        // redirect user to the add component form to enter edits
         $location.url("/addComponent")
     }
 })    

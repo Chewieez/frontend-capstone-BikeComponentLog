@@ -22,9 +22,12 @@
     <h3>{{ currentBike.brandName }}  {{ currentBike.modelName}} </h3>
     
     <p ng-if="currentBike.mileage">Bike Mileage: {{currentBike.mileage}} miles</p>
+    <p ng-if="currentBike.info">Bike Info: {{currentBike.info}}</p>
     <p ng-if="currentBike.serial">Bike Serial Number: {{currentBike.serial}}</p>
+    <p ng-if="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
+    <!-- <p ng-if="currentBike.photo"> {{currentBike.photo}}</p> -->
     <button ng-click="deleteBike(currentBike)">Delete</button>
-    <button ng-click="sendToEditBike()">Edit</button>
+    <button ng-click="sendToEditBike(currentBike)">Edit</button>
     <hr>
 
 </div>

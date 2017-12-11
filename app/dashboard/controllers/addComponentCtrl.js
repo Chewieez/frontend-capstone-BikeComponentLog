@@ -29,7 +29,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
 
         // set the $scope new Bike variable to the current bike chosen to edit
         $scope.newComponent = ComponentFactory.currentComponent 
-
+        // populate the date window with the components original saved date
         $scope.newComponent.purchaseDate = new Date(ComponentFactory.currentComponent.purchaseDate.split("T")[0])
     }
 
@@ -52,10 +52,10 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
         //     photo: 0
         // }
         
-        debugger
-        // attach the current Bikes firebase Id to the component
-
-        $scope.newComponent.bikeFbId = BikeFactory.currentBike.fbId
+        if (!$scope.newComponent.bikeFbId) {
+            // attach the current Bikes firebase Id to the component
+            $scope.newComponent.bikeFbId = BikeFactory.currentBike.fbId
+        }
 
         
         // check if there is already a userId attached to the bike, if so, use the current one. If not, add it
@@ -67,7 +67,6 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
 
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
-
             // Post this new component to firebase
             ComponentFactory.addComponent($scope.newComponent)
         } else {
@@ -79,7 +78,6 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
         // prepopulate the mileage box to 0
         $scope.newComponent.mileage = 0
         $scope.componentForm.$setPristine();
-        
     }
 
 })    

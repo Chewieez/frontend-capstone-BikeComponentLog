@@ -1,0 +1,23 @@
+<div class="wishlist">
+    <button ng-if="!editMode" ng-click="createWish()">Create A Wish</button>
+    <form ng-if="createMode || editMode" ng-submit="saveWish()" name="wishForm" ng-model="newWish">
+        <label>Item</label>
+        <input type="text" ng-model="newWish.title" required="string"/>
+        <label>Info:</label>
+        <textarea ng-model="newWish.info"></textarea>
+        <!-- buttons -->
+        <input ng-if="!editMode" type="submit" value="Save Wish">
+        <input ng-if="editMode" type="submit" value="Update Wish">
+        <input type="reset">
+    </form>
+
+   
+
+    <div ng-repeat="wish in wishes">
+       <p>{{ wish.title }}</p> 
+        <p>{{ wish.info}}</p>
+        <button ng-click="editWish(wish)">Edit</button>
+        <button ng-click="deleteWish(wish)">Delete</button>
+    </div>
+
+</div>

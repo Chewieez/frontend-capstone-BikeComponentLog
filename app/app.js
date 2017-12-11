@@ -54,6 +54,11 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
             controller: "addMileageCtrl",
             resolve: { isAuth }
         })
+        .when("/wishlist", {
+            templateUrl: "app/wishlist/partials/wishlist.html",
+            controller: "wishlistCtrl",
+            resolve: { isAuth }
+        })
         .when("/strava-link", {
             templateUrl: "app/StravaAuth/partials/stravaLink.html",
             controller: "stravaLinkCtrl",

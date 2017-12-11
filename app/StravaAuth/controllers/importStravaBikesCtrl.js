@@ -6,10 +6,10 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
     // get the current user
     const user = AuthFactory.getUser()
 
-    $scope.currentUserProfile 
+    $scope.currentUserProfile
 
     // get current user Profile to get their Strava Id 
-    ProfileFactory.getProfile(user.uid).then(profile=> {  
+    ProfileFactory.getProfile(user.uid).then(profile => {
         $scope.currentUserProfile = profile
 
         StravaOAuthFactory.getStravaProfile($scope.currentUserProfile.stravaToken).then(response => {
@@ -19,39 +19,30 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
                 console.log("allBikesFromStrava: ", allBikesFromStrava)
 
                 // get the users currently tracked bikes
-                BikeFactory.getUserBikes(user.uid).then (userBikes => {
-                    
-                    // filter out the bikes from strava that have not already been imported
-                    // $scope.bikesToImport = allBikesFromStrava.filter(stravaBike => {
-                      
-                    //     let filteredBikes = userBikes.forEach(userBike => {
-                    //         if (stravaBike.id !== userBike.stravaBikeId)
-                    //         {}
-                    //     })
+                BikeFactory.getUserBikes(user.uid).then(userBikes => {
+
+                    // check if each bike in Strava has already been imported or not. If it hasn't, place it in an array of bikes that are available to import. Disregard it if it is already imported. 
+                    allBikesFromStrava.forEach(stravaBike => {
                         
-                    //     console.log("filteredBikes", filteredBikes)
-                    //     return filteredBikes
-    
-                    // })
+                        if (userBikes.every(match, stravaBike)) {
+                            $scope.bikesToImport.push(stravaBike)
+                        }
 
-                    // allBikesFromStrava.forEach()
+                        // function to use to in the .every() function above to check if there is a matched bike
+                        function match(userBike) {
+                            if (userBike.stravaBikeId !== this.id) {
+                                return true
+                            } else {
+                                return false
+                            }
+                        }
 
-                    // function myFilter(stravaBike) {
-                    //     return stravaBike.id !== userBikes.stravaBikeId 
-                    // }
-
-
-                    // allBikesFromStrava.every(myFilter
+                    })
+                    console.log("$scope.bikesToImport", $scope.bikesToImport)
                 })
-
-                
             }
-
         })
-    
-
     })
-
 
 
 })

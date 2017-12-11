@@ -1,6 +1,7 @@
 <div class="importBike">
+    <h3>Available Bikes to Import</h3>
     <div ng-repeat="bike in bikesToImport">
-        Bike: {{ bike.name }}
+        {{ bike.name }}
         <button ng-click="importBike()">Import</button>
         <hr>
     </div>

@@ -177,4 +177,13 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         BikeFactory.editBikeMode = true
         $location.url("/addBike")
     }
+
+    // function to start editing a component, and send user to the AddComponent controller
+    $scope.sendToEditComponent = function(component) {
+        
+        BikeFactory.currentBike = $scope.currentBike
+        ComponentFactory.currentComponent = component
+        ComponentFactory.editCompMode = true
+        $location.url("/addComponent")
+    }
 })    

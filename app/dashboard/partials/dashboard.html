@@ -29,7 +29,7 @@
 
 </div>
 
-
+<h3 ng-if="components">Tracked Components</h3>
 
 <!-- Maybe make this a ng-options dropdown list of all the users tracked components -->
 <div ng-repeat="comp in components">
@@ -40,6 +40,6 @@
    <p ng-if="currentBike.serial">Bike Mileage: {{currentBike.serial}} miles</p>
    <p ng-if=comp.type.tips><a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a></p>
    <button ng-click="deleteComponent(comp.fbId)">Delete</button>
-   <button ng-click="editBike(currentBike)">Edit</button>
+   <button ng-click="sendToEditComponent(comp)">Edit</button>
    <hr>
 </div>

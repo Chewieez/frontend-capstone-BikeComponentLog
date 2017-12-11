@@ -3,7 +3,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
     // check if we are in Edit Bike Mode
     if (!BikeFactory.editBikeMode) {
-        //set local variable to false for Edit Mode to show the user a Add Bike button and not a Save Edits Button
+        // set local Edit mode variable to true to show the user a Save Edits button and not a Add Bike Button
         $scope.editMode = false
 
         // initialize the newBike object to use in form
@@ -13,10 +13,10 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.newBike.mileage = 0
     
         //sets the default date purchased to today's date. User can then change to which ever date they'd like. 
-        $scope.newBike.purchaseDate = new Date(new Date().toISOString().split("T")[0]).split("T")[0]
+        $scope.newBike.purchaseDate = new Date(new Date().toISOString().split("T")[0])
 
     } else {
-        //set local variable to true for Edit Mode to show the user a Save Edits button and not a Add Bike Button
+        // set local Edit mode variable to true to show the user a Save Edits button and not a Add Bike Button
         $scope.editMode = true
         // set the $scope new Bike variable to the current bike chosen to edit
         $scope.newBike = BikeFactory.currentBike 
@@ -27,6 +27,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
     $scope.addBike = function () {
         // get the current User data
         const user = AuthFactory.getUser()
+
         // create a new bike object
         // let newBike = {
         //     brandName: $scope.newBike.brandName,
@@ -71,8 +72,9 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.bikeForm.$setPristine();
     }
 
-    $scope.editBike = function(bikeToEdit) {
-        $location.url("/addBike")
-        $scope.newBike = bikeToEdit
-    }
+    // // function to send user to the 
+    // $scope.editBike = function(bikeToEdit) {
+    //     $location.url("/addBike")
+    //     $scope.newBike = bikeToEdit
+    // }
 })    

@@ -1,5 +1,6 @@
 <div class="addBike">
-    <h1 class="addBik__header"> Add a new Bike to Track</h1>
+    <h1 ng-if="!editMode" class="addBike__header">Add a new Bike to Track</h1>
+    <h1 ng-if="editMode">Edit Your Bike Info</h1>
 
     <form ng-submit="addBike()" name="bikeForm" ng-model="bikeForm">
         <label>Brand:</label>
@@ -16,7 +17,7 @@
         <textarea ng-model="newBike.info"></textarea>
 
         <input ng-if="!editMode" type="submit" value="Add Bike">
-        <input ng-if="editMode" type="submit" value="Edit Bike">
+        <input ng-if="editMode" type="submit" value="Save Edits">
         <input type="reset">
     </form>
 </div>

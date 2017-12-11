@@ -1,0 +1,13 @@
+<div class="importBike">
+    <h3 ng-if="noBikesMessage">You do know have any available bikes to import.</h3>
+    <h3 ng-if="!noBikesMessage">Available Bikes to Import</h3>
+
+
+    <div ng-repeat="bike in bikesToImport">
+        {{ bike.name }}
+        <button ng-click="importBike(bike)">Import</button>
+        <hr>
+    </div>
+
+<button ng-click="toDashboard()">Finished</button>
+</div>

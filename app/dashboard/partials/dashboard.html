@@ -18,17 +18,18 @@
 <button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">Import Bikes From Strava</button>
 
 
-<div ng-model="currentBike">
-    <h3>{{ currentBike.brandName + currentBike.modelName}} </h3>
+<div ng-if="currentBike" ng-model="currentBike">
+    <h3>{{ currentBike.brandName }}  {{ currentBike.modelName}} </h3>
     
     <p ng-if="currentBike.mileage">Bike Mileage: {{currentBike.mileage}} miles</p>
     <p ng-if="currentBike.serial">Bike Serial Number: {{currentBike.serial}}</p>
-    <button ng-if="currentBike" ng-click="deleteBike(currentBike.fbId)">Delete</button>
-    <hr ng-if="currentBike">
+    <button ng-click="deleteBike(currentBike.fbId)">Delete</button>
+    <button ng-click="sendToEditBike()">Edit</button>
+    <hr>
 
 </div>
 
-
+<h3 ng-if="components">Tracked Components</h3>
 
 <!-- Maybe make this a ng-options dropdown list of all the users tracked components -->
 <div ng-repeat="comp in components">
@@ -39,5 +40,6 @@
    <p ng-if="currentBike.serial">Bike Mileage: {{currentBike.serial}} miles</p>
    <p ng-if=comp.type.tips><a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a></p>
    <button ng-click="deleteComponent(comp.fbId)">Delete</button>
+   <button ng-click="sendToEditComponent(comp)">Edit</button>
    <hr>
 </div>

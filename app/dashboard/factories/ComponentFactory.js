@@ -9,6 +9,16 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
             writable: true,
             enumerable: true
         },
+        "editCompMode": {
+            value: false,
+            writable: true,
+            enumerable: true,
+        },
+        "currentComponent": {
+            value: 0,
+            writable: true,
+            enumerable: true
+        },
         "addComponent": {
             "value": function (newComponent) {
                 return firebase.auth().currentUser.getIdToken(true).then(idToken => {

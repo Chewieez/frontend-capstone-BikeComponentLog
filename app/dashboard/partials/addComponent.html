@@ -1,27 +1,27 @@
 <div class="addComponent">
 
-    <h3 class="addComponent__header">Add a component to track on your {{currentBike.brandName + ' ' + currentBike.modelName }}</h3>
+    <h3 class="addComponent__header">Add a component to track on your {{currentBike.brandName}} {{ currentBike.modelName }}</h3>
 
-    <!-- <option ng-options="bikes"></option> -->
 
     <form ng-submit="addComponent()" name="componentForm" ng-model="componentForm">
-        <label>Type:</label>
-        <select ng-model="newComponent.type" ng-options="comp.name for comp in componentTypes"></select>
+        <label ng-if="!editMode">Type:</label>
+        <select ng-if="!editMode" ng-model="newComponent.type" ng-options="comp.name for comp in componentTypes track by comp.name">
+        </select>
         <label>Brand:</label>
-        <input type="text" ng-model="newComponent.brand"/>
+        <input type="text" ng-model="newComponent.brandName"/>
         <label>Model:</label>
-        <input type="text" ng-model="newComponent.model"/>
+        <input type="text" ng-model="newComponent.modelName"/>
         <label>Current Mileage:</label>
         <input type="number" ng-model="newComponent.mileage" />
         <label>Purchase Date:</label>
         <input type="date" ng-model="newComponent.purchaseDate" />
         <label>Serial Number:</label>
-        <input type="number" ng-model="newComponent.serial"/>
+        <input type="text" ng-model="newComponent.serial"/>
         <label>Info:</label>
         <textarea ng-model="newComponent.info"></textarea>
 
-        <input type="submit" value="Add Component">
+        <input ng-if="!editMode" type="submit" value="Add Component">
+        <input ng-if="editMode" type="submit" value="Save Edits">
         <input type="reset">
-
     </form>
 </div>

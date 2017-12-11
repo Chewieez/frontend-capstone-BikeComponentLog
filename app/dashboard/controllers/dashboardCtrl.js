@@ -3,14 +3,15 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     const user = AuthFactory.getUser()
     $scope.currentUserProfile 
 
-    // set the $scope.currentBike to the currently selected bike in the Dashboard dropdown list
-    $scope.currentBike  
+    // // set the $scope.currentBike to the currently selected bike in the Dashboard dropdown list
+    // $scope.currentBike  
 
     // variable to hold the currently selected bike (to use to pass into the Add Component function to tie the component to the bike)
-    let currentBike = $scope.currentBike
+    // let currentBike = $scope.currentBike
 
     // set $scope.bikes to an array to hold bikes
     $scope.bikes = []
+
     // set a variable to hold an array of updated bikes with updated Strava details
     let updatedStravaBikes = []
 
@@ -18,7 +19,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     ProfileFactory.getProfile(user.uid).then(profile=> {  
         $scope.currentUserProfile = profile
 
-        // if the user can linked Strava, go and get their bike data and update the mileage on firebase to reflect their miles on Strava
+        // if the user has linked Strava, go and get their bike data and update the mileage on firebase to reflect their miles on Strava
         BikeFactory.getUserBikes(user.uid).then(response => {
             let allBikes = response
             
@@ -33,7 +34,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                     
                     // filter out the bikes that have a stravaId property
                     linkedBikes = allBikes.filter(bike=> bike.stravaBikeId !== 0)
-                    console.log("linkedBikes: ", linkedBikes)
                     
     
                     if (linkedBikes) {
@@ -47,8 +47,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                             // reach out to Strava for updated mileage
                             StravaOAuthFactory.getBikeData(stravaBikeId, stravaToken).then(bikeData => {
-                                console.log(" strava bike details ", bikeData)
-
                                 // convert meters from strava to miles
                                 const newMileage = Math.round(bikeData.data.distance * 0.00062137)
                                 // check if mileage is greater than current saved miles. 
@@ -78,7 +76,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                     // })
                                 }       /* end of IF statement to check if new mileage is greater */
                                 
-                                BikeFactory.editBikeMileage(bike).then(r=>{
+                                BikeFactory.editBike(bike).then(r=>{
                                     console.log("response from bike mileage update: ", r)
 
                                     // get the freshed data from the users Bikes
@@ -167,4 +165,25 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         $route.reload()
     }
 
+    // function to send user to the Import Strava Bike page
+    $scope.importBikes = function() {
+        $location.url("importStravaBikes")
+    }
+
+    // function to start editing a bike, and send user to the AddBike controller
+    $scope.sendToEditBike = function() {
+        
+        BikeFactory.currentBike = $scope.currentBike
+        BikeFactory.editBikeMode = true
+        $location.url("/addBike")
+    }
+
+    // function to start editing a component, and send user to the AddComponent controller
+    $scope.sendToEditComponent = function(component) {
+        
+        BikeFactory.currentBike = $scope.currentBike
+        ComponentFactory.currentComponent = component
+        ComponentFactory.editCompMode = true
+        $location.url("/addComponent")
+    }
 })    

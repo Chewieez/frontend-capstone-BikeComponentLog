@@ -14,6 +14,11 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
             writable: true,
             enumerable: true
         },
+        "editBikeMode": {
+            value: false,
+            writable: true,
+            enumerable: true,
+        },
         "addBike": {
             "value": function(newBike) {
                 return firebase.auth().currentUser.getIdToken(true).then(idToken => {
@@ -48,13 +53,13 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                                 // bikes[key].fbId = key
                                 return bikes[key]
                             })
-                        console.log("bikes cached")
+                        console.log("bikes cached: ",this.bikesCache)
                         return this.bikesCache
                     }
                 })
             }
         },
-        "editBikeMileage": {
+        "editBike": {
             "value": function(bike) {
                 return firebase.auth().currentUser.getIdToken(true).then(idToken => {
                     return $http({

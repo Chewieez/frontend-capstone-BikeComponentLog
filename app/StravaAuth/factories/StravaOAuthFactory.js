@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRAVA_CONFIG, $location) {
+angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRAVA_CONFIG) {
 
     return Object.create(null, {
         "stravaId": {

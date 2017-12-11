@@ -13,7 +13,7 @@ body {
 
 .navbar ul {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0;
     padding: 0; 
 }
@@ -41,3 +41,33 @@ input, textarea, select {
     padding:.3em; 
 }
 
+#svgspin {
+    text-align: center;
+    animation: spin .8s linear infinite; 
+    display: block; 
+    fill: #223344; 
+    float: left; 
+    height: 150px; 
+    margin: 0 5px 5px 0; 
+    width: 150px;
+    position: relative;
+    margin: 50px auto;
+  }
+
+
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(360deg); 
+      transform:rotate(360deg);
+    }
+  }

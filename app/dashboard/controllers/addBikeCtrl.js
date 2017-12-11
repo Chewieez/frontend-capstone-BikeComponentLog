@@ -81,12 +81,16 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
             $scope.newBike.mileage = 0
             $scope.bikeForm.$setPristine();
         } else {
-            BikeFactory.editBike($scope.newBike).then(()=>{
-                
+            BikeFactory.editBike($scope.newBike).then((response)=>{
+                console.log("edit bike response", response)
                 BikeFactory.editMode = false
                 $scope.editMode = false
+                
+                // need to wrap this in $scope.apply to get it to work.
+                $scope.$apply(()=>{
+                    $location.url("/dashboard")
+                })
             })
-            $location.url("/dashboard")
         }
     }
 

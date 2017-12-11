@@ -122,7 +122,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         // set the current Bike id to use later when adding components
         BikeFactory.currentBike = $scope.currentBike
         
-        debugger
         // get the users components from firebase
         ComponentFactory.getUserComponents(user.uid).then(response => {
             

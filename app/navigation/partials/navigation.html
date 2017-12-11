@@ -1,6 +1,15 @@
 <ul ng-controller="navCtrl">
-    <li><a href="/#!/profile">Profile</a></li>
-    <li><a href="/#!/dashboard">Dashboard</a></li>
+    <li><img ng-src="/images/bicycle-white-rec.png" width="50px"/></li>
+    <li>
+        <span ng-if="isAuthenticated()">
+            <a href="/#!/profile">Profile</a>
+        </span>
+    </li>
+    <li>
+        <span ng-if="isAuthenticated()">
+            <a href="/#!/dashboard">Dashboard</a>
+        </span>
+    </li>
     <li>
         <span ng-if="isAuthenticated()">
             <a href="/#!/wishlist">Wishlist</a>

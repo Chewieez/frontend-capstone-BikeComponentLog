@@ -82,9 +82,19 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                     })
                 })
             }
-        }, 
+        },
+        "addImage": {
+            value: function(file) {
+                // add a time stamp to make each image file unique on Firebase
+                const stamp = Date.now()
+                return firebase.storage().ref("/images/ComponentImages/").child(file.name + stamp).put(file).then(result => {
+                    // get the url of the image you uploaded
+                    return firebase.storage().ref("/images/ComponentImages/").child(file.name + stamp).getDownloadURL()
+                })
+            }
+        },  
         "componentTypes": {
-            // make these objects and add links to installation tips
+            // add more types
             value: [
                 {
                     "name": "tires",

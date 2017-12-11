@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, AuthFactory, ComponentFactory, BikeFactory) {
+angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, AuthFactory, ComponentFactory, BikeFactory) {
 
     // check if we are in Edit Component Mode
     if (!ComponentFactory.editCompMode) {
@@ -32,6 +32,22 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
         // populate the date window with the components original saved date
         $scope.newComponent.purchaseDate = new Date(ComponentFactory.currentComponent.purchaseDate.split("T")[0])
     }
+
+
+    $scope.saveImage = () => {
+
+        let filename = document.getElementById("addComponent__image");
+        let file = filename.files[0]
+        ComponentFactory.addImage(file).then(_url=> {
+            $scope.$apply( function() {
+
+                $scope.newComponent.image = _url
+            })
+        })
+        
+    }
+
+
 
     // function to create a component object when the user clicks submit button on form, then store the new component in firebase
     $scope.addComponent = function () {
@@ -68,16 +84,25 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, Au
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
             // Post this new component to firebase
-            ComponentFactory.addComponent($scope.newComponent)
+            ComponentFactory.addComponent($scope.newComponent).then(()=>{
+                $route.reload()
+            })
         } else {
-            ComponentFactory.updateComponent($scope.newComponent)
+            ComponentFactory.updateComponent($scope.newComponent).then(()=>{
+                $route.reload()
+                $scope.editMode = false
+                ComponentFactory.editCompMode = false
+            })
         }
         
-        // Reset the form after successful upload
-        $scope.newComponent = {}
-        // prepopulate the mileage box to 0
-        $scope.newComponent.mileage = 0
-        $scope.componentForm.$setPristine();
+        // // Reset the form after successful upload
+        // $scope.newComponent = {}
+        
+        // // prepopulate the mileage box to 0
+        // $scope.newComponent.mileage = 0
+        // $scope.componentForm.$setPristine();
+
+        
     }
 
 })    

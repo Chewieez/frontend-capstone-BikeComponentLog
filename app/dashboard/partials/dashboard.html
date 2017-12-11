@@ -21,11 +21,12 @@
 <div ng-if="currentBike" ng-model="currentBike">
     <h3>{{ currentBike.brandName }}  {{ currentBike.modelName}} </h3>
     
+    <p ng-if="currentBike.stravaBikeId">-Linked with Strava-</p>
     <p ng-if="currentBike.mileage">Bike Mileage: {{currentBike.mileage}} miles</p>
     <p ng-if="currentBike.info">Bike Info: {{currentBike.info}}</p>
     <p ng-if="currentBike.serial">Bike Serial Number: {{currentBike.serial}}</p>
-    <p ng-if="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
-    <!-- <p ng-if="currentBike.photo"> {{currentBike.photo}}</p> -->
+    <p ng-model="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
+    <img ng-src="{{ currentBike.image }}" style="width:250px;height:auto;" />
     <button ng-click="deleteBike(currentBike)">Delete</button>
     <button ng-click="sendToEditBike(currentBike)">Edit</button>
     <hr>
@@ -42,6 +43,7 @@
    <p> Mileage: {{ comp.mileage }} miles </p>
    <p ng-if="currentBike.serial">Bike Mileage: {{currentBike.serial}} miles</p>
    <p ng-if=comp.type.tips><a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a></p>
+   <img ng-src="{{ comp.image }}" style="width:200px;height:auto;" />
    <button ng-click="deleteComponent(comp)">Delete</button>
    <button ng-click="sendToEditComponent(comp)">Edit</button>
    <hr>

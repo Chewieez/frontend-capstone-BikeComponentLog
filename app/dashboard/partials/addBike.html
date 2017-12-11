@@ -16,6 +16,11 @@
         <label>Info:</label>
         <textarea ng-model="newBike.info"></textarea>
 
+        <label for="Image">Image</label>
+        <input id="addBike__image" type="file" accept=".jpg,.png,.gif" ng-model="newBike.image" ng-change="saveImage()">
+        <button type="button" ng-click="saveImage()">Upload Image</button>
+        <img ng-src="{{newBike.image}}" style="width:150px;height:auto;"/>
+
         <input ng-if="!editMode" type="submit" value="Add Bike">
         <input ng-if="editMode" type="submit" value="Save Edits">
         <input type="reset">

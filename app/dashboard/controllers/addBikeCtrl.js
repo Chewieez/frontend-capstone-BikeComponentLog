@@ -26,6 +26,19 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         }
     }
 
+    $scope.saveImage = () => {
+        
+        let filename = document.getElementById("addBike__image");
+        let file = filename.files[0]
+        BikeFactory.addImage(file).then(_url=> {
+            $scope.$apply( function() {
+
+                $scope.newBike.image = _url
+            })
+        })
+        
+    }
+
 
     $scope.addBike = function () {
         // get the current User data
@@ -62,17 +75,20 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
             BikeFactory.addBike($scope.newBike)
             // make sure edit mode on BikeFactory is and stays false, until a user clicks the Edit button
             BikeFactory.editMode = false
+            
+            // Reset the form after successful upload
+            $scope.newBike = {}
+            // prepopulate the mileage box to 0
+            $scope.newBike.mileage = 0
+            $scope.bikeForm.$setPristine();
         } else {
-            BikeFactory.editBike($scope.newBike)
-            BikeFactory.editMode = false
-            $scope.editMode = false
+            BikeFactory.editBike($scope.newBike).then(()=>{
+                
+                BikeFactory.editMode = false
+                $scope.editMode = false
+            })
+            $location.url("/dashboard")
         }
-
-        // Reset the form after successful upload
-        $scope.newBike = {}
-        // prepopulate the mileage box to 0
-        $scope.newBike.mileage = 0
-        $scope.bikeForm.$setPristine();
     }
 
     // // function to send user to the 

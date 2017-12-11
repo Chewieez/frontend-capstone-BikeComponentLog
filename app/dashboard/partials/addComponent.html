@@ -21,6 +21,10 @@
         <label>Info:</label>
         <textarea ng-model="newComponent.info"></textarea>
 
+        <input id="addComponent__image" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" ng-change="saveImage()">
+        <button type="button" ng-click="saveImage()">Upload Image</button>
+        <img ng-src="{{newComponent.image}}" style="width:150px;height:auto;"/>
+
         <input ng-if="!editMode" type="submit" value="Add Component">
         <input ng-if="editMode" type="submit" value="Save Edits">
         <input type="reset">

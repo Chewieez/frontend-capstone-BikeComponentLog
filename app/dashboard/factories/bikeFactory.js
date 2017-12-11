@@ -35,8 +35,6 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                             "url": `${firebaseURL}/${newBike.fbId}/.json?auth=${idToken}`,
                             "data": newBike
                         })
-                    }).then(r =>{
-                        console.log("bike uploaded")
                     })
                 })
             }
@@ -79,7 +77,17 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                     })
                 })
             }
-        } 
+        },
+        "addImage": {
+            value: function(file) {
+                // add a time stamp to make each image file unique on Firebase
+                const stamp = Date.now()
+                return firebase.storage().ref("/images/BikeImages").child(file.name + stamp).put(file).then(result => {
+                    // get the url of the image you uploaded
+                    return firebase.storage().ref("/images/BikeImages").child(file.name + stamp).getDownloadURL()
+                })
+            }
+        }, 
         
     })
     

@@ -3,11 +3,9 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     const user = AuthFactory.getUser()
     $scope.currentUserProfile 
 
-    // // set the $scope.currentBike to the currently selected bike in the Dashboard dropdown list
-    // $scope.currentBike  
-
-    // variable to hold the currently selected bike (to use to pass into the Add Component function to tie the component to the bike)
-    // let currentBike = $scope.currentBike
+    // set the default value of edit mode to be false
+    BikeFactory.editBikeMode = false;
+    ComponentFactory.editCompMode = false;
 
     // set $scope.bikes to an array to hold bikes
     $scope.bikes = []

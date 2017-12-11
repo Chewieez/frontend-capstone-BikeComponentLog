@@ -152,10 +152,26 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     }
 
     // function to delete a bike
-    $scope.deleteBike = function(fbId) {
+    $scope.deleteBike = function(bike) {
         
-        BikeFactory.deleteBike(fbId).then(()=>{
+        BikeFactory.deleteBike(bike).then(()=>{
+            let userComponents
+
+            // get user components
+            ComponentFactory.getUserComponents(user.uid).then(components => {
+                // filter out components that are attached to the bike the user is deleting
+                let deletedBikeComp = components.filter(comp=>{
+                    return comp.bikeFbId === bike.fbId
+                })
+                // loop through array of matching components and delete each one
+                deletedBikeComp.forEach(comp => {
+                    ComponentFactory.deleteComponent(comp)
+                })
+            })
+
+            // empty the current bike variable
             $scope.currentBike = {}
+            // reload the dashboard
             $route.reload()
         })
     }

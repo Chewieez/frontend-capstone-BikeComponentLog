@@ -74,11 +74,11 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
             }
         },
         "deleteComponent": {
-            "value": function (fbId) {
+            "value": function (comp) {
                 return firebase.auth().currentUser.getIdToken(true).then(idToken => {
                     return $http({
                         method: "DELETE",
-                        url: `${firebaseURL}/${fbId}/.json?auth=${idToken}`,
+                        url: `${firebaseURL}/${comp.fbId}/.json?auth=${idToken}`,
                     })
                 })
             }

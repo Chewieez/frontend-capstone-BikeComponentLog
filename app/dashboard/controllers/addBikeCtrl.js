@@ -1,6 +1,6 @@
 angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, AuthFactory, BikeFactory) {
 
-
+    
     // check if we are in Edit Bike Mode
     if (!BikeFactory.editBikeMode) {
         // set local Edit mode variable to true to show the user a Save Edits button and not a Add Bike Button

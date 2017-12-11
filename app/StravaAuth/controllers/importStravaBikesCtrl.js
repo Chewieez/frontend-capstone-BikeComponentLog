@@ -1,12 +1,13 @@
 angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
 
     $scope.bikesToImport = []
+
+    /* Wrap all of this code checking Strava in a 'on page load' function. Learn how with Angular */
+
     let allBikesFromStrava = []
 
     // get the current user
     const user = AuthFactory.getUser()
-
-    $scope.currentUserProfile
 
     // get current user Profile to get their Strava Id 
     ProfileFactory.getProfile(user.uid).then(profile => {
@@ -16,7 +17,6 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
             // check if user has bikes stored in their Strava Account
             if (response.data.bikes) {
                 allBikesFromStrava = response.data.bikes
-                console.log("allBikesFromStrava: ", allBikesFromStrava)
 
                 // get the users currently tracked bikes
                 BikeFactory.getUserBikes(user.uid).then(userBikes => {
@@ -36,13 +36,35 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
                                 return false
                             }
                         }
-
                     })
-                    console.log("$scope.bikesToImport", $scope.bikesToImport)
                 })
+            }
+            if ($scope.bikesToImport.length === 0) {
+                $scope.noBikesMessage = "You have no bikes available to import"
             }
         })
     })
 
+
+    // function to import a bike into user's database
+    $scope.importBike = function(bike) {
+
+        const importedBike = {
+            brandName: bike.name,
+            mileage: Math.round(bike.distance * 0.00062137),
+            stravaBikeId: bike.id,
+            userId: user.uid,
+        }
+
+        BikeFactory.addBike(importedBike)
+
+        if ($scope.bikesToImport.length === 1) {
+            $location.url("/dashboard")
+        } 
+    }
+
+    $scope.toDashboard = function() {
+        $location.url("/dashboard")
+    }
 
 })

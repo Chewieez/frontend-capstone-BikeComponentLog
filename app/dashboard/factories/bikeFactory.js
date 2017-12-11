@@ -14,6 +14,11 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
             writable: true,
             enumerable: true
         },
+        "editBikeMode": {
+            value: false,
+            writable: true,
+            enumerable: true,
+        },
         "addBike": {
             "value": function(newBike) {
                 return firebase.auth().currentUser.getIdToken(true).then(idToken => {
@@ -54,7 +59,7 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                 })
             }
         },
-        "editBikeMileage": {
+        "editBike": {
             "value": function(bike) {
                 return firebase.auth().currentUser.getIdToken(true).then(idToken => {
                     return $http({

@@ -34,7 +34,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                     
                     // filter out the bikes that have a stravaId property
                     linkedBikes = allBikes.filter(bike=> bike.stravaBikeId !== 0)
-                    console.log("linkedBikes: ", linkedBikes)
                     
     
                     if (linkedBikes) {
@@ -48,8 +47,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                             // reach out to Strava for updated mileage
                             StravaOAuthFactory.getBikeData(stravaBikeId, stravaToken).then(bikeData => {
-                                console.log(" strava bike details ", bikeData)
-
                                 // convert meters from strava to miles
                                 const newMileage = Math.round(bikeData.data.distance * 0.00062137)
                                 // check if mileage is greater than current saved miles. 
@@ -79,7 +76,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                     // })
                                 }       /* end of IF statement to check if new mileage is greater */
                                 
-                                BikeFactory.editBikeMileage(bike).then(r=>{
+                                BikeFactory.editBike(bike).then(r=>{
                                     console.log("response from bike mileage update: ", r)
 
                                     // get the freshed data from the users Bikes
@@ -173,4 +170,11 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         $location.url("importStravaBikes")
     }
 
+    // function to start editing a bike, and send user to the AddBike controller
+    $scope.sendToEditBike = function() {
+        
+        BikeFactory.currentBike = $scope.currentBike
+        BikeFactory.editBikeMode = true
+        $location.url("/addBike")
+    }
 })    

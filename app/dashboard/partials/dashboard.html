@@ -18,7 +18,7 @@
 <button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">Import Bikes From Strava</button>
 
 
-<div ng-if="currentBike" ng-model="currentBike">
+<div ng-if="currentBike" ng-model="currentBike" style="text-align: center">
     <h3>{{ currentBike.brandName }}  {{ currentBike.modelName}} </h3>
     
     <p ng-if="currentBike.stravaBikeId">-Linked with Strava-</p>
@@ -27,6 +27,8 @@
     <p ng-if="currentBike.serial">Bike Serial Number: {{currentBike.serial}}</p>
     <p ng-model="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
     <img ng-src="{{ currentBike.image }}" style="width:250px;height:auto;" />
+    <!-- buttons -->
+    <button ng-click="addMileage()">Add Mileage</button>
     <button ng-click="deleteBike(currentBike)">Delete</button>
     <button ng-click="sendToEditBike(currentBike)">Edit</button>
     <hr>

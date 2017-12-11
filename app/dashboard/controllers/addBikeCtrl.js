@@ -27,16 +27,15 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
     }
 
     $scope.saveImage = () => {
-        
+        // get the name of the file to upload
         let filename = document.getElementById("addBike__image");
         let file = filename.files[0]
         BikeFactory.addImage(file).then(_url=> {
+            // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply( function() {
-
                 $scope.newBike.image = _url
             })
         })
-        
     }
 
 

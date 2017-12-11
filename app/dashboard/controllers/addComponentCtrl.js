@@ -35,10 +35,12 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
 
     $scope.saveImage = () => {
-
+        // get the name of the file to upload
         let filename = document.getElementById("addComponent__image");
         let file = filename.files[0]
+
         ComponentFactory.addImage(file).then(_url=> {
+            // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply( function() {
 
                 $scope.newComponent.image = _url

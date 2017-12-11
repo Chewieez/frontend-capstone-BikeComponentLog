@@ -3,6 +3,14 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     const user = AuthFactory.getUser()
     $scope.currentUserProfile 
 
+    /* This works to set default bike in view, but doens't populate the dropdown list with the correct information. This also requires the $scope.getComponents() function to be moved up before this code runs */
+    // if (BikeFactory.currentBike) {
+    //     debugger
+    //     $scope.currentBike = BikeFactory.currentBike
+        
+    //     $scope.getComponents()
+    // }
+
     // set the default value of edit mode to be false
     BikeFactory.editBikeMode = false;
     ComponentFactory.editCompMode = false;
@@ -113,7 +121,8 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     $scope.getComponents = function() {
         // set the current Bike id to use later when adding components
         BikeFactory.currentBike = $scope.currentBike
-
+        
+        debugger
         // get the users components from firebase
         ComponentFactory.getUserComponents(user.uid).then(response => {
             
@@ -205,4 +214,10 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         // redirect user to the add component form to enter edits
         $location.url("/addComponent")
     }
+
+    $scope.addMileage = () => {
+        BikeFactory.currentBike = $scope.currentBike
+        $location.url("/addMileage")
+    }
+
 })    

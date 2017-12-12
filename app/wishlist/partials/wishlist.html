@@ -12,8 +12,8 @@
     </form>
 
    
-
-    <div ng-repeat="wish in wishes">
+    <input type="search" ng-model="wishSearch">
+    <div ng-repeat="wish in wishes | filter:wishSearch">
        <p>{{ wish.title }}</p> 
         <p>{{ wish.info}}</p>
         <button ng-click="editWish(wish)">Edit</button>

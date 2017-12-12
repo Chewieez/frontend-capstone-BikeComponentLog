@@ -1,4 +1,6 @@
 angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
+    $scope.progressFlag = true
+
     // get the current user
     const user = AuthFactory.getUser()
     $scope.currentUserProfile 
@@ -114,6 +116,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             })
         })
 
+        $scope.progressFlag = false
     })
 
 
@@ -218,5 +221,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         BikeFactory.currentBike = $scope.currentBike
         $location.url("/addMileage")
     }
+
 
 })    

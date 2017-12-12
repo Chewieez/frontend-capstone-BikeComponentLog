@@ -10,7 +10,10 @@
 <body ng-app="BikeLogApp" ng-cloak>
 
     <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar"></nav>
-    <div ng-include="'app/progress.html'" class="progress" style="width: 300px"></div>
+
+    <!-- <div ng-show="progressFlag" ng-include="'app/progress.html'" class="progress" style="width: 300px"></div> -->
+
+
     <div ng-view ng-cloak>
     </div>
 
@@ -19,6 +22,7 @@
     crossorigin="anonymous"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./lib/node_modules/angular/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
     <script src="./lib/node_modules/firebase/firebase.js"></script>
     <script src="./lib/node_modules/angular-route/angular-route.js"></script>
     <script src="./app/app.js"></script>

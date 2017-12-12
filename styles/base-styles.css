@@ -41,6 +41,13 @@ input, textarea, select {
     padding:.3em; 
 }
 
+.progressSVG {
+    margin: 0 auto;
+    padding: 0;
+    width: 50%;
+
+}
+
 #svgspin {
     text-align: center;
     animation: spin .8s linear infinite; 
@@ -71,3 +78,7 @@ input, textarea, select {
       transform:rotate(360deg);
     }
   }
+
+.dashboard__content {
+    transition: all linear 0.5s;
+}

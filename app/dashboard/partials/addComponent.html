@@ -23,7 +23,9 @@
 
         <input id="addComponent__image" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" ng-change="saveImage()">
         <button type="button" ng-click="saveImage()">Upload Image</button>
-        <img ng-src="{{newComponent.image}}" style="width:150px;height:auto;"/>
+        <div ng-repeat="image in newComponent.images">
+            <img ng-src="{{image}}" style="width:150px;height:auto;"/>
+        </div>
 
         <input ng-if="!editMode" type="submit" value="Add Component">
         <input ng-if="editMode" type="submit" value="Save Edits">

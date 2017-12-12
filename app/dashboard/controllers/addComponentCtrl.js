@@ -12,6 +12,9 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         // set the starting value of mileage to 0
         $scope.newComponent.mileage = 0
 
+        // create an array to hold images
+        $scope.newComponent.images = [""]
+        
         // sets the default date purchased to today's date. User can then change to which ever date they'd like. 
         if (!$scope.newComponent.purchaseDate) {
             $scope.newComponent.purchaseDate = new Date(new Date().toISOString().split("T")[0])
@@ -32,6 +35,13 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         // set the $scope new Bike variable to the current bike chosen to edit
         $scope.newComponent = ComponentFactory.currentComponent 
+
+        // check if an images array currently exists
+        if (!$scope.newComponent.images) {
+            // create an array for images
+            $scope.newComponent.images = [""]
+        }
+
         // populate the date window with the components original saved date
         if (ComponentFactory.currentComponent.purchaseDate) {
             $scope.newComponent.purchaseDate = new Date(ComponentFactory.currentComponent.purchaseDate)
@@ -48,8 +58,8 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         ComponentFactory.addImage(file).then(_url=> {
             // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply( function() {
-
-                $scope.newComponent.image = _url
+                
+                $scope.newComponent.images.push(_url)
             })
         })
     }

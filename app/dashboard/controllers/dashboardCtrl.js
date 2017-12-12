@@ -1,17 +1,45 @@
 angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
     $scope.progressFlag = true
 
+    // This function is called when the user selects a bike from the dropdown list, and it retrieves the selected bike's components from Firebase
+    // This function needs to live above the if statement below that check if there is a currentBike in cache. 
+    $scope.getComponents = function() {
+        // set the current Bike id to use later when adding components
+        BikeFactory.currentBike = $scope.currentBike
+        
+        // get the users components from firebase
+        ComponentFactory.getUserComponents(user.uid).then(response => {
+            
+            // filter through components and get the ones attached to the current Bike
+            let thisBikesComponents = response.filter(comp => {
+                return comp.bikeFbId === $scope.currentBike.fbId
+            })
+            // setup $scope.components to hold an array of components
+            $scope.components = []
+
+            // loop over the matching components and push them to the $scope.components array
+            thisBikesComponents.forEach(comp =>{
+                $scope.components.push(comp)
+            })
+        })
+    }
+
+
     // get the current user
     const user = AuthFactory.getUser()
     $scope.currentUserProfile 
 
     /* This works to set default bike in view, but doens't populate the dropdown list with the correct information. This also requires the $scope.getComponents() function to be moved up before this code runs */
-    // if (BikeFactory.currentBike) {
-    //     debugger
-    //     $scope.currentBike = BikeFactory.currentBike
+    if (BikeFactory.currentBike) {
+        // retrieve the current Bike saved on the factory and place it in scope
+        $scope.currentBike = BikeFactory.currentBike
         
-    //     $scope.getComponents()
-    // }
+        // try and see if you can use cache for this. 
+        $scope.getComponents()
+        
+        // turn off the spinning gear progress meter
+        $scope.progressFlag = false
+    }
 
     // set the default value of edit mode to be false
     BikeFactory.editBikeMode = false;
@@ -120,27 +148,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     })
 
 
-    // put this call inside a function that is called when the user selects a bike from the dropdown list    
-    $scope.getComponents = function() {
-        // set the current Bike id to use later when adding components
-        BikeFactory.currentBike = $scope.currentBike
-        
-        // get the users components from firebase
-        ComponentFactory.getUserComponents(user.uid).then(response => {
-            
-            // filter through components and get the ones attached to the current Bike
-            let thisBikesComponents = response.filter(comp => {
-                return comp.bikeFbId === $scope.currentBike.fbId
-            })
-            // setup $scope.components to hold an array of components
-            $scope.components = []
-
-            // loop over the matching components and push them to the $scope.components array
-            thisBikesComponents.forEach(comp =>{
-                $scope.components.push(comp)
-            })
-        })
-    }
+   
     
     // function to send the user to the Add Bike page
     $scope.sendToAddBike = function() {

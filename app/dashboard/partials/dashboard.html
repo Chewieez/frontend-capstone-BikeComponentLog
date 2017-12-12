@@ -1,6 +1,6 @@
 <div class="dashboard">
     <!-- Refresh button -->
-    <button ng-show="!progressFlat" ng-hide="progressFlag" ng-click="refresh()">Refresh</button>
+    <button ng-show="!progressFlag" ng-hide="progressFlag" ng-click="refresh()">Refresh</button>
 
     <h1> Welcome to your dashboard</h1>
 
@@ -36,7 +36,7 @@
             <p ng-if="currentBike.mileage">Bike Mileage: {{currentBike.mileage}} miles</p>
             <p ng-if="currentBike.info">Bike Info: {{currentBike.info}}</p>
             <p ng-if="currentBike.serial">Bike Serial Number: {{currentBike.serial}}</p>
-            <p ng-model="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
+            <p ng-if="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
             <!-- <img ng-src="{{ currentBike.image }}" style="width:250px;height:auto;" /> -->
             <!-- buttons -->
             <button ng-click="addMileage()">Add Mileage</button>
@@ -48,10 +48,8 @@
 
         <h3 ng-if="components">Tracked Components</h3>
 
-        <!-- Maybe make this a ng-options dropdown list of all the users tracked components -->
-        
-        <label ng-if="components.length > 1">Search Components</label>
-        <input ng-if="components.length > 1" type="text" ng-model="componentSearch"/>
+        <label>Search Components</label>
+        <input type="search" ng-model="componentSearch" />
         
         
         <select ng-if="components.length > 1" ng-model="sortSelector" ng-options="sort for sort in sortOrderArray" ng-change="setSortOrder(sortSelector)">
@@ -61,14 +59,14 @@
         <input ng-if="components.length > 1" type="checkbox" ng-model="sortReverse.setting" >
 
 
-        <div ng-repeat="comp in components | filter:componentSearch | orderBy:sortOrder:sortReverse.setting" >
+        <div ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse">
             <p> Component: {{ comp.type.name }} </p>
-            <p> Brand Name: {{ comp.brandName }} </p>
-            <p> Model Name: {{ comp.modelName }} </p>
-            <p> Purchase Date: {{ comp.purchaseDate | date }} </p>
-            <p> Mileage: {{ comp.mileage }} miles </p>
+            <p ng-if="comp.brandName"> Brand Name: {{ comp.brandName }} </p>
+            <p ng-if="comp.modelName"> Model Name: {{ comp.modelName }} </p>
+            <p ng-if="comp.purchaseDate"> Purchase Date: {{ comp.purchaseDate | date }} </p>
+            <p ng-if="comp.mileage"> Mileage: {{ comp.mileage }} miles </p>
             <p ng-if="currentBike.serial">Serial: {{currentBike.serial}}</p>
-            <p ng-if=comp.type.tips>
+            <p ng-if="comp.type.tips">
                 <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>
             </p>
             <div ng-repeat="image in comp.images">

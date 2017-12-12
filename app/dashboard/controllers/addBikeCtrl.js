@@ -34,6 +34,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         }
     }
 
+    // function to save the users photos of their bike
     $scope.saveImage = () => {
         // get the name of the file to upload
         let filename = document.getElementById("addBike__image");
@@ -41,12 +42,15 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         BikeFactory.addImage(file).then(_url=> {
             // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply( function() {
-               
+                
                 $scope.newBike.images.push(_url)
             })
         })
     }
 
+    $scope.cancelForm = () => {
+        $location.url("/dashboard")
+    }
 
     $scope.addBike = function () {
         // get the current User data

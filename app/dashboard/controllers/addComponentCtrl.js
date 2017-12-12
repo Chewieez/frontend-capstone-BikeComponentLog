@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, AuthFactory, ComponentFactory, BikeFactory) {
+angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $location, AuthFactory, ComponentFactory, BikeFactory) {
     
     // check if we are in Edit Component Mode
     if (!ComponentFactory.editCompMode) {
@@ -49,6 +49,10 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         }
     }
 
+    // function to send user back to dashboard if Cancel button is clicked
+    $scope.cancelForm = () => {
+        $location.url("/dashboard")
+    }
 
     $scope.saveImage = () => {
         // get the name of the file to upload

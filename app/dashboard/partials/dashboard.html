@@ -37,7 +37,7 @@
             <p ng-if="currentBike.info">Bike Info: {{currentBike.info}}</p>
             <p ng-if="currentBike.serial">Bike Serial Number: {{currentBike.serial}}</p>
             <p ng-model="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
-            <img ng-src="{{ currentBike.image }}" style="width:250px;height:auto;" />
+            <!-- <img ng-src="{{ currentBike.image }}" style="width:250px;height:auto;" /> -->
             <!-- buttons -->
             <button ng-click="addMileage()">Add Mileage</button>
             <button ng-click="deleteBike(currentBike)">Delete</button>
@@ -58,10 +58,21 @@
             <p ng-if=comp.type.tips>
                 <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>
             </p>
-            <img ng-src="{{ comp.image }}" style="width:200px;height:auto;" />
+            <div ng-repeat="image in comp.images">
+
+                <img ng-src="{{ image }}" style="width:200px;height:auto;" />
+            </div>
             <button ng-click="deleteComponent(comp)">Delete</button>
             <button ng-click="sendToEditComponent(comp)">Edit</button>
             <hr>
+        </div>
+
+        <div ng-if="currentBike.images" class="bikeImages">
+
+            <h3> Images of your {{ currentBike.brandName }} {{ currentBike.modelName }}</h3>
+            <div ng-repeat="image in currentBike.images" ng-model="currentBike">
+                <img ng-src="{{ image }}" style="width:250px;height:auto;" />
+            </div>
         </div>
     </div>
 </div>

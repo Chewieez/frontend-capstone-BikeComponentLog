@@ -8,7 +8,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         // initalize the newComponent object to use in form
         $scope.newComponent = {}
-    
+        $scope.newComponent.images = [""]
         // store component types in an array to populate dropdown list
         $scope.componentTypes = ComponentFactory.componentTypes
        
@@ -29,6 +29,13 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         // set the $scope new Bike variable to the current bike chosen to edit
         $scope.newComponent = ComponentFactory.currentComponent 
+
+        // check if an images array currently exists
+        if (!$scope.newComponent.images) {
+            // create an array for images
+            $scope.newComponent.images = [""]
+        }
+
         // populate the date window with the components original saved date
         $scope.newComponent.purchaseDate = new Date(ComponentFactory.currentComponent.purchaseDate.split("T")[0])
     }
@@ -42,8 +49,8 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         ComponentFactory.addImage(file).then(_url=> {
             // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply( function() {
-
-                $scope.newComponent.image = _url
+                
+                $scope.newComponent.images.push(_url)
             })
         })
         

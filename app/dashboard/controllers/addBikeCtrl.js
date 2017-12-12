@@ -8,6 +8,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
         // initialize the newBike object to use in form
         $scope.newBike = {}
+        $scope.newBike.images = [""]
     
         // set the starting value of mileage to 0
         $scope.newBike.mileage = 0
@@ -20,6 +21,13 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.editMode = true
         // set the $scope new Bike variable to the current bike chosen to edit
         $scope.newBike = BikeFactory.currentBike 
+
+        // check if an images array currently exists
+        if (!$scope.newBike.images) {
+            // create an array for images
+            $scope.newBike.images = [""]
+        }
+        
         // if the bike currently has a date, populate the date window with that date info
         if (BikeFactory.currentBike.purchaseDate) {
             $scope.newBike.purchaseDate = new Date(BikeFactory.currentBike.purchaseDate.split("T")[0])
@@ -33,7 +41,8 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         BikeFactory.addImage(file).then(_url=> {
             // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply( function() {
-                $scope.newBike.image = _url
+               
+                $scope.newBike.images.push(_url)
             })
         })
     }

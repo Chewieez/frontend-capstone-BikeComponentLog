@@ -95,6 +95,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                         // set the $scope.bikes array to all the updated bikes
                                         $scope.bikes = allUpdatedBikes
 
+                                        $scope.progressFlag = false
                                     })
                                 })
     
@@ -116,7 +117,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             })
         })
 
-        $scope.progressFlag = false
     })
 
 
@@ -222,5 +222,33 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         $location.url("/addMileage")
     }
 
+    // Code for sorting Comonents
+    $scope.sortOrderArray = ["Mileage", "Purchase Date", "Brand Name", "Model Name", "Component Type"]
+    // object to hold the reverse order setting. Checkbox on partial controls the .setting value
+    $scope.sortReverse = {}
+    $scope.sortReverse.setting = false
 
+    
+    // function to set the sort order of components section
+    $scope.setSortOrder = (sortSelector) => {
+
+        switch (sortSelector) {
+        case "Purchase Date":
+            $scope.sortOrder = "purchaseDate"
+            break
+        case "Mileage":
+            $scope.sortOrder = "mileage"
+            $scope.sortReverse.setting = true
+            break
+        case "Brand Name":
+            $scope.sortOrder = "brandName"
+            break
+        case "Model Name":
+            $scope.sortOrder = "modelName"
+            break
+        case "Component Type":
+            $scope.sortOrder = "type"
+            break
+        }
+    }
 })    

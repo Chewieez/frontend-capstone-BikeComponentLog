@@ -54,7 +54,7 @@
         </div>
         
 
-        <select ng-if="components.length > 1" ng-model="sortSelector" ng-options="sort for sort in sortOrderArray" ng-change="setSortOrder(sortSelector)">
+        <select ng-if="components.length > 1" ng-model="sortSelector" ng-options="sort.title for sort in sortOrderArray" ng-change="setSortOrder(sortSelector)">
             <option value="">Sort Components By:</option>
         </select>
         <label ng-if="components">Reverse Sort</label>

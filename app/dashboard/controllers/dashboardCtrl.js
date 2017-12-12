@@ -232,7 +232,29 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     }
 
     // Code for sorting Comonents
-    $scope.sortOrderArray = ["Mileage", "Purchase Date", "Brand Name", "Model Name", "Component Type"]
+    $scope.sortOrderArray = [
+        {
+            "title": "Mileage",
+            "propName": "mileage"
+        },
+        {
+            "title": "Purchase Date",
+            "propName": "purchaseDate"
+        },
+        {
+            "title": "Brand Name",
+            "propName": "brandName"
+        },
+        {
+            "title": "Model Name",
+            "propName": "modelName"
+        },
+        {
+            "title": "Component Type",
+            "propName": "type"
+        }       
+    ]
+
     // object to hold the reverse order setting. Checkbox on partial controls the .setting value
     $scope.sortReverse = {}
     $scope.sortReverse.setting = false
@@ -240,24 +262,12 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     
     // function to set the sort order of components section
     $scope.setSortOrder = (sortSelector) => {
-
-        switch (sortSelector) {
-        case "Purchase Date":
-            $scope.sortOrder = "purchaseDate"
-            break
-        case "Mileage":
-            $scope.sortOrder = "mileage"
+        // if user is ordering by mileage, reverse the sort order by default to highest miles first
+        if (sortSelector.propName === "mileage") {
             $scope.sortReverse.setting = true
-            break
-        case "Brand Name":
-            $scope.sortOrder = "brandName"
-            break
-        case "Model Name":
-            $scope.sortOrder = "modelName"
-            break
-        case "Component Type":
-            $scope.sortOrder = "type"
-            break
+        } else {
+            $scope.sortOrder = sortSelector.propName
         }
+
     }
 })    

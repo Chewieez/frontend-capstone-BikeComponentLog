@@ -37,13 +37,12 @@
 
 <h3 ng-if="components">Tracked Components</h3>
 
-<!-- Maybe make this a ng-options dropdown list of all the users tracked components -->
 <div ng-repeat="comp in components">
     <p> Component: {{ comp.type.name }} </p>
     <p> Name: {{ comp.brandName }} {{ comp.modelName}} </p>
     <p> purchased: {{ comp.purchaseDate | date }} </p>
     <p> Mileage: {{ comp.mileage }} miles </p>
-    <p ng-if="currentBike.serial">Bike Mileage: {{currentBike.serial}} miles</p>
+    <p ng-if="currentBike.serial">Serial: {{currentBike.serial}}</p>
     <p ng-if=comp.type.tips>
         <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>
     </p>

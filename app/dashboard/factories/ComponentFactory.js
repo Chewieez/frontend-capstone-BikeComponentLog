@@ -35,8 +35,6 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                             "url": `${firebaseURL}/${newComponent.fbId}/.json?auth=${idToken}`,
                             "data": newComponent
                         })
-                    }).then(r => {
-                        console.log("component uploaded")
                     })
                 })
             }

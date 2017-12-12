@@ -22,7 +22,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.newBike = BikeFactory.currentBike 
         // if the bike currently has a date, populate the date window with that date info
         if (BikeFactory.currentBike.purchaseDate) {
-            $scope.newBike.purchaseDate = new Date(BikeFactory.currentBike.purchaseDate.split("T")[0])
+            $scope.newBike.purchaseDate = new Date(BikeFactory.currentBike.purchaseDate)
         }
     }
 
@@ -43,19 +43,6 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         // get the current User data
         const user = AuthFactory.getUser()
 
-        // create a new bike object
-        // let newBike = {
-        //     brandName: $scope.newBike.brandName,
-        //     modelName: $scope.newBike.modelName,
-        //     mileage: $scope.newBike.mileage,
-        //     purchaseDate: $scope.newBike.purchaseDate,
-        //     info: $scope.newBike.info,
-        //     stravaBikeId: $scope.stravaBikeId || 0,
-        //     userId: user.uid,
-        //     serial: $scope.newBike.serial,
-        //     photo: 0
-        // }
-
         // check if there is already a userId attached to the bike, if so, use the current one. If not, add it
         if (!$scope.newBike.userId) {
             // add the userId to the new Bike object
@@ -67,9 +54,12 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
             $scope.newBike.stravaBikeId = 0
         }
 
+        //convert time to milliseconds
+        $scope.newBike.purchaseDate = $scope.newBike.purchaseDate.getTime()
 
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
+           
             // upload the new bike to Firebase
             BikeFactory.addBike($scope.newBike)
             // make sure edit mode on BikeFactory is and stays false, until a user clicks the Edit button
@@ -94,9 +84,4 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         }
     }
 
-    // // function to send user to the 
-    // $scope.editBike = function(bikeToEdit) {
-    //     $location.url("/addBike")
-    //     $scope.newBike = bikeToEdit
-    // }
 })    

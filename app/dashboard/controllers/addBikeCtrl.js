@@ -73,10 +73,20 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
            
+            // save the newly created by as the Current Bike in Bike Factory, so when the user is sent back to the dashboard, this new bike is automatically set as the current bike to display
+            BikeFactory.currentBike = $scope.newBike
+            
             // upload the new bike to Firebase
-            BikeFactory.addBike($scope.newBike)
-            // make sure edit mode on BikeFactory is and stays false, until a user clicks the Edit button
-            BikeFactory.editMode = false
+            BikeFactory.addBike($scope.newBike).then(()=> {
+
+                // make sure edit mode on BikeFactory is and stays false, until a user clicks the Edit button
+                BikeFactory.editMode = false
+
+                // need to wrap this in $scope.apply to get it to work.
+                $scope.$apply(()=>{
+                    $location.url("/dashboard")
+                })
+            })
             
         } else {
             // store the newly edited bike back in BikeFactory

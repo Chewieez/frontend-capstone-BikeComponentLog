@@ -88,6 +88,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         //convert time to milliseconds
         $scope.newComponent.purchaseDate = $scope.newComponent.purchaseDate.getTime()
 
+        
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
             // Post this new component to firebase
@@ -97,6 +98,11 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
                 
                 $scope.editMode = false
                 ComponentFactory.editCompMode = false
+
+                // need to wrap this in $scope.apply to get it to work.
+                $scope.$apply(()=>{
+                    $location.url("/dashboard")
+                })
             })
         }
         

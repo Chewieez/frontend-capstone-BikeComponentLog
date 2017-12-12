@@ -2,12 +2,13 @@
 
     <h3 class="addComponent__header">Add a component to track on your {{currentBike.brandName}} {{ currentBike.modelName }}</h3>
 
-
+    
     <form ng-submit="addComponent()" name="componentForm" ng-model="componentForm">
-        <label ng-if="!editMode">Type:</label>
+        <label ng-if="!editMode">Type: </label>
         <select ng-if="!editMode" ng-model="newComponent.type" ng-options="comp.name for comp in componentTypes track by comp.name" required="comp.name">
                 <option value="">Choose a Type</option>
         </select>
+        <p ng-if="editMode"> Type: {{ newComponent.type.name }} </p>
         <label>Brand:</label>
         <input type="text" ng-model="newComponent.brandName"/>
         <label>Model:</label>

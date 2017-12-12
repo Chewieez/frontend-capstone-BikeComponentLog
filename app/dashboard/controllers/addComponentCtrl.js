@@ -13,9 +13,9 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         $scope.newComponent.mileage = 0
 
         // sets the default date purchased to today's date. User can then change to which ever date they'd like. 
-        // if (!$scope.newComponent.purchaseDate) {
-        $scope.newComponent.purchaseDate = new Date(new Date().toISOString().split("T")[0])
-        // }
+        if (!$scope.newComponent.purchaseDate) {
+            $scope.newComponent.purchaseDate = new Date(new Date().toISOString().split("T")[0])
+        }
 
 
         // store component types in an array to populate dropdown list
@@ -71,30 +71,26 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
             // add the userId to the new Component object
             $scope.newComponent.userId = user.uid
         }
-        
         //convert time to milliseconds
         $scope.newComponent.purchaseDate = $scope.newComponent.purchaseDate.getTime()
 
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
             // Post this new component to firebase
-            ComponentFactory.addComponent($scope.newComponent).then(()=>{
-                $route.reload()
-            })
+            ComponentFactory.addComponent($scope.newComponent)
         } else {
             ComponentFactory.updateComponent($scope.newComponent).then(()=>{
-                $route.reload()
+                
                 $scope.editMode = false
                 ComponentFactory.editCompMode = false
             })
         }
         
-        // // Reset the form after successful upload
-        // $scope.newComponent = {}
-        
-        // // prepopulate the mileage box to 0
-        // $scope.newComponent.mileage = 0
-        // $scope.componentForm.$setPristine();
+        // Reset the form after successful upload
+        $scope.newComponent = {}
+        // prepopulate the mileage box to 0
+        $scope.newComponent.mileage = 0
+        $scope.componentForm.$setPristine()
 
         
     }

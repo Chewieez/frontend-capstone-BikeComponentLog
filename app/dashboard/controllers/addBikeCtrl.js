@@ -74,12 +74,11 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
             // make sure edit mode on BikeFactory is and stays false, until a user clicks the Edit button
             BikeFactory.editMode = false
             
-            // Reset the form after successful upload
-            $scope.newBike = {}
-            // prepopulate the mileage box to 0
-            $scope.newBike.mileage = 0
-            $scope.bikeForm.$setPristine();
         } else {
+            // store the newly edited bike back in BikeFactory
+            BikeFactory.currentBike = $scope.newBike
+            
+            // store the newly edited bike back into Firebase
             BikeFactory.editBike($scope.newBike).then((response)=>{
                 console.log("edit bike response", response)
                 BikeFactory.editMode = false
@@ -91,6 +90,12 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
                 })
             })
         }
+
+        // Reset the form after successful upload
+        $scope.newBike = {}
+        // prepopulate the mileage box to 0
+        $scope.newBike.mileage = 0
+        $scope.bikeForm.$setPristine();
     }
 
 })    

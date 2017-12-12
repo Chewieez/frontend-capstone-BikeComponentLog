@@ -1,4 +1,5 @@
 angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
+    // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
 
     // This function is called when the user selects a bike from the dropdown list, and it retrieves the selected bike's components from Firebase

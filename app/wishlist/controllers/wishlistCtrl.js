@@ -1,6 +1,9 @@
 angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory, WishlistFactory) {
 
-    // initialize edit mode as falst 
+    // turn gear spinner progress meter on while page is loading
+    $scope.progressFlag = true
+
+    // initialize edit mode as false 
     $scope.editMode = false
     $scope.createMode = false
     $scope.newWish = {}
@@ -10,6 +13,8 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     
     WishlistFactory.getUserWishes(user.uid).then(wishes=> {
         $scope.wishes = wishes
+        // turn off gear spinner and hide div
+        $scope.progressFlag = false
     })
 
 
@@ -61,5 +66,31 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
             })
         })
     }
+
+    $scope.cancelWish = function() {
+        $scope.editMode = false
+        $scope.createMode = false
+        $scope.newWish = {}
+    }
+
+
+    // Code for sorting Wishes
+    $scope.sortOrderArray = [
+        {"title": "Title", "propName": "title"}, 
+        {"title": "Date Added", "propName": "dateAdded"}
+    ]
+
+    // object to hold the reverse order setting. Checkbox on partial controls the .setting value
+    $scope.sortReverse = {}
+    $scope.sortReverse.setting = false
+
+    
+    // function to set the sort order of wishes section
+    $scope.setSortOrder = (sortSelector) => {
+
+        $scope.sortOrder = sortSelector.propName
+
+    }
+
 
 })

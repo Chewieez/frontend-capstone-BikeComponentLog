@@ -48,18 +48,20 @@
 
         <h3 ng-if="components">Tracked Components</h3>
 
-        <label>Search Components</label>
-        <input type="search" ng-model="componentSearch" />
+        <div class="componentSearch">
+            <label>Search Components</label>
+            <input type="search" ng-model="componentSearch" />
+        </div>
         
-        
+
         <select ng-if="components.length > 1" ng-model="sortSelector" ng-options="sort for sort in sortOrderArray" ng-change="setSortOrder(sortSelector)">
             <option value="">Sort Components By:</option>
         </select>
-        <label ng-if="components.length > 1">Reverse Sort</label>
-        <input ng-if="components.length > 1" type="checkbox" ng-model="sortReverse.setting" >
+        <label ng-if="components">Reverse Sort</label>
+        <input ng-if="components" type="checkbox" ng-model="sortReverse.setting" >
 
 
-        <div ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse">
+        <div ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
             <p> Component: {{ comp.type.name }} </p>
             <p ng-if="comp.brandName"> Brand Name: {{ comp.brandName }} </p>
             <p ng-if="comp.modelName"> Model Name: {{ comp.modelName }} </p>

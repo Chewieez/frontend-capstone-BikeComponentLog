@@ -11,17 +11,20 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         // get the users components from firebase
         ComponentFactory.getUserComponents(user.uid).then(response => {
             
-            // filter through components and get the ones attached to the current Bike
-            let thisBikesComponents = response.filter(comp => {
-                return comp.bikeFbId === $scope.currentBike.fbId
-            })
-            // setup $scope.components to hold an array of components
-            $scope.components = []
+            if ($scope.currentBike.fbId) {
+                // filter through components and get the ones attached to the current Bike
+                let thisBikesComponents = response.filter(comp => {
+                    return comp.bikeFbId === $scope.currentBike.fbId
+                })
+                // setup $scope.components to hold an array of components
+                $scope.components = []
+    
+                // loop over the matching components and push them to the $scope.components array
+                thisBikesComponents.forEach(comp =>{
+                    $scope.components.push(comp)
+                })
 
-            // loop over the matching components and push them to the $scope.components array
-            thisBikesComponents.forEach(comp =>{
-                $scope.components.push(comp)
-            })
+            }
         })
     }
 
@@ -32,6 +35,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     /* This works to set default bike in view, but doens't populate the dropdown list with the correct information. This also requires the $scope.getComponents() function to be moved up before this code runs */
     if (BikeFactory.currentBike) {
+       
         // retrieve the current Bike saved on the factory and place it in scope
         $scope.currentBike = BikeFactory.currentBike
         
@@ -134,7 +138,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 /* end of IF statement to check if connected to Strava  */
                 } 
 
-                // get the freshed data from the users Bikes and get linked components again
+                // get the freshed data from the users Bikes
                 BikeFactory.getUserBikes(user.uid).then(response => {
                     // store the updated bikes from firebase
                     let allUpdatedBikes = response
@@ -171,9 +175,11 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     // function to delete a bike
     $scope.deleteBike = function(bike) {
-        
+        // empty the current bike from the bike factory
+        BikeFactory.currentBike = {}
+
         BikeFactory.deleteBike(bike).then(()=>{
-            let userComponents
+            // let userComponents
 
             // get user components
             ComponentFactory.getUserComponents(user.uid).then(components => {
@@ -185,13 +191,19 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 deletedBikeComp.forEach(comp => {
                     ComponentFactory.deleteComponent(comp)
                 })
-            })
 
-            // empty the current bike variable
-            $scope.currentBike = {}
-            // reload the dashboard
-            $route.reload()
+                $route.reload()
+            })
+            
         })
+
+        // empty the current bike variable
+        $scope.currentBike = {}
+        BikeFactory.currentBike = {}
+        ComponentFactory.componentsCache = {}
+        // reload the dashboard
+        //$route.reload
+        
     }
 
     // function to refresh the page and run Strava sync 

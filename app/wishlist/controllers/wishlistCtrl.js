@@ -37,17 +37,17 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
                 WishlistFactory.getUserWishes(user.uid).then(wishes=>{
                     $scope.wishes = wishes
                     $scope.createMode = false
-                    $scope.newWish = {}
                 })
             })
-
+            
         } else {
-
+            
             WishlistFactory.editWish($scope.newWish).then(()=> {
                 console.log("updated wish")
                 WishlistFactory.getUserWishes(user.uid).then(wishes=>{
                     $scope.wishes = wishes
                     $scope.editMode = false
+                    $scope.newWish = {}
                 })
             })
         }

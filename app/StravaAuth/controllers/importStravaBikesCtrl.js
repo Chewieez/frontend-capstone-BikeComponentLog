@@ -1,10 +1,13 @@
 angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
-
+    
+    // code will run on page load only
     $scope.init = () => {
 
-        /* Wrap all of this code checking Strava in a 'on page load' function. Learn how with Angular */
+        // turn gear spinner progress meter on while page is loading
+        $scope.progressFlag = true
+
         $scope.bikesToImport = []
-    
+        $scope.stravaReturnFlag = false
         
         let allBikesFromStrava = []
     
@@ -39,11 +42,17 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
                                 }
                             }
                         })
+                    }).then(()=>{
+                        if ($scope.bikesToImport.length === 0) {
+                            $scope.stravaReturnFlag = true
+                        } else {
+                            $scope.stravaReturnFlag = false
+                        }
+                        // turn gear spinner progress meter off now that content is aquired
+                        $scope.progressFlag = false
                     })
                 }
-                if ($scope.bikesToImport.length === 0) {
-                    $scope.noBikesMessage = "You have no bikes available to import"
-                }
+               
             })
         })
     
@@ -59,8 +68,10 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
             }
     
             BikeFactory.addBike(importedBike)
-    
+            
+
             if ($scope.bikesToImport.length === 1) {
+                BikeFactory.currentBike = importedBike
                 $location.url("/dashboard")
             } 
         }

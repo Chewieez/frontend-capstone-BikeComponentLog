@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, AuthFactory, BikeFactory) {
+angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, AuthFactory, BikeFactory, ComponentFactory) {
 
 
     // check if we are in Edit Bike Mode
@@ -70,12 +70,15 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         //convert time to milliseconds
         $scope.newBike.purchaseDate = $scope.newBike.purchaseDate.getTime()
 
+        
+        // save the newly created by as the Current Bike in Bike Factory, so when the user is sent back to the dashboard, this new bike is automatically set as the current bike to display
+        BikeFactory.currentBike = $scope.newBike
+        // clear out any remnants in ComponentFactory.componentsCache
+        ComponentFactory.componentsCache = {}
+
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
            
-            // save the newly created by as the Current Bike in Bike Factory, so when the user is sent back to the dashboard, this new bike is automatically set as the current bike to display
-            BikeFactory.currentBike = $scope.newBike
-            
             // upload the new bike to Firebase
             BikeFactory.addBike($scope.newBike).then(()=> {
 
@@ -89,8 +92,6 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
             })
             
         } else {
-            // store the newly edited bike back in BikeFactory
-            BikeFactory.currentBike = $scope.newBike
             
             // store the newly edited bike back into Firebase
             BikeFactory.editBike($scope.newBike).then((response)=>{
@@ -104,12 +105,17 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
                 })
             })
         }
+        
 
         // Reset the form after successful upload
         $scope.newBike = {}
         // prepopulate the mileage box to 0
         $scope.newBike.mileage = 0
         $scope.bikeForm.$setPristine();
+
+        // // send user back to the dashboard
+        // $location.url("/dashboard")
+        
     }
 
 })    

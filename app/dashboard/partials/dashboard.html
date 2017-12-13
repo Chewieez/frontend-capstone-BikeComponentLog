@@ -49,17 +49,25 @@
             <select ng-model="sortSelector" ng-options="sort.title for sort in sortOrderArray" ng-change="setSortOrder(sortSelector)">
                 <option value="">Sort Components By:</option>
             </select>
-            <label for="sortReverseBox">Reverse Sort</label>
+            <label for="sortReverseBox">Reverse Sorting:</label>
             <input type="checkbox" ng-model="sortReverse.setting" name="sortReverseBox" />
+            
+            <label for="viewActiveCheckBox" >Active Only</label>
+            <input type="checkbox" ng-value=true ng-model="activeFlag.show" name="viewActiveCheckbox" checked="checked" />
+  
+            <!-- <label for="viewActiveCheckbox">Inactive Only</label> -->
+            <!-- <input type="radio" name="viewActiveCheckbox" />  -->
+            
     
-    
-            <div ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
+            <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
                 <p> Type: {{ comp.type.name }} </p>
+                <label for="activeComp">Active:</label>
+                <input type="checkbox" ng-model="comp.active" name="activeComp" ng-change="changeCompActiveState(comp)">
                 <p ng-if="comp.brandName"> Brand Name: {{ comp.brandName }} </p>
                 <p ng-if="comp.modelName"> Model Name: {{ comp.modelName }} </p>
                 <p ng-if="comp.purchaseDate"> Purchase Date: {{ comp.purchaseDate | date }} </p>
                 <p ng-if="comp.mileage"> Mileage: {{ comp.mileage }} miles </p>
-                <p ng-if="currentBike.serial">Serial: {{currentBike.serial}}</p>
+                <p ng-if="comp.serial">Serial: {{comp.serial}}</p>
                 <p ng-if="comp.type.tips">
                     <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>
                 </p>

@@ -46,8 +46,6 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                         method: "PUT",
                         url: `${firebaseURL}/${component.fbId}.json?auth=${idToken}`,
                         data: component
-                    }).then(r => {
-                        console.log("component uploaded")
                     })
                 })
             }
@@ -90,7 +88,16 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                     return firebase.storage().ref("/images/ComponentImages/").child(file.name + stamp).getDownloadURL()
                 })
             }
-        },  
+        },
+        "deleteImage": {    
+            value: function(file) {
+                return firebase.storage().ref("/images/ComponentImages/").child(file).delete().then(function () {
+                    console.log("File deleted")
+                }).catch(function (error) {
+                    console.log("Uh-oh, an error occurred deleting!")
+                });
+            }
+        }, 
         "componentTypes": {
             // add more types
             value: [

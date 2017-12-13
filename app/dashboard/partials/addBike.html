@@ -17,8 +17,12 @@
         <textarea ng-model="newBike.info"></textarea>
 
         <label for="Image">Image</label>
+        
         <input id="addBike__image" type="file" accept=".jpg,.png,.gif" ng-model="newBike.image" ng-change="saveImage()">
+       
         <button type="button" ng-click="saveImage()">Upload Image</button>
+        
+        
         <div ng-repeat="image in newBike.images">
             <img ng-src="{{image}}" style="width:150px;height:auto;"/>
         </div>

@@ -12,10 +12,16 @@ angular.module("BikeLogApp").controller("addMileageCtrl", function ($scope, $loc
         
         // loop through components and add the miles to each component
         thisBikesComponents.forEach(comp =>{
-            comp.mileage += $scope.additionalMileage
-            
-            // store the updated component data in firebase 
-            ComponentFactory.updateComponent(comp)
+
+            // only update components that are marked as "Active"
+            if (comp.active) {
+
+                comp.mileage += $scope.additionalMileage
+                
+                // store the updated component data in firebase 
+                ComponentFactory.updateComponent(comp)
+            }
+
         })
 
         BikeFactory.editBike($scope.currentBike).then(()=>{

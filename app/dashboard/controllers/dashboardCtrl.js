@@ -2,6 +2,21 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
 
+    // set flag to view only Active items to true by default
+    $scope.activeFlag = {}
+    $scope.activeFlag.show = true
+
+    // Not using this code now, it was dynamically changing the label of a checkbox depending on whether it was checked or not. 
+    // $scope.activeViewCheckboxLabel = "Active Only"
+    
+    // $scope.changeBoxLabel = (activeFlag) => {
+    //     if (activeFlag) {
+    //         $scope.activeViewCheckboxLabel = "Active Only"
+    //     } else {
+    //         $scope.activeViewCheckboxLabel = "Inactive Only"
+    //     }
+    // }
+
     // This function is called when the user selects a bike from the dropdown list, and it retrieves the selected bike's components from Firebase
     // This function needs to live above the if statement below that check if there is a currentBike in cache. 
     $scope.getComponents = function() {
@@ -102,12 +117,16 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                         return comp.bikeFbId === bike.fbId
                                     })
 
-                                    thisBikesComponents.forEach(comp =>{
-                                        // add the updated mileage amount to all the components
-                                        comp.mileage += mileageDifference
-                                        
-                                        // store the updated component data in firebase 
-                                        ComponentFactory.updateComponent(comp)
+                                    thisBikesComponents.forEach(comp => {
+
+                                        // only update components that are marked as "Active"
+                                        if (comp.active) {
+                                            // add the updated mileage amount to all the components
+                                            comp.mileage += mileageDifference
+                                            
+                                            // store the updated component data in firebase 
+                                            ComponentFactory.updateComponent(comp)
+                                        }
                                     })
 
                                     
@@ -281,4 +300,13 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         }
 
     }
+
+    // changes the active state of a component when the user checks or unchecks the Active box
+    $scope.changeCompActiveState = (comp) => {
+        ComponentFactory.updateComponent(comp).then(r=> {
+            console.log("component updated")
+            $scope.getComponents()
+        })
+    }
+
 })    

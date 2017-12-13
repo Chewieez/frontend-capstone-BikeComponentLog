@@ -41,6 +41,11 @@ input, textarea, select {
     padding:.3em; 
 }
 
+input[type='checkbox'] {
+    display: inline;
+}
+
+
 /* Animation code for progress meter */
 /*                                   */
 

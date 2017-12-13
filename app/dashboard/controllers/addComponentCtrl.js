@@ -15,7 +15,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         $scope.newComponent.mileage = 0
 
         // create an array to hold images
-        $scope.newComponent.images = [""]
+        $scope.newComponent.images = []
 
         // sets the default date purchased to today's date. User can then change to which ever date they'd like. 
         if (!$scope.newComponent.purchaseDate) {
@@ -41,7 +41,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         // check if an images array currently exists
         if (!$scope.newComponent.images) {
             // create an array for images
-            $scope.newComponent.images = [""]
+            $scope.newComponent.images = []
         }
 
         // populate the date window with the components original saved date
@@ -71,17 +71,14 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
     }
 
     // function to delete a photo
-    $scope.deletePhoto = (photo, comp) => {
+    $scope.deletePhoto = (photo) => {
         debugger
+        let imagesIndex = $scope.newComponent.images.indexOf(photo)
+        $scope.newComponent.images.splice(0,1)
         
         let fileName = photo.split("ComponentImages%2F")[1].split("?")[0]
         debugger
-        ComponentFactory.deleteImage(fileName).then(r=>{
-            let imagesIndex = comp.images.indexOf(photo)
-            
-            comp.images.splice(0,1)
-            ComponentFactory.updateComponent(comp)
-        })
+        ComponentFactory.deleteImage(fileName)
         
     }
 

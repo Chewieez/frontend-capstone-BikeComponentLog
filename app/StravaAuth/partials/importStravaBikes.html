@@ -1,5 +1,12 @@
 <div class="importBike">
-    <div ng-show="!progressFlag" class="importBike__content" ng-init="init()">
+    
+    <header class="header">
+        <h1>Import Your Bikes from Strava</h1>
+    </header>
+
+    <div ng-hide="progressFlag" class="importBike__content" ng-init="init()">
+
+
         <h3 ng-if="stravaReturnFlag">You do not have any available bikes to import.</h3>
         <h3 ng-if="!stravaReturnFlag">Available Bikes to Import</h3>
 

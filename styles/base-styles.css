@@ -41,11 +41,31 @@ input, textarea, select {
     padding:.3em; 
 }
 
+/* Animation code for progress meter */
+/*                                   */
+
+.dashboard__content,
+.importBike__content, 
+.wishlist__content {
+    transition: all linear .6s;
+}
+
+.dashboard__content.ng-hide, 
+.importBike__content.ng-hide, 
+.wishlist__content.ng-hide {
+    opacity: 0;
+}
+
+
+.progressSVG.ng-hide {
+    opacity: .3;
+}
+
 .progressSVG {
     margin: 0 auto;
     padding: 0;
-    width: 50%;
-
+    width: 100%;
+    transition: all linear 0.1s;
 }
 
 #svgspin {
@@ -53,7 +73,7 @@ input, textarea, select {
     animation: spin .8s linear infinite; 
     display: block; 
     fill: #223344; 
-    float: left; 
+    /* float: left;  */
     height: 150px; 
     margin: 0 5px 5px 0; 
     width: 150px;
@@ -78,7 +98,3 @@ input, textarea, select {
       transform:rotate(360deg);
     }
   }
-
-.dashboard__content {
-    transition: all linear 0.5s;
-}

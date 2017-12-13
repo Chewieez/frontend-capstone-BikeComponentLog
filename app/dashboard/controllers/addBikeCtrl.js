@@ -34,8 +34,10 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         }
     }
 
+
     // function to save the users photos of their bike
     $scope.saveImage = () => {
+        
         // get the name of the file to upload
         let filename = document.getElementById("addBike__image");
         let file = filename.files[0]

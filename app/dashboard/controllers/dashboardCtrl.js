@@ -66,7 +66,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             
             // get the users tracked components
             ComponentFactory.getUserComponents(user.uid).then(r=>{
-                console.log("components loaded: ", r)
 
                 // check if the user has a Strava Id attached
                 if ($scope.currentUserProfile.stravaId) {
@@ -111,27 +110,27 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                         ComponentFactory.updateComponent(comp)
                                     })
 
-                                    // I'm not sure if I need to use a separate loop for this.
-                                    // thisBikesComponents.forEach(comp => {
-                                    //     ComponentFactory.updateComponent(comp)
-                                    // })
-                                }       /* end of IF statement to check if new mileage is greater */
-                                
-                                BikeFactory.editBike(bike).then(r=>{
-                                    console.log("response from bike mileage update: ", r)
-
-                                    // get the freshed data from the users Bikes
-                                    BikeFactory.getUserBikes(user.uid).then(response => {
-                                        // store the updated bikes from firebase
-                                        let allUpdatedBikes = response
-
-                                        // set the $scope.bikes array to all the updated bikes
-                                        $scope.bikes = allUpdatedBikes
-
-                                        $scope.progressFlag = false
-                                    })
-                                })
+                                    
+                                    BikeFactory.editBike(bike).then(r=>{
+                                        console.log("response from bike mileage update: ", r)
     
+                                        // get the freshed data from the users Bikes
+                                        BikeFactory.getUserBikes(user.uid).then(response => {
+                                            // store the updated bikes from firebase
+                                            let allUpdatedBikes = response
+    
+                                            // set the $scope.bikes array to all the updated bikes
+                                            $scope.bikes = allUpdatedBikes
+                                            
+                                            // hide progress meter and show page content
+                                            $scope.progressFlag = false
+                                        })
+                                    })
+                                }  else{
+                                    // hide progress meter and show page content
+                                    $scope.progressFlag = false
+                                }     
+                                /* end of if/else statement to check if new mileage is greater */
                             })
                         })
                     }   

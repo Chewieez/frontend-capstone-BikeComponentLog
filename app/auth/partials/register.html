@@ -1,6 +1,9 @@
-<div>
-    <input type="email" placeholder="Email address" ng-model="auth.email" autofocus>
-    <input type="password" placeholder="Password" ng-model="auth.password">
+<div class="login">
+    <label for="email">Email</label>
+    <input type="email" name="email" ng-model="auth.email" autofocus required="string">
+    <label for="password">Password</label>
+    <input type="password" ng-model="auth.password" required="string">
+    
     <button ng-click="registerUser(auth)">Register</button>
     <button ng-click="logMeIn(auth)">Login</button>
 </div>

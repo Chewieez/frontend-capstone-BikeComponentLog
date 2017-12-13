@@ -9,10 +9,10 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         // initialize the newBike object to use in form
         $scope.newBike = {}
         $scope.newBike.images = [""]
-    
+
         // set the starting value of mileage to 0
         $scope.newBike.mileage = 0
-    
+
         //sets the default date purchased to today's date. User can then change to which ever date they'd like. 
         $scope.newBike.purchaseDate = new Date(new Date().toISOString().split("T")[0])
 
@@ -20,14 +20,14 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         // set local Edit mode variable to true to show the user a Save Edits button and not a Add Bike Button
         $scope.editMode = true
         // set the $scope new Bike variable to the current bike chosen to edit
-        $scope.newBike = BikeFactory.currentBike 
+        $scope.newBike = BikeFactory.currentBike
 
         // check if an images array currently exists
         if (!$scope.newBike.images) {
             // create an array for images
             $scope.newBike.images = [""]
         }
-        
+
         // if the bike currently has a date, populate the date window with that date info
         if (BikeFactory.currentBike.purchaseDate) {
             $scope.newBike.purchaseDate = new Date(BikeFactory.currentBike.purchaseDate)
@@ -37,18 +37,32 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
     // function to save the users photos of their bike
     $scope.saveImage = () => {
-        
+
         // get the name of the file to upload
         let filename = document.getElementById("addBike__image");
         let file = filename.files[0]
-        BikeFactory.addImage(file).then(_url=> {
+        BikeFactory.addImage(file).then(_url => {
             // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
-            $scope.$apply( function() {
-                
+            $scope.$apply(function () {
+
                 $scope.newBike.images.push(_url)
             })
         })
     }
+
+    // function to delete a photo
+    $scope.deletePhoto = (photo) => {
+        debugger
+        let imagesIndex = $scope.newBike.images.indexOf(photo)
+        $scope.newBike.images.splice(0, 1)
+
+        let fileName = photo.split("BikeImages%2F")[1].split("?")[0]
+        debugger
+        BikeFactory.deleteImage(fileName)
+
+    }
+
+
 
     $scope.cancelForm = () => {
         $location.url("/dashboard")
@@ -72,7 +86,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         //convert time to milliseconds
         $scope.newBike.purchaseDate = $scope.newBike.purchaseDate.getTime()
 
-        
+
         // save the newly created by as the Current Bike in Bike Factory, so when the user is sent back to the dashboard, this new bike is automatically set as the current bike to display
         BikeFactory.currentBike = $scope.newBike
         // clear out any remnants in ComponentFactory.componentsCache
@@ -80,34 +94,34 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
-           
+
             // upload the new bike to Firebase
-            BikeFactory.addBike($scope.newBike).then(()=> {
+            BikeFactory.addBike($scope.newBike).then(() => {
 
                 // make sure edit mode on BikeFactory is and stays false, until a user clicks the Edit button
                 BikeFactory.editMode = false
 
                 // need to wrap this in $scope.apply to get it to work.
-                $scope.$apply(()=>{
+                $scope.$apply(() => {
                     $location.url("/dashboard")
                 })
             })
-            
+
         } else {
-            
+
             // store the newly edited bike back into Firebase
-            BikeFactory.editBike($scope.newBike).then((response)=>{
+            BikeFactory.editBike($scope.newBike).then((response) => {
                 console.log("edit bike response", response)
                 BikeFactory.editMode = false
                 $scope.editMode = false
-                
+
                 // need to wrap this in $scope.apply to get it to work.
-                $scope.$apply(()=>{
+                $scope.$apply(() => {
                     $location.url("/dashboard")
                 })
             })
         }
-        
+
 
         // Reset the form after successful upload
         $scope.newBike = {}
@@ -117,7 +131,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
         // // send user back to the dashboard
         // $location.url("/dashboard")
-        
+
     }
 
 })    

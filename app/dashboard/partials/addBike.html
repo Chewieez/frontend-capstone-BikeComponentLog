@@ -25,6 +25,7 @@
         
         <div ng-repeat="image in newBike.images">
             <img ng-src="{{image}}" style="width:150px;height:auto;"/>
+            <button ng-click="deletePhoto(image)">Delete Photo</button>
         </div>
 
         <input ng-if="!editMode" type="submit" value="Add Bike">

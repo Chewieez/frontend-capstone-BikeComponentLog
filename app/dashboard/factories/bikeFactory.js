@@ -88,7 +88,15 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                 })
             }
         }, 
-        
+        "deleteImage": {    
+            value: function(file) {
+                return firebase.storage().ref("/images/BikeImages/").child(file).delete().then(function () {
+                    console.log("File deleted")
+                }).catch(function (error) {
+                    console.log("Uh-oh, an error occurred deleting!")
+                });
+            }
+        }, 
     })
     
 })

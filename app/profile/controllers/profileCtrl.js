@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route, ProfileFactory, AuthFactory, StravaOAuthFactory) {
+angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route, $location, ProfileFactory, AuthFactory, StravaOAuthFactory) {
     // get current user 
     const currentUser = AuthFactory.getUser()
     
@@ -39,7 +39,7 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
     
         ProfileFactory.addProfile(userProfile, userId.uid).then(()=>{
             //reload view so user can get confirmation their profile was created
-            $route.reload()
+            $location.url("/dashboard")
         })
     }
 
@@ -53,13 +53,14 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
 
         ProfileFactory.editProfile($scope.currentUserProfile).then(()=>{
             $scope.editMode = false
-            $route.reload()
+            // $route.reload()
+            $location.url("/dashboard")
         })
     }
 
     $scope.cancelUpdate = function() {
         $scope.editMode = false
-        $route.reload()
+        $location.url("/dashboard")
     }
 
 })

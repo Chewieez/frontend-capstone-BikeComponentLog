@@ -52,13 +52,19 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
     // function to delete a photo
     $scope.deletePhoto = (photo) => {
-        debugger
+        // find the index of the photo to delete
         let imagesIndex = $scope.newBike.images.indexOf(photo)
-        $scope.newBike.images.splice(0, 1)
+        // remove the web url for the photo on the Bike table
+        $scope.newBike.images.splice(imagesIndex, 1)
 
-        let fileName = photo.split("BikeImages%2F")[1].split("?")[0]
-        debugger
-        BikeFactory.deleteImage(fileName)
+        let fileName
+        // parse out the filename from the url
+        if (photo !== "" ) {
+            fileName = photo.split("BikeImages%2F")[1].split("?")[0]
+            // delete the photo from firebase
+            BikeFactory.deleteImage(fileName)
+        }
+        
 
     }
 

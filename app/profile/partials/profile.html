@@ -4,14 +4,17 @@
         <p>Last Name: {{ currentUserProfile.lastName }}</p>
         <button ng-click="editProfile()">Edit Profile</button>
     </div>
-
     <div ng-if="editMode || !profileFlag" class="profile">
+
+        <h1 ng-if="!editMode">Create Your Profile First</h1>
+        <h1 ng-if="editMode">Edit Your Profile Info</h1>
+
+        <label>First Name:</label>
         <input type="name" name="firstName" ng-model="currentUserProfile.firstName"  />
-        <label>First Name</label>
+        <label>Last Name:</label>
         <input type="name" name="lastName" ng-model="currentUserProfile.lastName" />
-        <label>Last Name</label>
         <!-- Photo upload for avatar -->
-        <input type="file" ng-model="avatar" />
+        <!-- <input type="file" ng-model="avatar" /> -->
         
         <button ng-if="!editMode" ng-click="addProfile()">Create Profile</button>
         
@@ -24,6 +27,7 @@
 <div>
     <!-- link to allow user to Link Strava Account -->
     <div ng-if="!currentUserProfile.stravaId">
+        <h4>Link with your Strava account to keep the mileage of your tracked bikes updated automatically </h4>
         <a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto"><img src="./images/LinkWithStrava.png" width="175px"></a>
     </div>
     <p ng-if="currentUserProfile.stravaId"> Strava Account Connected </p>

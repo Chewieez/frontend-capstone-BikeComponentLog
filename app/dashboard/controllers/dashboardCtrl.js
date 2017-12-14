@@ -155,6 +155,9 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                     }   
                 /* end of IF statement to check if connected to Strava  */
                 } 
+                // else {
+                //     $scope.progressFlag = false
+                // } 
 
                 // get the freshed data from the users Bikes
                 BikeFactory.getUserBikes(user.uid).then(response => {
@@ -163,7 +166,9 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                     // set the $scope.bikes array to all the updated bikes
                     $scope.bikes = allUpdatedBikes
-
+                  
+                    $scope.progressFlag = false
+                    
                 })
             })
         })
@@ -226,6 +231,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     // function to refresh the page and run Strava sync 
     $scope.refresh = function() {
+    
         $route.reload()
     }
 

@@ -65,7 +65,7 @@
                 <input type="checkbox" ng-model="comp.active" name="activeComp" ng-change="changeCompActiveState(comp)">
                 <p ng-if="comp.brandName"> Brand Name: {{ comp.brandName }} </p>
                 <p ng-if="comp.modelName"> Model Name: {{ comp.modelName }} </p>
-                <p ng-if="comp.purchaseDate"> Purchase Date: {{ comp.purchaseDate | date }} </p>
+                <p ng-if="comp.purchaseDate"> Installation Date: {{ comp.purchaseDate | date }} </p>
                 <p ng-if="comp.mileage"> Mileage: {{ comp.mileage }} miles </p>
                 <p ng-if="comp.serial">Serial: {{comp.serial}}</p>
                 <p ng-if="comp.type.tips">

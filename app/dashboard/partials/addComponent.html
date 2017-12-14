@@ -15,7 +15,7 @@
         <input type="text" ng-model="newComponent.modelName"/>
         <label>Current Mileage:</label>
         <input type="number" ng-model="newComponent.mileage" />
-        <label>Purchase Date:</label>
+        <label>Installation Date:</label>
         <input type="date" ng-model="newComponent.purchaseDate" />
         <label>Serial Number:</label>
         <input type="text" ng-model="newComponent.serial"/>
@@ -29,7 +29,7 @@
             <button ng-click="deletePhoto(image)">Delete Photo</button>
         </div>
 
-        <input ng-if="!editMode" type="submit" value="Add Component">
+        <input ng-if="!editMode" type="submit" value="Save Component">
         <input ng-if="editMode" type="submit" value="Save Edits">
         <input type="reset">
     </form>

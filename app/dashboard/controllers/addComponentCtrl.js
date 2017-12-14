@@ -72,13 +72,20 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
     // function to delete a photo
     $scope.deletePhoto = (photo) => {
-        debugger
+        // find the index of the photo to delete
         let imagesIndex = $scope.newComponent.images.indexOf(photo)
-        $scope.newComponent.images.splice(0,1)
+        // remove the web url for the photo on the Bike table
+        $scope.newComponent.images.splice(imagesIndex,1)
         
-        let fileName = photo.split("ComponentImages%2F")[1].split("?")[0]
-        debugger
-        ComponentFactory.deleteImage(fileName)
+        let fileName
+        // parse out the filename from the url
+        if (photo !== "" ) {
+
+            fileName = photo.split("ComponentImages%2F")[1].split("?")[0]
+            // delete the photo from firebase
+            ComponentFactory.deleteImage(fileName)
+        }
+        
         
     }
 

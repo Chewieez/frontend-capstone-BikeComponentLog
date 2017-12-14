@@ -66,14 +66,23 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
                 stravaBikeId: bike.id,
                 userId: user.uid,
             }
-    
+            
             BikeFactory.addBike(importedBike)
             
+            // place this imported bike into the cache so it is immediately displayed when the user goes to the dashboard
+            BikeFactory.currentBike = importedBike
 
             if ($scope.bikesToImport.length === 1) {
-                BikeFactory.currentBike = importedBike
                 $location.url("/dashboard")
-            } 
+            } else {
+                // get the index of the bike chosen
+                let bikeIndex = $scope.bikesToImport.indexOf(bike)
+                console.log(bikeIndex)
+                
+                // remove the imported bike from the list of bike available to import
+                $scope.bikesToImport.splice(bikeIndex,1)
+            }
+
         }
     
         $scope.toDashboard = function() {

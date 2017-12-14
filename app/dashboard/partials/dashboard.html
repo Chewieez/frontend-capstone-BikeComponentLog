@@ -1,36 +1,38 @@
 <div class="dashboard">
-    <!-- Refresh button -->
-    <button ng-hide="progressFlag" ng-click="refresh()">Refresh</button>
+    <div layout layout-align="end" class="dashboard__refresh">
+        <!-- Refresh button -->
+        <md-button ng-hide="progressFlag" ng-click="refresh()">Refresh</md-button>
 
-    <h1> Welcome to your dashboard</h1>
+    </div>
 
-
-    <div ng-show="!progressFlag" class="dashboard__content">
-
-        <!-- Dropdown list of the users tracked bikes -->
-        <md-input-container>
-            <label>Choose a Bike</label>
-            <md-select ng-model="currentBike" ng-change="getComponents()">
-                <md-option>
-                    <em>None</em>
-                </md-option>
-                <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
-            </md-select>
-        </md-input-container>
+    <h1 layout layout-align="center"> Welcome to your dashboard</h1>
 
 
-        <!-- Button to add a tracked bike -->
-        <md-button class="md-raised" ng-click="sendToAddBike()">Add a Bike</md-button>
-        <md-button class="md-raised md-secondary" ng-if="currentBike" ng-click="sendToAddComponent()">Add a Component</md-button>
+    <div ng-show="!progressFlag" layout="column" layout-align="center center" class="dashboard__content">
+        <div flex="100" class="bikeView">
+            <!-- Dropdown list of the users tracked bikes -->
+            <md-input-container class="bikeView__dropdown">
+                <label>Choose a Bike</label>
+                <md-select ng-model="currentBike" ng-change="getComponents()">
+                    <md-option>   <em>None</em>   </md-option>
+                    <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
+                </md-select>
+            </md-input-container>
+    
+    
+            <!-- Button to add a tracked bike -->
+            <md-button class="md-raised" ng-click="sendToAddBike()">Add a Bike</md-button>
+            <md-button class="md-raised md-secondary" ng-if="currentBike" ng-click="sendToAddComponent()">Add a Component</md-button>
+    
+            <!-- Import a bike from Strava -->
+            <md-button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">Import Bikes From Strava</md-button>
 
-        <!-- Import a bike from Strava -->
-        <md-button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">Import Bikes From Strava</md-button>
-
+        </div>    
 
         <div ng-if="currentBike" ng-model="currentBike" style="text-align: center">
             <h3>{{ currentBike.brandName }} {{ currentBike.modelName}} </h3>
 
-            <p ng-if="currentBike.stravaBikeId">-Linked with Strava-</p>
+            <p ng-if="currentBike.stravaBikeId" style="color:red">-Linked with Strava-</p>
             <p ng-if="currentBike.mileage">Mileage: {{currentBike.mileage}} miles</p>
             <p ng-if="currentBike.serial">Serial Number: {{currentBike.serial}}</p>
             <p ng-if="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
@@ -88,8 +90,8 @@
 
                 <p ng-if="comp.brandName"> Brand Name: {{ comp.brandName }} </p>
                 <p ng-if="comp.modelName"> Model Name: {{ comp.modelName }} </p>
-                <p ng-if="comp.purchaseDate"> Purchase Date: {{ comp.purchaseDate | date }} </p>
-                <p ng-if="comp.mileage"> Mileage: {{ comp.mileage }} miles </p>
+                <p ng-if="comp.purchaseDate"> Installation Date: {{ comp.purchaseDate | date }} </p>
+                <p ng-if="comp.mileage"> Mileage: {{ comp.mileage | number }} miles </p>
                 <p ng-if="comp.serial">Serial: {{comp.serial}}</p>
                 <p ng-if="comp.type.tips">
                     <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>

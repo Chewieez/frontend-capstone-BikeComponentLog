@@ -22,8 +22,6 @@ angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, 
         // get current user
         let user = AuthFactory.getUser()
         
-        
-        
         // get current profile and add strava data to it and upload to firebase
         ProfileFactory.getProfile(user.uid).then(response => {
             
@@ -34,13 +32,16 @@ angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, 
             // store the updated user profile in Firebase
             ProfileFactory.editProfile(userProfile).then( r => {
                 console.log("strava data added to profile")
-                $location.url("/profile")
+                // $scope.$apply = () => {
+
+                //     $location.url("/profile")
+                // }
             })
 
             // after a little bit of time, redirect user to profile. Setting timeout to make sure that when the user lands back in Profile page, firebase has been updated with the strava Id and the Profile page will reflect that the user has already connected with Strava. I attempted putting this inside a .then() after the ProfileFactory.editProfile() promise, but it was not working. 
-            // $timeout(function(){
-            //     $location.url("/profile")
-            // }, 500)
+            $timeout(function(){
+                $location.url("/dashboard")
+            }, 500)
             
         })
     }

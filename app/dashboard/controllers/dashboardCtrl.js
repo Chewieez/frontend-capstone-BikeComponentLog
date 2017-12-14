@@ -268,7 +268,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             "propName": "mileage"
         },
         {
-            "title": "Purchase Date",
+            "title": "Installation Date",
             "propName": "purchaseDate"
         },
         {

@@ -47,7 +47,7 @@
             
     
             <select ng-model="sortSelector" ng-options="sort.title for sort in sortOrderArray" ng-change="setSortOrder(sortSelector)">
-                <option value="">Sort Components By:</option>
+                <option value="">Sort By:</option>
             </select>
             <label for="sortReverseBox">Reverse Sorting:</label>
             <input type="checkbox" ng-model="sortReverse.setting" name="sortReverseBox" />
@@ -66,7 +66,7 @@
                 <p ng-if="comp.brandName"> Brand Name: {{ comp.brandName }} </p>
                 <p ng-if="comp.modelName"> Model Name: {{ comp.modelName }} </p>
                 <p ng-if="comp.purchaseDate"> Installation Date: {{ comp.purchaseDate | date }} </p>
-                <p ng-if="comp.mileage"> Mileage: {{ comp.mileage }} miles </p>
+                <p ng-if="comp.mileage"> Mileage: {{ comp.mileage | number }} miles </p>
                 <p ng-if="comp.serial">Serial: {{comp.serial}}</p>
                 <p ng-if="comp.type.tips">
                     <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>

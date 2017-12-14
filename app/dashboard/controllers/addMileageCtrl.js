@@ -41,8 +41,10 @@ angular.module("BikeLogApp").controller("addMileageCtrl", function ($scope, $loc
                 }
 
             })
+            $scope.$apply = () => {
 
-            $location.url("/dashboard")
+                $location.url("/dashboard")
+            }
         })
 
     }

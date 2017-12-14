@@ -1,7 +1,7 @@
 <div class="dashboard">
     <div layout layout-align="end" class="dashboard__refresh">
         <!-- Refresh button -->
-        <md-button ng-hide="progressFlag" ng-click="refresh()">Refresh</md-button>
+        <md-button ng-hide="progressFlag" ng-click="refresh()"><i class="material-icons">autorenew</i>Refresh</md-button>
 
     </div>
 
@@ -14,7 +14,7 @@
             <md-input-container class="bikeView__dropdown">
                 <label>Choose a Bike</label>
                 <md-select ng-model="currentBike" ng-change="getComponents()">
-                    <md-option>   <em>None</em>   </md-option>
+                    <!-- <md-option>   <em>None</em>   </md-option> -->
                     <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
                 </md-select>
             </md-input-container>
@@ -63,9 +63,7 @@
             <md-input-container>
                 <label>Sort Components</label>
                 <md-select ng-model="sortSelector" ng-model-options="{trackBy: '$sort.title'}" ng-change="setSortOrder(sortSelector)" aria-label="Sort Components By">
-                    <md-option>
-                        <em>default</em>
-                    </md-option>
+                    <!-- <md-option><em>default</em></md-option> -->
                     <md-option ng-value="sort" ng-repeat="sort in sortOrderArray">{{ sort.title }}</md-option>
                 </md-select>
             </md-input-container>

@@ -29,21 +29,20 @@ body {
 /* Generic form styling to make them all block elements
     Change later when in styling mode
 */
-form {
+/* form {
     display: block;
     margin:0; 
     padding:0; 
-}
+} */
 
-input, textarea, select {
+/* input, textarea, select {
     display: block;
     margin:.3em; 
     padding:.3em; 
 }
+*/
 
-input[type='checkbox'] {
-    display: inline;
-}
+
 
 
 /* Animation code for progress meter */

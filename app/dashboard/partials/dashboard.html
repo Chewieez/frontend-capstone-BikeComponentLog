@@ -7,9 +7,12 @@
 
     <div ng-show="!progressFlag" class="dashboard__content">
         <!-- Dropdown list of the users tracked bikes -->
-        <select ng-model="currentBike" ng-options="bike.brandName + ' ' + bike.modelName for bike in bikes" ng-change="getComponents()">
+        <!-- <select ng-model="currentBike" ng-options="bike.brandName + ' ' + bike.modelName for bike in bikes" ng-change="getComponents()">
             <option value="">Select A Bike</option>
-        </select>
+        </select> -->
+        <md-select ng-model="currentBike"  ng-change="getComponents()" placeholder="Select A Bike">
+                <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
+        </md-select>
 
 
         <!-- Button to add a tracked bike -->
@@ -49,11 +52,11 @@
             <select ng-model="sortSelector" ng-options="sort.title for sort in sortOrderArray" ng-change="setSortOrder(sortSelector)">
                 <option value="">Sort Components By:</option>
             </select>
-            <label for="sortReverseBox">Reverse Sorting:</label>
             <md-checkbox ng-model="sortReverse.setting" name="sortReverseBox" />
+            <label for="sortReverseBox">Reverse Sorting:</label>
             
-            <label for="viewActiveCheckBox" >Active Only</label>
             <md-checkbox ng-value=true ng-model="activeFlag.show" name="viewActiveCheckbox" checked="checked" />
+            <label for="viewActiveCheckBox" >Active Only</label>
   
             <!-- <label for="viewActiveCheckbox">Inactive Only</label> -->
             <!-- <input type="radio" name="viewActiveCheckbox" />  -->
@@ -61,8 +64,8 @@
     
             <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
                 <p> Type: {{ comp.type.name }} </p>
+                <md-checkbox ng-model="comp.active" name="activeComp" ng-change="changeCompActiveState(comp)">
                 <label for="activeComp">Active:</label>
-                <input type="checkbox" ng-model="comp.active" name="activeComp" ng-change="changeCompActiveState(comp)">
                 <p ng-if="comp.brandName"> Brand Name: {{ comp.brandName }} </p>
                 <p ng-if="comp.modelName"> Model Name: {{ comp.modelName }} </p>
                 <p ng-if="comp.purchaseDate"> Purchase Date: {{ comp.purchaseDate | date }} </p>

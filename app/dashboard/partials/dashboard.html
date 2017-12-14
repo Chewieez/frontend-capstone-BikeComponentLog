@@ -48,10 +48,14 @@
                 <input type="search" ng-model="componentSearch" />
             </div>
             
-    
-            <select ng-model="sortSelector" ng-options="sort.title for sort in sortOrderArray" ng-change="setSortOrder(sortSelector)">
-                <option value="">Sort Components By:</option>
-            </select>
+            
+
+
+            <md-select ng-model="sortSelector" ng-model-options="{trackBy: '$sort.title'}" ng-change="setSortOrder(sortSelector)">
+                <md-option ng-value="">Sort Components By:</md-option>
+                <md-option ng-value="sort" ng-repeat="sort in sortOrderArray">{{ sort.title }}</md-option>
+            </md-select>
+
             <md-checkbox ng-model="sortReverse.setting" name="sortReverseBox" />
             <label for="sortReverseBox">Reverse Sorting:</label>
             

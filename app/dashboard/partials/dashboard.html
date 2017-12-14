@@ -23,7 +23,7 @@
         <div ng-if="currentBike" ng-model="currentBike" style="text-align: center">
             <h3>{{ currentBike.brandName }} {{ currentBike.modelName}} </h3>
 
-            <p ng-if="currentBike.stravaBikeId">-Linked with Strava-</p>
+            <p ng-if="currentBike.stravaBikeId" style="color:red">-Linked with Strava-</p>
             <p ng-if="currentBike.mileage">Mileage: {{currentBike.mileage}} miles</p>
             <p ng-if="currentBike.serial">Serial Number: {{currentBike.serial}}</p>
             <p ng-if="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
@@ -60,7 +60,7 @@
             
     
             <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
-                <p> Type: {{ comp.type.name }} </p>
+                <p style="font-weight: bold"> Type: {{ comp.type.name }} </p>
                 <label for="activeComp">Active:</label>
                 <input type="checkbox" ng-model="comp.active" name="activeComp" ng-change="changeCompActiveState(comp)">
                 <p ng-if="comp.brandName"> Brand Name: {{ comp.brandName }} </p>

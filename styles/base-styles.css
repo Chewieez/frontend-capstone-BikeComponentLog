@@ -4,6 +4,11 @@ body {
     box-sizing: border-box;
 }
 
+/* .allSiteContent {
+    margin: 0 auto;
+    width: 80%;
+} */
+
 .bikeView__dropdown {
     display: block;
 }
@@ -29,6 +34,15 @@ md-input-container label.uploadLabel {
 }
 
 
+/* Profile CSS */
+
+.profile__card-subhead {
+    font-size: 1.1em !important;
+}
+
+.profile__card-connected {
+    color: tomato;
+}
 /* Generic form styling to make them all block elements
     Change later when in styling mode
 */

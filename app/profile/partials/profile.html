@@ -1,38 +1,111 @@
-<div>
-    <div ng-if="profileFlag && !editMode" class="profile">
-        <p>First Name:  {{ currentUserProfile.firstName }}</p>
-        <p>Last Name: {{ currentUserProfile.lastName }}</p>
-        <button ng-click="editProfile()">Edit Profile</button>
-    </div>
-    <div ng-if="editMode || !profileFlag" class="profile">
+<div ng-cloak class="md-padding" layout="column" layout-align="center" class="profile">
 
-        <h1 ng-if="!editMode">Create Your Profile First</h1>
-        <h1 ng-if="editMode">Edit Your Profile Info</h1>
+        <div ng-if="profileFlag && !editMode" class="profile">
+        
+           
+            <div  layout="row" layout-align="center center">
 
-        <label>First Name:</label>
-        <input type="name" name="firstName" ng-model="currentUserProfile.firstName"  />
-        <label>Last Name:</label>
-        <input type="name" name="lastName" ng-model="currentUserProfile.lastName" />
-        <!-- Photo upload for avatar -->
-        <!-- <input type="file" ng-model="avatar" /> -->
+
+                <md-card class="profile__card"md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch flex="60">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Profile</span>
+                            <br>
+                            <span class="md-subhead profile__card-subhead">
+                                <label for="firstName">First Name:</label>
+                                <span id="firstName">{{ currentUserProfile.firstName }}</span>
+                                <br>
+                                <label for="lastName">Last Name:</label>
+                                <span id="lastName"> {{ currentUserProfile.lastName }}</span>
+                            </span>
+                            <div>
+                                <!-- link to allow user to Link Strava Account -->
+                                <div ng-if="!currentUserProfile.stravaId">
+                                    <h4>Link with your Strava account to keep the mileage of your tracked bikes updated automatically </h4>
+                                    <a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto"><img src="./images/LinkWithStrava.png" width="175px"></a>
+                                </div>
+                                <br>
+                                <br>
+                                <span class="profile__card-connected" ng-if="currentUserProfile.stravaId"> Connected with </span><img src="/images/strava2.png" width="100">
+                            </div>
+                        </md-card-title-text>
+                        <md-card-title-media>
+                            <div class="md-media-lg card-media"></div>
+                        </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button ng-click="editProfile()">Edit Profile</md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+
+        </div>
+
+        <div ng-if="editMode || !profileFlag" class="profile"layout="row" layout-align="center center">
+            
+
+                <!-- <h1 ng-if="!editMode">Create Your Profile First</h1>
+                <h1 ng-if="editMode">Edit Your Profile Info</h1>
+                
+                <md-input-container>
+                    <label>First Name:</label>
+                    <input type="name" name="firstName" ng-model="currentUserProfile.firstName"  />
+                </md-input-container>
+                <br>
+                <md-input-container>
+                    <label>Last Name:</label>
+                    <input type="name" name="lastName" ng-model="currentUserProfile.lastName" />
+                </md-input-container> -->
+                <!-- Photo upload for avatar -->
+                <!-- <input type="file" ng-model="avatar" /> -->
+                
+                <!-- <md-button ng-if="!editMode" ng-click="addProfile()" class="md-raised md-primary">Create Profile</md-button>
+                
+                <md-button ng-if="editMode" ng-click="updateProfile()" class="md-raised md-primary">Update Profile</md-button>
+                <md-button ng-if="editMode" ng-click="cancelUpdate()" class="md-warn">Cancel</md-button> -->
+
+                <md-card class="profile__createCard" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch flex="60">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">
+                                <span ng-if="!editMode">Create Your Profile First</span>
+                                <span ng-if="editMode">Edit Your Profile Info</span>
+                            </span>
+                            <span class="md-subhead">
+                                <md-input-container>
+                                    <label>First Name:</label>
+                                    <input type="name" name="firstName" ng-model="currentUserProfile.firstName"  />
+                                </md-input-container>
+                                <br>
+                                <md-input-container>
+                                    <label>Last Name:</label>
+                                    <input type="name" name="lastName" ng-model="currentUserProfile.lastName" />
+                                </md-input-container>
+                                <!-- Photo upload for avatar -->
+                                <!-- <input type="file" ng-model="avatar" /> -->
+                            </span>
+                        </md-card-title-text>
+                        <!-- <md-card-title-media> -->
+                            <!-- <div class="md-media-lg card-media"></div> -->
+                        <!-- </md-card-title-media> -->
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                        <md-button ng-if="!editMode" ng-click="addProfile()" class="md-raised md-primary">Create Profile</md-button>
+                        <md-button ng-if="editMode" ng-click="updateProfile()" class="md-raised md-primary">Update Profile</md-button>
+                        <md-button ng-if="editMode" ng-click="cancelUpdate()" class="md-warn">Cancel</md-button>
+                    </md-card-actions>
+                </md-card>
+            
+            
+        </div>
         
-        <button ng-if="!editMode" ng-click="addProfile()">Create Profile</button>
         
-        <button ng-if="editMode" ng-click="updateProfile()">Update Profile</button>
-        <button ng-if="editMode" ng-click="cancelUpdate()">Cancel</button>
-    </div>
+        
+        
     
 </div>
 
-<div>
-    <!-- link to allow user to Link Strava Account -->
-    <div ng-if="!currentUserProfile.stravaId">
-        <h4>Link with your Strava account to keep the mileage of your tracked bikes updated automatically </h4>
-        <a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto"><img src="./images/LinkWithStrava.png" width="175px"></a>
-    </div>
-    <p ng-if="currentUserProfile.stravaId"> Strava Account Connected </p>
-</div>
-<!-- <button ng-click="link()">Link To Strava</button> -->
+
 
 
 <!-- Link to allow user to update their profile -->

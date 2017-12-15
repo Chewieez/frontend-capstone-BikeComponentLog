@@ -58,9 +58,14 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
         })
     }
 
+    // Old cancel code that sends user back to the dashboard
+    // $scope.cancelUpdate = function() {
+    //     $scope.editMode = false
+    //     $location.url("/dashboard")
+    // }
+
     $scope.cancelUpdate = function() {
         $scope.editMode = false
-        $location.url("/dashboard")
     }
 
 })

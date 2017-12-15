@@ -7,45 +7,31 @@ body {
 .bikeView__dropdown {
     display: block;
 }
-/* .navbar {
-    background-color: blue;
-    color: white;
-    width: 100%;
-    height: 3em;
+
+
+md-input-container {
+    display: block;
 }
 
-.navbar ul {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0; 
+.addBike__image {
+    width: 1px
 }
-
-.navbar ul li {
-    list-style: none;
-} */
-
-/* .navbar a {
-    color: white;
-} */
 
 /* Generic form styling to make them all block elements
     Change later when in styling mode
 */
-/* form {
-    display: block;
-    margin:0; 
-    padding:0; 
-} */
 
-/* input, textarea, select {
-    display: block;
-    margin:.3em; 
-    padding:.3em; 
+
+
+input#addBike__image {
+}    
+
+md-input-container label.uploadLabel {
+    /* border: 1px solid #ccc; */
+    display: inline-block;
+    padding: 30px 12px;
+    cursor: pointer;
 }
-*/
-
-
 
 
 /* Animation code for progress meter */

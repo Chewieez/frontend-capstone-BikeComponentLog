@@ -1,5 +1,7 @@
 angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, AuthFactory, BikeFactory, ComponentFactory) {
 
+    // set the max date allowed in the date picker to today's date.
+    $scope.maxDate = new Date(new Date().toISOString())
 
     // check if we are in Edit Bike Mode
     if (!BikeFactory.editBikeMode) {

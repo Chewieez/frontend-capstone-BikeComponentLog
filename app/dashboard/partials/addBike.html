@@ -2,35 +2,52 @@
     <h1 ng-if="!editMode" class="addBike__header">Add a new Bike to Track</h1>
     <h1 ng-if="editMode">Edit Your Bike Info</h1>
 
-    <form ng-submit="addBike()" name="bikeForm" ng-model="newBike">
-        <label>Brand:</label>
-        <input type="text" ng-model="newBike.brandName" required="string"/>
-        <label>Model:</label>
-        <input type="text" ng-model="newBike.modelName" />
-        <label ng-if="!editMode">Current Mileage:</label>
-        <input ng-if="!editMode" type="number" ng-model="newBike.mileage"/>
-        <label>Purchase Date:</label>
-        <input type="date" ng-model="newBike.purchaseDate"/>
-        <label>Serial Number:</label>
-        <input type="text" ng-model="newBike.serial"/>
-        <label>Info:</label>
-        <textarea ng-model="newBike.info"></textarea>
 
-        <label for="Image">Image</label>
-        
-        <input id="addBike__image" type="file" accept=".jpg,.png,.gif" ng-model="newBike.image" ng-change="saveImage()">
-       
-        <button type="button" ng-click="saveImage()">Upload Image</button>
+    <form ng-submit="addBike()" name="bikeForm" ng-model="newBike" >
+        <md-input-container >
+            <label>Brand:</label>
+            <input type="text" ng-model="newBike.brandName" required="string"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Model:</label>
+            <input type="text" ng-model="newBike.modelName" />
+        </md-input-container>
+        <md-input-container>
+            <label ng-if="!editMode">Current Mileage:</label>
+            <input ng-if="!editMode" type="number" ng-model="newBike.mileage"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Purchase Date:</label>
+            <!-- <input type="date" ng-model="newBike.purchaseDate"/> -->
+            <md-datepicker ng-model="newBike.purchaseDate"  md-max-date="maxDate"></md-datepicker>
+        </md-input-container>
+        <md-input-container>
+            <label>Serial Number:</label>
+            <input type="text" ng-model="newBike.serial"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Info:</label>
+            <textarea ng-model="newBike.info"></textarea>
+        </md-input-container>
+            
+        <input class="ng-hide" id="addBike__image" type="file" accept=".jpg,.png,.gif" ng-model="newBike.image">
+        <label for="addBike__image" class="md-button md-raised" md-ink-ripple="1">Choose Image</label>
+           
+        <md-button ng-click="saveImage()">Upload Image</md-button>
         
         
         <div ng-repeat="image in newBike.images">
             <img ng-src="{{image}}" style="width:150px;height:auto;"/>
-            <button ng-click="deletePhoto(image)">Delete Photo</button>
+            <md-button ng-click="deletePhoto(image)" class="md-warn">Delete Photo</md-button>
         </div>
 
-        <input ng-if="!editMode" type="submit" value="Add Bike">
-        <input ng-if="editMode" type="submit" value="Save Edits">
-        <input type="reset">
+        <md-input-container class="md-block">
+
+            <md-button ng-if="!editMode" class="md-primary md-raised">Add Bike</md-button>
+            <md-button ng-if="editMode" class="md-primary md-raised">Edit Bike</md-button>
+            <md-button type="reset" class="md-raised md-accent">reset</md-button>
+        </md-input-container>
+
     </form>
-    <button ng-click="cancelForm()">Cancel</button>
+    <md-button ng-click="cancelForm()">Cancel</md-button>
 </div>

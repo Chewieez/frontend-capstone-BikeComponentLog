@@ -4,26 +4,53 @@
 
     
     <form ng-submit="addComponent()" name="componentForm" ng-model="componentForm">
-        <label ng-if="!editMode">Type: </label>
+        <!-- <label ng-if="!editMode">Type: </label>
         <select ng-if="!editMode" ng-model="newComponent.type" ng-options="comp.name for comp in componentTypes track by comp.name" required="comp.name">
                 <option value="">Choose a Type</option>
-        </select>
-        <p ng-if="editMode"> Type: {{ newComponent.type.name }} </p>
-        <label>Brand:</label>
-        <input type="text" ng-model="newComponent.brandName"/>
-        <label>Model:</label>
-        <input type="text" ng-model="newComponent.modelName"/>
-        <label>Current Mileage:</label>
-        <input type="number" ng-model="newComponent.mileage" />
-        <label>Installation Date:</label>
-        <input type="date" ng-model="newComponent.purchaseDate" />
-        <label>Serial Number:</label>
-        <input type="text" ng-model="newComponent.serial"/>
-        <label>Info:</label>
-        <textarea ng-model="newComponent.info"></textarea>
+        </select> -->
 
-        <input id="addComponent__image" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" ng-change="saveImage()">
-        <button type="button" ng-click="saveImage()">Upload Image</button>
+        <!-- Dropdown list of the available component types -->
+        <md-input-container class="componentForm__dropdown">
+            <label ng-if="!editMode">Type:</label>
+            <md-select ng-if="!editMode" ng-model="newComponent">
+                <md-optgroup label="Component Types">
+                    <md-option ng-value="component" ng-repeat="comp in componentTypes"> {{ comp.name }}</md-option>
+                </md-optgroup>
+            </md-select>
+        </md-input-container>
+
+
+        <p ng-if="editMode"> Type: {{ newComponent.type.name }} </p>
+        <md-input-container>
+            <label>Brand:</label>
+            <input type="text" ng-model="newComponent.brandName" required="string"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Model:</label>
+            <input type="text" ng-model="newComponent.modelName"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Current Mileage:</label>
+            <input type="number" ng-model="newComponent.mileage" />
+        </md-input-container>
+        <md-input-container>
+            <label>Installation Date:</label>
+            <input type="date" ng-model="newComponent.purchaseDate" />
+        </md-input-container>
+        <md-input-container>
+            <label>Serial Number:</label>
+            <input type="text" ng-model="newComponent.serial"/>
+        </md-input-container>
+        <md-input-container>
+            <label>Info:</label>
+            <textarea ng-model="newComponent.info"></textarea>
+        </md-input-container>
+
+        <input class="ng-hide" id="addComponent__image" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" ng-change="saveImage()">
+        <label for="addComponent__image" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon>Choose Photo</label>
+
+        <md-button ng-click="saveImage()">Upload Image</md-button>
+        
         <div ng-repeat="image in newComponent.images">
             
             <img ng-src="{{image}}" style="width:150px;height:auto;"/>
@@ -34,9 +61,10 @@
             </md-button>
         </div>
 
-        <input ng-if="!editMode" type="submit" value="Save Component">
-        <input ng-if="editMode" type="submit" value="Save Edits">
-        <input type="reset">
+        <input ng-if="!editMode" type="submit" value="Save Component" class="md-button md-primary md-raised">
+        <input ng-if="editMode" type="submit" value="Save Edits" class="md-button md-primary md-raised">
+        <md-button type="reset" class="md-raised md-warn">reset</md-button>
+
     </form>
-    <button ng-click="cancelForm()">Cancel</button>
+    <md-button ng-click="cancelForm()">Cancel</md-button>
 </div>

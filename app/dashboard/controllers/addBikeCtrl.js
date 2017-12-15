@@ -10,7 +10,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
         // initialize the newBike object to use in form
         $scope.newBike = {}
-        $scope.newBike.images = [""]
+        $scope.newBike.images = []
 
         // set the starting value of mileage to 0
         $scope.newBike.mileage = 0
@@ -28,7 +28,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         // check if an images array currently exists
         if (!$scope.newBike.images) {
             // create an array for images
-            $scope.newBike.images = [""]
+            $scope.newBike.images = []
         }
 
         // if the bike currently has a date, populate the date window with that date info

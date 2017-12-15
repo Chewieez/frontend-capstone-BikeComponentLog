@@ -40,9 +40,10 @@
             <!-- Dropdown list of the users tracked bikes -->
             <md-input-container class="bikeView__dropdown">
                 <label>Choose a Bike</label>
-                <md-select ng-model="currentBike" ng-change="getComponents()" on-select="onSelected($item)">
-                    <!-- <md-option>   <em>None</em>   </md-option> -->
-                    <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
+                <md-select ng-model="currentBike" ng-change="getComponents()" >
+                    <md-optgroup label="Bikes">
+                        <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
+                    </md-optgroup>
                 </md-select>
             </md-input-container>
     
@@ -121,8 +122,8 @@
                 <div ng-repeat="image in comp.images">
                     <img ng-src="{{ image }}" style="width:200px;height:auto;" />
                 </div>
-                <md-button ng-click="deleteComponent(comp)">Delete</md-button>
                 <md-button ng-click="sendToEditComponent(comp)">Edit</md-button>
+                <md-button ng-click="deleteComponent(comp)">Delete</md-button>
                 <hr>
             </div>
 

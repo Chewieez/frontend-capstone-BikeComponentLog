@@ -32,7 +32,7 @@
         
         
         <input class="ng-hide" id="addBike__image" type="file" accept=".jpg,.png,.gif" ng-model="newBike.image">
-        <label for="addBike__image" class="md-button md-raised" md-ink-ripple="1"><md-icon md-font-icon="material-icons">add_a_photo</md-icon> Choose Photo</label>
+        <label for="addBike__image" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon> Choose Photo</label>
            
         <md-button ng-click="saveImage()">Upload Photo</md-button>
         
@@ -48,7 +48,7 @@
 
         
 
-            <input type="submit" value="Add Bike" ng-if="!editMode" class="md-button md-primary md-raised"/>
+            <input type="submit" value="Save Bike" ng-if="!editMode" class="md-button md-primary md-raised"/>
             <input type="submit" value="Save Edits" ng-if="editMode" class="md-button md-primary md-raised"/>
             <md-button type="reset" class="md-raised md-warn">reset</md-button>
        

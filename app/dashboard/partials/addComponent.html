@@ -46,10 +46,10 @@
             <textarea ng-model="newComponent.info"></textarea>
         </md-input-container>
 
-        <input class="ng-hide" id="addComponent__image" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" ng-change="saveImage()">
-        <label for="addComponent__image" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon>Choose Photo</label>
+        <input class="ng-hide" id="addComponent__image" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" custom-on-change="saveImage">
+        <label for="addComponent__image" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon>Upload Photo</label>
 
-        <md-button ng-click="saveImage()">Upload Image</md-button>
+        <!-- <md-button ng-click="saveImage()">Upload Image</md-button> -->
         
         <div ng-repeat="image in newComponent.images">
             

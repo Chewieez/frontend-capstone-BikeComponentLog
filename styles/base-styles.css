@@ -13,19 +13,15 @@ body {
     display: block;
 }
 
-
-/* md-input-container {
-    display: block;
-} */
-
-md-input-container label.uploadLabel {
-    /* border: 1px solid #ccc; */
+/* md-input-container label.uploadLabel {
+    
     display: inline-block;
     padding: 30px 12px;
     cursor: pointer;
-}
+} 
+*/
 
-.addBike__image {
+.addBike__imageBtn {
     width: 1px
 }
 
@@ -43,11 +39,9 @@ md-input-container label.uploadLabel {
 .profile__card-connected {
     color: tomato;
 }
-/* Generic form styling to make them all block elements
-    Change later when in styling mode
-*/
 
 
+/*                                   */
 /* Animation code for progress meter */
 /*                                   */
 

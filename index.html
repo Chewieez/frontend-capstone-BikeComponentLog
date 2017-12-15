@@ -13,17 +13,13 @@
 </head>
 <body ng-app="BikeLogApp" ng-cloak>
 
-    <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar"></nav>
+    <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar" ng-cloak flex></nav>
 
     <!-- <div ng-show="progressFlag" ng-include="'app/progress.html'" class="progress" style="width: 300px"></div> -->
 
 
-    <div ng-view ng-cloak>
-    </div>
+    <div ng-view ng-cloak flex>  </div>
 
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Angular Scripts -->
@@ -31,6 +27,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Material Icons -->
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
     <!-- Angular Material Library -->
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
     <!-- App scripts -->

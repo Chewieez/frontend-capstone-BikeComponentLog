@@ -25,8 +25,13 @@
         <input id="addComponent__image" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" ng-change="saveImage()">
         <button type="button" ng-click="saveImage()">Upload Image</button>
         <div ng-repeat="image in newComponent.images">
+            
             <img ng-src="{{image}}" style="width:150px;height:auto;"/>
-            <button ng-click="deletePhoto(image)">Delete Photo</button>
+
+            <md-button ng-click="deletePhoto(image)" class="md-warn md-icon-button" aria-label="Delete">
+                <md-tooltip md-direction="right" md-delay="400" >Delete</md-tooltip>
+                <md-icon md-font-icon="material-icons">clear</md-icon>
+            </md-button>
         </div>
 
         <input ng-if="!editMode" type="submit" value="Save Component">

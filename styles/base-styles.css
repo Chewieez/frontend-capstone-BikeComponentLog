@@ -9,22 +9,9 @@ body {
 }
 
 
-md-input-container {
+/* md-input-container {
     display: block;
-}
-
-.addBike__image {
-    width: 1px
-}
-
-/* Generic form styling to make them all block elements
-    Change later when in styling mode
-*/
-
-
-
-input#addBike__image {
-}    
+} */
 
 md-input-container label.uploadLabel {
     /* border: 1px solid #ccc; */
@@ -32,6 +19,19 @@ md-input-container label.uploadLabel {
     padding: 30px 12px;
     cursor: pointer;
 }
+
+.addBike__image {
+    width: 1px
+}
+
+.componentView__componentSorting {
+    display: inline !important;
+}
+
+
+/* Generic form styling to make them all block elements
+    Change later when in styling mode
+*/
 
 
 /* Animation code for progress meter */

@@ -43,6 +43,12 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         })
     }
 
+    $scope.onSelected = function (selectedItem) {
+        setTimeout(function(){
+            $(":focus").blur();
+        })
+    }
+
 
     // get the current user
     const user = AuthFactory.getUser()

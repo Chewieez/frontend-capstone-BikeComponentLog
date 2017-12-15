@@ -16,7 +16,8 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.newBike.mileage = 0
 
         //sets the default date purchased to today's date. User can then change to which ever date they'd like. 
-        $scope.newBike.purchaseDate = new Date(new Date().toISOString().split("T")[0])
+        // $scope.newBike.purchaseDate = new Date(new Date().toISOString().split("T")[0])
+        $scope.newBike.purchaseDate = new Date($scope.maxDate)
 
     } else {
         // set local Edit mode variable to true to show the user a Save Edits button and not a Add Bike Button

@@ -1,35 +1,32 @@
-<div ng-controller="navCtrl">
-
-
-    <md-content class="md-padding" >
+    <div ng-controller="navCtrl" class="md-medium-tall" >
     
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-            <!-- <md-nav-item md-nav-href="/#!/profile"><md-button>
-                    <img-src="/images/bicycle-white-rec.png">
-                </md-button></md-nav-item> -->
-            <span>Bike Tracker</span>
-            <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/profile" name="Profile"><md-icon md-font-icon="material-icons">account_circle</md-icon>Profile</md-nav-item>
+            <!-- <md-nav-item> -->
 
+                <md-icon md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto"></md-icon>
+
+            <!-- </md-nav-item> -->
+            <!-- <span>Bike Tracker</span> -->
             
-            <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/dashboard" name="Dashboard"><md-icon md-font-icon="material-icons">dashboard</md-icon>Dashboard</md-nav-item>
+            <!-- <span flex></span> -->
+            
+            <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/profile" name="Profile"><md-icon md-font-icon="material-icons">account_circle</md-icon>Profile</md-nav-item>
+            
+            <!-- <span flex></span> -->
+            
+            <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/dashboard" name="Dashboard">
+                <md-icon md-font-icon="material-icons">dashboard</md-icon>
+                Dashboard
+            </md-nav-item>
+            
+            <!-- <span flex></span> -->
             
             <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/wishlist" name="Wishlist"><md-icon md-font-icon="material-icons">list</md-icon>Wishlist</md-nav-item>
             
+            <span flex></span>
+            
             <md-nav-item ng-if="isAuthenticated()" md-nav-click="logout()" layout-align="end">Logout</md-nav-item>
             
-            
-            
-            <!-- <li>
-                <span ng-if="isAuthenticated()">
-                    <a href="/#!/wishlist">Wishlist</a>
-                </span>
-            </li>
-            <li>
-                <span ng-if="isAuthenticated()">
-                    <md-button class="md-raised" ng-click="logout()">Logout</md-button>
-                </span>
-            </li> -->
         </md-nav-bar>
     
-    </md-content>
-</div>
+    </div>

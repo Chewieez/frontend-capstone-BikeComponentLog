@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, AuthFactory, BikeFactory, ComponentFactory) {
+angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, $timeout, AuthFactory, BikeFactory, ComponentFactory) {
 
     // set flag to control photo upload progress meter
     $scope.photoUploadProgress = {}
@@ -46,10 +46,11 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
     // create a function to run when a user uploads a file. Inside that function call $scope.saveImage()
     $scope.uploadFile = function() {
         
-       
         $scope.photoUploadProgress.flag = false
-        
-        $scope.saveImage()
+        $timeout( ()=>{
+            $scope.saveImage()
+
+        })
 
     }
 
@@ -61,12 +62,12 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         let filename = document.getElementById("addBike__imageBtn");
         let file = filename.files[0]
         BikeFactory.addImage(file).then(_url => {
+            $scope.photoUploadProgress.flag = true
             // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply(function () {
 
                 $scope.newBike.images.push(_url)
             })
-            $scope.photoUploadProgress.flag = true
         })
     }
 

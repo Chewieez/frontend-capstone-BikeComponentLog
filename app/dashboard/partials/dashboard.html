@@ -70,42 +70,43 @@
         </div>
         <div ng-if="components" class="componentView">
 
+            <div layout="row" layout="space around" class="componentView__componentSearchSort">
             
            
+                <div flex="30" class="componentView__componentSearch">
+                        <md-input-container>
+                            <input type="search" ng-model="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" size="300"/>
+                            <label for="searchComponentInput">Search Components</label>
+                        </md-input-container>
+                </div>
+
+
             
-            <div layout="row" class="componentView__componentSorting">
-                <span><h3>Components</h3></span>
                 
-                <span>
-                    <md-input-container>
+                <span flex-offset="30" flex="20">
+                    <md-input-container style="display:inline-block; width:100%;">
                         <label>Sort Components</label>
                         <md-select ng-model="sortSelector" ng-model-options="{trackBy: '$sort.title'}" ng-change="setSortOrder(sortSelector)" aria-label="Sort Components By">
                             <!-- <md-option><em>default</em></md-option> -->
                             <md-option ng-value="sort" ng-repeat="sort in sortOrderArray">{{ sort.title }}</md-option>
                         </md-select>
                     </md-input-container>
+                </span>
 
+                <span flex="10">
+                    <md-switch ng-model="sortReverse.setting" id="sortReverseBox" aria-label="Reverse Results"  style="display:inline-block; padding-left:.5em">Reverse</md-switch>
+                </span>    
                     
-                    <md-switch ng-model="sortReverse.setting" id="sortReverseBox" aria-label="Reverse Results" >Reverse</md-switch>
-                    
-                    
-                    
-                    <md-switch ng-model="activeFlag.show" aria-label="Active Components Only">
+                <span flex="10">
+                    <md-switch ng-model="activeFlag.show" aria-label="Active Components Only" style="display:inline-block;">
                         Active
                     </md-switch>
+
+                </span>                    
                     
-                </span>
-                <!-- <label for="viewActiveCheckbox">Inactive Only</label> -->
-                <!-- <input type="radio" name="viewActiveCheckbox" />  -->
-
             </div>
+            <span layout-align="center"><h3>Components</h3></span>
 
-            <div class="componentView__componentSearch">
-                    <md-input-container>
-                        <input type="search" ng-model="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" size="300"/>
-                        <label for="searchComponentInput">Search Components</label>
-                    </md-input-container>
-                </div>
                 
 
             <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">

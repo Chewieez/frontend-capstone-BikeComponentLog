@@ -21,8 +21,14 @@ body {
 } 
 */
 
+/* AddBike CSS */
+
 .addBike__imageBtn {
     width: 1px
+}
+
+.addBike__progressCircle {
+    padding-top: .9em;
 }
 
 .componentView__componentSorting {

@@ -55,19 +55,21 @@
 
         </div>
 
-        <div layout="column" layout-align="center">
+        <div >
 
-            <div ng-repeat="wish in wishes | filter:wishSearch | orderBy:sortOrder:sortReverse.setting">
+            <div ng-repeat="wish in wishes | filter:wishSearch | orderBy:sortOrder:sortReverse.setting" layout="row" layout-align="" layout-padding layout-wrap layout-margin>
 
     
-                <md-card class="wish__card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch flex="50">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">{{ wish.title }}</span>
+                <md-card class="wish__card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch flex="60" layout="column" layout-align="center start" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3">
+                    <md-card-title layout="column" style="width:100%;">
+                        <md-card-title-text layout="column">
+                            <span class="md-headline"  layout="row">
+                                <span flex="75">{{ wish.title }}</span>
+                                <span flex="25" layout="end" class="wish__date">{{ wish.dateAdded | date : 'medium' }}</span>
+                            </span>
                             <br>
-                            <span class="md-subhead profile__card-subhead">
-                                <p>{{ wish.info }}</p>
-                                <p>{{ wish.dateAdded | date : 'medium' }}</p>
+                            <span class="md-subhead" flex="100">
+                                <span>{{ wish.info }}</span>
                             </span>
                         </md-card-title-text>
                         <md-card-title-media>

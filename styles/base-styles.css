@@ -35,6 +35,12 @@ body {
     display: inline !important;
 }
 
+/* Wish CSS */
+
+.wish__date {
+    font-size: .5em !important;
+
+}
 
 /* Profile CSS */
 

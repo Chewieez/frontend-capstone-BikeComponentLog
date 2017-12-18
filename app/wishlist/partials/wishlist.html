@@ -56,10 +56,10 @@
         </div>
 
         <div >
-
+            
+            <!--     
             <div ng-repeat="wish in wishes | filter:wishSearch | orderBy:sortOrder:sortReverse.setting" layout="row" layout-align="" layout-padding layout-wrap layout-margin>
 
-    
                 <md-card class="wish__card" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch flex="60" layout="column" layout-align="center start" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3">
                     <md-card-title layout="column" style="width:100%;">
                         <md-card-title-text layout="column">
@@ -73,17 +73,37 @@
                             </span>
                         </md-card-title-text>
                         <md-card-title-media>
-                            <!-- <div class="md-media-lg card-media"></div> -->
+                         
                         </md-card-title-media>
                     </md-card-title>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button ng-click="editWish(wish)" class="md-primary">Edit</md-button>
+                        <md-button ng-click="editWish(wish)" class="md-raised md-primary">Edit</md-button>
                         <md-button ng-click="deleteWish(wish)" class="md-warn">Delete</md-button>
                     </md-card-actions>
                 </md-card>
-    
-    
             </div>
+     -->
+
+                <md-list>
+                    <md-list-item class="md-2-line" ng-repeat="wish in wishes | filter:wishSearch | orderBy:sortOrder:sortReverse.setting" md-whiteframe="{{height}}" ng-init="height = 0" ng-mouseenter="height = 3" ng-mouseleave="height = 0">
+                        <!-- <md-checkbox ng-model="item.done"></md-checkbox> -->
+                        <div class="md-list-item-text">
+                            <h3>
+                                <span flex="75">{{ wish.title }}</span>
+                                <span flex="25" layout="end" class="wish__date">{{ wish.dateAdded | date : 'medium' }}</span>
+                            </h3>
+                            <p>{{ wish.info }}</p>
+                        </div>
+                        <md-button ng-click="editWish(wish)" class="md-raised md-secondary">Edit</md-button>
+                        <md-button ng-click="deleteWish(wish)" class="md-warn">Delete</md-button>
+                    </md-list-item>
+                </md-list>
+
+
+
+
+
+    
 
         </div>
     </div>

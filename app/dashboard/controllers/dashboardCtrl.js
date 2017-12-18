@@ -2,6 +2,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
 
+    $scope.trueFlag = true
     // set flag to view only Active items to true by default
     $scope.activeFlag = {}
     $scope.activeFlag.show = true

@@ -1,7 +1,9 @@
 <div class="dashboard">
     <div layout layout-align="end" class="dashboard__refresh">
         <!-- Refresh button -->
-        <md-button ng-click="refresh()"><i class="material-icons">autorenew</i>Refresh</md-button>
+        <md-button ng-click="refresh()" class="md-icon-button"><md-icon md-font-icon="material-icons">autorenew</md-icon>
+            <md-tooltip md-direction="left" md-delay="100">Refresh</md-tooltip>
+        </md-button>
 
     </div>
 
@@ -12,23 +14,27 @@
         <md-fab-trigger>
             <md-button aria-label="Add..." class="md-fab md-warn">
                 <md-icon md-font-icon="material-icons">add</md-icon>
+                <md-tooltip md-direction="left">Add...</md-tooltip>
             </md-button>
         </md-fab-trigger>
         
         <md-fab-actions>
             <md-button aria-label="Add Bike" ng-click="sendToAddBike()">
-                <!-- <md-icon md-svg-src="/img/icons/user.svg"></md-icon> -->
-                Add Bike
-            </md-button>
+                    <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto">Add Bike</md-icon>
+                   
+                    <md-tooltip md-direction="left">Add New Bike</md-tooltip>
+                </md-button>
         
             <md-button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">
-                <!-- <md-icon md-svg-src="/img/icons/group.svg"></md-icon> -->
-                Import Bike
+                    <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="color: tomato; width: 50px; height: auto">Import Bike</md-icon>
+                   
+                    <md-tooltip md-direction="left">Import Bike from Strava</md-tooltip>
             </md-button>
         
             <md-button ng-if="currentBike" ng-click="sendToAddComponent()">
-                <!-- <md-icon md-svg-src="/img/icons/group.svg"></md-icon> -->
-                Add Component
+                <md-icon class="md-icon-button" md-svg-src="/images/noun_168563_cc.svg" style="width: 50px; height: auto">Add Component</md-icon>
+                <md-tooltip md-direction="left">Add New Component</md-tooltip>   
+                <!-- NewComponent -->
             </md-button>
         
         </md-fab-actions>
@@ -44,6 +50,9 @@
                     <md-optgroup label="Bikes">
                         <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
                     </md-optgroup>
+                    
+                        <md-option ng-click="sendToAddBike()"><span style="color: blue;"> Add A New Bike  </span></md-option>
+                    
                 </md-select>
             </md-input-container>
     
@@ -143,6 +152,18 @@
                 <img ng-src="{{ image }}" style="width:300px;height:auto;" />
             </div>
         </div>
+
+        <!-- <md-grid-list ng-if="currentBike.images" class="bikeImages" md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3"
+            md-gutter="8px" md-gutter-gt-sm="4px">
+
+            <md-grid-tile ng-repeat="image in currentBike.images" md-force-height="'100px'" md-rowspan="2" md-colspan="1" md-colspan-sm="1"
+                md-colspan-xs="1" ng-class="">
+                <img ng-src="{{ image }}" />
+                <md-grid-tile-footer>
+                   
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list> -->
     </div>
     <!-- End of dashboard content -->
 

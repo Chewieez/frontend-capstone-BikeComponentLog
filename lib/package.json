@@ -19,6 +19,7 @@
     "eslint": "^4.12.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-notify": "^0.4.5",
-    "gruntify-eslint": "^4.0.0"
+    "gruntify-eslint": "^4.0.0",
+    "v-accordion": "^1.6.0"
   }
 }

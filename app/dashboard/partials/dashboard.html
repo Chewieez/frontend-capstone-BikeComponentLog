@@ -8,7 +8,7 @@
 
     </div>
 
-    <h1 layout layout-align="center"> Welcome to your dashboard</h1>
+    <!-- <h1 layout layout-align="center"> Welcome to your dashboard</h1> -->
 
     <!-- ACTION BUTTON - fab button to add bike, import bike, add component -->
     <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" style="position:fixed !important;">
@@ -22,20 +22,17 @@
         <md-fab-actions>
             <md-button aria-label="Add Bike" ng-click="sendToAddBike()">
                 <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto">Add Bike</md-icon>
-
                 <md-tooltip md-direction="left">Add New Bike</md-tooltip>
             </md-button>
 
             <md-button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">
                 <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="color: tomato; width: 50px; height: auto">Import Bike</md-icon>
-
                 <md-tooltip md-direction="left">Import Bike from Strava</md-tooltip>
             </md-button>
 
             <md-button ng-if="currentBike" ng-click="sendToAddComponent()">
                 <md-icon class="md-icon-button" md-svg-src="/images/noun_168563_cc.svg" style="width: 50px; height: auto">Add Component</md-icon>
                 <md-tooltip md-direction="left">Add New Component</md-tooltip>
-                <!-- NewComponent -->
             </md-button>
 
         </md-fab-actions>
@@ -61,23 +58,46 @@
                 </md-input-container>
             </div>
 
-
+            <div ng-if="!currentBike" class="bikeView__addBikeButtons">
+                <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
+                <md-button class="md-raised md-warn" ng-click="importBikes()">Strava Bike Import</md-button>
+            </div>
         
 
 
             <div  flex="100" layout-align="center center" ng-if="currentBike" ng-model="currentBike" class="bikeView__details">
-                <h3>{{ currentBike.brandName }} {{ currentBike.modelName}}</h3>
+                <div >
+                    <h3 layout>
+                            <md-icon md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto"></md-icon>
+                    <span class="bikeHeader">        {{ currentBike.brandName }} {{ currentBike.modelName}}</span>
+                    <span flex></span>
+                    
+                    <md-button class="md-icon-button bikeCtrlBtn" ng-click="sendToEditBike(currentBike)" aria-label="Edit Bike">
+                        <md-icon md-font-icon="material-icons" class="bikeCtrlBtn" >mode_edit</md-icon>
+                        <md-tooltip md-direction="top" md-delay="200">Edit Bike</md-tooltip>
+                    </md-button>
+                    <md-button class="md-icon-button bikeCtrlBtn" ng-click="deleteBike(currentBike)" aria-label="Delete Bike">
+                        <md-icon md-font-icon="material-icons" class="bikeCtrlBtn" >delete</md-icon>
+                        <md-tooltip md-direction="top" md-delay="200">Delete Bike</md-tooltip>
+                    </md-button>
+                </h3>
+                </div>
+                <div >
+                    <p ng-if="currentBike.mileage" layout>Mileage: {{currentBike.mileage}} miles
+                        <span flex></span>
+                        <span ng-if="!currentBike.stravaBikeId">
+                            <md-button class="addMileageBtn" ng-click="addMileage()">Add Mileage</md-button>
+                        </span>
+                        <span>
+                            <md-icon ng-if="currentBike.stravaBikeId" md-svg-src="./images/api_logo_pwrdBy_strava_horiz_light.svg" class="poweredByStravaIcon"></md-icon>
+                            <md-tooltip md-direction="top" md-delay="100">Mileage from Strava</md-tooltip>
+                        </span>
+                    </p>
 
-                <!-- <p ng-if="currentBike.stravaBikeId" style="color:red">-Linked with Strava-</p> -->
-                <span ng-if="currentBike.mileage">Mileage: {{currentBike.mileage}} miles
-                </span>
-                <span>
-                    <img ng-if="currentBike.stravaBikeId" src="./images/strava-logo_sq.png" width="40" />
-                    <md-tooltip md-direction="right" md-delay="100">Linked with Strava</md-tooltip>
-                </span>
+                </div>
                 <br>
                 <br>
-                <v-accordion class="vAccordion--default center">
+                <v-accordion class="vAccordion--default bikeExtraDetails">
                     <v-pane>
                         <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
                             More Details
@@ -90,16 +110,9 @@
                         </v-pane-content>
                     </v-pane>
                 </v-accordion>
-
-                <!-- buttons -->
-                <md-button ng-click="sendToEditBike(currentBike)">Edit</md-button>
-                <md-button ng-click="deleteBike(currentBike)" class="deleteBtn">Delete</md-button>
-                <span ng-if="!currentBike.stravaBikeId">
-                    <md-button class="" ng-click="addMileage()">Add Mileage</md-button>
-                </span>
-                <hr>
-
             </div>
+
+            <md-divider ></md-divider>
         </div>
 
         <div ng-if="components" class="componentView">

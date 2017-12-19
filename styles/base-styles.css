@@ -21,88 +21,24 @@ body {
     width: 150px;
 }
 
-/* Navigation Profile animation */
-.rotate180 {
-    display: inline-block;
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    -webkit-transition: all linear 200ms;
-    transition: all linear 200ms;
-}
 
-.rotate-back {
-    display: inline-block;
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-    -webkit-transition: all linear 200ms;
-    transition: all linear 200ms;
-}
-
-.sub-menu{
-	/* background: #333; */
-	max-height: 500px;
-	position: relative;
-	display: block;
-	overflow:hidden;
-}
-
-.sub-menu md-menu-item{
-	/* background: #333; */
-	/* color: #eee; */
-}
-md-menu-item.ng-enter {
-    -webkit-animation:300ms open ease;
-    animation:300ms open ease;
-}
-
-md-menu-item.ng-leave {
-    -webkit-animation:300ms close ease;
-    animation:300ms close ease;
-}
-
-
-@-webkit-keyframes open {
-	From {
-		margin-bottom:-50px;
-	}
-	To {
-		margin-bottom:0px;
-	}
-}
-
-
-@keyframes open {
-	From {
-		margin-bottom:-50px;
-	}
-	To {
-		margin-bottom:0px;
-	}
-}
-
-@-webkit-keyframes close {
-	From {
-		margin-bottom:0px;
-	}
-	To {
-		margin-bottom:-50px;
-	}
-}
-
-
-@keyframes close {
-	From {
-		margin-bottom:0px;
-	}
-	To {
-		margin-bottom:-50px;
-	}
-}
 
 /* Dashboard CSS */
 
 .bikeView__details {
-    width: 50%;
+    width: 40%;
+    max-width: 600px !important;
+}
+
+.bikeHeader {
+    margin-top: .6em;
+    margin-left: .3em;
+}
+
+.addMileageBtn {
+    /* padding-top: 0; */
+    /* margin-bottom: 0; */
+    /* padding-bottom: .5em; */
 }
 
 .width50 {
@@ -113,6 +49,14 @@ md-menu-item.ng-leave {
     margin: 0 auto;
 }
 
+/* .bikeExtraDetails {
+    width: 70%;
+} */
+
+.poweredByStravaIcon {
+    /* font-size: 1.5em; */
+    width: 125px;
+}
 /* AddBike CSS */
 
 .addBike__imageBtn {

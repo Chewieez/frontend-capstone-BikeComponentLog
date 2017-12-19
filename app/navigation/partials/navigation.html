@@ -25,21 +25,33 @@
             <span flex></span>
             
             <!-- <md-nav-item ng-if="isAuthenticated()" md-nav-click="logout()" layout-align="end"> -->
-            
-                <!-- <md-menu>
-                        <md-button aria-label="" class="md-icon-button" ng-click="ctrl.openMenu($mdMenu, $event)">
-                            <md-icon md-font-icon="material-icons">user</md-icon>
-                        </md-button>
-                        <md-menu-content width="4">
-                          <md-menu-item>
-                            <md-button ng-click="logout()">
-                              <!-- <md-icon md-font-icon="material-icons" md-menu-align-target>account_circle</md-icon> 
-                              Logout
-                            </md-button>
-                            </md-menu-item>
-                        </md-menu-content> 
-                </md-menu>    -->
             <!-- </md-nav-item> -->
+            
+            <!-- https://codepen.io/next1/pen/PzWZJv -->
+            <md-menu ng-if="isAuthenticated()">
+                <md-button aria-label="User menu" class="" ng-click="$mdOpenMenu($event)">
+                    {{ currentUserProfile.firstName || currentUser.email}} 
+                    <md-icon md-font-icon="material-icons">account_circle</md-icon>
+                </md-button>
+                    
+                <md-menu-content width="2">
+                <md-menu-item>
+                    <md-button ui-sref="/#!/profile">
+                        <md-icon md-font-icon="material-icons" md-menu-align-target>account_circle</md-icon> Profile
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="logout()">
+                        <md-icon md-svg-src="/images/noun_1262661_cc.svg" md-menu-align-target></md-icon> Logout
+                    </md-button>
+                </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+
+
+            <!-- This works but pulls down the entire navbar a little, bike icon lowers, and doesn't close when you click outside of the menu -->
+<!--            
             <div class="cnt">
                 <div class="menu-item" ng-click="toggle(1); open1=!open1">
                     <md-list layout="row" layout-padding="" class="layout-row" layout-align="start center" flex ng-cloak> 
@@ -69,7 +81,7 @@
                     </div>
                 </div>
             </div>
-
+ -->
 
 
 

@@ -4,6 +4,11 @@ body {
     box-sizing: border-box;
 }
 
+h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
 /* .allSiteContent {
     margin: 0 auto;
     width: 80%;
@@ -17,16 +22,18 @@ body {
     color: red;
 }
 
-.cnt {
-    width: 150px;
-}
 
 
 
 /* Dashboard CSS */
 
 .bikeView__details {
-    width: 40%;
+    width: 50%;
+    max-width: 600px !important;
+}
+
+.componentView__details{
+    width: 50%;
     max-width: 600px !important;
 }
 
@@ -49,14 +56,23 @@ body {
     margin: 0 auto;
 }
 
-/* .bikeExtraDetails {
-    width: 70%;
-} */
-
 .poweredByStravaIcon {
     /* font-size: 1.5em; */
     width: 125px;
 }
+
+.componentSearch__input {
+    width: 100%;
+}
+
+.componentDivider {
+    background-color: blue;
+}
+
+.compHeader {
+    text-transform: uppercase;
+}
+
 /* AddBike CSS */
 
 .addBike__imageBtn {
@@ -71,7 +87,9 @@ body {
     display: inline !important;
 }
 
-/* Wish CSS */
+
+
+/* Wishlist CSS */
 
 .wish__date {
     font-size: .7em !important;
@@ -90,6 +108,8 @@ body {
 .profile__card-connected {
     color: tomato;
 }
+
+
 
 
 /*                                   */

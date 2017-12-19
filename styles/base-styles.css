@@ -9,17 +9,109 @@ body {
     width: 80%;
 } */
 
-.bikeView__dropdown {
-    display: block;
+.border {
+    border: 1px solid green;
 }
 
-/* md-input-container label.uploadLabel {
-    
+.deleteBtn:hover, .deleteBtn:hover > md-icon  {
+    color: red;
+}
+
+.cnt {
+    width: 150px;
+}
+
+/* Navigation Profile animation */
+.rotate180 {
     display: inline-block;
-    padding: 30px 12px;
-    cursor: pointer;
-} 
-*/
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    -webkit-transition: all linear 200ms;
+    transition: all linear 200ms;
+}
+
+.rotate-back {
+    display: inline-block;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: all linear 200ms;
+    transition: all linear 200ms;
+}
+
+.sub-menu{
+	/* background: #333; */
+	max-height: 500px;
+	position: relative;
+	display: block;
+	overflow:hidden;
+}
+
+.sub-menu md-menu-item{
+	/* background: #333; */
+	/* color: #eee; */
+}
+md-menu-item.ng-enter {
+    -webkit-animation:300ms open ease;
+    animation:300ms open ease;
+}
+
+md-menu-item.ng-leave {
+    -webkit-animation:300ms close ease;
+    animation:300ms close ease;
+}
+
+
+@-webkit-keyframes open {
+	From {
+		margin-bottom:-50px;
+	}
+	To {
+		margin-bottom:0px;
+	}
+}
+
+
+@keyframes open {
+	From {
+		margin-bottom:-50px;
+	}
+	To {
+		margin-bottom:0px;
+	}
+}
+
+@-webkit-keyframes close {
+	From {
+		margin-bottom:0px;
+	}
+	To {
+		margin-bottom:-50px;
+	}
+}
+
+
+@keyframes close {
+	From {
+		margin-bottom:0px;
+	}
+	To {
+		margin-bottom:-50px;
+	}
+}
+
+/* Dashboard CSS */
+
+.bikeView__details {
+    width: 50%;
+}
+
+.width50 {
+    width: 50%;
+}
+
+.center {
+    margin: 0 auto;
+}
 
 /* AddBike CSS */
 
@@ -38,9 +130,12 @@ body {
 /* Wish CSS */
 
 .wish__date {
-    font-size: .5em !important;
+    font-size: .7em !important;
+    color: grey;
 
 }
+
+
 
 /* Profile CSS */
 

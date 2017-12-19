@@ -1,7 +1,8 @@
 <div class="dashboard">
     <div layout layout-align="end" class="dashboard__refresh">
         <!-- Refresh button -->
-        <md-button ng-click="refresh()" class="md-icon-button"><md-icon md-font-icon="material-icons">autorenew</md-icon>
+        <md-button ng-click="refresh()" class="md-icon-button">
+            <md-icon md-font-icon="material-icons">autorenew</md-icon>
             <md-tooltip md-direction="left" md-delay="100">Refresh</md-tooltip>
         </md-button>
 
@@ -17,81 +18,103 @@
                 <md-tooltip md-direction="left">Add...</md-tooltip>
             </md-button>
         </md-fab-trigger>
-        
+
         <md-fab-actions>
             <md-button aria-label="Add Bike" ng-click="sendToAddBike()">
-                    <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto">Add Bike</md-icon>
-                   
-                    <md-tooltip md-direction="left">Add New Bike</md-tooltip>
-                </md-button>
-        
-            <md-button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">
-                    <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="color: tomato; width: 50px; height: auto">Import Bike</md-icon>
-                   
-                    <md-tooltip md-direction="left">Import Bike from Strava</md-tooltip>
+                <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto">Add Bike</md-icon>
+
+                <md-tooltip md-direction="left">Add New Bike</md-tooltip>
             </md-button>
-        
+
+            <md-button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">
+                <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="color: tomato; width: 50px; height: auto">Import Bike</md-icon>
+
+                <md-tooltip md-direction="left">Import Bike from Strava</md-tooltip>
+            </md-button>
+
             <md-button ng-if="currentBike" ng-click="sendToAddComponent()">
                 <md-icon class="md-icon-button" md-svg-src="/images/noun_168563_cc.svg" style="width: 50px; height: auto">Add Component</md-icon>
-                <md-tooltip md-direction="left">Add New Component</md-tooltip>   
+                <md-tooltip md-direction="left">Add New Component</md-tooltip>
                 <!-- NewComponent -->
             </md-button>
-        
+
         </md-fab-actions>
     </md-fab-speed-dial>
 
 
     <div ng-show="!progressFlag" layout="column" class="dashboard__content">
-        <div layout layout-align="center" flex="100" class="bikeView">
-            <!-- Dropdown list of the users tracked bikes -->
-            <md-input-container class="bikeView__dropdown">
-                <label>Choose a Bike</label>
-                <md-select ng-model="currentBike" ng-change="getComponents()" >
-                    <md-optgroup label="Bikes">
-                        <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
-                    </md-optgroup>
-                    
-                        <md-option ng-click="sendToAddBike()"><span style="color: blue;"> Add A New Bike  </span></md-option>
-                    
-                </md-select>
-            </md-input-container>
-    
+        
+        <div layout="column" layout-align=" center center"  class="bikeView">
             
-        </div>    
+            <!-- Dropdown list of the users tracked bikes -->
+            <div flex="100" class="bikeView__dropdown md-block">
+                <md-input-container >
+                    <label>Choose a Bike</label>
+                    <md-select ng-model="currentBike" ng-change="getComponents()">
+                        <md-optgroup label="Bikes">
+                            <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
+                        </md-optgroup>
+                        <md-option ng-click="sendToAddBike()">
+                            <span style="color: blue;"> Add A New Bike </span>
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
 
-        <div ng-if="currentBike" ng-model="currentBike" style="text-align: center">
-            <h3>{{ currentBike.brandName }} {{ currentBike.modelName}} </h3>
 
-            <p ng-if="currentBike.stravaBikeId" style="color:red">-Linked with Strava-</p>
-            <p ng-if="currentBike.mileage">Mileage: {{currentBike.mileage}} miles</p>
-            <p ng-if="currentBike.serial">Serial Number: {{currentBike.serial}}</p>
-            <p ng-if="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
-            <p ng-if="currentBike.info">Info: {{currentBike.info}}</p>
+        
 
-            <!-- buttons -->
-            <md-button ng-click="sendToEditBike(currentBike)">Edit</md-button>
-            <md-button ng-click="deleteBike(currentBike)">Delete</md-button>
-            <span ng-if="!currentBike.stravaBikeId">
-                <md-button class="" ng-click="addMileage()">Add Mileage</md-button>
-            </span>
-            <hr>
 
+            <div  flex="100" layout-align="center center" ng-if="currentBike" ng-model="currentBike" class="bikeView__details">
+                <h3>{{ currentBike.brandName }} {{ currentBike.modelName}}</h3>
+
+                <!-- <p ng-if="currentBike.stravaBikeId" style="color:red">-Linked with Strava-</p> -->
+                <span ng-if="currentBike.mileage">Mileage: {{currentBike.mileage}} miles
+                </span>
+                <span>
+                    <img ng-if="currentBike.stravaBikeId" src="./images/strava-logo_sq.png" width="40" />
+                    <md-tooltip md-direction="right" md-delay="100">Linked with Strava</md-tooltip>
+                </span>
+                <br>
+                <br>
+                <v-accordion class="vAccordion--default center">
+                    <v-pane>
+                        <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
+                            More Details
+                        </v-pane-header>
+
+                        <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
+                            <p ng-if="currentBike.serial">Serial Number: {{currentBike.serial}}</p>
+                            <p ng-if="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
+                            <p ng-if="currentBike.info">Info: {{currentBike.info}}</p>
+                        </v-pane-content>
+                    </v-pane>
+                </v-accordion>
+
+                <!-- buttons -->
+                <md-button ng-click="sendToEditBike(currentBike)">Edit</md-button>
+                <md-button ng-click="deleteBike(currentBike)" class="deleteBtn">Delete</md-button>
+                <span ng-if="!currentBike.stravaBikeId">
+                    <md-button class="" ng-click="addMileage()">Add Mileage</md-button>
+                </span>
+                <hr>
+
+            </div>
         </div>
+
         <div ng-if="components" class="componentView">
 
             <div layout="row" layout="space around" class="componentView__componentSearchSort">
-            
-           
+
+
                 <div flex="30" class="componentView__componentSearch">
-                        <md-input-container>
-                            <input type="search" ng-model="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" size="300"/>
-                            <label for="searchComponentInput">Search Components</label>
-                        </md-input-container>
+                    <md-input-container>
+                        <input type="search" ng-model="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" size="300"
+                        />
+                        <label for="searchComponentInput">Search Components</label>
+                    </md-input-container>
                 </div>
 
-
-            
-                
                 <span flex-offset="30" flex="20">
                     <md-input-container style="display:inline-block; width:100%;">
                         <label>Sort Components</label>
@@ -103,20 +126,23 @@
                 </span>
 
                 <span flex="10">
-                    <md-switch ng-model="sortReverse.setting" id="sortReverseBox" aria-label="Reverse Results"  style="display:inline-block; padding-left:.5em">Reverse</md-switch>
-                </span>    
-                    
+                    <md-switch ng-model="sortReverse.setting" id="sortReverseBox" aria-label="Reverse Results" style="display:inline-block; padding-left:.5em">Reverse</md-switch>
+                </span>
+
                 <span flex="10">
                     <md-switch ng-model="activeFlag.show" aria-label="Active Components Only" style="display:inline-block;">
                         Active
                     </md-switch>
 
-                </span>                    
-                    
-            </div>
-            <span layout-align="center"><h3>Components</h3></span>
+                </span>
 
-                
+            </div>
+
+            <span layout-align="center">
+                <h3>Components</h3>
+            </span>
+
+
 
             <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
                 <p> Type: {{ comp.type.name }} </p>
@@ -137,7 +163,7 @@
                     <img ng-src="{{ image }}" style="width:200px;height:auto;" />
                 </div>
                 <md-button ng-click="sendToEditComponent(comp)">Edit</md-button>
-                <md-button ng-click="deleteComponent(comp)">Delete</md-button>
+                <md-button ng-click="deleteComponent(comp)" class="deleteBtn">Delete</md-button>
                 <hr>
             </div>
 
@@ -164,6 +190,7 @@
                 </md-grid-tile-footer>
             </md-grid-tile>
         </md-grid-list> -->
+        
     </div>
     <!-- End of dashboard content -->
 

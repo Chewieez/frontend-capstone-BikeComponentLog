@@ -8,6 +8,15 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     $scope.createMode = false
     $scope.newWish = {}
 
+
+    // Accordion control code
+    // $scope.$on("my-accordion:onReady", function () {
+    //     var firstPane = $scope.panes[0];
+    //     $scope.accordion.toggle(firstPane.id);
+    // });
+
+
+
     // get the current user
     const user = AuthFactory.getUser()
     

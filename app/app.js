@@ -1,4 +1,4 @@
-const app = angular.module("BikeLogApp", ["ngRoute", "ngAnimate", "ngMaterial", "ngMessages"]);
+const app = angular.module("BikeLogApp", ["ngRoute", "ngAnimate", "ngMaterial", "ngMessages", "vAccordion"]);
 
 angular.module("BikeLogApp").run(function (FIREBASE_CONFIG) {
     firebase.initializeApp(FIREBASE_CONFIG)

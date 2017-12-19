@@ -1,4 +1,5 @@
-    <div ng-controller="navCtrl" class="md-medium-tall" >
+    <!-- <div ng-controller="navCtrl" class="md-medium-tall" > -->
+    <div ng-controller="navCtrl"  >
     
         <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
             <!-- <md-nav-item> -->
@@ -7,11 +8,7 @@
 
             <!-- </md-nav-item> -->
             <!-- <span>Bike Tracker</span> -->
-            
             <!-- <span flex></span> -->
-            
-            <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/profile" name="Profile"><md-icon md-font-icon="material-icons">account_circle</md-icon>Profile</md-nav-item>
-            
             <!-- <span flex></span> -->
             
             <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/dashboard" name="Dashboard">
@@ -23,10 +20,62 @@
             
             <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/wishlist" name="Wishlist"><md-icon md-font-icon="material-icons">list</md-icon>Wishlist</md-nav-item>
             
+            <!-- <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/profile" name="Profile"><md-icon md-font-icon="material-icons">account_circle</md-icon>Profile</md-nav-item> -->
+            
             <span flex></span>
             
-            <md-nav-item ng-if="isAuthenticated()" md-nav-click="logout()" layout-align="end">Logout</md-nav-item>
+            <!-- <md-nav-item ng-if="isAuthenticated()" md-nav-click="logout()" layout-align="end"> -->
             
+                <!-- <md-menu>
+                        <md-button aria-label="" class="md-icon-button" ng-click="ctrl.openMenu($mdMenu, $event)">
+                            <md-icon md-font-icon="material-icons">user</md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                          <md-menu-item>
+                            <md-button ng-click="logout()">
+                              <!-- <md-icon md-font-icon="material-icons" md-menu-align-target>account_circle</md-icon> 
+                              Logout
+                            </md-button>
+                            </md-menu-item>
+                        </md-menu-content> 
+                </md-menu>    -->
+            <!-- </md-nav-item> -->
+            <div class="cnt">
+                <div class="menu-item" ng-click="toggle(1); open1=!open1">
+                    <md-list layout="row" layout-padding="" class="layout-row" layout-align="start center" flex ng-cloak> 
+                        <i class="material-icons">account_circle</i>
+                        {{ currentUserProfile.firstName || currentUser.email}}
+                        <i class="material-icons" ng-class="{'rotate180': open1, 'rotate-back': !open1}">keyboard_arrow_down</i>
+                    </md-list>
+                    <div class="sub-menu" ng-animate="'animate'" >
+                        <md-menu-item ng-if="menuIsOpen===1" >
+                            <md-button>
+                                <div layout="row" flex="">
+                                    <a ui-sref="/#!/profile">
+                                       <md-icon md-font-icon="material-icons" md-menu-align-target>account_circle</md-icon> Profile
+                                    </a>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item ng-if="menuIsOpen===1" >
+                            <md-button>
+                                <div layout="row" flex="">
+                                    <a ui-sref="/#!/profile">
+                                       <md-icon md-font-icon="material-icons" md-menu-align-target>account_circle</md-icon> LOGOUT
+                                    </a>
+                                </div>
+                            </md-button>
+                        </md-menu-item>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <!--  -->
         </md-nav-bar>
     
     </div>

@@ -1,33 +1,33 @@
-<div class="addBike">
+<div class="addBike" layout="column" layout-align="center center">
     <h1 ng-if="!editMode" class="addBike__header">Add a new Bike to Track</h1>
     <h1 ng-if="editMode">Edit Your Bike Info</h1>
 
 
     <form ng-submit="addBike()" name="bikeForm" ng-model="newBike" >
-        <md-input-container >
+        <md-input-container class="md-block" >
             <label>Brand:</label>
             <input type="text" ng-model="newBike.brandName" required="string"/>
         </md-input-container>
-        <md-input-container>
+        <md-input-container class="md-block">
             <label>Model:</label>
             <input type="text" ng-model="newBike.modelName" />
         </md-input-container>
-        <md-input-container>
+        <md-input-container class="md-block">
             <label ng-if="!editMode">Current Mileage:</label>
             <input ng-if="!editMode" type="number" ng-model="newBike.mileage"/>
         </md-input-container>
-        <md-input-container>
+        <md-input-container class="md-block">
             <label>Purchase Date:</label>
             <!-- <input type="date" ng-model="newBike.purchaseDate"/> -->
             <md-datepicker ng-model="newBike.purchaseDate"  md-max-date="maxDate"></md-datepicker>
         </md-input-container>
-        <md-input-container>
+        <md-input-container class="md-block">
             <label>Serial Number:</label>
             <input type="text" ng-model="newBike.serial"/>
         </md-input-container>
-        <md-input-container>
-            <label>Info:</label>
-            <textarea ng-model="newBike.info"></textarea>
+        <md-input-container class="md-block">
+            <label>Notes:</label>
+            <textarea ng-model="newBike.notes"></textarea>
         </md-input-container>
         
         <div layout="row">
@@ -56,8 +56,8 @@
             <input type="submit" value="Save Bike" ng-if="!editMode" class="md-button md-primary md-raised"/>
             <input type="submit" value="Save Edits" ng-if="editMode" class="md-button md-primary md-raised"/>
             <md-button type="reset" class="md-raised md-warn">reset</md-button>
+            <md-button ng-click="cancelForm()">Cancel</md-button>
        
 
     </form>
-    <md-button ng-click="cancelForm()">Cancel</md-button>
 </div>

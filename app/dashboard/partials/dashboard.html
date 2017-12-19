@@ -41,11 +41,11 @@
 
     <div ng-show="!progressFlag" layout="column" class="dashboard__content">
         
-        <div layout="column" layout-align=" center center"  class="bikeView">
+        <div layout="column" layout-align="center center"  class="bikeView">
             
             <!-- Dropdown list of the users tracked bikes -->
-            <div flex="100" class="bikeView__dropdown md-block">
-                <md-input-container >
+            <div class="bikeView__dropdown">
+                <md-input-container style="width: 100%">
                     <label>Choose a Bike</label>
                     <md-select ng-model="currentBike" ng-change="getComponents()">
                         <md-optgroup label="Bikes">
@@ -114,9 +114,18 @@
                         </v-pane-header>
 
                         <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
-                            <p ng-if="currentBike.serial">Serial Number: {{currentBike.serial}}</p>
-                            <p ng-if="currentBike.purchaseDate">Purchased: {{currentBike.purchaseDate | date}}</p>
-                            <p ng-if="currentBike.info">Info: {{currentBike.info}}</p>
+                            <span ng-if="currentBike.serial">
+                                <h5>Serial Number:</h5>
+                                <p>Serial Number: {{currentBike.serial}}</p>
+                            </span>
+                            <span ng-if="currentBike.purchaseDate">
+                                <h5>Purchased:</h5>
+                                <p> {{currentBike.purchaseDate | date}}</p>
+                            </span>
+                            <span ng-if="currentBike.notes">
+                                <h5>Notes:</h5>
+                                <p> {{currentBike.notes}}</p>
+                            </span>
                         </v-pane-content>
                     </v-pane>
                 </v-accordion>
@@ -214,10 +223,17 @@
                                     </v-pane-header>
                         
                                     <v-pane-content aria-labelledby="{{ comp.fbId }}-header">
-                                        <p ng-if="comp.serial">Serial: {{comp.serial}}</p>
-                                        <p ng-if="comp.type.tips">
+                                        <span ng-if="comp.serial">
+                                            <h5>Serial:</h5>
+                                            <p> {{comp.serial}}</p>
+                                        </span>
+                                        <span ng-if="comp.type.tips">
                                             <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>
-                                        </p>
+                                        </span>
+                                        <span>
+                                            <h5>Notes:</h5>
+                                            <p>{{ comp.notes }}</p>
+                                        </span>
                                     </v-pane-content>
                                 </v-pane>
                             </v-accordion>

@@ -72,27 +72,27 @@
                         <span class="bikeHeader"> {{ currentBike.brandName }} {{ currentBike.modelName}}</span>
                         <span flex></span>
                         <md-menu>
-                            <md-button aria-label="User menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                            <md-button aria-label="Bike menu" class="md-icon-button dotCtrlMenu" ng-click="$mdOpenMenu($event)">
                                 <md-icon md-font-icon="material-icons">more_vert</md-icon>
                             </md-button>
                             <md-menu-content width="2">
                                 <md-menu-item>
-                                    <md-button class="bikeCtrlBtn" ng-click="sendToEditBike(currentBike)" aria-label="Edit Bike">
-                                        <md-icon md-font-icon="material-icons" class="bikeCtrlBtn">mode_edit</md-icon>Edit
-                                        <md-tooltip md-direction="top" md-delay="200">Edit Bike</md-tooltip>
+                                    <md-button class="" ng-click="sendToEditBike(currentBike)" aria-label="Edit Bike">
+                                        <md-icon md-font-icon="material-icons" class="">mode_edit</md-icon>Edit
+                                        <md-tooltip md-direction="left" md-delay="200">Edit Bike</md-tooltip>
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <md-button class="bikeCtrlBtn" ng-click="deleteBike(currentBike)" aria-label="Delete Bike">
-                                        <md-icon md-font-icon="material-icons" class="bikeCtrlBtn">delete</md-icon>Delete
-                                        <md-tooltip md-direction="top" md-delay="200">Delete Bike</md-tooltip>
+                                    <md-button class="" ng-click="deleteBike(currentBike)" aria-label="Delete Bike">
+                                        <md-icon md-font-icon="material-icons" class="">delete</md-icon>Delete
+                                        <md-tooltip md-direction="left" md-delay="200">Delete Bike</md-tooltip>
                                     </md-button>
                                 </md-menu-item>
                             </md-menu-content>
                         </md-menu>
                     </h3>
                 </div>
-                <div >
+                <div class="width96">
                     <p ng-if="currentBike.mileage" layout>Mileage: {{currentBike.mileage}} miles
                         <span flex></span>
                         <span ng-if="!currentBike.stravaBikeId">
@@ -100,14 +100,14 @@
                         </span>
                         <span>
                             <md-icon ng-if="currentBike.stravaBikeId" md-svg-src="./images/api_logo_pwrdBy_strava_horiz_light.svg" class="poweredByStravaIcon"></md-icon>
-                            <md-tooltip md-direction="top" md-delay="100">Mileage from Strava</md-tooltip>
+                            <md-tooltip md-direction="top" md-delay="600">Mileage synced with Strava</md-tooltip>
                         </span>
                     </p>
 
                 </div>
                 <br>
                 <br>
-                <v-accordion class="vAccordion--default bikeExtraDetails">
+                <v-accordion class="vAccordion--default extraDetails">
                     <v-pane>
                         <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
                             More Details
@@ -174,20 +174,20 @@
                             <span flex></span>
 
                             <md-menu>
-                                <md-button aria-label="User menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                                <md-button aria-label="User menu" class="md-icon-button dotCtrlMenu" ng-click="$mdOpenMenu($event)">
                                     <md-icon md-font-icon="material-icons">more_vert</md-icon>
                                 </md-button>
                                 <md-menu-content width="2">
                                     <md-menu-item>
-                                        <md-button class="bikeCtrlBtn" ng-click="sendToEditComponent(comp)" aria-label="Edit Component">
-                                            <md-icon md-font-icon="material-icons" class="bikeCtrlBtn">mode_edit</md-icon>Edit
-                                            <md-tooltip md-direction="top" md-delay="200">Edit Bike</md-tooltip>
+                                        <md-button class="" ng-click="sendToEditComponent(comp)" aria-label="Edit Component">
+                                            <md-icon md-font-icon="material-icons" class="">mode_edit</md-icon>Edit
+                                            <md-tooltip md-direction="left" md-delay="200">Edit Bike</md-tooltip>
                                         </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
-                                        <md-button class="bikeCtrlBtn" ng-click="deleteComp(comp)" aria-label="Delete Component">
-                                            <md-icon md-font-icon="material-icons" class="bikeCtrlBtn">delete</md-icon>Delete
-                                            <md-tooltip md-direction="top" md-delay="200">Delete Component</md-tooltip>
+                                        <md-button class="" ng-click="deleteComp(comp)" aria-label="Delete Component">
+                                            <md-icon md-font-icon="material-icons" class="">delete</md-icon>Delete
+                                            <md-tooltip md-direction="left" md-delay="200">Delete Component</md-tooltip>
                                         </md-button>
                                     </md-menu-item>
                                 </md-menu-content>
@@ -207,13 +207,13 @@
                                 <h5>Installation Date:</h5>
                                 <p> {{ comp.purchaseDate | date }} </p>
                             </span>
-                            <v-accordion class="vAccordion--default bikeExtraDetails">
+                            <v-accordion class="vAccordion--default compExtraDetails">
                                 <v-pane>
-                                    <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
-                                        More Info
+                                    <v-pane-header aria-controls="{{ comp.fbId }}-content">
+                                        More Info...
                                     </v-pane-header>
                         
-                                    <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
+                                    <v-pane-content aria-labelledby="{{ comp.fbId }}-header">
                                         <p ng-if="comp.serial">Serial: {{comp.serial}}</p>
                                         <p ng-if="comp.type.tips">
                                             <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>
@@ -223,10 +223,10 @@
                             </v-accordion>
 
                             <div class="card-media" ng-repeat="image in comp.images" layout layout-padding layout-wrap layout-fill>
-                                    <div class="padded compImage" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
-                                        <img ng-src="{{ image }}" class="compImage"/>
-                                    </div>
-                                </div> 
+                                <div class="padded compImage" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
+                                    <img ng-src="{{ image }}" class="compImage"/>
+                                </div>
+                            </div> 
                             
                         </md-card-content>
                         <!-- <md-card-footer>                  </md-card-footer> -->

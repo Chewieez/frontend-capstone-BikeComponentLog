@@ -80,6 +80,14 @@ h4, h5, h6, p {
 }
 
 
+.compExtraDetails {
+    width: 96%;
+}
+
+.dotCtrlMenu {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+}
 
 /* AddBike CSS */
 

@@ -73,6 +73,14 @@ h4, h5, h6, p {
     text-transform: uppercase;
 }
 
+.compImage {
+    width:200px;
+    height:auto; 
+    border-radius: 5px;
+}
+
+
+
 /* AddBike CSS */
 
 .addBike__imageBtn {

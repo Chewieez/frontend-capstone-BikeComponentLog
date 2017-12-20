@@ -143,6 +143,11 @@ p {
 }
 
 
+/* Login CSS */
+
+.login__loginForm {
+    width: 50%;
+}
 
 
 /*                                   */

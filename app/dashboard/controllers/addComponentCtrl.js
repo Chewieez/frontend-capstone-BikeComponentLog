@@ -18,8 +18,8 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         $scope.newComponent.images = []
 
         // sets the default date purchased to today's date. User can then change to which ever date they'd like. 
-        if (!$scope.newComponent.purchaseDate) {
-            $scope.newComponent.purchaseDate = new Date(new Date().toISOString().split("T")[0])
+        if (!$scope.newComponent.installationDate) {
+            $scope.newComponent.installationDate = new Date(new Date().toISOString().split("T")[0])
         }
 
 
@@ -45,8 +45,8 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         }
 
         // populate the date window with the components original saved date
-        if (ComponentFactory.currentComponent.purchaseDate) {
-            $scope.newComponent.purchaseDate = new Date(ComponentFactory.currentComponent.purchaseDate)
+        if (ComponentFactory.currentComponent.installationDate) {
+            $scope.newComponent.installationDate = new Date(ComponentFactory.currentComponent.installationDate)
 
         }
     }
@@ -112,7 +112,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         $scope.newComponent.active = true
 
         //convert time to milliseconds
-        $scope.newComponent.purchaseDate = $scope.newComponent.purchaseDate.getTime()
+        $scope.newComponent.installationDate = $scope.newComponent.installationDate.getTime()
 
 
         // check if edit mode is on to know whether to create a new bike or edit an existing one

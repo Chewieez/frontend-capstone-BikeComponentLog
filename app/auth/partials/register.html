@@ -1,9 +1,17 @@
-<div class="login">
-    <label for="email">Email</label>
-    <input type="email" name="email" ng-model="auth.email" autofocus required="string">
-    <label for="password">Password</label>
-    <input type="password" ng-model="auth.password" required="string">
-    
-    <button ng-click="registerUser(auth)">Register</button>
-    <button ng-click="logMeIn(auth)">Login</button>
+<div class="login" layout="column" layout-align="center center" layout-padding layout-margin layout-fill>
+    <div layout="column" layout-align="center stretch" class="login__loginForm" layout-padding layout-margin layout-fill>
+        <md-input-container class="md-block">
+            <label for="email">Email</label>
+            <input type="email" name="email" ng-model="auth.email" autofocus required="string">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label for="password" >Password</label>
+            <input type="password" ng-model="auth.password" required="string" >
+        </md-input-container>
+        <span class="loginForm__btns">
+            <md-button class="md-raised md-primary" ng-click="logMeIn(auth)">Login</md-button>
+            <md-button class="" ng-click="registerUser(auth)">Register</md-button>
+        </span>
+        
+    </div>
 </div>

@@ -179,8 +179,13 @@
                             <md-card-header-text>
                                 <span class="md-title compHeader"> {{ comp.type.name }}</span>
                                 <span class="md-subhead"> {{ comp.brandName }} {{ comp.modelName }}</span>
+
                             </md-card-header-text>
                             <span flex></span>
+                            <div class="comp__activeCheckbox">
+                                    <md-checkbox ng-model="comp.active" id="activeComp" ng-change="changeCompActiveState(comp)">
+                                        <label for="activeComp">Active</label>
+                            </div>
 
                             <md-menu>
                                 <md-button aria-label="User menu" class="md-icon-button dotCtrlMenu" ng-click="$mdOpenMenu($event)">
@@ -212,23 +217,37 @@
                                 <h5>Mileage:</h5>
                                 <p>{{ comp.mileage | number }} miles </p>
                             </span>
-                            <span ng-if="comp.purchaseDate">
-                                <h5>Installation Date:</h5>
-                                <p> {{ comp.purchaseDate | date }} </p>
+                            <br>
+                            <span ng-if="comp.installationDate" layout>
+                                <span>
+                                    <h5>Installation Date:</h5>
+                                    <p> {{ comp.installationDate | date }} </p>
+                                </span>
+                                <span flex></span>
+                                <span>
+                                    <h5>Installed for:</h5>
+                                   <!-- <p> {{ ((todaysDate - comp.installationDate) / 1000 / 60 / 60 / 24 / 7 / 30.5) | number: 0 | date : m }} months </p> -->
+                                  
+                                   <span>Component age: {{((comp.installationDate) / 1000 / 60 / 60 / 24 / 7 / 30.5) | amDurationFormat : 'months' }}</span>
+                                   <!-- <time am-time-ago="comp.installationDate"></time>  -->
+                                </span>   
                             </span>
+                            <br>
                             <v-accordion class="vAccordion--default compExtraDetails">
                                 <v-pane>
-                                    <v-pane-header aria-controls="{{ comp.fbId }}-content">
+                                    <v-pane-header class="compExtraDetails__header" aria-controls="{{ comp.fbId }}-content">
                                         More Info...
                                     </v-pane-header>
                         
                                     <v-pane-content aria-labelledby="{{ comp.fbId }}-header">
+                                        
                                         <span ng-if="comp.serial">
                                             <h5>Serial:</h5>
                                             <p> {{comp.serial}}</p>
                                         </span>
                                         <span ng-if="comp.type.tips">
-                                            <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>
+                                            <md-button class="md-primary" ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</md-button>
+                                            <!-- <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a> -->
                                         </span>
                                         <span>
                                             <h5>Notes:</h5>

@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
+angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, moment, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
 
@@ -6,6 +6,11 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     // set flag to view only Active items to true by default
     $scope.activeFlag = {}
     $scope.activeFlag.show = true
+
+
+    // get current date
+    $scope.todaysDate = Date.now()
+
 
     // Not using this code now, it was dynamically changing the label of a checkbox depending on whether it was checked or not. 
     // $scope.activeViewCheckboxLabel = "Active Only"
@@ -44,11 +49,11 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         })
     }
 
-    $scope.onSelected = function (selectedItem) {
-        setTimeout(function(){
-            $(":focus").blur();
-        })
-    }
+    // $scope.onSelected = function (selectedItem) {
+    //     setTimeout(function(){
+    //         $(":focus").blur();
+    //     })
+    // }
 
 
     // get the current user
@@ -316,6 +321,8 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     // changes the active state of a component when the user checks or unchecks the Active box
     $scope.changeCompActiveState = (comp) => {
+        comp.installationDate = Date.now()
+
         ComponentFactory.updateComponent(comp).then(r=> {
             console.log("component updated")
             $scope.getComponents()

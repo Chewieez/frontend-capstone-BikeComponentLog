@@ -1,3 +1,5 @@
+/* Site wide styles */
+
 body {
     margin: 0;
     padding: 0;
@@ -7,6 +9,11 @@ body {
 h4, h5, h6 {
     margin: .2em;
     padding: 0;
+    font-weight: 300;
+}
+
+h1, h2, h3 {
+    font-weight: 300;
 }
 
 p {
@@ -14,19 +21,24 @@ p {
     padding: 0;
 }
 
-/* .allSiteContent {
-    margin: 0 auto;
-    width: 80%;
-} */
-
-.border {
-    border: 1px solid green;
-}
-
 .deleteBtn:hover, .deleteBtn:hover > md-icon  {
     color: red;
 }
 
+.width50 {
+    width: 50%;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+
+
+/* For testing */
+.border {
+    border: 1px solid green;
+}
 
 
 
@@ -46,10 +58,22 @@ p {
     max-width: 600px !important;
 }
 
-.bikeHeader {
-    margin-top: .6em;
+.bikeView__bikeHeader {
+    margin-top: .4em;
     margin-left: .3em;
+    font-weight: 400;
 }
+
+.bikeView__icon {
+    /* padding-bottom: 1.5em; */
+}
+
+.dotCtrlMenu {
+    margin-right: 0 !important;
+    margin-top: .2em;
+    padding-right: 0 !important;
+}
+
 
 .addMileageBtn {
     /* padding-top: 0; */
@@ -57,16 +81,8 @@ p {
     /* padding-bottom: .5em; */
 }
 
-.width50 {
-    width: 50%;
-}
-
-.center {
-    margin: 0 auto;
-}
 
 .poweredByStravaIcon {
-    /* font-size: 1.5em; */
     width: 125px;
 }
 
@@ -97,10 +113,6 @@ p {
     margin-left: .2em;
 }
 
-.dotCtrlMenu {
-    margin-right: 0 !important;
-    padding-right: 0 !important;
-}
 
 
 
@@ -127,10 +139,24 @@ p {
 .wish__date {
     font-size: .7em !important;
     color: grey;
-
 }
 
+.addWishButton:focus {
+    outline: none !important;
+    border: 0 !important;
+}
 
+.wishlist__createForm {
+    width: 40%;
+}
+
+.wishlist__itemList {
+    width: 100%;
+}
+
+.wishAccordionList {
+    width: 70%;
+}
 
 /* Profile CSS */
 
@@ -143,11 +169,20 @@ p {
 }
 
 
+
 /* Login CSS */
 
 .login__loginForm {
-    width: 50%;
+    width: 40%;
 }
+
+.login__header {
+    font-weight: 300;
+    margin-left: 0;
+}
+
+
+
 
 
 /*                                   */

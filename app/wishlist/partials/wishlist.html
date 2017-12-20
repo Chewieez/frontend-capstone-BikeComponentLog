@@ -14,27 +14,31 @@
     <!-- ACTION BUTTON fab button in lower righ corner used to add a new wishlist item -->
     <md-button class="md-fab md-warn md-fab-bottom-right" style="position:fixed !important;" aria-label="Add A Wish">
         <md-tooltip md-direction="top" md-delay="400">Add A Wish</md-tooltip>
-        <md-icon md-font-icon="material-icons" ng-click="createWish()">add</md-icon>
+        <md-icon md-font-icon="material-icons" class="addWishButton" ng-click="createWish()">add</md-icon>
     </md-button>
 
-    <div ng-show="!progressFlag" class="wishlist__content">
-        <!-- <md-button ng-if="!editMode" ng-click="createWish()" class="md-primary md-raised">Create A Wish</md-button> -->
-        <form ng-if="createMode || editMode" ng-submit="saveWish()" name="wishForm" ng-model="newWish">
-            <md-input-container>
-                <label>Title:</label>
-                <input type="text" ng-model="newWish.title" required="string" />
-            </md-input-container>
-            <md-input-container>
-                <label>Info:</label>
-                <textarea ng-model="newWish.info"></textarea>
-            </md-input-container>
+    <div ng-show="!progressFlag" class="wishlist__content" layout="column">
 
-            <!-- buttons -->
-            <input ng-if="!editMode" type="submit" value="Save Wish" class="md-button md-raised md-primary">
-            <input ng-if="editMode" type="submit" value="Update Wish" class="md-button md-raised md-primary">
-            <md-button type="reset" class="md-raised md-warn">reset</md-button>
-        </form>
-        <md-button ng-if="createMode || editMode" ng-click="cancelWish()" class="md-warn">Cancel</md-button>
+        <div ng-if="createMode || editMode" class="wishlist__createForm" layout="column">
+            <h2>New Item:</h2>
+            <form ng-submit="saveWish()" name="wishForm" ng-model="newWish" layout="column">
+                <md-input-container>
+                    <label>Title:</label>
+                    <input type="text" ng-model="newWish.title" required="string" />
+                </md-input-container>
+                <md-input-container>
+                    <label>Info:</label>
+                    <textarea ng-model="newWish.info"></textarea>
+                </md-input-container>
+    
+                <!-- buttons -->
+                <input ng-if="!editMode" type="submit" value="Save Wish" class="md-button md-raised md-primary">
+                <input ng-if="editMode" type="submit" value="Update Wish" class="md-button md-raised md-primary">
+                <md-button type="reset" class="md-raised md-warn">reset</md-button>
+                <md-button ng-if="createMode || editMode" ng-click="cancelWish()" class="md-warn">Cancel</md-button>
+            </form>
+
+        </div>
 
         <!--  -->
         <div layout="row"  class="wishView__wishSearchSort">
@@ -62,14 +66,9 @@
         </div>
 
 
-
-
-
-
-<!--  -->
-        <div>
+        <div class="wishlist__itemList" layout="column" layout-align="center center">
             <!-- Accordion using v-accordion https://github.com/LukaszWatroba/v-accordion -->
-            <v-accordion class="vAccordion--default">
+            <v-accordion class="vAccordion--default wishAccordionList">
                 <v-pane ng-repeat="wish in wishes | filter:wishSearch | orderBy:sortOrder:sortReverse.setting">
                     <v-pane-header layout="row" aria-controls="{{ wish.fbId }}-content">
                         <span>{{ wish.title }}</span>
@@ -78,47 +77,22 @@
 
                     <v-pane-content aria-labelledby="{{ wish.fbId }}-header">
                         {{ wish.info }}
-                        <div>
-                            <md-button ng-click="editWish(wish)" class="md-raised md-secondary">Edit</md-button>
-                            <md-button ng-click="deleteWish(wish)" class="deleteBtn">
-                                <md-icon md-font-icon="material-icons" class="">delete</md-icon>
-                                Delete
+                        <div layout="row">
+                            <span flex></span>
+                            <md-button ng-click="editWish(wish)" class="md-icon-button md-secondary" aria-label="edit wishlist item">
+                                    <md-icon md-font-icon="material-icons" class="">mode_edit</md-icon>
+                                    <md-tooltip md-direction="top" md-delay="200">Edit</md-tooltip>
+                                </md-button>
+                            <md-button ng-click="deleteWish(wish)" class="md-icon-button deleteBtn" aria-label="delete wishlist item">
+                                <md-icon md-font-icon="material-icons" class="">delete
+                                    <md-tooltip md-direction="top" md-delay="200">Delete</md-tooltip>
+                                </md-icon>
                             </md-button>
                         </div>
                     </v-pane-content>
                 </v-pane>
-
             </v-accordion>
-
-
-
-
-
-            <!-- <md-list>
-                    <md-list-item class="md-2-line" ng-repeat="wish in wishes | filter:wishSearch | orderBy:sortOrder:sortReverse.setting" md-whiteframe="{{height}}" ng-init="height = 0" ng-mouseenter="height = 3" ng-mouseleave="height = 0">
-                        <div class="md-list-item-text">
-                            <h3>
-                                <span flex="75">{{ wish.title }}</span>
-                                <span flex="25" layout="end" class="wish__date">{{ wish.dateAdded | date : 'medium' }}</span>
-                            </h3>
-                            <p>{{ wish.info }}</p>
-                        </div>
-                        <md-button ng-click="editWish(wish)" class="md-raised md-secondary">Edit</md-button>
-                        <md-button ng-click="deleteWish(wish)" class="md-warn">Delete</md-button>
-                    </md-list-item>
-                </md-list> -->
-
-
-
-
-
-
-
         </div>
     </div>
-
-
-
-
 
 </div>

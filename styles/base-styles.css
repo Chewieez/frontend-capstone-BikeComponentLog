@@ -86,6 +86,10 @@ p {
     width: 125px;
 }
 
+.componentView__componentSearchSort {
+    padding-left: 2.5em;
+}
+
 .componentSearch__input {
     width: 100%;
 }
@@ -103,7 +107,6 @@ p {
     height:auto; 
     border-radius: 5px;
 }
-
 
 .compExtraDetails {
     width: 96%;
@@ -137,8 +140,9 @@ p {
 /* Wishlist CSS */
 
 .wishView__wishSearchSort {
-    width: 90%;
-    margin: 0 auto;
+    /* width: 90%; */
+    /* margin: 0 auto; */
+    padding-left: 2.5em;
 }
 
 .wish__date {

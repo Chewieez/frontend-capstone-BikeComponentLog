@@ -125,8 +125,11 @@ p {
 }
 
 
+/* Add Mileage Modal */
 
-
+.addMileage__modalContent {
+    padding: 3em;
+}
 
 
 /* AddBike CSS */

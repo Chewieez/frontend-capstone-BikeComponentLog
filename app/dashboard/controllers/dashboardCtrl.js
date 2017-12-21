@@ -307,10 +307,30 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         $location.url("/addComponent")
     }
 
-    $scope.addMileage = () => {
-        BikeFactory.currentBike = $scope.currentBike
-        $location.url("/addMileage")
-    }
+    // Modal to add Mileage to a bike
+    $scope.addMileageModal = function(ev) {
+        $mdDialog.show({
+            controller: "addMileageCtrl",
+            templateUrl: "./app/dashboard/partials/addMileage.html",
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+            .then(function(answer) {
+                // $route.reload()
+            }, function() {
+                // $scope.status = 'You cancelled the dialog.';
+            });
+    };
+
+
+
+    // Old code from when the Add Mileage functionality took place on a separate page, not a modal
+    // $scope.addMileage = () => {
+    //     BikeFactory.currentBike = $scope.currentBike
+    //     $location.url("/addMileage")
+    // }
 
     // Code for sorting Comonents
     $scope.sortOrderArray = [

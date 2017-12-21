@@ -1,6 +1,20 @@
-angular.module("BikeLogApp").controller("addMileageCtrl", function ($scope, $location, AuthFactory, BikeFactory, ComponentFactory) {
+angular.module("BikeLogApp").controller("addMileageCtrl", function ($scope, $location, $mdDialog, AuthFactory, BikeFactory, ComponentFactory) {
 
     $scope.currentBike = BikeFactory.currentBike
+
+    $scope.hide = function() {
+        $mdDialog.hide();
+    };
+  
+    $scope.cancel = function() {
+        $mdDialog.cancel();
+    };
+  
+    $scope.answer = function(answer) {
+        $mdDialog.hide(answer);
+    };
+
+
 
     $scope.saveMileage = () => {
         $scope.currentBike.mileage += $scope.additionalMileage
@@ -24,28 +38,27 @@ angular.module("BikeLogApp").controller("addMileageCtrl", function ($scope, $loc
 
         })
 
-        BikeFactory.editBike($scope.currentBike).then(() => {
-            // set the bike with the updated mileage on the BikeFactory so when user returns to dashboard, the mileage is reflected
-            BikeFactory.currentBike = $scope.currentBike
+        BikeFactory.editBike($scope.currentBike)
+        // .then(() => {
+        // // set the bike with the updated mileage on the BikeFactory so when user returns to dashboard, the mileage is reflected
+        //     BikeFactory.currentBike = $scope.currentBike
 
-            // loop through components and add the miles to each component
-            thisBikesComponents.forEach(comp => {
+        //     // loop through components and add the miles to each component
+        //     thisBikesComponents.forEach(comp => {
 
-                // only update components that are marked as "Active"
-                if (comp.active) {
+        //     // only update components that are marked as "Active"
+        //         if (comp.active) {
 
-                    comp.mileage += $scope.additionalMileage
+        //             comp.mileage += $scope.additionalMileage
 
-                    // store the updated component data in firebase 
-                    ComponentFactory.updateComponent(comp)
-                }
+        //             // store the updated component data in firebase 
+        //             ComponentFactory.updateComponent(comp)
+        //         }
 
-            })
-            $scope.$apply = () => {
-
-                $location.url("/dashboard")
-            }
-        })
+        //     })
+        //})  
+            
+        $scope.hide()
 
     }
 })

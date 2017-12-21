@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory, WishlistFactory) {
+angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $location, $mdDialog, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory, WishlistFactory) {
 
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
@@ -14,6 +14,26 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     //     var firstPane = $scope.panes[0];
     //     $scope.accordion.toggle(firstPane.id);
     // });
+
+    // delete prompt code 
+    $scope.showConfirm = function(ev, wish) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title("Do you want to permanently delete this wishlist item?")
+            .textContent("This cannot be undone.")
+            .ariaLabel("Confirm delete wish list item")
+            .targetEvent(ev)
+            .ok("Yes, Delete")
+            .cancel("Cancel");
+    
+        $mdDialog.show(confirm).then(function() {
+            $scope.deleteWish(wish)
+        }
+        // , function() {
+        //     $scope.status = 'You decided to keep your debt.';
+        // }
+        )
+    };
 
 
 

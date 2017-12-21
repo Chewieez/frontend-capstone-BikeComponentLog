@@ -136,6 +136,11 @@ p {
 
 /* Wishlist CSS */
 
+.wishView__wishSearchSort {
+    width: 90%;
+    margin: 0 auto;
+}
+
 .wish__date {
     font-size: .7em !important;
     color: grey;

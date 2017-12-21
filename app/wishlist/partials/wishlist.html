@@ -41,7 +41,7 @@
         </div>
 
         <!--  -->
-        <div layout="row"  class="wishView__wishSearchSort">
+        <div layout="row"  class="wishView__wishSearchSort" layout-align="center">
            
             <span flex="40" class="wishView__wishSearch" >
                 <md-input-container>
@@ -83,7 +83,7 @@
                                     <md-icon md-font-icon="material-icons" class="">mode_edit</md-icon>
                                     <md-tooltip md-direction="top" md-delay="200">Edit</md-tooltip>
                                 </md-button>
-                            <md-button ng-click="deleteWish(wish)" class="md-icon-button deleteBtn" aria-label="delete wishlist item">
+                            <md-button ng-click="showConfirm($event, wish)" class="md-icon-button deleteBtn" aria-label="delete wishlist item">
                                 <md-icon md-font-icon="material-icons" class="">delete
                                     <md-tooltip md-direction="top" md-delay="200">Delete</md-tooltip>
                                 </md-icon>

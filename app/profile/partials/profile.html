@@ -18,15 +18,19 @@
                                 <label for="lastName">Last Name:</label>
                                 <span id="lastName"> {{ currentUserProfile.lastName }}</span>
                             </span>
+                            <br>
+                            <br>
                             <div>
                                 <!-- link to allow user to Link Strava Account -->
                                 <div ng-if="!currentUserProfile.stravaId">
-                                    <h4>Link with your Strava account to keep the mileage of your tracked bikes updated automatically </h4>
-                                    <a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto"><img src="./images/LinkWithStrava.png" width="175px"></a>
+                                    <h4>Link your Strava account to import your bikes and keep their mileage updated automatically. </h4>
+                                    <a href="https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/&#35&#33/strava-response/&state=logged&approval_prompt=auto"><md-icon md-svg-src="./images/btn_strava_connectwith_orange.svg" style="width:225px; height: auto;"></md-icon></a>
                                 </div>
                                 <br>
                                 <br>
-                                <span class="profile__card-connected" ng-if="currentUserProfile.stravaId"> Connected with </span><img src="/images/strava2.png" width="100">
+                                <div ng-if="currentUserProfile.stravaId">
+                                    <span class="profile__card-connected"> Connected with </span><img src="/images/strava2.png" width="100">
+                                </div>
                             </div>
                         </md-card-title-text>
                         <md-card-title-media>

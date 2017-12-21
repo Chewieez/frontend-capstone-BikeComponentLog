@@ -126,7 +126,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
                 ComponentFactory.editCompMode = false
 
                 // need to wrap this in $scope.apply to get it to work.
-                $scope.$apply(() => {
+                $scope.$apply(function() {
                     $location.url("/dashboard")
                 })
             })

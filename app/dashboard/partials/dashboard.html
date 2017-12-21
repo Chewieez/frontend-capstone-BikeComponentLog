@@ -44,23 +44,31 @@
         <div layout="column" layout-align="center center"  class="bikeView">
             
             <!-- Dropdown list of the users tracked bikes -->
-            <div class="bikeView__dropdown">
-                <md-input-container style="width: 100%">
+            <div ng-show="bikes.length !== 0" class="bikeView__dropdown">
+                <md-input-container class="bikeView__dropdown-ic">
                     <label>Choose a Bike</label>
                     <md-select ng-model="currentBike" ng-change="getComponents()">
                         <md-optgroup label="Bikes">
                             <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
                         </md-optgroup>
                         <md-option ng-click="sendToAddBike()">
-                            <span style="color: blue;"> Add A New Bike </span>
+                            <span style="color: blue;"> Add A New Bike... </span>
                         </md-option>
                     </md-select>
                 </md-input-container>
             </div>
 
-            <div ng-if="!currentBike" class="bikeView__addBikeButtons">
+            <div ng-if="!currentUserProfile">
+                <h3>Create a user profile first, then add a bike.</h3>
+                <md-button ng-href="/#!/profile" class="md-raised md-primary">Create Profile</md-button>
+            </div>
+
+
+            <div ng-if="bikes.length === 0" class="bikeView__addBikeButtons" layout="column" layout-align="center center">
+                <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components.</h2>
+                <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
                 <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
-                <md-button class="md-raised md-warn" ng-click="importBikes()">Strava Bike Import</md-button>
+                <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
             </div>
         
 
@@ -83,7 +91,7 @@
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <md-button class="" ng-click="deleteBike(currentBike)" aria-label="Delete Bike">
+                                    <md-button class="" ng-click="showConfirmBike($event, currentBike)" aria-label="Delete Bike">
                                         <md-icon md-font-icon="material-icons" class="">delete</md-icon>Delete
                                         <!-- <md-tooltip md-direction="left" md-delay="200">Delete Bike</md-tooltip> -->
                                     </md-button>
@@ -169,6 +177,11 @@
             <!-- Component Details -->
             <div layout="column" class="componentView__details">
     
+                <div ng-if="!components">
+                    <h4>Click the button to start tracking your first component</h4>
+                    <md-button ng-click="sendToAddComponent()">Add A Component</md-button>
+                </div>
+
                 <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
                     
                     <md-card>
@@ -198,7 +211,7 @@
                                         </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
-                                        <md-button class="" ng-click="deleteComp(comp)" aria-label="Delete Component">
+                                        <md-button class="" ng-click="showConfirmComp($event, comp)" aria-label="Delete Component">
                                             <md-icon md-font-icon="material-icons" class="">delete</md-icon>Delete
                                         </md-button>
                                     </md-menu-item>

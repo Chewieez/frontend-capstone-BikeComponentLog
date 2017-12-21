@@ -1,4 +1,4 @@
-<div class="md-padding wishlist" layout="column" layout-align="center">
+<div class="wishlist">
 
     <h1 layout layout-align="center"> Wishlist </h1>
     <div ng-show="progressFlag" class="progressSVG">
@@ -19,16 +19,16 @@
 
     <div ng-show="!progressFlag" class="wishlist__content" layout="column">
 
-        <div ng-if="createMode || editMode" class="wishlist__createForm" layout="column">
+        <div ng-if="createMode || editMode" class="wishlist__createForm-c" layout="column" layout-align="center center">
             <h2>New Item:</h2>
-            <form ng-submit="saveWish()" name="wishForm" ng-model="newWish" layout="column">
-                <md-input-container>
+            <form ng-submit="saveWish()" name="wishForm" ng-model="newWish" class="wishlist__createForm">
+                <md-input-container class="md-block">
                     <label>Title:</label>
                     <input type="text" ng-model="newWish.title" required="string" />
                 </md-input-container>
-                <md-input-container>
+                <md-input-container class="md-block">
                     <label>Info:</label>
-                    <textarea ng-model="newWish.info"></textarea>
+                    <textarea ng-model="newWish.info" rows="1"></textarea>
                 </md-input-container>
     
                 <!-- buttons -->

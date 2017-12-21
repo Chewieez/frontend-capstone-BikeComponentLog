@@ -15,11 +15,12 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     //     $scope.accordion.toggle(firstPane.id);
     // });
 
-    // delete prompt code 
+
+    // delete confirmation prompt code 
     $scope.showConfirm = function(ev, wish) {
         // Appending dialog to document.body to cover sidenav in docs app
         var confirm = $mdDialog.confirm()
-            .title("Do you want to permanently delete this wishlist item?")
+            .title("Want to permanently delete this wishlist item?")
             .textContent("This cannot be undone.")
             .ariaLabel("Confirm delete wish list item")
             .targetEvent(ev)
@@ -28,12 +29,8 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     
         $mdDialog.show(confirm).then(function() {
             $scope.deleteWish(wish)
-        }
-        // , function() {
-        //     $scope.status = 'You decided to keep your debt.';
-        // }
-        )
-    };
+        })
+    }
 
 
 

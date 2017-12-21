@@ -1,14 +1,12 @@
-angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
+angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, $mdDialog, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
 
-    $scope.trueFlag = true
     // set flag to view only Active items to true by default
     $scope.activeFlag = {}
     $scope.activeFlag.show = true
 
-
-    // get current date
+    // get current date to use to show how long a component has been installed
     $scope.todaysDate = Date.now()
     
 
@@ -84,7 +82,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     let updatedStravaBikes = []
 
     // get current user Profile to check for a link to Strava. Update the mileage of any bikes the user has stored in Strava and Bike Log
-    ProfileFactory.getProfile(user.uid).then(profile=> {  
+    ProfileFactory.getProfile(user.uid).then(profile=> { 
         $scope.currentUserProfile = profile
 
         // if the user has linked Strava, go and get their bike data and update the mileage on firebase to reflect their miles on Strava
@@ -95,7 +93,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             ComponentFactory.getUserComponents(user.uid).then(r=>{
 
                 // check if the user has a Strava Id attached
-                if ($scope.currentUserProfile.stravaId) {
+                if ($scope.currentUserProfile && $scope.currentUserProfile.stravaId) {
                     // check if the user has bikes linked to Strava
                     let linkedBikes = []
                     
@@ -200,13 +198,49 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         $location.url("/addComponent")
     }
 
+    // delete confirmation prompt code for deleting a component
+    $scope.showConfirmComp = function(ev, comp) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title("Are you sure you want to delete this component?")
+            .textContent("This is permanent and cannot be undone.")
+            .ariaLabel("Confirm delete wish list item")
+            .targetEvent(ev)
+            .ok("Yes, Delete")
+            .cancel("Cancel");
+    
+        $mdDialog.show(confirm).then(function() {
+            $scope.deleteComponent(comp)
+        })
+    }
+
+
+
     // function to delete a component
-    $scope.deleteComponent = function(fbId) {
+    $scope.deleteComponent = function(comp) {
         
-        ComponentFactory.deleteComponent(fbId).then(()=>{
+        ComponentFactory.deleteComponent(comp).then(()=>{
             $scope.getComponents()
         })
     }
+
+    // delete confirmation prompt code for deleting a bike
+    $scope.showConfirmBike = function(ev, bike) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title("Are you sure you want to delete this bike?")
+            .textContent("This will also permanently delete all the components associated with this bike.")
+            .ariaLabel("Confirm delete wish list item")
+            .targetEvent(ev)
+            .ok("Yes, Delete")
+            .cancel("Cancel");
+    
+        $mdDialog.show(confirm).then(function() {
+            $scope.deleteBike(bike)
+        })
+    }
+
+
 
     // function to delete a bike
     $scope.deleteBike = function(bike) {
@@ -229,7 +263,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                 $route.reload()
             })
-            
         })
 
         // empty the current bike variable

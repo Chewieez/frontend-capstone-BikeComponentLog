@@ -3,7 +3,7 @@
     <h1 ng-if="editMode">Edit Your Bike Info</h1>
 
 
-    <form ng-submit="addBike()" name="bikeForm" ng-model="newBike" >
+    <form ng-submit="addBike()" name="bikeForm" ng-model="newBike" class="addBike__form" >
         <md-input-container class="md-block" >
             <label>Brand:</label>
             <input type="text" ng-model="newBike.brandName" required="string"/>

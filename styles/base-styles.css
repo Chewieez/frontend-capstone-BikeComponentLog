@@ -90,6 +90,10 @@ p {
     width: 125px;
 }
 
+/* .componentView__componentSorting {
+    display: inline !important;
+} */
+
 .componentView__componentSearchSort {
     padding-left: 2.5em;
 }
@@ -127,16 +131,16 @@ p {
 
 /* AddBike CSS */
 
+.addBike__form {
+    width: 50%;
+}
+
 .addBike__imageBtn {
     width: 1px
 }
 
 .addBike__progressCircle {
     padding-top: .9em;
-}
-
-.componentView__componentSorting {
-    display: inline !important;
 }
 
 

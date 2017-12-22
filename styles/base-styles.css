@@ -47,6 +47,23 @@ md-input-container {
 
 /* Dashboard CSS */
 
+.dashboard__headerImage {
+    width: 200px;
+    height: 200px;
+}
+
+.dashboard__headerText {
+    font-size: 4em;
+    padding-top: .2em;
+    padding-left: .2em;
+}
+
+.dashboard__header {
+    padding-bottom: 1.5em;
+}
+
+
+
 .bikeView {
     padding-bottom: 2em;
 }
@@ -85,16 +102,16 @@ md-input-container {
     padding-right: 0 !important;
 }
 
-
-.addMileageBtn {
-    /* padding-top: 0; */
-    /* margin-bottom: 0; */
-    /* padding-bottom: .5em; */
+.bikeView__mileage {
+    padding-top: .9em;
 }
 
-
 .poweredByStravaIcon {
-    width: 125px;
+    padding-top: .7em;
+    padding-left: .5em;
+    width: 150px;
+    height: auto;
+    /* border: 1px solid grey; */
 }
 
 /* .componentView__componentSorting {
@@ -130,6 +147,9 @@ md-input-container {
 .compExtraDetails__header {
     margin-left: .2em;
 }
+
+
+
 
 
 /* Add Mileage Modal */

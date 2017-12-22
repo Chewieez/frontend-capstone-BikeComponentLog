@@ -8,6 +8,12 @@
 
     </div>
 
+    <div class="dashboard__header" layout layout-align="center">
+        
+            <img src="./images/illustration-bicycle-parts-in-vintage-style-royalty-free-photo-best-stock-vector-huffy-cat-1043x1043_trans.png" class="dashboard__headerImage" alt="BikeTracker Icon"/>
+            <h1 class="dashboard__headerText"> Bike Tracker</h1>
+       
+    </div>
     <!-- <h1 layout layout-align="center"> Welcome to your dashboard</h1> -->
 
     <!-- ACTION BUTTON - fab button to add bike, import bike, add component -->
@@ -39,15 +45,16 @@
     </md-fab-speed-dial>
 
 
-    <div ng-show="!progressFlag" layout="column" class="dashboard__content">
+
+    <div ng-show="!progressFlag" layout="column" class="dashboard__content" ng-cloak>
         
         <div layout="column" layout-align="center center"  class="bikeView">
-            
+
             <!-- Dropdown list of the users tracked bikes -->
-            <div ng-show="bikes.length !== 0" class="bikeView__dropdown">
+            <div ng-show="bikes.length !== 0" class="bikeView__dropdown" ng-cloak>
                 <md-input-container class="bikeView__dropdown-ic">
-                    <label>Choose a Bike</label>
-                    <md-select ng-model="currentBike" ng-change="getComponents()">
+                    <label for="currentBikeSelector">Choose a Bike</label>
+                    <md-select ng-model="currentBike" ng-change="getComponents()" id="currentBikeSelector">
                         <md-optgroup label="Bikes">
                             <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
                         </md-optgroup>
@@ -100,17 +107,16 @@
                         </md-menu>
                     </h2>
                 </div>
-                <div class="width96">
-                    <p ng-if="currentBike.mileage" layout>Mileage: {{currentBike.mileage}} miles
+                <div layout>
+                    <span class="bikeView__mileage" ng-show="currentBike.mileage" layout>Mileage: {{currentBike.mileage}} miles</span>
                         <span flex></span>
-                        <span ng-if="!currentBike.stravaBikeId">
-                            <md-button class="addMileageBtn" ng-click="addMileage()">Add Mileage</md-button>
+                        <span ng-if="!currentBike.stravaBikeId" class="addMileageBtn">
+                            <md-button class="md-raised md-accent addMileageBtn" ng-click="addMileageModal()">Add Mileage</md-button>
                         </span>
                         <span>
                             <md-icon ng-if="currentBike.stravaBikeId" md-svg-src="./images/api_logo_pwrdBy_strava_horiz_light.svg" class="poweredByStravaIcon"></md-icon>
                             <md-tooltip md-direction="top" md-delay="600">Mileage synced with Strava</md-tooltip>
                         </span>
-                    </p>
 
                 </div>
                 <br>

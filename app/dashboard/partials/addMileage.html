@@ -1,9 +1,16 @@
 <div class="addMileage">
-    <h1> Log Additional Mileage For Your {{ currentBike.brandName }} {{currentBike.modelName }}</h1>
-    <p>Current Mileage:  {{ currentBike.mileage }}</p>
-
-    <label>Additional Mileage:</label>
-    <input type="number" ng-model="additionalMileage"/>
-    <button ng-click="saveMileage()">Add Mileage</button>
+    <div layout="column" layout-align="center center" class="addMileage__modalContent">
+        <h2> All miles added to your {{ currentBike.brandName }} {{currentBike.modelName }} will also be added to all active components.</h2>
+        <h3>Current Mileage:  {{ currentBike.mileage }} miles.</h3>
+        
+        <md-input-container>
+            <input type="number" ng-model="additionalMileage" id="additionalMileage" aria-label="Add Additional Mileage to Current Bike"/>
+            <label for="additionalMileage">Additional Mileage:</label>
+        </md-input-container>
+        <div layout="row">
+            <md-button class="md-raised md-primary" ng-click="saveMileage()">Add Mileage</md-button>
+            <md-button class="md-warn" ng-click="cancel()">Cancel</md-button>
+        </div>
+    </div>
 
 </div>

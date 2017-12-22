@@ -1,6 +1,14 @@
-angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $location, AuthFactory, ComponentFactory, BikeFactory) {
+angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $timeout, $location, AuthFactory, ComponentFactory, BikeFactory) {
     // get the user in case we need their UID
     const user = AuthFactory.getUser()
+
+    // set flag to control photo upload progress meter
+    $scope.photoUploadProgress = {}
+    $scope.photoUploadProgress.flag = true
+
+
+    // set the max date allowed in the date picker to today's date.
+    $scope.maxDate = new Date(new Date().toISOString())
 
     // check if we are in Edit Component Mode
     if (!ComponentFactory.editCompMode) {
@@ -19,7 +27,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         // sets the default date purchased to today's date. User can then change to which ever date they'd like. 
         if (!$scope.newComponent.installationDate) {
-            $scope.newComponent.installationDate = new Date(new Date().toISOString().split("T")[0])
+            $scope.newComponent.installationDate = new Date($scope.maxDate)
         }
 
 
@@ -56,12 +64,26 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         $location.url("/dashboard")
     }
 
+    // create a function to run when a user uploads a file. Inside that function call $scope.saveImage()
+    $scope.uploadFile = function() {
+        
+        $scope.photoUploadProgress.flag = false
+        $timeout( ()=>{
+            $scope.saveImage()
+
+        })
+    }
+
+
+
     $scope.saveImage = () => {
         // get the name of the file to upload
-        let filename = document.getElementById("addComponent__image");
+        let filename = document.getElementById("addComponent__imageBtn");
         let file = filename.files[0]
 
         ComponentFactory.addImage(file).then(_url => {
+            // hide the photo upload progress meter
+            $scope.photoUploadProgress.flag = true
             // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply(function () {
 

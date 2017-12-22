@@ -13,11 +13,11 @@
 
         <div ng-repeat="bike in bikesToImport">
             {{ bike.name }}
-            <button ng-click="importBike(bike)">Import</button>
+            <md-button class="md-raised md-primary" ng-click="importBike(bike)">Import</md-button>
             <hr>
         </div>
 
-    <button ng-click="toDashboard()">Finished</button>
+    <md-button class="md-raised" ng-click="toDashboard()">Finished</md-button>
     </div>
 
     <div ng-show="progressFlag" class="progressSVG">

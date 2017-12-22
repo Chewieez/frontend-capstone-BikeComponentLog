@@ -22,11 +22,11 @@
         <div ng-if="createMode || editMode" class="wishlist__createForm-c" layout="column" layout-align="center center">
             <h2>New Item:</h2>
             <form ng-submit="saveWish()" name="wishForm" ng-model="newWish" class="wishlist__createForm">
-                <md-input-container class="md-block">
+                <md-input-container>
                     <label>Title:</label>
                     <input type="text" ng-model="newWish.title" required="string" />
                 </md-input-container>
-                <md-input-container class="md-block">
+                <md-input-container>
                     <label>Info:</label>
                     <textarea ng-model="newWish.info" rows="1"></textarea>
                 </md-input-container>

@@ -33,6 +33,9 @@ p {
     margin: 0 auto;
 }
 
+md-input-container {
+    display: block;
+}
 
 
 /* For testing */
@@ -43,6 +46,27 @@ p {
 
 
 /* Dashboard CSS */
+
+.dashboard__headerImage {
+    width: 200px;
+    height: 200px;
+}
+
+.dashboard__headerText {
+    font-size: 4em;
+    padding-top: .2em;
+    padding-left: .2em;
+}
+
+.dashboard__header {
+    padding-bottom: 1.5em;
+}
+
+
+
+.bikeView {
+    padding-bottom: 2em;
+}
 
 .bikeView__dropdown {
     width: 40%;
@@ -78,16 +102,16 @@ p {
     padding-right: 0 !important;
 }
 
-
-.addMileageBtn {
-    /* padding-top: 0; */
-    /* margin-bottom: 0; */
-    /* padding-bottom: .5em; */
+.bikeView__mileage {
+    padding-top: .9em;
 }
 
-
 .poweredByStravaIcon {
-    width: 125px;
+    padding-top: .7em;
+    padding-left: .5em;
+    width: 150px;
+    height: auto;
+    /* border: 1px solid grey; */
 }
 
 /* .componentView__componentSorting {
@@ -128,6 +152,12 @@ p {
 
 
 
+/* Add Mileage Modal */
+
+.addMileage__modalContent {
+    padding: 3em;
+}
+
 
 /* AddBike CSS */
 
@@ -135,13 +165,40 @@ p {
     width: 50%;
 }
 
-.addBike__imageBtn {
-    width: 1px
-}
+/* #addBike__imageBtn {
+    width: 1px;
+} */
 
 .addBike__progressCircle {
     padding-top: .9em;
+    padding-left: 3em;
 }
+
+.addBike__photoUpload, .addBike__images {
+    padding-bottom: 2em;
+}
+
+
+/* AddComponent CSS */
+
+.addComponent__photoUpload, .addComponent__images {
+    padding-bottom: 2em;
+}
+
+.addComponent__form {
+    width: 50%;
+}
+
+.addComponent__progressCircle {
+    padding-top: .9em;
+    padding-left: 3em;
+}
+
+
+/* #addComponent__imageBtn {
+    width: 1px;
+} */
+
 
 
 

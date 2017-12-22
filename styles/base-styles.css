@@ -145,17 +145,41 @@ md-input-container {
     width: 50%;
 }
 
-.addBike__imageBtn {
-    width: 1px
-}
+/* #addBike__imageBtn {
+    width: 1px;
+} */
 
 .addBike__progressCircle {
     padding-top: .9em;
+    padding-left: 3em;
 }
 
-.addBike__photoUpload {
+.addBike__photoUpload, .addBike__images {
     padding-bottom: 2em;
 }
+
+
+/* AddComponent CSS */
+
+.addComponent__photoUpload, .addComponent__images {
+    padding-bottom: 2em;
+}
+
+.addComponent__form {
+    width: 50%;
+}
+
+.addComponent__progressCircle {
+    padding-top: .9em;
+    padding-left: 3em;
+}
+
+
+/* #addComponent__imageBtn {
+    width: 1px;
+} */
+
+
 
 
 /* Wishlist CSS */

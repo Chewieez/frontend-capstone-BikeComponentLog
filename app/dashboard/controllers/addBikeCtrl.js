@@ -21,7 +21,9 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
         //sets the default date purchased to today's date. User can then change to which ever date they'd like. 
         // $scope.newBike.purchaseDate = new Date(new Date().toISOString().split("T")[0])
-        $scope.newBike.purchaseDate = new Date($scope.maxDate)
+        if (!$scope.newBike.purchaseDate) {
+            $scope.newBike.purchaseDate = new Date($scope.maxDate)
+        }
 
     } else {
         // set local Edit mode variable to true to show the user a Save Edits button and not a Add Bike Button
@@ -62,6 +64,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         let filename = document.getElementById("addBike__imageBtn");
         let file = filename.files[0]
         BikeFactory.addImage(file).then(_url => {
+            // hide the photo upload progress meter
             $scope.photoUploadProgress.flag = true
             // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
             $scope.$apply(function () {

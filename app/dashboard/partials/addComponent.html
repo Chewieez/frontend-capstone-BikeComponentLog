@@ -3,11 +3,7 @@
     <h3 class="addComponent__header">Add a component to track on your {{currentBike.brandName}} {{ currentBike.modelName }}</h3>
 
     
-    <form ng-submit="addComponent()" name="componentForm" ng-model="componentForm">
-        <!-- <label ng-if="!editMode">Type: </label>
-        <select ng-if="!editMode" ng-model="newComponent.type" ng-options="comp.name for comp in componentTypes track by comp.name" required="comp.name">
-                <option value="">Choose a Type</option>
-        </select> -->
+    <form ng-submit="addComponent()" name="componentForm" ng-model="componentForm" class="addComponent__form">
 
         <!-- Dropdown list of the available component types -->
         <md-input-container class="componentForm__dropdown">
@@ -20,7 +16,7 @@
         </md-input-container>
 
 
-        <p ng-if="editMode"> Type: {{ newComponent.type.name }} </p>
+        <p ng-show="editMode"> Type: {{ newComponent.type.name }} </p>
         <md-input-container>
             <label>Brand:</label>
             <input type="text" ng-model="newComponent.brandName" required="string"/>
@@ -35,7 +31,7 @@
         </md-input-container>
         <md-input-container>
             <label>Installation Date:</label>
-            <input type="date" ng-model="newComponent.installationDate" />
+            <md-datepicker ng-model="newComponent.installationDate" md-max-date="maxDate"></md-datepicker>
         </md-input-container>
         <md-input-container>
             <label>Serial Number:</label>
@@ -46,12 +42,19 @@
             <textarea ng-model="newComponent.info"></textarea>
         </md-input-container>
 
-        <input class="ng-hide" id="addComponent__image" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" custom-on-change="saveImage">
-        <label for="addComponent__image" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon>Upload Photo</label>
+        <div layout="row" class="addComponent__photoUpload">
+            <span flex="20">
+                <input class="ng-hide" id="addComponent__imageBtn" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" custom-on-change="uploadFile">
+                <label for="addComponent__imageBtn" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon>Upload Photo</label>
+            </span>
 
-        <!-- <md-button ng-click="saveImage()">Upload Image</md-button> -->
+            <span ng-hide="photoUploadProgress.flag" flex="20" class="addComponent__progressCircle">
+                <md-progress-circular md-mode="indeterminate" class="md-hue-2" md-diameter="20px"></md-progress-circular>
+            </span>
+        </div>
+
         
-        <div ng-repeat="image in newComponent.images">
+        <div ng-repeat="image in newComponent.images" class="addComponent__images">
             
             <img ng-src="{{image}}" style="width:150px;height:auto;"/>
 
@@ -60,11 +63,12 @@
                 <md-icon md-font-icon="material-icons">clear</md-icon>
             </md-button>
         </div>
-
-        <input ng-if="!editMode" type="submit" value="Save Component" class="md-button md-primary md-raised">
-        <input ng-if="editMode" type="submit" value="Save Edits" class="md-button md-primary md-raised">
-        <md-button type="reset" class="md-raised md-warn">reset</md-button>
+        <div layout="row">
+            <input ng-if="!editMode" type="submit" value="Save Component" class="md-button md-primary md-raised">
+            <input ng-if="editMode" type="submit" value="Save Edits" class="md-button md-primary md-raised">
+            <md-button type="reset" class="md-raised md-warn">reset</md-button>
+            <md-button ng-click="cancelForm()">Cancel</md-button>
+        </div>
 
     </form>
-    <md-button ng-click="cancelForm()">Cancel</md-button>
 </div>

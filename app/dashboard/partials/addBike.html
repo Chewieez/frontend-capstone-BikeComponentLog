@@ -42,7 +42,7 @@
 
         </div>
         
-        <div ng-repeat="image in newBike.images">
+        <div ng-repeat="image in newBike.images" class="addBike__images">
             <img ng-src="{{image}}" style="width:150px;height:auto;"/>
             <!-- <md-button ng-click="deletePhoto(image)" class="md-warn">Delete Photo</md-button> -->
             <md-button ng-click="deletePhoto(image)" class="md-warn md-icon-button" aria-label="Delete">

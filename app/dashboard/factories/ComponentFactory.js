@@ -102,34 +102,90 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
             // add more types
             value: [
                 {
-                    "name": "tires",
-                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation"
+                    "name": "bottom bracket",
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=postDate+desc&area%5B%5D=47"
                 },
                 {
-                    "name": "front wheel",
-                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
+                    "name": "brake - front",
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=48"
                 },
                 {
-                    "name": "rear wheel",
-                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
-                },
-                {
-                    "name": "pedals",
-                    "tips": "https://www.parktool.com/blog/repair-help/pedal-installation-and-removal"
-                },
-                {
-                    "name": "chain",
-                    "tips": "https://www.parktool.com/blog/repair-help/chain-replacement-derailleur-bikes"
+                    "name": "brake - rear",
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=48"
                 },
                 {
                     "name": "cassette",
                     "tips": "https://www.parktool.com/blog/repair-help/cassette-removal-and-installation"
                 },
                 {
+                    "name": "chain",
+                    "tips": "https://www.parktool.com/blog/repair-help/chain-replacement-derailleur-bikes"
+                },
+                {
                     "name": "crankset",
                     "tips": "https://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank"
                 },
-
+                {
+                    "name": "derailleur - front",
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=52"
+                },
+                {
+                    "name": "derailleur - rear",
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=52"
+                },
+                {
+                    "name": "handlebar",
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=54"
+                },
+                {
+                    "name": "pedals",
+                    "tips": "https://www.parktool.com/blog/repair-help/pedal-installation-and-removal"
+                },
+                {
+                    "name": "rear shock",
+                    "tips": "https://www.google.com/search?q=mountain+bike+rear+shock+maintenance+tips"
+                },
+                {
+                    "name": "saddle",
+                    "tips": "https://www.google.com/search?q=bike+saddle+maintenance+tips"
+                },
+                {
+                    "name": "seat post",
+                    "tips": "https://www.google.com/search?q=bike+seat+post+repair+tips&oq=bike+seat+post+repair+tips"
+                },
+                {
+                    "name": "stem",
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=54"
+                },
+                {
+                    "name": "shifter - front",
+                    "tips": "https://www.google.com/search?q=bicycle+front+shifter+maintenance+tips"
+                },
+                {
+                    "name": "shifter - rear",
+                    "tips": "https://www.google.com/search?q=bicycle+front+shifter+maintenance+tips"
+                },
+                {
+                    "name": "suspension fork",
+                    "tips": "https://www.google.com/search?q=mountain+bike+suspension+fork+maintenance+tips"
+                },
+                {
+                    "name": "tire - front",
+                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation"
+                },
+                {
+                    "name": "tire - rear",
+                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation"
+                },
+                {
+                    "name": "wheel - front",
+                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
+                },
+                {
+                    "name": "wheel - rear",
+                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
+                },
+                
             ],
             enumerable: true
         }

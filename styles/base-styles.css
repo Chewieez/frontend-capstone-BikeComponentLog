@@ -33,6 +33,9 @@ p {
     margin: 0 auto;
 }
 
+md-input-container {
+    display: block;
+}
 
 
 /* For testing */
@@ -43,6 +46,10 @@ p {
 
 
 /* Dashboard CSS */
+
+.bikeView {
+    padding-bottom: 2em;
+}
 
 .bikeView__dropdown {
     width: 40%;
@@ -146,6 +153,9 @@ p {
     padding-top: .9em;
 }
 
+.addBike__photoUpload {
+    padding-bottom: 2em;
+}
 
 
 /* Wishlist CSS */

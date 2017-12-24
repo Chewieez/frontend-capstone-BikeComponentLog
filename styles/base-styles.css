@@ -174,15 +174,31 @@ md-input-container {
     padding-left: 3em;
 }
 
-.addBike__photoUpload, .addBike__images {
+.addBike__photoUpload, .addBike__allImages {
     padding-bottom: 2em;
+}
+
+.addBike__image {
+    width: auto;
+    max-width: 50%;
+    height:150px;
+}
+
+.imageDeleteBtn {
+    margin-bottom: 100px !important;
 }
 
 
 /* AddComponent CSS */
 
-.addComponent__photoUpload, .addComponent__images {
+.addComponent__photoUpload, .addComponent__allImages {
     padding-bottom: 2em;
+}
+
+.addComponent__image {
+    width: auto;
+    max-width: 50%;
+    height:150px;
 }
 
 .addComponent__form {

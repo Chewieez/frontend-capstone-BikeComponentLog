@@ -143,6 +143,25 @@
                         </v-pane-content>
                     </v-pane>
                 </v-accordion>
+
+                <!-- Bike images -->
+                <v-accordion class="vAccordion--default bikeImages">
+                    <v-pane>
+                        <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
+                            Images
+                        </v-pane-header>
+
+                        <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
+
+                                <div ng-repeat="image in currentBike.images" layout="row" layout-padding layout-wrap layout-fill >
+                                    <div class="padded" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35"  flex-gt-md="25" layout layout-align="center center">
+                                        <img ng-src="{{ image }}" class="bikeImage"/>
+                                    </div>
+                                </div> 
+                            
+                        </v-pane-content>
+                    </v-pane>
+                </v-accordion>
             </div>
         </div>
         
@@ -352,27 +371,6 @@
         </div>
         <!-- End of ComponentView -->
 
-        <div ng-if="currentBike.images" class="bikeImages">
-
-            <h3> Images of your {{ currentBike.brandName }} {{ currentBike.modelName }}</h3>
-
-            <div ng-repeat="image in currentBike.images" ng-model="currentBike">
-                <img ng-src="{{ image }}" style="width:300px;height:auto;" />
-            </div>
-        </div>
-
-        <!-- <md-grid-list ng-if="currentBike.images" class="bikeImages" md-cols="1" md-cols-sm="2" md-cols-md="3" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="4:3"
-            md-gutter="8px" md-gutter-gt-sm="4px">
-
-            <md-grid-tile ng-repeat="image in currentBike.images" md-force-height="'100px'" md-rowspan="2" md-colspan="1" md-colspan-sm="1"
-                md-colspan-xs="1" ng-class="">
-                <img ng-src="{{ image }}" />
-                <md-grid-tile-footer>
-                   
-                </md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list> -->
-        
     </div>
     <!-- End of dashboard content -->
 

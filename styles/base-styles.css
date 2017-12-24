@@ -63,7 +63,6 @@ md-input-container {
 }
 
 
-
 .bikeView {
     padding-bottom: 2em;
 }
@@ -80,6 +79,16 @@ md-input-container {
     width: 50%;
     max-width: 600px !important;
 }
+
+/* bikeImage {
+    width: 300px;
+    height: auto;
+} */
+
+/* .bikesImages__image {
+    padding-right: .6em !important;
+    padding-bottom: .6em !important ;
+} */
 
 .componentView__details{
     width: 50%;

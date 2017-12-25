@@ -90,6 +90,16 @@ md-input-container {
     padding-bottom: .6em !important ;
 } */
 
+.imageLightbox__image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+}
+
+.imageLightbox__content {
+    padding-top: .1em !important;
+}
+
 .componentView__details{
     width: 50%;
     max-width: 600px !important;

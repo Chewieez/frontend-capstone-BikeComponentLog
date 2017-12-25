@@ -47,12 +47,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         })
     }
 
-    // $scope.onSelected = function (selectedItem) {
-    //     setTimeout(function(){
-    //         $(":focus").blur();
-    //     })
-    // }
-
 
     // get the current user
     const user = AuthFactory.getUser()
@@ -165,9 +159,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                     }   
                 /* end of IF statement to check if connected to Strava  */
                 } 
-                // else {
-                //     $scope.progressFlag = false
-                // } 
 
                 // get the freshed data from the users Bikes
                 BikeFactory.getUserBikes(user.uid).then(response => {
@@ -323,15 +314,25 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 // $scope.status = 'You cancelled the dialog.';
             });
     };
-
-
-
-    // Old code from when the Add Mileage functionality took place on a separate page, not a modal
-    // $scope.addMileage = () => {
-    //     BikeFactory.currentBike = $scope.currentBike
-    //     $location.url("/addMileage")
-    // }
-
+    
+    
+    // Photo lightbox modal
+    $scope.displayPhoto = function(event) {
+        $mdDialog.show({
+            controller: "displayPhotoCtrl",
+            templateUrl: "./app/dashboard/partials/displayPhoto.html",
+            parent: angular.element(document.body),
+            targetEvent: event,
+            clickOutsideToClose:true,
+            // pass in the img src data from the click event, to know which image to display in the lightbox
+            locals: { image: event.target.currentSrc },
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+            
+    };
+    
+    
+    
     // Code for sorting Comonents
     $scope.sortOrderArray = [
         {

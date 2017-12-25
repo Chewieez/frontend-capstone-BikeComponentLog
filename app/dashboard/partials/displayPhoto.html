@@ -1,0 +1,15 @@
+<md-dialog aria-label="Full Size Photo" layout="column">
+    <div layout class="imageLightbox__header">
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+            <md-icon md-font-icon="material-icons" aria-label="Close dialog">close</md-icon>
+        </md-button>
+    </div>
+    <md-dialog-content>
+        <div class="md-dialog-content imageLightbox__content">
+            <img ng-src="{{ image }}"  class="imageLightbox__image"/>
+        </div>
+    </md-dialog-content>
+       
+    
+</md-dialog>

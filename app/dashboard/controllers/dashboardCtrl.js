@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, $mdDialog, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
+angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, $mdDialog, $mdToast, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
 
@@ -147,15 +147,26 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                             
                                             // hide progress meter and show page content
                                             $scope.progressFlag = false
+
+                                            
                                         })
                                     })
                                 }  else{
                                     // hide progress meter and show page content
                                     $scope.progressFlag = false
+                                    
                                 }     
                                 /* end of if/else statement to check if new mileage is greater */
                             })
                         })
+                        // show toast stating your mileage is up to date
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent("Bike mileage synced with Strava!")
+                                .position("top right")
+                                .hideDelay(1500)
+                        );
+                        
                     }   
                 /* end of IF statement to check if connected to Strava  */
                 } 

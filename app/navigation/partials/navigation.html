@@ -28,7 +28,7 @@
         <!-- </md-nav-item> -->
         
         <!-- https://codepen.io/next1/pen/PzWZJv -->
-        <md-menu ng-if="isAuthenticated()">
+        <md-menu ng-if="isAuthenticated()" md-offset="0 58">
             <md-button aria-label="User menu" class="" ng-click="$mdOpenMenu($event)">
                 {{ currentUserProfile.firstName || currentUser.email}} 
                 <md-icon md-font-icon="material-icons">account_circle</md-icon>

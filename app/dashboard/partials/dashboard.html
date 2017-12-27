@@ -16,7 +16,7 @@
     </div>
 
     <!-- ACTION BUTTON - fab button to add bike, import bike, add component -->
-    <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" style="position:fixed !important;">
+    <md-fab-speed-dial md-direction="up" class="md-scale md-fab-bottom-right" >
         <md-fab-trigger>
             <md-button aria-label="Add..." class="md-fab md-warn">
                 <md-icon md-font-icon="material-icons">add</md-icon>
@@ -25,20 +25,23 @@
         </md-fab-trigger>
 
         <md-fab-actions>
-            <md-button aria-label="Add Bike" ng-click="sendToAddBike()">
-                <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto">Add Bike</md-icon>
+            <md-button ng-if="currentBike" class="fabButton md-icon-button" ng-click="sendToAddComponent()">
+                <md-icon class=" speedDialButtonIcon" md-svg-src="/images/noun_168563_cc-crankset.svg"></md-icon>
+                <!-- <div class="speedDialButtonText"> Add Component</div> -->
+                <md-tooltip md-direction="left">Add New Component</md-tooltip>
+            </md-button>
+            <md-button aria-label="Add Bike" class="fabButton md-icon-button" ng-click="sendToAddBike()">
+                <md-icon class="md-icon-button speedDialButtonIcon" md-svg-src="/images/noun_1067030_cc.svg"></md-icon>
+                <!-- <div class="speedDialButtonText">Add Bike</div> -->
                 <md-tooltip md-direction="left">Add New Bike</md-tooltip>
             </md-button>
 
-            <md-button ng-if="currentUserProfile.stravaId" ng-click="importBikes()">
-                <md-icon class="md-icon-button" md-svg-src="/images/noun_1067030_cc.svg" style="color: tomato; width: 50px; height: auto">Import Bike</md-icon>
+            <md-button ng-if="currentUserProfile.stravaId" class="fabButton md-icon-button" ng-click="importBikes()">
+                <md-icon class="md-icon-button speedDialButtonIcon" md-svg-src="/images/noun_1067030_cc.svg" style="color: tomato;"></md-icon>
+                <!-- <div class="speedDialButtonText">Import Bike</div> -->
                 <md-tooltip md-direction="left">Import Bike from Strava</md-tooltip>
             </md-button>
 
-            <md-button ng-if="currentBike" ng-click="sendToAddComponent()">
-                <md-icon class="md-icon-button" md-svg-src="/images/noun_168563_cc.svg" style="width: 50px; height: auto">Add Component</md-icon>
-                <md-tooltip md-direction="left">Add New Component</md-tooltip>
-            </md-button>
 
         </md-fab-actions>
     </md-fab-speed-dial>
@@ -260,17 +263,19 @@
                             <br>
                             <span ng-if="comp.installationDate" layout>
                                 <span>
-                                    <h5>Installation Date:</h5>
-                                    <p> {{ comp.installationDate | date }} </p>
-                                </span>
-                                <span flex></span>
-                                <span>
                                     <h5>Installed for:</h5>
-                                   <p> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }} months </p>
+                                   <!-- <p> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }} months </p> -->
+                                   <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) < 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }}  months </p>
+                                   <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) > 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 / 12 | number:1 }}  years </p>
                                   
                                    <!-- <span>Component age: {{ todaysDate | amDifference: comp.installationDate : 'days' }}</span> -->
                                    <!-- <time am-time-ago="comp.installationDate"></time>  -->
                                 </span>   
+                                <span flex></span>
+                                <span>
+                                    <h5>Installation Date:</h5>
+                                    <p> {{ comp.installationDate | date }} </p>
+                                </span>
                             </span>
                             <br>
                             <v-accordion class="vAccordion--default compExtraDetails">
@@ -286,11 +291,11 @@
                                             <p> {{comp.serial}}</p>
                                         </span>
                                         <span ng-if="comp.type.tips">
-                                            <md-button class="md-primary" ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</md-button>
+                                            <md-button class="md-primary md-raised" ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</md-button>
                                             <!-- <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a> -->
                                         </span>
                                         <span>
-                                            <h5>Notes:</h5>
+                                            <h4 class="compExtraDetails__notes">Notes:</h4>
                                             <p>{{ comp.notes }}</p>
                                         </span>
                                     </v-pane-content>

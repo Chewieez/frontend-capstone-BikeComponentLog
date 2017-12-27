@@ -10,6 +10,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     $scope.todaysDate = Date.now()
     
 
+
     // Not using this code now, it was dynamically changing the label of a checkbox depending on whether it was checked or not. 
     // $scope.activeViewCheckboxLabel = "Active Only"
     

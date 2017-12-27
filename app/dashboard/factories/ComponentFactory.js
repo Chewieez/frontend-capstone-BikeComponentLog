@@ -119,7 +119,8 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                 },
                 {
                     "name": "chain",
-                    "tips": "https://www.parktool.com/blog/repair-help/chain-replacement-derailleur-bikes"
+                    "tips": "https://www.parktool.com/blog/repair-help/chain-replacement-derailleur-bikes",
+                    "icon": "/Users/Greg/workspace/FrontEndCapstone/BikeComponentLog/images/component-icons/noun_894088_cc-chain-link.svg"
                 },
                 {
                     "name": "crankset",

@@ -14,14 +14,20 @@
 </head>
 <body ng-app="BikeLogApp" ng-cloak>
 
+    <!-- Navbar -->
     <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar" ng-cloak flex></nav>
 
-    <!-- <div ng-show="progressFlag" ng-include="'app/progress.html'" class="progress" style="width: 300px"></div> -->
 
-
+    <!-- Main site content will be dynamically placed here -->
     <div ng-view ng-cloak>  </div>
 
 
+    <!--  toast messages will be placed here, so that they are always viewable, even when the user has scrolled down the page -->
+    <div id="toast-container"></div>
+
+
+    
+    <!-- ALL THE SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Angular Scripts -->
     <script src="./lib/node_modules/angular/angular.min.js"></script>

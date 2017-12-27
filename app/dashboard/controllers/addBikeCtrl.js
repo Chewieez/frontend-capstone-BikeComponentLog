@@ -16,8 +16,8 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.newBike = {}
         $scope.newBike.images = []
 
-        // set the starting value of mileage to 0
-        $scope.newBike.mileage = 0
+        // // set the starting value of mileage to 0
+        // $scope.newBike.mileage = 0
 
         //sets the default date purchased to today's date. User can then change to which ever date they'd like. 
         // $scope.newBike.purchaseDate = new Date(new Date().toISOString().split("T")[0])
@@ -101,6 +101,11 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
     $scope.addBike = function () {
         // get the current User data
         const user = AuthFactory.getUser()
+
+        // if the user didn't enter a starting mileage, create the bike with mileage set to 0
+        if (!$scope.newBike.mileage) {
+            $scope.newBike.mileage = 0 
+        }
 
         // check if there is already a userId attached to the bike, if so, use the current one. If not, add it
         if (!$scope.newBike.userId) {

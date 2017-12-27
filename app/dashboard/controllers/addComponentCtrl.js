@@ -20,7 +20,8 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         $scope.newComponent = {}
 
         // set the starting value of mileage to 0
-        $scope.newComponent.mileage = 0
+        // $scope.newComponent.mileage = 0
+        
 
         // create an array to hold images
         $scope.newComponent.images = []
@@ -118,6 +119,11 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         // get current user data
         const user = AuthFactory.getUser()
 
+        // if the user didn't enter a mileage amount, set the mileage amount to 0
+        if (!$scope.newComponent.mileage) {
+            $scope.newComponent.mileage = 0;
+        }
+
 
         if (!$scope.newComponent.bikeFbId) {
             // attach the current Bikes firebase Id to the component
@@ -140,14 +146,21 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
             // Post this new component to firebase
-            ComponentFactory.addComponent($scope.newComponent)
+            ComponentFactory.addComponent($scope.newComponent).then(()=>{
+
+                // need to wrap this in $scope.apply to get it to work inside the .then().
+                $scope.$apply(function() {
+                    $location.url("/dashboard")
+                })
+            })
+
         } else {
             ComponentFactory.updateComponent($scope.newComponent).then(() => {
 
                 $scope.editMode = false
                 ComponentFactory.editCompMode = false
 
-                // need to wrap this in $scope.apply to get it to work.
+                // need to wrap this in $scope.apply to get it to work inside the .then().
                 $scope.$apply(function() {
                     $location.url("/dashboard")
                 })
@@ -157,7 +170,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         // Reset the form after successful upload
         $scope.newComponent = {}
         // prepopulate the mileage box to 0
-        $scope.newComponent.mileage = 0
+        // $scope.newComponent.mileage = 0
         $scope.componentForm.$setPristine()
 
 

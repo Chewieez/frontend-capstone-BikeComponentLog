@@ -43,8 +43,8 @@ angular.module("BikeLogApp").controller("addMileageCtrl", function ($scope, $loc
             // show toast stating your mileage has been updated
             $mdToast.show(
                 $mdToast.simple()
+                    .parent($("#toast-container"))
                     .textContent("Mileage Updated!")
-                    .position("top right")
                     .hideDelay(2000)
             )
   

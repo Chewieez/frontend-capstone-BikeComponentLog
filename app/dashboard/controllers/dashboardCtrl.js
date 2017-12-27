@@ -135,8 +135,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                                     
                                     BikeFactory.editBike(bike).then(r=>{
-                                        console.log("response from bike mileage update: ", r)
-    
+                                        
                                         // get the freshed data from the users Bikes
                                         BikeFactory.getUserBikes(user.uid).then(response => {
                                             // store the updated bikes from firebase
@@ -150,6 +149,13 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                                             
                                         })
+                                        // show toast stating your mileage is up to date
+                                        $mdToast.show(
+                                            $mdToast.simple()
+                                                .parent($("#toast-container"))
+                                                .textContent("Bike mileage synced with Strava!")
+                                                .hideDelay(1500)
+                                        );
                                     })
                                 }  else{
                                     // hide progress meter and show page content
@@ -159,14 +165,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                 /* end of if/else statement to check if new mileage is greater */
                             })
                         })
-                        // show toast stating your mileage is up to date
-                        $mdToast.show(
-                            $mdToast.simple()
-                                .textContent("Bike mileage synced with Strava!")
-                                .position("top right")
-                                .hideDelay(1500)
-                        );
-                        
                     }   
                 /* end of IF statement to check if connected to Strava  */
                 } 
@@ -209,10 +207,18 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             .ariaLabel("Confirm delete wish list item")
             .targetEvent(ev)
             .ok("Yes, Delete")
-            .cancel("Cancel");
+            .cancel("Cancel")
     
         $mdDialog.show(confirm).then(function() {
             $scope.deleteComponent(comp)
+
+            // show toast stating your component has been deleted
+            $mdToast.show(
+                $mdToast.simple()
+                    .parent($("#toast-container"))
+                    .textContent(`The ${comp.brandName} ${comp.modelName} has been deleted.`)
+                    .hideDelay(2000)
+            )
         })
     }
 
@@ -239,6 +245,15 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     
         $mdDialog.show(confirm).then(function() {
             $scope.deleteBike(bike)
+
+            // show toast stating your bike and it's components has been deleted
+            $mdToast.show(
+                $mdToast.simple()
+                    .parent($("#toast-container"))
+                    .textContent(`The ${bike.brandName} ${bike.modelName} has been deleted, along with it's components`)
+                    .hideDelay(2000)
+            )
+            
         })
     }
 
@@ -278,7 +293,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     // function to refresh the page and run Strava sync 
     $scope.refresh = function() {
-    
         $route.reload()
     }
 

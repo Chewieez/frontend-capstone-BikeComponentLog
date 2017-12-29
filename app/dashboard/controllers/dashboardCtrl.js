@@ -45,9 +45,11 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 })
                 
             }
-            $timeout(()=>{
-                $scope.progressFlag = false;
-            }, 300)
+
+            // if user returns to dashboard with a currentBike selected in cache, this will keep the progress meter displayed until the DOM elements have finished loading. This possibly can be changed if I refactor dashboard html markup ;aeer
+            // $timeout(()=>{
+            //     $scope.progressFlag = false;
+            // }, 300)
 
         })
     }
@@ -59,8 +61,8 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     /* This works to set default bike in view, but doens't populate the dropdown list with the correct information. This also requires the $scope.getComponents() function to be moved up before this code runs */
     if (BikeFactory.currentBike) {
-
-        $scope.progressFlag = true;
+        // start progress meter to hide the dom elements that show briefly when the user returns to the dashboard, with a currentBike in cache. 
+        // $scope.progressFlag = true;
 
         // retrieve the current Bike saved on the factory and place it in scope
         $scope.currentBike = BikeFactory.currentBike

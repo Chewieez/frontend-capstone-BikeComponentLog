@@ -1,9 +1,9 @@
 /* Site wide styles */
 
-/* Solution to issue where cloaking wasn't working on a $location.url call or a $route.reload */
-[ng\:cloak], [ng-cloak], .ng-cloak {
+/* This is here because I have my angulgarJS script at the bottom of the body section and not in the head of html doc. */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
-  }
+}
 
 .md-fab-bottom-right {
     position:fixed !important;
@@ -100,8 +100,8 @@ md-input-container {
 .dashboard__headerImage {
     /* width: 200px; */
     /* height: 200px; */
-    height: 40%;
-    width: 40%;
+    height: 55%;
+    width: 55%;
     transition: max-height linear .4s;
     max-height: 300px;
 }

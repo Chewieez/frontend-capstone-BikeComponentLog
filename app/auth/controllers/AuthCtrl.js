@@ -2,6 +2,8 @@ angular.module("BikeLogApp")
     .controller("AuthCtrl", function ($scope, $location, AuthFactory, ProfileFactory) {
         $scope.auth = {}
 
+        $scope.hasStarted = false
+
         $scope.logoutUser = function () {
             AuthFactory.logout()
             $location.url("/auth")
@@ -25,4 +27,9 @@ angular.module("BikeLogApp")
                 $scope.logMeIn(registerNewUser)
             })
         }
+
+        $scope.startLogin = () => {
+            $scope.hasStarted = true;
+        }
+
     })

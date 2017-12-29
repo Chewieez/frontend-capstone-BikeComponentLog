@@ -102,13 +102,11 @@
                                 <md-menu-item>
                                     <md-button class="" ng-click="sendToEditBike(currentBike)" aria-label="Edit Bike">
                                         <md-icon md-font-icon="material-icons" class="">mode_edit</md-icon>Edit
-                                        <!-- <md-tooltip md-direction="left" md-delay="200">Edit Bike</md-tooltip> -->
                                     </md-button>
                                 </md-menu-item>
                                 <md-menu-item>
                                     <md-button class="" ng-click="showConfirmBike($event, currentBike)" aria-label="Delete Bike">
                                         <md-icon md-font-icon="material-icons" class="">delete</md-icon>Delete
-                                        <!-- <md-tooltip md-direction="left" md-delay="200">Delete Bike</md-tooltip> -->
                                     </md-button>
                                 </md-menu-item>
                             </md-menu-content>
@@ -128,7 +126,7 @@
                 </div>
                 <br>
                 <br>
-                <v-accordion class="vAccordion--default extraDetails">
+                <v-accordion class="vAccordion--default bikeView__extraDetails">
                     <v-pane>
                         <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
                             More Details
@@ -152,7 +150,7 @@
                 </v-accordion>
 
                 <!-- Bike images -->
-                <v-accordion class="vAccordion--default bikeImages" ng-cloak>
+                <v-accordion class="vAccordion--default bikeView__bikeImages" ng-cloak>
                     <v-pane>
                         <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
                             Images
@@ -160,12 +158,12 @@
 
                         <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
 
-                                <div ng-repeat="image in currentBike.images" layout="row" layout-padding layout-wrap layout-fill >
-                                    <div class="padded" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35"  flex-gt-md="25" layout layout-align="center center">
-                                        <img ng-src="{{ image }}" class="bikeImage" ng-click="displayPhoto($event)"/>
+                                <div layout="row" layout-padding layout-wrap layout-fill layout-align="space-around center" ng-cloak>
+                                    
+                                    <div ng-repeat="image in currentBike.images" class="" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="40" layout layout-align="center center">
+                                        <img ng-src="{{ image }}" class="bikeImages__bikeImage" ng-click="displayPhoto($event)"/>
                                     </div>
                                 </div> 
-                            
                         </v-pane-content>
                     </v-pane>
                 </v-accordion>
@@ -278,7 +276,7 @@
                                 </span>
                             </span>
                             <br>
-                            <v-accordion class="vAccordion--default compExtraDetails">
+                            <v-accordion class="vAccordion--default compview__ExtraDetails">
                                 <v-pane>
                                     <v-pane-header class="compExtraDetails__header" aria-controls="{{ comp.fbId }}-content">
                                         More Info...
@@ -302,8 +300,9 @@
                                 </v-pane>
                             </v-accordion>
 
-                            <div class="card-media" ng-repeat="image in comp.images" layout layout-padding layout-wrap layout-fill>
-                                <div class="padded compImage" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
+                            
+                            <div class="card-media" layout layout-align="space-around center" layout-padding layout-wrap layout-fill>
+                                <div ng-repeat="image in comp.images" class="compImage" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
                                     <img ng-src="{{ image }}" class="compImage" ng-click="displayPhoto($event)"/>
                                 </div>
                             </div> 

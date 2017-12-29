@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $route, $mdDialog, $mdToast, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
+angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $timeout, $route, $mdDialog, $mdToast, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
 
@@ -45,6 +45,10 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 })
                 
             }
+            $timeout(()=>{
+                $scope.progressFlag = false;
+            }, 300)
+
         })
     }
 
@@ -55,15 +59,16 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
     /* This works to set default bike in view, but doens't populate the dropdown list with the correct information. This also requires the $scope.getComponents() function to be moved up before this code runs */
     if (BikeFactory.currentBike) {
-       
+
+        $scope.progressFlag = true;
+
         // retrieve the current Bike saved on the factory and place it in scope
         $scope.currentBike = BikeFactory.currentBike
         
         // try and see if you can use cache for this. 
         $scope.getComponents()
         
-        // turn off the spinning gear progress meter
-        $scope.progressFlag = false
+        
     }
 
     // set the default value of edit mode to be false

@@ -37,6 +37,10 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* background-image: url("../images/IMG_6448_crop_web.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: 0 48px; */
 }
 
 h4, h5, h6 {
@@ -80,20 +84,45 @@ md-input-container {
 
 /* Dashboard CSS */
 
-.dashboard__headerImage {
-    width: 200px;
-    height: 200px;
+.dashboard__header {
+    /* background-color: white; */
+    /* width: 70%; */
+    /* border-top-left-radius: 6px;  */
+    /* margin: 0 auto; */
+    margin-top: -25px;
+    padding-bottom: 1.5em;
 }
 
+.dashboard__header.ng-hide {
+    /* opacity: 0; */
+}
+
+.dashboard__headerImage {
+    /* width: 200px; */
+    /* height: 200px; */
+    height: 40%;
+    width: 40%;
+    transition: max-height linear .4s;
+    max-height: 300px;
+}
+
+.dashboard__headerImage.ng-hide {
+    max-height: 0;
+
+}
 .dashboard__headerText {
     font-size: 4em;
     padding-top: .2em;
     padding-left: .2em;
 }
 
-.dashboard__header {
-    padding-bottom: 1.5em;
-}
+/* .dashboard__content {
+    width: 70%;
+    background-color: white;
+    border-bottom-left-radius: 6px; 
+    border-bottom-right-radius: 6px; 
+    margin: 0 auto;
+} */
 
 
 .bikeView {

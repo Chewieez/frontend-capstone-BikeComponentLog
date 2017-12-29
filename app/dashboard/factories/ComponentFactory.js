@@ -120,11 +120,13 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                 {
                     "name": "chain",
                     "tips": "https://www.parktool.com/blog/repair-help/chain-replacement-derailleur-bikes",
-                    "icon": "/Users/Greg/workspace/FrontEndCapstone/BikeComponentLog/images/component-icons/noun_894088_cc-chain-link.svg"
+                    "icon": "./images/component-icons/noun_894088_cc-chain-link.svg"
                 },
                 {
                     "name": "crankset",
-                    "tips": "https://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank"
+                    "tips": "https://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank",
+                    "icon":
+                    "./images/noun_168563_cc-crankset.svg"
                 },
                 {
                     "name": "derailleur - front",

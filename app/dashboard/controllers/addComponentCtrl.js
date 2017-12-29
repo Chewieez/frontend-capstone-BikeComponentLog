@@ -108,8 +108,6 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
             // delete the photo from firebase
             ComponentFactory.deleteImage(fileName)
         }
-        
-        
     }
 
 
@@ -145,6 +143,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
+            debugger
             // Post this new component to firebase
             ComponentFactory.addComponent($scope.newComponent).then(()=>{
 

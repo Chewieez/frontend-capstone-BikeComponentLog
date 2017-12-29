@@ -226,13 +226,13 @@
 
                             </md-card-header-text>
                             <span flex></span>
-                            <div class="comp__activeCheckbox">
+                            <!-- <div class="comp__activeCheckbox">
                                     <md-checkbox ng-model="comp.active" id="activeComp" ng-change="changeCompActiveState(comp)">
                                         <label for="activeComp">Active</label>
-                            </div>
+                            </div> -->
 
                             <md-menu>
-                                <md-button aria-label="User menu" class="md-icon-button dotCtrlMenu" ng-click="$mdOpenMenu($event)">
+                                <md-button aria-label="User menu" class="md-icon-button dotCtrlMenu comp__dotCtrlMenu" ng-click="$mdOpenMenu($event)">
                                     <md-icon md-font-icon="material-icons">more_vert</md-icon>
                                 </md-button>
                                 <md-menu-content width="2">
@@ -256,7 +256,16 @@
                         <!-- <md-card-actions>                        </md-card-actions> -->
                         <md-card-content>
                             <span>
-                                <h5>Mileage:</h5>
+                                <h5 layout>
+                                    <span>
+                                        Mileage:
+                                    </span>
+                                    <span flex></span>
+                                    <span>
+                                        <md-checkbox ng-model="comp.active" id="activeComp" class="comp__activeCheckbox" ng-change="changeCompActiveState(comp)">
+                                        <label for="activeComp">Active</label>
+                                    </span>
+                                </h5>
                                 <p>{{ comp.mileage | number }} miles </p>
                             </span>
                             <br>

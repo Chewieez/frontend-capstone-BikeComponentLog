@@ -10,7 +10,7 @@
             <label ng-if="!editMode">Type:</label>
             <md-select ng-if="!editMode" ng-model="newComponent">
                 <md-optgroup label="Component Types">
-                    <md-option ng-value="component" ng-repeat="comp in componentTypes"> {{ comp.name }}</md-option>
+                    <md-option ng-value="newComponent.type" ng-repeat="comp in componentTypes"> {{ comp.name }}</md-option>
                 </md-optgroup>
             </md-select>
         </md-input-container>

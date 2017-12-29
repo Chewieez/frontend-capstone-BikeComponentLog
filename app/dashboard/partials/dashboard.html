@@ -201,7 +201,7 @@
                 </span>
 
                 <span flex="12">
-                    <md-switch ng-model="activeFlag.show" aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Active</md-switch>
+                    <md-switch ng-model="activeFlag.show" aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Installed</md-switch>
                 </span>
             </div>
 
@@ -263,7 +263,7 @@
                                     <span flex></span>
                                     <span>
                                         <md-checkbox ng-model="comp.active" id="activeComp" class="comp__activeCheckbox" ng-change="changeCompActiveState(comp)">
-                                        <label for="activeComp">Active</label>
+                                        <label for="activeComp">Installed</label>
                                     </span>
                                 </h5>
                                 <p>{{ comp.mileage | number }} miles </p>

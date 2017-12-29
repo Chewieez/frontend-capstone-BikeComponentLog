@@ -175,11 +175,13 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                 },
                 {
                     "name": "tire - front",
-                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation"
+                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation",
+                    "icon": "./images/component-icons/noun_549552_cc-tire-frontside.svg"
                 },
                 {
                     "name": "tire - rear",
-                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation"
+                    "tips": "https://www.parktool.com/blog/repair-help/tire-and-tube-removal-and-installation",
+                    "icon": "./images/component-icons/noun_549552_cc-tire-frontside.svg"
                 },
                 {
                     "name": "wheel - front",

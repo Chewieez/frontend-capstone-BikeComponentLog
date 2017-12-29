@@ -115,7 +115,8 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                 },
                 {
                     "name": "cassette",
-                    "tips": "https://www.parktool.com/blog/repair-help/cassette-removal-and-installation"
+                    "tips": "https://www.parktool.com/blog/repair-help/cassette-removal-and-installation",
+                    "icon": "./images/component-icons/noun_894039_cc-cassette.svg"
                 },
                 {
                     "name": "chain",

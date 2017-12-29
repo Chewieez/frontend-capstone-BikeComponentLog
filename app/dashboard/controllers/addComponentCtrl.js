@@ -19,6 +19,8 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         // initalize the newComponent object to use in form
         $scope.newComponent = {}
 
+        $scope.newComponent.type = {}
+
         // set the starting value of mileage to 0
         // $scope.newComponent.mileage = 0
         
@@ -117,6 +119,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         // get current user data
         const user = AuthFactory.getUser()
 
+
         // if the user didn't enter a mileage amount, set the mileage amount to 0
         if (!$scope.newComponent.mileage) {
             $scope.newComponent.mileage = 0;
@@ -143,7 +146,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
-            debugger
+            
             // Post this new component to firebase
             ComponentFactory.addComponent($scope.newComponent).then(()=>{
 

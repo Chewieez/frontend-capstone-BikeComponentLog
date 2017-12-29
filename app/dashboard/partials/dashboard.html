@@ -129,13 +129,13 @@
                 <v-accordion class="vAccordion--default bikeView__extraDetails">
                     <v-pane>
                         <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
-                            More Details
+                            More Details...
                         </v-pane-header>
 
                         <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
                             <span ng-if="currentBike.serial">
                                 <h5>Serial Number:</h5>
-                                <p>Serial Number: {{currentBike.serial}}</p>
+                                <p>{{currentBike.serial}}</p>
                             </span>
                             <span ng-if="currentBike.purchaseDate">
                                 <h5>Purchased:</h5>
@@ -160,7 +160,7 @@
 
                                 <div layout="row" layout-padding layout-wrap layout-fill layout-align="space-around center" ng-cloak>
                                     
-                                    <div ng-repeat="image in currentBike.images" class="" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="40" layout layout-align="center center">
+                                    <div ng-repeat="image in currentBike.images" class="bikeImages__bikeImageWhiteBox" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="40" layout layout-align="center center">
                                         <img ng-src="{{ image }}" class="bikeImages__bikeImage" ng-click="displayPhoto($event)"/>
                                     </div>
                                 </div> 
@@ -169,6 +169,7 @@
                 </v-accordion>
             </div>
         </div>
+        <!-- End of Bike View Section -->
         
         <!-- Horizontal Line Divider between Bike info and Component info -->
         <md-divider ng-if="currentBike" ></md-divider>
@@ -176,17 +177,17 @@
         <!-- Component Section -->
         <div ng-if="components" class="componentView" layout="column" layout-align="center center">
 
-            <div layout="row" layout-align="space around" class="componentView__componentSearchSort">
+            <div layout="row" layout-align="space-between" class="componentView__componentSearchSort">
 
-                <div flex="40" class="componentView__componentSearch">
+                <div flex="40" class="componentSearchSort__componentSearch">
                     <md-input-container class="componentSearch__input">
                         <input type="search" ng-model="componentSearch" id="searchComponentInput" aria-label="Search Bike Components" size="400"/>
                         <label for="searchComponentInput">Search Components</label>
                     </md-input-container>
                 </div>
 
-                <span flex-offset="20" flex="20">
-                    <md-input-container style="display:inline-block; width:100%;">
+                <span flex-offset="15" flex="36" class="componentSearchSort__componentSortBy">
+                    <md-input-container class="componentSearchSort__sortDropDown">
                         <label>Sort Components</label>
                         <md-select ng-model="sortSelector" ng-model-options="{trackBy: '$sort.title'}" ng-change="setSortOrder(sortSelector)" aria-label="Sort Components By">
                             <!-- <md-option><em>default</em></md-option> -->
@@ -195,12 +196,12 @@
                     </md-input-container>
                 </span>
 
-                <span flex="15">
-                    <md-switch ng-model="sortReverse.setting" id="sortReverseBox" aria-label="Reverse Results" style="display:inline-block; padding-left:.5em">Reverse</md-switch>
+                <span flex="12">
+                    <md-switch ng-model="sortReverse.setting" id="sortReverseBox" aria-label="Reverse Results" class="componentSearchSort__reverseSwitch">Reverse</md-switch>
                 </span>
 
-                <span flex="15">
-                    <md-switch ng-model="activeFlag.show" aria-label="Active Components Only" style="display:inline-block;">Active</md-switch>
+                <span flex="12">
+                    <md-switch ng-model="activeFlag.show" aria-label="Active Components Only" class="componentSearchSort__activeSwitch">Active</md-switch>
                 </span>
             </div>
 
@@ -279,7 +280,7 @@
                             <v-accordion class="vAccordion--default compview__ExtraDetails">
                                 <v-pane>
                                     <v-pane-header class="compExtraDetails__header" aria-controls="{{ comp.fbId }}-content">
-                                        More Info...
+                                        More Details...
                                     </v-pane-header>
                         
                                     <v-pane-content aria-labelledby="{{ comp.fbId }}-header">
@@ -302,7 +303,7 @@
 
                             
                             <div class="card-media" layout layout-align="space-around center" layout-padding layout-wrap layout-fill>
-                                <div ng-repeat="image in comp.images" class="compImage" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
+                                <div ng-repeat="image in comp.images" class="compImageWhiteBox" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
                                     <img ng-src="{{ image }}" class="compImage" ng-click="displayPhoto($event)"/>
                                 </div>
                             </div> 
@@ -310,77 +311,12 @@
                         </md-card-content>
                         <!-- <md-card-footer>                  </md-card-footer> -->
                     </md-card>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-<!--                     
-                    <div>
-                        <h3 layout>
-                           
-                            <span class="compHeader"> {{ comp.type.name }}</span>
-                            <span flex></span>
-                    
-                            <md-button class="md-icon-button bikeCtrlBtn" ng-click="sendToEditComponent(comp)" aria-label="Edit Component">
-                                <md-icon md-font-icon="material-icons" class="bikeCtrlBtn">mode_edit</md-icon>
-                                <md-tooltip md-direction="top" md-delay="200">Edit Bike</md-tooltip>
-                            </md-button>
-                            <md-button class="md-icon-button bikeCtrlBtn" ng-click="deleteComponent(comp)" aria-label="Delete Component">
-                                <md-icon md-font-icon="material-icons" class="bikeCtrlBtn">delete</md-icon>
-                                <md-tooltip md-direction="top" md-delay="200">Delete Bike</md-tooltip>
-                            </md-button>
-                        </h3>
-                    </div>
-                    <span layout>
-                        <h4> {{ comp.brandName }} {{ comp.modelName }} </h4>
-                        <span flex></span>
-                        <div class="comp__activeCheckbox">
-                                <md-checkbox ng-model="comp.active" id="activeComp" ng-change="changeCompActiveState(comp)">
-                                    <label for="activeComp">Active</label>
-                        </div>
-
-                    </span>
-                    <span ng-if="comp.mileage"> 
-                        <h5>Mileage:</h5> 
-                        <p>{{ comp.mileage | number }} miles </p>
-                    </span>
-                    <span ng-if="comp.purchaseDate"> 
-                        <h5>Installation Date:</h5>
-                        <p> {{ comp.purchaseDate | date }} </p>
-                    </span>
-                    <v-accordion class="vAccordion--default bikeExtraDetails">
-                        <v-pane>
-                            <v-pane-header aria-controls="{{ currentBike.fbId }}-content">
-                                More Details
-                            </v-pane-header>
-    
-                            <v-pane-content aria-labelledby="{{ currentBike.fbId }}-header">
-                                <p ng-if="comp.serial">Serial: {{comp.serial}}</p>
-                                <p ng-if="comp.type.tips">
-                                    <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a>
-                                </p>
-                            </v-pane-content>
-                        </v-pane>
-                    </v-accordion>
-                    <h5>Images:</h5>
-                    <div ng-repeat="image in comp.images" layout layout-padding layout-wrap layout-fill>
-                        <div class="padded" md-whiteframe="{{height}}" ng-init="height = 3" ng-mouseenter="height = 6" ng-mouseleave="height = 3" flex-sm="45" flex-gt-sm="35" layout layout-align="center center">
-                            <img ng-src="{{ image }}" style="width:200px;height:auto;" />
-                        </div>
-                    </div> 
-                    
-                    <md-divider class="componentDivider" ></md-divider>
-                </div>-->
-            </div> 
-
+                </div> 
+            </div>  
+              <!-- End of Component Details  -->
         </div>
         <!-- End of ComponentView -->
-
     </div>
     <!-- End of dashboard content -->
-
     
 </div>

@@ -157,19 +157,25 @@ md-input-container {
     width: 98.5%;
 }
 
+.bikeView__extraDetails p {
+    margin-bottom: .5em;
+}
+
 .bikeImages__bikeImage-c {
     margin: .2em;
 }
 
-/* .bikesImages__image {
-    width: 100%;
-    height: auto;
-} */
+.bikeImages__bikeImage,
+.bikeImages__bikeImageWhiteBox
+ {
+    border-radius: 4px;
+}
 
 .imageLightbox__image {
     width: 100%;
     max-width: 900px;
     height: auto;
+    border-radius: 4px;
 }
 
 .imageLightbox__content {
@@ -206,10 +212,6 @@ md-input-container {
     /* border: 1px solid grey; */
 }
 
-/* .componentView__componentSorting {
-    display: inline !important;
-} */
-
 .componentView__componentSearchSort {
     padding-left: 2.5em;
 }
@@ -231,6 +233,7 @@ md-input-container {
 md-card-header {
     padding-right: 10px !important;
 }
+
 .componentDivider {
     background-color: blue;
 }
@@ -242,12 +245,16 @@ md-card-header {
 .compHeader__title {
     text-transform: uppercase;
 }
-
+/* 
 .compImage {
     width:200px;
     height:auto; 
-    border-radius: 5px;
-}
+} */
+
+.compImage,
+.compImageWhiteBox {
+    border-radius: 4px;
+s}
 
 .compview__ExtraDetails {
     width: 99%;
@@ -261,6 +268,29 @@ md-card-header {
     padding-top: .3em;
     padding-left: .3em;
 }
+
+.componentSearchSort__sortDropDown {
+    display:inline-block; 
+    width: 100%; 
+    min-width: 150px;
+    margin-top: 1.2em; 
+}
+
+.componentSearchSort__reverseSwitch {
+    margin-left: .5em !important; 
+}
+
+.componentSearchSort__activeSwitch {
+    margin-right: 1.7em !important; 
+}
+
+.componentSearchSort__reverseSwitch,
+.componentSearchSort__activeSwitch {
+    display: inline-block; 
+    margin-top: 1.8em !important;   
+    font-size: .9em !important;
+}
+
 
 
 

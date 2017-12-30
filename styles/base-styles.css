@@ -408,6 +408,17 @@ s}
     width: 70%;
 }
 
+.wishView__wishSort {
+    display:inline-block; 
+    width:100%;
+}
+
+.wishView__reverseSwitch {
+    /* display:inline-block;  */
+    margin-right: .8em !important;
+    margin-left: 1em !important;
+    margin-top: 1.2em !important;
+}
 
 
 

@@ -46,8 +46,8 @@
                 </md-input-container>
             </span>
 
-            <span flex-offset="30" flex="25" class="">
-                <md-input-container style="display:inline-block; width:100%;">
+            <span flex-offset="30" flex="25">
+                <md-input-container class="wishView__wishSort">
                     <label>Sort Wishes</label>
                     <md-select ng-model="sortSelector" ng-model-options="{trackBy: '$sort.title'}" ng-change="setSortOrder(sortSelector)" aria-label="Sort Components By">
                         <md-option ng-value="sort" ng-repeat="sort in sortOrderArray">{{ sort.title }}</md-option>
@@ -55,8 +55,8 @@
                 </md-input-container>
             </span>
 
-            <span flex="15" class=" ">
-                <md-switch ng-model="sortReverse.setting" id="sortReverseBox" aria-label="Reverse Results"  style="display:inline-block; padding-left:.5em">Reverse</md-switch>
+            <span flex="15">
+                <md-switch ng-model="sortReverse.setting" id="sortReverseBox" class="wishView__reverseSwitch" aria-label="Reverse Results">Reverse</md-switch>
             </span>    
                 
         </div>

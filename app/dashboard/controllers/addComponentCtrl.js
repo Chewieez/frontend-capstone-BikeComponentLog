@@ -99,7 +99,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
     $scope.deletePhoto = (photo) => {
         // find the index of the photo to delete
         let imagesIndex = $scope.newComponent.images.indexOf(photo)
-        // remove the web url for the photo on the Bike table
+        // remove the web url for the photo on the Component table
         $scope.newComponent.images.splice(imagesIndex,1)
         
         let fileName

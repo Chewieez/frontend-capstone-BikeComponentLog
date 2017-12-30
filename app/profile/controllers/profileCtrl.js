@@ -2,7 +2,11 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
     // get current user 
     const currentUser = AuthFactory.getUser()
     
-   
+    // set flag to control photo upload progress meter
+    $scope.photoUploadProgress = {}
+    $scope.photoUploadProgress.flag = true
+
+
     // get current user profile
     ProfileFactory.getProfile(currentUser.uid).then(response=> {
         // assign the returned userProfile to the scope variable to display in partial
@@ -58,14 +62,36 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
         })
     }
 
-    // Old cancel code that sends user back to the dashboard
-    // $scope.cancelUpdate = function() {
-    //     $scope.editMode = false
-    //     $location.url("/dashboard")
-    // }
-
     $scope.cancelUpdate = function() {
         $scope.editMode = false
     }
 
+
+    $scope.saveImage = () => {
+        // get the name of the file to upload
+        let filename = document.getElementById("profile__imageBtn");
+        let file = filename.files[0]
+
+        ProfileFactory.addImage(file).then(_url => {
+            // hide the photo upload progress meter
+            $scope.photoUploadProgress.flag = true
+            // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
+            $scope.$apply(function () {
+
+                $scope.currentUserProfile.image = _url
+            })
+        })
+    }
+
+    // function to delete a photo
+    $scope.deletePhoto = (photo) => {
+        let fileName
+        // parse out the filename from the url
+        if (photo !== "" ) {
+
+            fileName = photo.split("ProfileImages%2F")[1].split("?")[0]
+            // delete the photo from firebase
+            ProfileFactory.deleteImage(fileName)
+        }
+    }
 })

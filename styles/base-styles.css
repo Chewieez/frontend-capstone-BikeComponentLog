@@ -426,13 +426,17 @@ s}
 /* Profile CSS */
 
 .profile__card-subhead {
-    font-size: 1.1em !important;
+    font-size: 1.2em !important;
 }
 
 .profile__card-connected {
     color: tomato;
 }
 
+.profile__image {
+    width: 200px;
+    border-radius: 50%;
+}
 
 
 /* Login CSS */

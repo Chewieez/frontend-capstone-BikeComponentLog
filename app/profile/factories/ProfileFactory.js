@@ -59,6 +59,25 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http) {
                     return this.profileCache
                 })
             }
+        },
+        "addImage": {
+            value: function(file) {
+                // add a time stamp to make each image file unique on Firebase
+                const stamp = Date.now()
+                return firebase.storage().ref("/images/ProfileImages/").child(file.name + stamp).put(file).then(result => {
+                    // get the url of the image you uploaded
+                    return firebase.storage().ref("/images/ProfileImages/").child(file.name + stamp).getDownloadURL()
+                })
+            }
+        },
+        "deleteImage": {    
+            value: function(file) {
+                return firebase.storage().ref("/images/ProfileImages/").child(file).delete().then(function () {
+                    console.log("File deleted")
+                }).catch(function (error) {
+                    console.log("Uh-oh, an error occurred deleting!")
+                });
+            }
         }
         // "addStravaId": {
         //     value: function(UID) {

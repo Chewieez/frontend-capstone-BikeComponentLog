@@ -4,7 +4,7 @@
         
         <div  layout="row" layout-align="center center">
 
-            <md-card class="profile__card"md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch flex="60">
+            <md-card class="profile__card" flex="60">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">Profile</span>
@@ -82,8 +82,26 @@
                             <label>Last Name:</label>
                             <input type="name" name="lastName" ng-model="currentUserProfile.lastName" />
                         </md-input-container>
+
                         <!-- Photo upload for avatar -->
-                        <!-- <input type="file" ng-model="avatar" /> -->
+                        <div layout="row" class="profile__photoUpload">
+                            <span flex="20">
+                                <input class="ng-hide" id="profile__imageBtn" type="file" accept=".jpg,.png,.gif" ng-model="currentUserProfile.image" custom-on-change="uploadFile">
+                                <label for="profile__imageBtn" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon>Upload Photo</label>
+                            </span>
+                
+                            <span ng-hide="photoUploadProgress.flag" flex="20" class="profile__progressCircle">
+                                <md-progress-circular md-mode="indeterminate" class="md-hue-2" md-diameter="20px"></md-progress-circular>
+                            </span>
+                        </div>
+
+                        <img class="profile__image" ng-src="{{currentProfile.image}}" layout-align="center start"/>
+
+                        <md-button ng-click="deletePhoto(currentProfile.image)" class="md-warn md-icon-button" aria-label="Delete" layout-align="center start">
+                            <md-tooltip md-direction="right" md-delay="400" >Delete</md-tooltip>
+                            <md-icon md-font-icon="material-icons">clear</md-icon>
+                        </md-button>
+
                     </span>
                 </md-card-title-text>
                 <!-- <md-card-title-media> -->

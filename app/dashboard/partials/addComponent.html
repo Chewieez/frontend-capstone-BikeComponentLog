@@ -45,10 +45,10 @@
         <div layout="row" class="addComponent__photoUpload">
             <span flex="20">
                 <input class="ng-hide" id="addComponent__imageBtn" type="file" accept=".jpg,.png,.gif" ng-model="newComponent.image" custom-on-change="uploadFile">
-                <label for="addComponent__imageBtn" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon>Upload Photo</label>
+                <label for="addPhoto__imageBtn" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons" class="addPhoto__imageBtnIcon">add_a_photo</md-icon>Upload Photo</label>
             </span>
 
-            <span ng-hide="photoUploadProgress.flag" flex="20" class="addComponent__progressCircle">
+            <span ng-hide="photoUploadProgress.flag" flex="20" class="addPhoto__progressCircle">
                 <md-progress-circular md-mode="indeterminate" class="md-hue-2" md-diameter="20px"></md-progress-circular>
             </span>
         </div>

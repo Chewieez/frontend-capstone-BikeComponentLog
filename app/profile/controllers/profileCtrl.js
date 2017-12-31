@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route, $location, ProfileFactory, AuthFactory, StravaOAuthFactory) {
+angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route, $timeout, $location, ProfileFactory, AuthFactory, StravaOAuthFactory) {
     // get current user 
     const currentUser = AuthFactory.getUser()
     
@@ -6,6 +6,8 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
     $scope.photoUploadProgress = {}
     $scope.photoUploadProgress.flag = true
 
+    $scope.currentUserProfile = {}
+    $scope.currentUserProfile.image = null
 
     // get current user profile
     ProfileFactory.getProfile(currentUser.uid).then(response=> {
@@ -36,7 +38,6 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
         const userProfile = {
             "firstName": $scope.currentUserProfile.firstName,
             "lastName": $scope.currentUserProfile.lastName,
-            "photo": 0,
             "stravaId": 0,
             "userId": userId.uid
         }
@@ -57,8 +58,10 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
 
         ProfileFactory.editProfile($scope.currentUserProfile).then(()=>{
             $scope.editMode = false
-            // $route.reload()
-            $location.url("/dashboard")
+
+            $scope.$apply(() => {
+                $location.url("/dashboard")
+            })
         })
     }
 
@@ -66,6 +69,16 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
         $scope.editMode = false
     }
 
+
+    // create a function to run when a user uploads a file. Inside that function call $scope.saveImage()
+    $scope.uploadFile = function() {
+        
+        $scope.photoUploadProgress.flag = false
+        $timeout( ()=>{
+            $scope.saveImage()
+
+        })
+    }
 
     $scope.saveImage = () => {
         // get the name of the file to upload
@@ -93,5 +106,6 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
             // delete the photo from firebase
             ProfileFactory.deleteImage(fileName)
         }
+        $scope.currentUserProfile.image = null;
     }
 })

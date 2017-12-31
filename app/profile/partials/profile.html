@@ -18,6 +18,10 @@
                         </span>
                         <br>
                         <br>
+                        <div ng-if="currentUserProfile.image">
+                            <img ng-src="{{currentUserProfile.image}}" class="profile__image"/>
+                        </div>
+                        <br>
                         <div>
                             <!-- link to allow user to Link Strava Account -->
                             <div ng-if="!currentUserProfile.stravaId">
@@ -44,27 +48,6 @@
 
     <div ng-if="editMode || !profileFlag" class="profile"layout="row" layout-align="center center" ng-cloak>
         
-
-        <!-- <h1 ng-if="!editMode">Create Your Profile First</h1>
-        <h1 ng-if="editMode">Edit Your Profile Info</h1>
-        
-        <md-input-container>
-            <label>First Name:</label>
-            <input type="name" name="firstName" ng-model="currentUserProfile.firstName"  />
-        </md-input-container>
-        <br>
-        <md-input-container>
-            <label>Last Name:</label>
-            <input type="name" name="lastName" ng-model="currentUserProfile.lastName" />
-        </md-input-container> -->
-        <!-- Photo upload for avatar -->
-        <!-- <input type="file" ng-model="avatar" /> -->
-        
-        <!-- <md-button ng-if="!editMode" ng-click="addProfile()" class="md-raised md-primary">Create Profile</md-button>
-        
-        <md-button ng-if="editMode" ng-click="updateProfile()" class="md-raised md-primary">Update Profile</md-button>
-        <md-button ng-if="editMode" ng-click="cancelUpdate()" class="md-warn">Cancel</md-button> -->
-
         <md-card class="profile__createCard" md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch flex="60">
             <md-card-title>
                 <md-card-title-text>
@@ -87,20 +70,24 @@
                         <div layout="row" class="profile__photoUpload">
                             <span flex="20">
                                 <input class="ng-hide" id="profile__imageBtn" type="file" accept=".jpg,.png,.gif" ng-model="currentUserProfile.image" custom-on-change="uploadFile">
-                                <label for="profile__imageBtn" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons">add_a_photo</md-icon>Upload Photo</label>
+                                <label for="addPhoto__imageBtn" class="md-button md-raised" md-ink-ripple="1" aria-label="Choose a Photo"><md-icon md-font-icon="material-icons" class="addPhoto__imageBtnIcon">add_a_photo</md-icon>Upload Photo</label>
                             </span>
                 
-                            <span ng-hide="photoUploadProgress.flag" flex="20" class="profile__progressCircle">
+                            <span ng-hide="photoUploadProgress.flag" flex="20" class="addPhoto__progressCircle">
                                 <md-progress-circular md-mode="indeterminate" class="md-hue-2" md-diameter="20px"></md-progress-circular>
                             </span>
                         </div>
 
-                        <img class="profile__image" ng-src="{{currentProfile.image}}" layout-align="center start"/>
+                        <div ng-show="currentUserProfile.image">
 
-                        <md-button ng-click="deletePhoto(currentProfile.image)" class="md-warn md-icon-button" aria-label="Delete" layout-align="center start">
-                            <md-tooltip md-direction="right" md-delay="400" >Delete</md-tooltip>
-                            <md-icon md-font-icon="material-icons">clear</md-icon>
-                        </md-button>
+                            <img class="profile__image" ng-src="{{currentUserProfile.image}}" layout-align="center start"/>
+
+                            <md-button ng-click="deletePhoto(currentUserProfile.image)" class="md-warn md-icon-button" aria-label="Delete" layout-align="center start">
+                                <md-tooltip md-direction="right" md-delay="400" >Delete</md-tooltip>
+                                <md-icon md-font-icon="material-icons">clear</md-icon>
+                            </md-button>
+                        </div>
+
 
                     </span>
                 </md-card-title-text>

@@ -1,4 +1,4 @@
-<div class="importBike">
+<div class="importBike" layout="column" layout-align="center center">
     
     <header class="header">
         <h1>Import Your Bikes from Strava</h1>
@@ -15,10 +15,13 @@
         <h3 ng-if="!stravaReturnFlag">Available Bikes to Import</h3>
 
 
-        <div ng-repeat="bike in bikesToImport">
+        <div ng-repeat="bike in bikesToImport" layout>
             {{ bike.name }}
+            <span flex></span>
             <md-button class="md-raised md-primary" ng-click="importBike(bike)">Import</md-button>
-            <hr>
+            <div>
+                <hr>
+            </div>
         </div>
 
         <md-button class="md-raised" ng-click="toDashboard()">Finished</md-button>

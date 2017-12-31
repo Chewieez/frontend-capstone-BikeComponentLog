@@ -1,51 +1,47 @@
-<!-- <div ng-controller="navCtrl" class="md-medium-tall" > -->
-<div ng-controller="navCtrl"  >
+<div ng-controller="navCtrl" class="md-medium-tall nav" flex="none">
 
     <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-        <!-- <md-nav-item> -->
 
-            <md-icon md-svg-src="/images/noun_1067030_cc.svg" style="width: 50px; height: auto; margin-left: .3em;"></md-icon>
-
-        <!-- </md-nav-item> -->
-        <!-- <span>Bike Tracker</span> -->
-        <!-- <span flex></span> -->
-        <!-- <span flex></span> -->
+        <md-icon md-svg-src="/images/noun_1067030_cc-navLogo.svg" class="nav__logoIcon"></md-icon>
         
         <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/dashboard" name="Dashboard">
             <md-icon md-font-icon="material-icons">dashboard</md-icon>
             Dashboard
         </md-nav-item>
         
-        <!-- <span flex></span> -->
-        
-        <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/wishlist" name="Wishlist"><md-icon md-font-icon="material-icons">list</md-icon>Wishlist</md-nav-item>
-        
-        <!-- <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/profile" name="Profile"><md-icon md-font-icon="material-icons">account_circle</md-icon>Profile</md-nav-item> -->
+        <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/wishlist" name="Wishlist">
+            <md-icon md-font-icon="material-icons">list</md-icon>
+            Wishlist
+        </md-nav-item>
         
         <span flex></span>
         
-        <!-- <md-nav-item ng-if="isAuthenticated()" md-nav-click="logout()" layout-align="end"> -->
-        <!-- </md-nav-item> -->
+        <span class="nav__appName">Bike Tracker</span>
+
+        <span flex></span>
+        <span flex></span>
         
-        <!-- https://codepen.io/next1/pen/PzWZJv -->
+        <span class="nav__profileName">
+            {{ currentUserProfile.firstName || currentUser.email | uppercase}}
+        </span>
+
         <md-menu ng-if="isAuthenticated()" md-offset="0 58">
-            <md-button aria-label="User menu" class="" ng-click="$mdOpenMenu($event)">
-                {{ currentUserProfile.firstName || currentUser.email}} 
-                <md-icon md-font-icon="material-icons">account_circle</md-icon>
+            <md-button aria-label="User menu" class="nav__profile" ng-click="$mdOpenMenu($event)">
+                <img ng-src="{{currentUserProfile.image}}" class="nav__profileImage" ng-show="currentUserProfile.image" />
+                <md-icon ng-show="!currentUserProfile.image" md-font-icon="material-icons">account_circle</md-icon>
             </md-button>
                 
             <md-menu-content width="2">
-            <md-menu-item>
-                <md-button ng-href="/#!/profile">
-                    <md-icon md-font-icon="material-icons" md-menu-align-target>account_circle</md-icon> Profile
-                </md-button>
-            </md-menu-item>
-            <md-menu-item>
-                <md-button ng-click="logout()">
-                    <md-icon md-font-icon="material-icons" md-menu-align-target>exit_to_app</md-icon> Logout
-                    <!-- <md-icon md-svg-src="/images/noun_1262661_cc.svg" md-menu-align-target></md-icon> Logout -->
-                </md-button>
-            </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-href="/#!/profile">
+                        <md-icon md-font-icon="material-icons" md-menu-align-target>account_circle</md-icon> Profile
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button ng-click="logout()">
+                        <md-icon md-font-icon="material-icons" md-menu-align-target>exit_to_app</md-icon> Logout
+                    </md-button>
+                </md-menu-item>
             </md-menu-content>
         </md-menu>
     </md-nav-bar>

@@ -12,36 +12,34 @@
     <link href="./styles/base-styles.css" rel="stylesheet">
     <title>Bike Component Log</title>
 </head>
+
 <body ng-app="BikeLogApp" layout="column">
-    <!-- <md-content layout="column" flex> -->
-
         
-        <!-- Navbar -->
-        <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar" ng-cloak flex="none"></nav>
-        
-        <!-- Wrapping this in md-content allows the main page content to be scrollable, outside of the footer. This combined with nav and footer set to flex="none" gives a sticky header and footer.-->
-        <md-content>
-            <!-- Main site content will be dynamically placed here -->
-            <div ng-view flex></div>
-        </md-content>
-        
-        <div flex></div>
-        
-        <!--  toast messages will be placed here, so that they are always viewable, even when the user has scrolled down the page -->
-        <div id="toast-container"></div>
+    <!-- Navbar -->
+    <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar" ng-cloak flex="none"></nav>
     
+    <!-- Wrapping this in md-content allows the main page content to be scrollable, outside of the footer. This combined with nav and footer set to flex="none" gives a sticky header and footer.-->
+    <md-content>
+        <!-- Main site content will be dynamically placed here -->
+        <div ng-view flex></div>
+    </md-content>
+    
+    <div flex></div>
+    
+    <!--  toast messages will be placed here, so that they are always viewable, even when the user has scrolled down the page -->
+    <div id="toast-container"></div>
 
-        <footer ng-cloak flex="none" layout>
-                <span class="footer__copyright">
-                    &copy2017 &nbsp Coded by: <a href="mailto:gregaudio@gmail.com?Subject=BikeTracker%20Website" >Greg Lawrence</a>
-                </span>
-                <span flex></span>
-                <span class="footer__licenses">
-                    Icon Attribution
-                </span>
-        </footer>
 
-    <!-- </md-content> -->
+    <footer ng-cloak flex="none" layout>
+        <span class="footer__copyright">
+            &copy2017 &nbsp Coded by: <a href="mailto:gregaudio@gmail.com?Subject=BikeTracker%20Website" >Greg Lawrence</a>
+        </span>
+        <span flex></span>
+        <span class="footer__licenses">
+            Icon Attribution
+        </span>
+    </footer>
+
 
 
     <!-- ALL THE SCRIPTS -->

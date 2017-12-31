@@ -399,8 +399,10 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     $scope.setSortOrder = (sortSelector) => {
         // if user is ordering by mileage, reverse the sort order by default to highest miles first
         if (sortSelector.propName === "mileage") {
+            // sort mileage by largest amount of miles by default
             $scope.sortReverse.setting = true
         } else {
+            $scope.sortReverse.setting = false
             $scope.sortOrder = sortSelector.propName
         }
 

@@ -99,19 +99,21 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
             }
         }, 
         "componentTypes": {
-            // add more types
             value: [
                 {
                     "name": "bottom bracket",
-                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=postDate+desc&area%5B%5D=47"
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=postDate+desc&area%5B%5D=47",
+                    "icon": "./images/component-icons/noun_117974_cc-bot-bracket.svg"
                 },
                 {
                     "name": "brake - front",
-                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=48"
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=48",
+                    "icon": "./images/component-icons/noun_894083_cc-brake-lever.svg"
                 },
                 {
                     "name": "brake - rear",
-                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=48"
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=48",
+                    "icon": "./images/component-icons/noun_894083_cc-brake-lever.svg"
                 },
                 {
                     "name": "cassette",
@@ -131,47 +133,58 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                 },
                 {
                     "name": "derailleur - front",
-                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=52"
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=52",
+                    "icon": "./images/component-icons/noun_784211_cc-front-der.svg"
                 },
                 {
                     "name": "derailleur - rear",
-                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=52"
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=52",
+                    "icon": "./images/component-icons/noun_168574_cc-rear-der.svg"
                 },
                 {
                     "name": "handlebar",
-                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=54"
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=54",
+                    "icon": "./images/component-icons/noun_355669_cc-handlebar.svg"
                 },
                 {
                     "name": "pedals",
-                    "tips": "https://www.parktool.com/blog/repair-help/pedal-installation-and-removal"
+                    "tips": "https://www.parktool.com/blog/repair-help/pedal-installation-and-removal",
+                    "icon": "./images/component-icons/noun_117972_cc-single-pedal.svg"
                 },
                 {
                     "name": "rear shock",
-                    "tips": "https://www.google.com/search?q=mountain+bike+rear+shock+maintenance+tips"
+                    "tips": "https://www.google.com/search?q=mountain+bike+rear+shock+maintenance+tips",
+                    "icon": "./images/component-icons/noun_894107_cc__rear-shock.svg"
                 },
                 {
                     "name": "saddle",
-                    "tips": "https://www.google.com/search?q=bike+saddle+maintenance+tips"
+                    "tips": "https://www.google.com/search?q=bike+saddle+maintenance+tips",
+                    "icon": "./images/component-icons/noun_894071_cc-saddle2.svg"
                 },
                 {
                     "name": "seat post",
-                    "tips": "https://www.google.com/search?q=bike+seat+post+repair+tips&oq=bike+seat+post+repair+tips"
+                    "tips": "https://www.google.com/search?q=bike+seat+post+repair+tips&oq=bike+seat+post+repair+tips",
+                    "icon": "./images/component-icons/noun_1337274_cc-seatpost.svg"
                 },
                 {
                     "name": "stem",
-                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=54"
+                    "tips": "https://www.parktool.com/blog/repair-help?query=&sort=featured+desc%2C+postDate+desc&area%5B%5D=54",
+                    "icon": "./images/component-icons/noun_108878_cc-stem.svg"
                 },
                 {
                     "name": "shifter - front",
-                    "tips": "https://www.google.com/search?q=bicycle+front+shifter+maintenance+tips"
+                    "tips": "https://www.google.com/search?q=bicycle+front+shifter+maintenance+tips",
+                    "icon": "./images/component-icons/noun_894091_cc-shifter.svg"           
                 },
                 {
                     "name": "shifter - rear",
-                    "tips": "https://www.google.com/search?q=bicycle+front+shifter+maintenance+tips"
+                    "tips": "https://www.google.com/search?q=bicycle+front+shifter+maintenance+tips",
+                    "icon": "./images/component-icons/noun_894091_cc-shifter.svg"       
                 },
                 {
                     "name": "suspension fork",
-                    "tips": "https://www.google.com/search?q=mountain+bike+suspension+fork+maintenance+tips"
+                    "tips": "https://www.google.com/search?q=mountain+bike+suspension+fork+maintenance+tips",
+                    "icon": "./images/component-icons/noun_1034214_cc-sus-fork.svg"
                 },
                 {
                     "name": "tire - front",
@@ -185,11 +198,13 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http) {
                 },
                 {
                     "name": "wheel - front",
-                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
+                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation",
+                    "icon": "./images/component-icons/noun_894117_cc-wheel.svg"
                 },
                 {
                     "name": "wheel - rear",
-                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation"
+                    "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation",
+                    "icon": "./images/component-icons/noun_894117_cc-wheel.svg"
                 },
                 
             ],

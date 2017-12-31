@@ -2,7 +2,7 @@
 
     <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
 
-        <md-icon md-svg-src="/images/noun_1067030_cc-navLogo.svg" class="nav__logoIcon"></md-icon>
+        <md-icon ng-if="isAuthenticated()" md-svg-src="/images/noun_1067030_cc-navLogo.svg" class="nav__logoIcon"></md-icon>
         
         <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/dashboard" name="Dashboard">
             <md-icon md-font-icon="material-icons">dashboard</md-icon>
@@ -17,8 +17,8 @@
         <span flex></span>
         
         <span class="nav__appName">Bike Tracker</span>
-
-        <span flex></span>
+        
+        <span ng-if="isAuthenticated()" flex></span>
         <span flex></span>
         
         <span class="nav__profileName">
@@ -28,7 +28,7 @@
         <md-menu ng-if="isAuthenticated()" md-offset="0 58">
             <md-button aria-label="User menu" class="nav__profile" ng-click="$mdOpenMenu($event)">
                 <img ng-src="{{currentUserProfile.image}}" class="nav__profileImage" ng-show="currentUserProfile.image" />
-                <md-icon ng-show="!currentUserProfile.image" md-font-icon="material-icons">account_circle</md-icon>
+                <md-icon ng-show="!currentUserProfile.image" md-font-icon="material-icons" class="nav__defaultProfileImage">account_circle</md-icon>
             </md-button>
                 
             <md-menu-content width="2">

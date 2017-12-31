@@ -1,24 +1,61 @@
 <div class="login">
 
-    <div class="welcome__header" layout="column" layout-align="center center">
+    <div class="welcome__header" layout="column" layout-align="start center">
         <!-- <img class="welcome__headerImage" ng-src="./images/IMG_6448_crop_web.jpg" > -->
-        <md-button ng-show="!hasStarted" class="md-raised md-warn loginGetStartedBtn" ng-click="startLogin()">Get Started</md-button>
+        <div ng-show="!hasStarted" class="header__siteDescription" layout-align="center">
+            <h1 class="header__titleQuestion tomato">
+                Have you ever wondered:
+            </h1>
+            <h2 class="header__questions">
+                How many miles were on your bike chain? 
+            </h2>
+            <h2 class="header__questions">
+                When you installed that set of tires? 
+            </h2>                
+            <h2 class="header__questions">
+                How many miles are on your brakes before you sell them?
+            </h2>                
+
+            <br>
+            <h1 class="header__entice tomato">
+            With Bike Tracker you'll always have this info at your finger tips! 
+            </h1>
+
+            <h3 class="header__websiteInstructions"> 
+                Start tracking a bike manually or <md-icon md-svg-src="./images/btn_strava_connectwith_light.svg" class="header__stravaLogo" aria-label="Connect With Strava"></md-icon> and import your saved bikes. Then add some components to track and let us do the rest. You can manually add mileage to each bike or if your bike is linked with Strava, we will keep that bike's mileage synced with Strava for you. 
+            </h3>
+        </div>
+       
+        <md-button ng-show="!hasStarted" class="md-raised md-warn loginGetStartedBtn" ng-click="startLogin()" layout-align="center center">Get Started</md-button>
 
 
-        <div ng-show="hasStarted" layout="column" layout-align="center stretch" class="login__loginForm-c" layout-padding layout-margin>
-                <h1 class="login__header"> Login </h2>
-                <md-input-container class="md-block">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" ng-model="auth.email" autofocus required="string">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <label for="password" >Password</label>
-                    <input type="password" ng-model="auth.password" required="string" >
-                </md-input-container>
-                <span class="loginForm__btns">
-                    <md-button class="md-raised md-primary" ng-click="logMeIn(auth)">Login</md-button>
-                    <md-button class="" ng-click="registerUser(auth)">Register</md-button>
+        <div ng-show="hasStarted" layout="column" layout-align="center stretch" id="loginUser" class="login__loginForm-c" layout-padding layout-margin>
+            <h1 class="login__header" layout> 
+                <span>
+                Login 
                 </span>
+                <span flex></span>
+                <span layout class="loginCancelBtn">
+                    <md-button class="md-icon-button">
+                        <md-icon md-font-icon="material" ng-click="cancel()">clear</md-icon>
+                    </md-button>
+                </span>
+            </h1>
+            
+            <md-input-container class="md-block">
+                <label for="email">Email</label>
+                <input type="email" name="email" ng-model="auth.email" autofocus required="string" />
+            </md-input-container>
+            
+            <md-input-container class="md-block">
+                <label for="password" >Password</label>
+                <input type="password" ng-model="auth.password" required="string" />
+            </md-input-container>
+            
+            <span class="loginForm__btns">
+                <md-button class="md-raised md-primary" ng-click="logMeIn(auth)">Login</md-button>
+                <md-button class="md-raised md-warn" ng-click="registerUser(auth)">Register</md-button>
+            </span>
         </div>
     </div>
 

@@ -100,6 +100,9 @@ footer {
     text-decoration: underline;
 }
 
+.tomato {
+    color: tomato;
+}
 
 
 /* For testing */
@@ -126,6 +129,15 @@ footer {
     padding: 0;
 }
 
+.nav__defaultProfileImage {
+    font-size: 2.7em !important;
+    margin: 0;
+    margin-top: .4em;
+    margin-right: .5em;
+    padding: 0;
+    padding-bottom: .2em;
+}
+
 .nav__logoIcon {
     width: 50px; 
     height: auto;
@@ -148,11 +160,14 @@ footer {
     font-variant: small-caps;
 }
 
+.nav__
+
 
 
 
 
 /* Dashboard Styles */
+
 
 .dashboard__header {
     /* background-color: white; */
@@ -186,15 +201,6 @@ footer {
     padding-top: .2em;
     padding-left: .2em;
 }
-
-/* .dashboard__content {
-    width: 70%;
-    background-color: white;
-    border-bottom-left-radius: 6px; 
-    border-bottom-right-radius: 6px; 
-    margin: 0 auto;
-} */
-
 
 .bikeView {
     padding-bottom: 2em;
@@ -496,31 +502,61 @@ s}
 }
 
 
-/* Login CSS */
+/* Login Styles */
 
 .welcome__header {
     width: 100%;
     height: 100vh;
-    /* padding: 50%; */
-    /* position: relative; */
     background-image: url("../images/IMG_6448_web.jpg");
-    /* background-position: cover; */
     background-repeat: no-repeat;
     background-size: cover;
-    /* white-space: nowrap; */
 }
 
+.header__siteDescription {
+    width: 50%;
+    background-color: white;
+    border-radius: 4px;
+    padding: 0 1.4em 1em;
+    margin-top: 3em;
+}
+
+.header__titleQuestion {
+    font-weight: 400;
+    margin-top: .3em;
+    margin-left: .2em;
+    /* text-align: center; */
+}
+
+.header__questions {
+    margin-left: 1em;
+}
+
+.header__entice {
+    font-weight: 400;
+    text-align: center;
+}
+
+.header__websiteInstructions {
+    margin-left: 1em;
+    line-height: 170% !important;
+}
+
+.header__stravaLogo {
+    width: 210px;
+    height: auto;
+}
 
 .loginGetStartedBtn {
+    margin-top: 2em;
     padding: .5em;
     font-size: 1.3em;
-
 }
 
 .login__loginForm-c {
     background-color: white;
     width: 40%;
-    height: 40%;
+    /* height: 40%; */
+    margin-top: 40px;
     border-radius: 4px;
     transition: all linear .3s;
 }
@@ -529,10 +565,23 @@ s}
     opacity: 0;
 }
 
-.login__header {
-    font-weight: 300;
-    margin-left: 0;
+
+.loginCancelBtn {
+    margin: 0 !important;
+    margin-right: -.7em !important;
+    margin-top: -.6em !important;
+    padding: 0 !important;
 }
+
+
+.login__header {
+    /* margin-top: -1em; */
+    margin-left: 0;
+    font-weight: 300;
+}
+
+
+
 
 
 /* Import Bike Styles */

@@ -1,5 +1,5 @@
 angular.module("BikeLogApp")
-    .controller("AuthCtrl", function ($scope, $location, AuthFactory, ProfileFactory) {
+    .controller("AuthCtrl", function ($scope, $location, $anchorScroll, $timeout, AuthFactory, ProfileFactory) {
         $scope.auth = {}
 
         $scope.hasStarted = false
@@ -30,6 +30,21 @@ angular.module("BikeLogApp")
 
         $scope.startLogin = () => {
             $scope.hasStarted = true;
+            
+            // $scope.$apply(()=>{
+            //     $anchorScroll.yOffset = 200;
+            //     $location.hash("loginUser");
+                
+            //     // call $anchorScroll()
+            //     $anchorScroll();
+            //     $scope.hasStarted = true;
+                
+
+            // })
+
         }
 
+        $scope.cancel = () => {
+            $scope.hasStarted = false;
+        }
     })

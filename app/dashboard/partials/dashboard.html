@@ -66,7 +66,7 @@
                             <md-option ng-value="bike" ng-repeat="bike in bikes"> {{ bike.brandName }} {{ bike.modelName }}</md-option>
                         </md-optgroup>
                         <md-option ng-click="sendToAddBike()">
-                            <span style="color: blue;"> Add A New Bike... </span>
+                            <span md-colors="{color: 'primary'}"> Add A New Bike... </span>
                         </md-option>
                     </md-select>
                 </md-input-container>
@@ -216,20 +216,20 @@
                 <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
                     
                     <md-card>
-                        <md-card-header>
+                        <md-card-header md-colors="{background: 'accent'}" class="componentView__header-c">
                             <md-card-avatar>
                                 <md-icon class="componentView__compIcon" md-svg-src="{{comp.type.icon}}"></md-icon>
                             </md-card-avatar>
                             <md-card-header-text class="componentView__compHeader">
                                 <span class="md-title compHeader__title"> {{ comp.type.name }}</span>
-                                <span class="md-subhead"> {{ comp.brandName }} {{ comp.modelName }}</span>
+                                <span class="md-subhead compHeader__subHeader"> {{ comp.brandName }} {{ comp.modelName }}</span>
                             </md-card-header-text>
                             
                             <span flex></span>
                             
                             <md-menu>
                                 <md-button aria-label="User menu" class="md-icon-button dotCtrlMenu comp__dotCtrlMenu" ng-click="$mdOpenMenu($event)">
-                                    <md-icon md-font-icon="material-icons">more_vert</md-icon>
+                                    <md-icon md-font-icon="material-icons" class="white">more_vert</md-icon>
                                 </md-button>
                                 <md-menu-content width="2">
                                     <md-menu-item>

@@ -4,6 +4,28 @@ angular.module("BikeLogApp").run(function (FIREBASE_CONFIG) {
     firebase.initializeApp(FIREBASE_CONFIG)
 })
 
+angular.module("BikeLogApp")
+    .config(function($mdThemingProvider) {
+        
+        var newOrangeMap = $mdThemingProvider.extendPalette("deep-orange", {
+            "contrastDefaultColor": "light",
+            "contrastLightColors": [
+                "50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "A100", "A200", "A400", "A700"
+            ],
+            "contrastDarkColors": undefined
+            
+        });
+            
+        // Register the new color palette map with the name 
+        $mdThemingProvider.definePalette("newOrange", newOrangeMap);
+        
+        $mdThemingProvider.theme("default")
+            .primaryPalette("indigo")
+            .accentPalette("newOrange")
+
+                    
+    });
+
 const isAuth = AuthFactory => new Promise ((resolve, reject) => {
     if (AuthFactory.isAuthenticated()){
         console.log("User is authenticated, resolve route promise")

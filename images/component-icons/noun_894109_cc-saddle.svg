@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 50000 62500" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><defs><style type="text/css">
    
-    .str0 {stroke:black;stroke-width:564.44}
+    .str0 {stroke:white;stroke-width:864.44}
     .fil0 {fill:none}
    
-  </style></defs><g><g><ellipse class="fil0 str0" cx="25022" cy="19283" rx="1832" ry="8029"/><path class="fil0 str0" d="M24510 46996c-2841,0 -3242,-5637 -3283,-7442 -72,-3209 139,-6760 -352,-8882 -2602,-11220 -12897,-14643 -11207,-20326 1691,-5687 8349,-7342 13635,-7342 525,0 992,479 1697,479 837,0 1172,-479 1697,-479 5286,0 11944,1655 13635,7342 1690,5683 -8605,9106 -11207,20326 -491,2122 -280,5673 -352,8882 -41,1805 -442,7442 -3283,7442 -327,0 -653,0 -980,0z"/></g></g><text x="0" y="50015" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Oleksandr Panasovskyi</text><text x="0" y="50020" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text></svg>
+  </style></defs><g><g><ellipse class="fil0 str0" cx="25022" cy="19283" rx="1832" ry="8029"/><path class="fil0 str0" d="M24510 46996c-2841,0 -3242,-5637 -3283,-7442 -72,-3209 139,-6760 -352,-8882 -2602,-11220 -12897,-14643 -11207,-20326 1691,-5687 8349,-7342 13635,-7342 525,0 992,479 1697,479 837,0 1172,-479 1697,-479 5286,0 11944,1655 13635,7342 1690,5683 -8605,9106 -11207,20326 -491,2122 -280,5673 -352,8882 -41,1805 -442,7442 -3283,7442 -327,0 -653,0 -980,0z"/></g></g>
+  <!-- <text x="0" y="50015" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by Oleksandr Panasovskyi</text><text x="0" y="50020" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text> -->
+  </svg>

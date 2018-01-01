@@ -4,8 +4,10 @@
 
         <md-icon ng-if="isAuthenticated()" md-svg-src="/images/noun_1067030_cc-navLogo.svg" class="nav__logoIcon"></md-icon>
         
+        <span class="nav__appName" ><a href="/#!/dashboard" md-colors="{color: 'accent'}">TRACKd</a></span>
+
         <md-nav-item ng-if="isAuthenticated()" md-nav-href="/#!/dashboard" name="Dashboard">
-            <md-icon md-font-icon="material-icons">dashboard</md-icon>
+            <md-icon class="md-primary" md-font-icon="material-icons">dashboard</md-icon>
             Dashboard
         </md-nav-item>
         
@@ -16,7 +18,6 @@
         
         <span flex></span>
         
-        <span class="nav__appName">TRACKd</span>
         
         <span ng-if="isAuthenticated()" flex></span>
         <span flex></span>

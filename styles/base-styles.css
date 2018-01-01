@@ -12,15 +12,15 @@ md-checkbox.md-checked .md-icon {
 
 /* Overidding colors for accordion elements */
 .vAccordion--default v-pane-header:hover, .vAccordion--default v-pane-header:focus {
-    color: #3F51B5; 
+    color: #FF5722; 
 }
 
 .vAccordion--default v-pane.is-expanded > v-pane-header {
-    border-bottom-color: #3F51B5; 
+    border-bottom-color: #FF5722; 
 }
 
 .vAccordion--default v-pane-header::after, .vAccordion--default v-pane-header::before {
-    background-color: #3F51B5;
+    background-color: #FF5722;
 }
 
 /* FAB button styles */

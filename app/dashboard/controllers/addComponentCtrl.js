@@ -69,19 +69,20 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
     // create a function to run when a user uploads a file. Inside that function call $scope.saveImage()
     $scope.uploadFile = function() {
-        
         $scope.photoUploadProgress.flag = false
+        
         $timeout( ()=>{
             $scope.saveImage()
-
+            
         })
     }
-
-
-
+    
+    
+    
     $scope.saveImage = () => {
+        debugger
         // get the name of the file to upload
-        let filename = document.getElementById("addComponent__imageBtn");
+        let filename = document.getElementById("addPhoto__imageBtn");
         let file = filename.files[0]
 
         ComponentFactory.addImage(file).then(_url => {
@@ -151,9 +152,9 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
             ComponentFactory.addComponent($scope.newComponent).then(()=>{
 
                 // need to wrap this in $scope.apply to get it to work inside the .then().
-                $scope.$apply(function() {
-                    $location.url("/dashboard")
-                })
+                // $scope.$apply(function() {
+                //     $location.url("/dashboard")
+                // })
             })
 
         } else {

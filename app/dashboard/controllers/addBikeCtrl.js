@@ -61,7 +61,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
     $scope.saveImage = () => {
         
         // get the name of the file to upload
-        let filename = document.getElementById("addBike__imageBtn");
+        let filename = document.getElementById("addPhoto__imageBtn");
         let file = filename.files[0]
         BikeFactory.addImage(file).then(_url => {
             // hide the photo upload progress meter

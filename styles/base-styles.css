@@ -12,11 +12,15 @@ md-checkbox.md-checked .md-icon {
 
 /* Overidding colors for accordion elements */
 .vAccordion--default v-pane-header:hover, .vAccordion--default v-pane-header:focus {
-    color: red 
+    color: #3F51B5; 
 }
 
 .vAccordion--default v-pane.is-expanded > v-pane-header {
-    border-bottom-color: #2196F3; 
+    border-bottom-color: #3F51B5; 
+}
+
+.vAccordion--default v-pane-header::after, .vAccordion--default v-pane-header::before {
+    background-color: #3F51B5;
 }
 
 /* FAB button styles */
@@ -113,6 +117,10 @@ footer {
 
 .footer__copyright a:hover {
     text-decoration: underline;
+}
+
+.footer-licenses {
+    margin-right: .3em;
 }
 
 .tomato {

@@ -166,6 +166,7 @@ footer {
 }
 
 .nav__logoIcon {
+    color: gray;
     width: 50px; 
     height: auto;
     margin: 0; 
@@ -180,9 +181,10 @@ footer {
 }
 
 .nav__appName {
-    margin-top: .7em;
+    font-family: "Allerta Stencil";
+    margin-top: .5em;
     margin-left: -.2em;
-    font-size: 1.1em;
+    font-size: 1.3em;
     font-weight: 500;
     /* font-style: oblique; */
     /* transform: scale(1, 1.5); */

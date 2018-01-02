@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("navCtrl", function ($scope, $location, $rootScope, AuthFactory, ProfileFactory) {
+angular.module("BikeLogApp").controller("navCtrl", function ($scope, $location, $rootScope, AuthFactory, ProfileFactory, BikeFactory) {
     
     // passing through functions to the AuthFactory to authenticate user
     $scope.isAuthenticated = () => AuthFactory.isAuthenticated();
@@ -15,7 +15,11 @@ angular.module("BikeLogApp").controller("navCtrl", function ($scope, $location, 
 
 
     // logout the user
-    $scope.logout = () => AuthFactory.logout();
+    $scope.logout = () => {
+        BikeFactory.currentBike = null;
+
+        AuthFactory.logout();
+    }
 
 
     // dropdown menu code

@@ -141,7 +141,8 @@ footer {
 /* Navigation Styles */
 
 .nav__profileName {
-    margin-top: 1.4em;
+    margin-top: 1.15em;
+    color: dimgray;
     margin-right: -2.7em;
     font-size: .9em;
 }
@@ -158,9 +159,8 @@ footer {
 
 .nav__defaultProfileImage {
     font-size: 2.7em !important;
-    margin: 0;
-    margin-top: .4em;
-    margin-right: .5em;
+    font-weight: 500;
+    margin: .3em .3em 0 0;
     padding: 0;
     padding-bottom: .2em;
 }
@@ -180,10 +180,9 @@ footer {
 }
 
 .nav__appName {
-    margin-top: .9em;
+    margin-top: .7em;
     margin-left: -.2em;
-    /* color: tomato; */
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: 500;
     /* font-style: oblique; */
     /* transform: scale(1, 1.5); */
@@ -198,6 +197,13 @@ footer {
     text-decoration: none;
 }
 
+.nav__appName a {
+    /* margin-bottom: 2em; */
+}
+
+.tallLetter {
+    font-size: 1.3em;
+}
  
 
 
@@ -211,7 +217,7 @@ footer {
     /* border-top-left-radius: 6px;  */
     /* margin: 0 auto; */
     margin-top: -25px;
-    padding-bottom: 1.5em;
+    /* padding-bottom: 1.5em; */
 }
 
 .dashboard__header.ng-hide {
@@ -224,8 +230,8 @@ footer {
     height: 55%;
     width: 55%;
     transition: max-height linear .4s;
-    max-height: 300px;
-    max-width: 558px;
+    max-width: 650px;
+    max-height: 427px;
 }
 
 .dashboard__headerImage.ng-hide {
@@ -695,15 +701,15 @@ s}
     100% {
       -moz-transform: rotate(360deg);
     }
-  }
+}
   @-webkit-keyframes spin {
     100% {
       -webkit-transform: rotate(360deg);
     }
-  }
+}
   @keyframes spin {
     100% {
       -webkit-transform: rotate(360deg); 
       transform:rotate(360deg);
     }
-  }
+}

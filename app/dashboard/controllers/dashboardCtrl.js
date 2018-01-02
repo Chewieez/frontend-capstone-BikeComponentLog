@@ -10,18 +10,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     $scope.todaysDate = Date.now()
     
 
-
-    // Not using this code now, it was dynamically changing the label of a checkbox depending on whether it was checked or not. 
-    // $scope.activeViewCheckboxLabel = "Active Only"
-    
-    // $scope.changeBoxLabel = (activeFlag) => {
-    //     if (activeFlag) {
-    //         $scope.activeViewCheckboxLabel = "Active Only"
-    //     } else {
-    //         $scope.activeViewCheckboxLabel = "Inactive Only"
-    //     }
-    // }
-
     // This function is called when the user selects a bike from the dropdown list, and it retrieves the selected bike's components from Firebase
     // This function needs to live above the if statement below that check if there is a currentBike in cache. 
     $scope.getComponents = function() {
@@ -45,7 +33,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 })
                 
             }
-
+            /* I got ng-cloak working better so don't need this code currently */
             // if user returns to dashboard with a currentBike selected in cache, this will keep the progress meter displayed until the DOM elements have finished loading. This possibly can be changed if I refactor dashboard html markup ;aeer
             // $timeout(()=>{
             //     $scope.progressFlag = false;
@@ -417,5 +405,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             $scope.getComponents()
         })
     }
+
+    
 
 })    

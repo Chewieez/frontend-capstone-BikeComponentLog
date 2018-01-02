@@ -32,36 +32,22 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                     $scope.components.push(comp)
                 })
                 
+                // Scrolls the currentBikeDetails DOM element to the top
+                $timeout(()=>{
+                    // set timeout to give the DOM time to finish populating all of the componenets
+                    document.getElementById("currentBikeDetails").scrollIntoView({behavior: "smooth", block: "start"})
+                },500)
             }
             
+
             // Old code to scroll bike details to top of page when a bike is selected
-            // $timeout(()=>{
-            //     document.getElementById("currentBikeDetails").scrollIntoView()
-            // })
-
-
-            $scope.scrollUpBikeDetails = function() {
+            // $scope.scrollUpBikeDetails = function() {
                 
-                let id = $location.hash();
-                $location.hash("currentBikeDetails");
-                $anchorScroll()
-                $location.hash(id);
-
-            };
-
-            // Scrolls the currentBikeDetails DOM element to the top
-            $timeout(()=>{
-                // set timeout to allow DOM time to populate the componenets
-                $scope.scrollUpBikeDetails()
-            },400)
-            
-
-            /* I got ng-cloak working better so don't need this code currently */
-            // if user returns to dashboard with a currentBike selected in cache, this will keep the progress meter displayed until the DOM elements have finished loading. This possibly can be changed if I refactor dashboard html markup ;aeer
-            // $timeout(()=>{
-            //     $scope.progressFlag = false;
-            // }, 300)
-
+            //     let id = $location.hash();
+            //     $location.hash("currentBikeDetails");
+            //     $anchorScroll()
+            //     $location.hash(id);
+            // };
 
         })
     }

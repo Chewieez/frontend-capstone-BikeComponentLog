@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $rootScope, $location, $route) {
+angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $mdToast, $rootScope, $location, $route) {
     let currentUserData = null
 
     firebase.auth().onAuthStateChanged(function (user) {
@@ -12,7 +12,6 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
             } else {
                 $route.reload()
             }
-            // $route.reload()
 
             $rootScope.$broadcast("authenticationSuccess")
 
@@ -37,15 +36,33 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
             // value: () => firebase.auth().currentUser
         },
         logout: {
-            value: () => firebase.auth().signOut()
+            value: () => firebase.auth().signOut().then(()=>{
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent($("#toast-container"))
+                        .textContent("You've successfully logged out")
+                        .hideDelay(2000)
+                )
+            })
         },
         authenticate: {
             value: credentials =>
                 firebase.auth()
-                    .signInWithEmailAndPassword(
-                        credentials.email,
-                        credentials.password
-                    )
+                    .signInWithEmailAndPassword(credentials.email,credentials.password)
+                    .catch(function (pi) {
+                        
+                        const errorCode = pi.code
+                        const errorMessage = pi.message
+                        
+                        console.log( pi )
+                        
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .parent($("#toast-container"))
+                                .textContent("There is a problem with your email or password")
+                                .hideDelay(2000)
+                        )
+                    })
         },
         registerWithEmail: {
             value: user =>

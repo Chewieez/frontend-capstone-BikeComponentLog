@@ -150,7 +150,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                                             $mdToast.simple()
                                                 .parent($("#toast-container"))
                                                 .textContent("Bike mileage synced with Strava!")
-                                                .hideDelay(1500)
+                                                .hideDelay(2000)
                                         );
                                     })
                                 }  else{

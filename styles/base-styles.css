@@ -719,3 +719,11 @@ md-card-header-text .compHeader__title {
       transform:rotate(360deg);
     }
 }
+
+@media screen and (max-width: 700px) {
+    .bikeView__details,
+    .componentView__details,
+    .dashboard__headerImage {
+        width: 90%;
+    }
+

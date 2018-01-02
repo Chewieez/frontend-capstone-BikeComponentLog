@@ -35,7 +35,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 // Scrolls the currentBikeDetails DOM element to the top
                 $timeout(()=>{
                     // set timeout to give the DOM time to finish populating all of the componenets
-                    document.getElementById("currentBikeDetails").scrollIntoView({behavior: "smooth", block: "start"})
+                    document.getElementById("currentBikeSelector").scrollIntoView({behavior: "smooth", block: "start"})
                 },500)
             }
             

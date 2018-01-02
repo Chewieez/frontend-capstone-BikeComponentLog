@@ -59,7 +59,8 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
     
         // function to import a bike into user's database
         $scope.importBike = function(bike) {
-    
+            
+            // create a new bike in database using the info imported from the users Strava account, including mileage, name and Strava Id
             const importedBike = {
                 brandName: bike.name,
                 mileage: Math.round(bike.distance * 0.00062137),
@@ -67,24 +68,26 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
                 userId: user.uid,
             }
             
+            // add bike to users Database
             BikeFactory.addBike(importedBike)
             
             // place this imported bike into the cache so it is immediately displayed when the user goes to the dashboard
             BikeFactory.currentBike = importedBike
 
+            // if the user has no more bikes to import, send them to the Dashboard, if they have another bike, leave them on the import page and let them choose to leave by clicking Finished button.
             if ($scope.bikesToImport.length === 1) {
                 $location.url("/dashboard")
             } else {
                 // get the index of the bike chosen
                 let bikeIndex = $scope.bikesToImport.indexOf(bike)
-                console.log(bikeIndex)
                 
                 // remove the imported bike from the list of bike available to import
                 $scope.bikesToImport.splice(bikeIndex,1)
             }
 
         }
-    
+        
+        // function to send user to dashboard when they click the finished button
         $scope.toDashboard = function() {
             $location.url("/dashboard")
         }

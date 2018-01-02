@@ -15,16 +15,20 @@
         <h3 ng-if="!stravaReturnFlag">Available Bikes to Import</h3>
 
 
-        <div ng-repeat="bike in bikesToImport" layout>
-            {{ bike.name }}
-            <span flex></span>
-            <md-button class="md-raised md-primary" ng-click="importBike(bike)">Import</md-button>
+        <div ng-repeat="bike in bikesToImport" layout="column">
+            <span layout>
+                <span class="importBike__bikeName">
+                    {{ bike.name }}
+                </span>
+                <span flex></span>
+                <md-button class="md-raised md-primary" ng-click="importBike(bike)">Import</md-button>
+            </span>
             <div>
-                <hr>
+                <md-divider></md-divider>
             </div>
         </div>
 
-        <md-button class="md-raised" ng-click="toDashboard()">Finished</md-button>
+        <md-button class="md-raised importBike__finishedBtn" ng-click="toDashboard()">Finished</md-button>
     </div>
 
 

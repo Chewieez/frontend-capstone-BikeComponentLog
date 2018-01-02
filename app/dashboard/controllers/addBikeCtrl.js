@@ -37,23 +37,25 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
             $scope.newBike.images = []
         }
 
-        // if the bike currently has a date, populate the date window with that date info
+        // if the bike currently has a date, populate the date window with that date info, if not, populate date window with the current days date. 
         if (BikeFactory.currentBike.purchaseDate) {
             $scope.newBike.purchaseDate = new Date(BikeFactory.currentBike.purchaseDate)
+        } else {
+            $scope.newBike.purchaseDate = new Date($scope.maxDate)
         }
     }
 
    
 
-    // create a function to run when a user uploads a file. Inside that function call $scope.saveImage()
+    // function to run when a user clicks the Upload photo button. 
     $scope.uploadFile = function() {
         
+        // turn on the progress meter to show file is uploading
         $scope.photoUploadProgress.flag = false
+        // run function to save the image to Firebase storage
         $timeout( ()=>{
             $scope.saveImage()
-
         })
-
     }
 
 

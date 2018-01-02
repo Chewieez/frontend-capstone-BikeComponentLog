@@ -725,7 +725,9 @@ md-card-header-text .compHeader__title {
 @media screen and (max-width: 700px) {
     .bikeView__details,
     .componentView__details,
-    .dashboard__headerImage {
+    .dashboard__headerImage,
+    .bikeView__dropdown {
         width: 90%;
     }
+    
 

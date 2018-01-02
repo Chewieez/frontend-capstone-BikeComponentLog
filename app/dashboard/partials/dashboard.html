@@ -215,7 +215,7 @@
 
                 <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
                     
-                    <md-card>
+                    <md-card class="componentView__card">
                         <md-card-header md-colors="{background: 'primary'}" class="componentView__header-c">
                             <md-card-avatar>
                                 <md-icon class="componentView__compIcon" md-svg-src="{{comp.type.icon}}"></md-icon>

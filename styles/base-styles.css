@@ -381,7 +381,6 @@ md-card-header-text .compHeader__title {
     text-transform: uppercase;
 }
 
-
 .comp__dotCtrlMenu {
     margin-top: 0;
     padding-top: 0 !important;
@@ -434,7 +433,6 @@ md-card-header-text .compHeader__title {
     font-size: .9em !important;
     color: gray;
 }
-
 
 
 
@@ -705,6 +703,8 @@ md-card-header-text .compHeader__title {
   }
 
 
+
+
   @-moz-keyframes spin {
     100% {
       -moz-transform: rotate(360deg);
@@ -722,6 +722,12 @@ md-card-header-text .compHeader__title {
     }
 }
 
+
+
+
+
+/* Media Query */
+/*  */
 @media screen and (max-width: 700px) {
     .bikeView__details,
     .componentView__details,

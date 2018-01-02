@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $timeout, $location, AuthFactory, ComponentFactory, BikeFactory) {
+angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $timeout, $location, $mdToast, AuthFactory, ComponentFactory, BikeFactory) {
     // get the user in case we need their UID
     const user = AuthFactory.getUser()
 
@@ -145,6 +145,16 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         $scope.newComponent.installationDate = $scope.newComponent.installationDate.getTime()
 
 
+        $scope.showSuccessToast = (newComponent) => {
+            // show toast stating your component has been saved
+            $mdToast.show(
+                $mdToast.simple()
+                    .parent($("#toast-container"))
+                    .textContent(`Your new component has been saved`)
+                    .hideDelay(2000)
+            )
+        }
+
         // check if edit mode is on to know whether to create a new bike or edit an existing one
         if (!$scope.editMode) {
             
@@ -152,23 +162,28 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
             ComponentFactory.addComponent($scope.newComponent).then(()=>{
 
                 // need to wrap this in $scope.apply to get it to work inside the .then().
-                // $scope.$apply(function() {
-                //     $location.url("/dashboard")
-                // })
-            })
+                $scope.$apply(function() {
+                    $scope.showSuccessToast()
+                    //     $location.url("/dashboard")
+                })
 
+            })
+            
+            
         } else {
             ComponentFactory.updateComponent($scope.newComponent).then(() => {
-
+                
                 $scope.editMode = false
                 ComponentFactory.editCompMode = false
-
+                
                 // need to wrap this in $scope.apply to get it to work inside the .then().
                 $scope.$apply(function() {
                     $location.url("/dashboard")
+                    $scope.showSuccessToast()
                 })
             })
         }
+
 
         // Reset the form after successful upload
         $scope.newComponent = {}

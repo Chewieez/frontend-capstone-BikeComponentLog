@@ -235,8 +235,10 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     $scope.deleteComponent = function(comp) {
         
         ComponentFactory.deleteComponent(comp).then(()=>{
-            $scope.getComponents()
+            // erase the component from the array of components being displayed in DOM. 
+            //$scope.getComponents()
         })
+        $scope.components.splice($scope.components.indexOf(comp), 1);
     }
 
     // delete confirmation prompt code for deleting a bike
@@ -260,7 +262,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                     .textContent(`The ${bike.brandName} ${bike.modelName} has been deleted, along with it's components`)
                     .hideDelay(2000)
             )
-            
         })
     }
 

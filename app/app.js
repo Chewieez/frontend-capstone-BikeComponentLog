@@ -36,6 +36,7 @@ const isAuth = AuthFactory => new Promise ((resolve, reject) => {
     }
 })
 
+// directive to upload a photo automatically when a user chooses a file, does not require two buttons to upload file
 app.directive("customOnChange", function() {
     return {
         restrict: "A",
@@ -45,7 +46,6 @@ app.directive("customOnChange", function() {
         }
     };
 });
-
 
 
 angular.module("BikeLogApp").config(function ($routeProvider) {

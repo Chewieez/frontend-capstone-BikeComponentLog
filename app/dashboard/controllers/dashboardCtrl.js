@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $timeout, $route, $mdDialog, $mdToast, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
+angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $location, $timeout, $route, $mdDialog, $mdToast, $anchorScroll, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory) {
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
 
@@ -33,11 +33,15 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 })
                 
             }
+            
+
+
             /* I got ng-cloak working better so don't need this code currently */
             // if user returns to dashboard with a currentBike selected in cache, this will keep the progress meter displayed until the DOM elements have finished loading. This possibly can be changed if I refactor dashboard html markup ;aeer
             // $timeout(()=>{
             //     $scope.progressFlag = false;
             // }, 300)
+
 
         })
     }
@@ -172,7 +176,8 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                     // set the $scope.bikes array to all the updated bikes
                     $scope.bikes = allUpdatedBikes
-                  
+
+                    // turn off the spinning progress meter
                     $scope.progressFlag = false
                     
                 })
@@ -278,10 +283,11 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             })
         })
 
-        // empty the current bike variable
-        $scope.currentBike = {}
-        BikeFactory.currentBike = {}
-        ComponentFactory.componentsCache = {}
+        // empty the current bike variable for cache purposes
+        $scope.currentBike = null
+        // empty the currentBike cached in the factory
+        BikeFactory.currentBike = null
+        ComponentFactory.componentsCache = null
         // reload the dashboard
         //$route.reload
         

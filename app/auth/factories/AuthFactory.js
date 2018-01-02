@@ -49,19 +49,23 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
             value: credentials =>
                 firebase.auth()
                     .signInWithEmailAndPassword(credentials.email,credentials.password)
-                    .catch(function (pi) {
-                        
-                        const errorCode = pi.code
-                        const errorMessage = pi.message
-                        
-                        console.log( pi )
-                        
-                        $mdToast.show(
-                            $mdToast.simple()
-                                .parent($("#toast-container"))
-                                .textContent("There is a problem with your email or password")
-                                .hideDelay(2000)
-                        )
+                    .catch(function (error) {
+                        console.log(error.code)
+                        if (error.code === "auth/wrong-password") {
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .parent($("#toast-container"))
+                                    .textContent("There is a problem with your password")
+                                    .hideDelay(2000)
+                            )
+                        } else if (error.code === "auth/user-not-found") {
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .parent($("#toast-container"))
+                                    .textContent("There is a problem with your email")
+                                    .hideDelay(2000)
+                            )
+                        }
                     })
         },
         registerWithEmail: {

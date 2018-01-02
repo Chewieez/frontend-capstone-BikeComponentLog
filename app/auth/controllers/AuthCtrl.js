@@ -10,23 +10,43 @@ angular.module("BikeLogApp")
         }
 
         $scope.logMeIn = function () {
-            AuthFactory.authenticate($scope.auth).then(function (didLogin) {
-                $scope.login = {}
-                
-                ProfileFactory.getProfile(firebase.auth().currentUser.uid).then((response)=>{
-                    if (response) {
-                        $location.url("/")
-                    } else {
-                        $location.url("/profile")
-                    }
+            try {
+                AuthFactory.authenticate($scope.auth).then(function (didLogin) {
+                    $scope.login = {}
+                    
+                    ProfileFactory.getProfile(firebase.auth().currentUser.uid).then((response)=>{
+                        if (response) {
+                            $location.url("/")
+                        } else {
+                            $location.url("/profile")
+                        }
+                    })
                 })
-            })
+            } catch (error) {
+                console.log(error)
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent($("#toast-container"))
+                        .textContent("There is a problem with your email or password.")
+                        .hideDelay(2000)
+                )
+            }
         }
 
         $scope.registerUser = function (registerNewUser) {
-            AuthFactory.registerWithEmail(registerNewUser).then(function (didRegister) {
-                $scope.logMeIn(registerNewUser)
-            })
+            try {
+                AuthFactory.registerWithEmail(registerNewUser).then(function (didRegister) {
+                    $scope.logMeIn(registerNewUser)
+                })
+            } catch (error) {
+                console.log(error)
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent($("#toast-container"))
+                        .textContent("There is a problem with your email or password.")
+                        .hideDelay(2000)
+                )
+            }
         }
 
         $scope.startLogin = () => {

@@ -37,7 +37,10 @@ angular.module("BikeLogApp").controller("addMileageCtrl", function ($scope, $loc
             }
 
         })
-
+        // update the bike info in cache
+        BikeFactory.currentBike = $scope.currentBike
+        
+        // update bike info in Firebase
         BikeFactory.editBike($scope.currentBike).then(()=>{
             
             // show toast stating your mileage has been updated

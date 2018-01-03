@@ -412,10 +412,6 @@ md-card-header-text .compHeader__title {
     margin-left: .5em;
 }
 
-/* .compExtraDetails__notes {
-    margin-top: .4em;
-    margin-left: .3em;
-} */
 .componentSearchSort__sortDropDown {
     display:inline-block; 
     width: 100%; 
@@ -740,5 +736,4 @@ md-card-header-text .compHeader__title {
     .bikeView__dropdown {
         width: 90%;
     }
-    
-
+}

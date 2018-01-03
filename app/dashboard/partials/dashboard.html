@@ -266,7 +266,7 @@
                             </span>
                             <br>
                             <span ng-if="comp.installationDate" layout>
-                                <span>
+                                <span ng-show="comp.active">
                                     <h5>Installed for:</h5>
                                    <!-- <p> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }} months </p> -->
                                    <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) < 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }}  months </p>
@@ -276,7 +276,7 @@
                                    <!-- <time am-time-ago="comp.installationDate"></time>  -->
                                 </span>   
                                 <span flex></span>
-                                <span>
+                                <span ng-show="comp.active">
                                     <h5>Installation Date:</h5>
                                     <p> {{ comp.installationDate | date }} </p>
                                 </span>

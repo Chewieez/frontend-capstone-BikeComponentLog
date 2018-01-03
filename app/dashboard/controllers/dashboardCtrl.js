@@ -424,7 +424,9 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
         ComponentFactory.updateComponent(comp).then(r=> {
             console.log("component updated")
-            $scope.getComponents()
+            
+            // do not need to run this to update components because angular will do that for me. 
+            // $scope.getComponents()
         })
     }
 

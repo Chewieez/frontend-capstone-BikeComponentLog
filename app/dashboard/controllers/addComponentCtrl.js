@@ -143,14 +143,15 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         //convert time to milliseconds
         $scope.newComponent.installationDate = $scope.newComponent.installationDate.getTime()
-
+        // make sure an integer is stored, not a string
+        // $scope.newComponent.installationDate = parseInt($scope.newComponent.installationDate)
 
         $scope.showSuccessToast = (newComponent) => {
             // show toast stating your component has been saved
             $mdToast.show(
                 $mdToast.simple()
                     .parent($("#toast-container"))
-                    .textContent(`Your new component has been saved`)
+                    .textContent("Your new component has been saved")
                     .hideDelay(2000)
             )
         }

@@ -395,6 +395,13 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     $scope.sortReverse = {}
     $scope.sortReverse.setting = false
 
+
+    // $scope.orderByFunction = function(sortSelector){
+    //     if (sortSelector.propName === "installationDate") {
+    //         return parseInt(sortSelector.propName);
+
+    //     }
+    // };
     
     // function to set the sort order of components section
     $scope.setSortOrder = (sortSelector) => {

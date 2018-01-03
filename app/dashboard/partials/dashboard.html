@@ -213,7 +213,7 @@
                     <md-button ng-click="sendToAddComponent()">Add A Component</md-button>
                 </div>
 
-                <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
+                <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortSelector.propName:sortReverse.setting">
                     
                     <md-card class="componentView__card">
                         <md-card-header md-colors="{background: 'primary'}" class="componentView__header-c">

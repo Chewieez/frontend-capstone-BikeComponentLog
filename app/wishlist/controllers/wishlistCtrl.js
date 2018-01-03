@@ -9,13 +9,6 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     $scope.newWish = {}
 
 
-    // Accordion control code
-    // $scope.$on("my-accordion:onReady", function () {
-    //     var firstPane = $scope.panes[0];
-    //     $scope.accordion.toggle(firstPane.id);
-    // });
-
-
     // delete confirmation prompt code 
     $scope.showConfirm = function(ev, wish) {
         // Appending dialog to document.body to cover sidenav in docs app
@@ -59,7 +52,7 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
             
             // save wish to firebase
             WishlistFactory.saveWish($scope.newWish).then(()=> {
-                console.log("saved wish")
+                // console.log("saved wish")
                 WishlistFactory.getUserWishes(user.uid).then(wishes=>{
                     $scope.wishes = wishes
                     $scope.createMode = false
@@ -70,7 +63,7 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
         } else {
             
             WishlistFactory.editWish($scope.newWish).then(()=> {
-                console.log("updated wish")
+                // console.log("updated wish")
                 WishlistFactory.getUserWishes(user.uid).then(wishes=>{
                     $scope.wishes = wishes
                     $scope.editMode = false
@@ -87,7 +80,7 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
 
     $scope.deleteWish = function(wish) {
         WishlistFactory.deleteWish(wish).then(()=> {
-            console.log("deleted wish")
+            // console.log("deleted wish")
             WishlistFactory.getUserWishes(user.uid).then(wishes=>{
                 $scope.wishes = wishes
             })

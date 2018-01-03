@@ -143,6 +143,8 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         //convert time to milliseconds
         $scope.newComponent.installationDate = $scope.newComponent.installationDate.getTime()
+       
+        // trying to fix sorting by installation date
         // make sure an integer is stored, not a string
         // $scope.newComponent.installationDate = parseInt($scope.newComponent.installationDate)
 

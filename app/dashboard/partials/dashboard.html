@@ -213,7 +213,7 @@
                     <md-button ng-click="sendToAddComponent()">Add A Component</md-button>
                 </div>
 
-                <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortSelector.propName:sortReverse.setting">
+                <div ng-if="comp.active === activeFlag.show" ng-repeat="comp in components | filter: componentSearch | orderBy:sortOrder:sortReverse.setting">
                     
                     <md-card class="componentView__card">
                         <md-card-header md-colors="{background: 'primary'}" class="componentView__header-c">
@@ -299,8 +299,8 @@
                                             <!-- <a ng-href="{{comp.type.tips}}" target="_blank">Maintenance Tips</a> -->
                                         </span>
                                         <span>
-                                            <h4 class="compExtraDetails__notes">Notes:</h4>
-                                            <p>{{ comp.notes }}</p>
+                                            <h5 class="compExtraDetails__notesHeader">Notes:</h5>
+                                            <p class="compExtraDetails__notes">{{ comp.notes }}</p>
                                         </span>
                                     </v-pane-content>
                                 </v-pane>

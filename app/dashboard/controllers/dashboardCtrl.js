@@ -375,7 +375,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         },
         {
             "title": "Installation Date",
-            "propName": "purchaseDate"
+            "propName": "installationDate"
         },
         {
             "title": "Brand Name",

@@ -1,5 +1,5 @@
 angular.module("BikeLogApp")
-    .controller("AuthCtrl", function ($scope, $location, $anchorScroll, $timeout, AuthFactory, ProfileFactory) {
+    .controller("AuthCtrl", function ($scope, $location, $anchorScroll, $timeout, AuthFactory, $mdToast, ProfileFactory) {
         $scope.auth = {}
 
         $scope.hasStarted = false

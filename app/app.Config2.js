@@ -1,6 +1,6 @@
 angular.module("BikeLogApp").constant("FIREBASE_CONFIG", {
     
-    apiKey: "{{$FBK.value}}",
+    apiKey: {{$FBK.value}},
     authDomain: "bike-component-log.firebaseapp.com",
     databaseURL: "https://bike-component-log.firebaseio.com",
     projectId: "bike-component-log",

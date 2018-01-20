@@ -16,7 +16,7 @@ angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, 
             
         })
     })
-
+ 
     // function runs on OK button click
     $scope.addStraveToProfile = function() {
         // get current user

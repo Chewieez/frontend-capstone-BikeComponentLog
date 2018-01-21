@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRAVA_CONFIG) {
+angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
 
     return Object.create(null, {
         "stravaId": {
@@ -23,12 +23,13 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRA
         },
         "getToken": {
             value: (stravaCode) => {
+                
                 return $http({
                     "method": "POST",
                     "url": "https://www.strava.com/oauth/token",
                     "data": {
-                        client_id: STRAVA_CONFIG.clientId,
-                        client_secret: STRAVA_CONFIG.clientSecret,
+                        client_id: "clientSecret",
+                        client_secret: "clientSecret",
                         code: stravaCode
                     }
                 })

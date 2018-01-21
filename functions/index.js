@@ -1,8 +1,13 @@
-// const functions = require('firebase-functions');
+const functions = require('firebase-functions');
 // const request = require('request-promise');
+// const app = express();
 
-// exports.userCreated = functions.database.ref('/users/{id}').onWrite(event => {
-// //   let email = event.data.child('email').val();
+const client = "hello"
+
+exports.userCreated = functions.database.ref('/users/{id}').onWrite(event => {
+
+    return client
+//   let email = event.data.child('email').val();
 
 //   return request({
 //     url: 'https://someservice.com/api/some/call',
@@ -12,4 +17,4 @@
 //     },
 //     body: {email: email}
 //   });
-// });
+});

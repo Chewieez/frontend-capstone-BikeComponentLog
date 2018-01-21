@@ -32,10 +32,6 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
                         code: stravaCode
                     }
                 })
-                // .then(response => {
-                //  this.stravaToken = response.data.access_token
-                //     return this.stravaToken
-                // })
             }
         },
         "getStravaProfile": {

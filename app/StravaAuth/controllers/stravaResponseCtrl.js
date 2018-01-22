@@ -1,21 +1,27 @@
 angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, $location, $timeout, StravaOAuthFactory, ProfileFactory, AuthFactory) {
 
-    //console.log("Loaded now")
     let stravaToken = ""
     let stravaId = ""
 
     // parse the Auth code out of the returned URL
     const stravaAuthCode = window.location.href.split("code=")[1].split("#")[0]
-    // console.log("stravaAuthCode: ", stravaAuthCode)
+
 
     // trade the code for a token from Strava
-    StravaOAuthFactory.getToken(stravaAuthCode).then(response => {
-        stravaToken = response.data.access_token
-        StravaOAuthFactory.getStravaProfile(stravaToken).then(response => {
-            stravaId = response.data.id
-            
-        })
+    // get info needed for api to make link to Strava
+    StravaOAuthFactory.getStravaCallData().then((response) => {
+        console.log("response: ", response.data);
+        // code = secret;
+        // StravaOAuthFactory.getToken(stravaAuthCode, secret).then(response => {
+        //     debugger
+        //     stravaToken = response.data.access_token
+        //     StravaOAuthFactory.getStravaProfile(stravaToken).then(response => {
+        //         stravaId = response.data.id
+                    
+        //     })
+        // })
     })
+    
  
     // function runs on OK button click
     $scope.addStraveToProfile = function() {

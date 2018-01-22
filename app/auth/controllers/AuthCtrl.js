@@ -51,17 +51,6 @@ angular.module("BikeLogApp")
 
         $scope.startLogin = () => {
             $scope.hasStarted = true;
-            
-            // $scope.$apply(()=>{
-            //     $anchorScroll.yOffset = 200;
-            //     $location.hash("loginUser");
-                
-            //     // call $anchorScroll()
-            //     $anchorScroll();
-            //     $scope.hasStarted = true;
-                
-
-            // })
 
         }
 

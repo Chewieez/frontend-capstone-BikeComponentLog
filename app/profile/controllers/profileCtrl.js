@@ -69,6 +69,8 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
         $scope.editMode = false
     }
 
+    
+
 
     // create a function to run when a user uploads a file. Inside that function call $scope.saveImage()
     $scope.uploadFile = function() {

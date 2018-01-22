@@ -16,6 +16,9 @@
       {
         "source": "**",
         "destination": "/index.html"
+      },
+      { "source": "/stravaInfo/",
+        "function": "stravaInfo" 
       }
     ]
   }

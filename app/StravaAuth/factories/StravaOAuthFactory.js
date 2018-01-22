@@ -16,27 +16,28 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
                 return $http({
                     "method": "GET",
                     "url": "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/#!/strava-response&state=logged&approval_prompt=auto"
-                }).then(r => {
-                    console.log(r)
+                })
+            }
+        },
+        "getStravaCallData": {
+            value: () => {
+                return $http({
+                    "url": "https://us-central1-bike-component-log.cloudfunctions.net/stravaInfo/"
                 })
             }
         },
         "getToken": {
-            value: (stravaCode) => {
+            value: (stravaCode, secret) => {
                 
                 return $http({
                     "method": "POST",
                     "url": "https://www.strava.com/oauth/token",
                     "data": {
-                        client_id: "clientSecret",
-                        client_secret: "clientSecret",
+                        client_id: 21849,
+                        client_secret: secret,
                         code: stravaCode
                     }
                 })
-                // .then(response => {
-                //  this.stravaToken = response.data.access_token
-                //     return this.stravaToken
-                // })
             }
         },
         "getStravaProfile": {

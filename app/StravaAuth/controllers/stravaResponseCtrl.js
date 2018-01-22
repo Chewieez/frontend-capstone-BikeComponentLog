@@ -7,19 +7,22 @@ angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, 
     const stravaAuthCode = window.location.href.split("code=")[1].split("#")[0]
 
 
-    // trade the code for a token from Strava
     // get info needed for api to make link to Strava
     StravaOAuthFactory.getStravaCallData().then((response) => {
+        
         console.log("response: ", response.data);
-        // code = secret;
-        // StravaOAuthFactory.getToken(stravaAuthCode, secret).then(response => {
-        //     debugger
-        //     stravaToken = response.data.access_token
-        //     StravaOAuthFactory.getStravaProfile(stravaToken).then(response => {
-        //         stravaId = response.data.id
+        
+        let code = response.data;
+        
+        // trade the code for a token from Strava
+        StravaOAuthFactory.getToken(stravaAuthCode, code).then(response => {
+            
+            stravaToken = response.data.access_token
+            StravaOAuthFactory.getStravaProfile(stravaToken).then(response => {
+                stravaId = response.data.id
                     
-        //     })
-        // })
+            })
+        })
     })
     
  

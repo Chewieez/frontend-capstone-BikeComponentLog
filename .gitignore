@@ -1,4 +1,4 @@
 node_modules
-ds_store
+.DS_Store
 strava.Client.js
 public

@@ -48,7 +48,7 @@ app.directive("customOnChange", function() {
 });
 
 
-angular.module("BikeLogApp").config(function ($routeProvider) {
+angular.module("BikeLogApp").config(function ($routeProvider, $locationProvider) {
     /**
      * Configure all Angular application routes here
      */
@@ -108,8 +108,10 @@ angular.module("BikeLogApp").config(function ($routeProvider) {
             resolve: { isAuth }
         })
         .otherwise("/strava-response")
-})
 
+    $locationProvider.html5Mode(true);
+})
+    
 
 
 

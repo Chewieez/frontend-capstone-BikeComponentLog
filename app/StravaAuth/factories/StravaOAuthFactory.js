@@ -15,7 +15,7 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
             value: function() {
                 return $http({
                     "method": "GET",
-                    "url": "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/#!/strava-response&state=logged&approval_prompt=auto"
+                    "url": "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://http://bike-component-log.firebaseapp.com/#!/strava-response/&state=logged&approval_prompt=auto"
                 })
             }
         },

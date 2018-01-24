@@ -8,11 +8,12 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
             if ($location.url() === "/strava-response") {
                 $route.reload()
             }
-            else if ($location.url() !== "/dashboard") {
-                $timeout(function () {
-                    $location.url("/dashboard")
-                }, 500)
-            } else {
+            // else if ($location.url() !== "/dashboard") {
+            //     $timeout(function () {
+            //         $location.url("/dashboard")
+            //     }, 500)
+            // } 
+            else {
                 $route.reload()
             }
 

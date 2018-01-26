@@ -19,13 +19,13 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
             }
         },
         "getToken": {
-            value: (stravaCode, secret) => {
+            value: (stravaCode, code) => {
                 return $http({
                     "method": "POST",
                     "url": "https://www.strava.com/oauth/token",
                     "data": {
                         client_id: 21849,
-                        client_secret: secret,
+                        client_secret: code,
                         code: stravaCode
                     }
                 })

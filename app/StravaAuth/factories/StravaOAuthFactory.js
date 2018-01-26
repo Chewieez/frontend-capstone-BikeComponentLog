@@ -11,14 +11,6 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
             writable: true,
             enumerable: true     
         },
-        "getCode": {
-            value: function() {
-                return $http({
-                    "method": "GET",
-                    "url": "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://http://bike-component-log.firebaseapp.com/#!/strava-response/&state=logged&approval_prompt=auto"
-                })
-            }
-        },
         "getStravaCallData": {
             value: () => {
                 return $http({
@@ -28,7 +20,6 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
         },
         "getToken": {
             value: (stravaCode, secret) => {
-                
                 return $http({
                     "method": "POST",
                     "url": "https://www.strava.com/oauth/token",

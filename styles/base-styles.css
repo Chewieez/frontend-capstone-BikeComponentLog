@@ -186,9 +186,6 @@ footer {
     margin-left: -.2em;
     font-size: 1.3em;
     font-weight: 500;
-    /* font-style: oblique; */
-    /* transform: scale(1, 1.5); */
-    /* font-variant: small-caps; */
 }
 
 .nav__appName a,
@@ -197,10 +194,6 @@ footer {
 .nav__appName a:visited {
     color: inherit;
     text-decoration: none;
-}
-
-.nav__appName a {
-    /* margin-bottom: 2em; */
 }
 
 .tallLetter {
@@ -212,14 +205,8 @@ footer {
 
 /* Dashboard Styles */
 
-
 .dashboard__header {
-    /* background-color: white; */
-    /* width: 70%; */
-    /* border-top-left-radius: 6px;  */
-    /* margin: 0 auto; */
     margin-top: -35px;
-    /* padding-bottom: 1.5em; */
 }
 
 .dashboard__header.ng-hide {
@@ -227,8 +214,6 @@ footer {
 }
 
 .dashboard__headerImage {
-    /* width: 200px; */
-    /* height: 200px; */
     height: 55%;
     width: 55%;
     transition: max-height linear .4s;
@@ -588,7 +573,6 @@ md-card-header-text .compHeader__title {
     font-weight: 400;
     margin-top: .3em;
     margin-left: .2em;
-    /* text-align: center; */
 }
 
 .header__questions {
@@ -598,6 +582,10 @@ md-card-header-text .compHeader__title {
 .header__entice {
     font-weight: 400;
     text-align: center;
+}
+
+.header__appName {
+    font-family: "Allerta Stencil";
 }
 
 .header__websiteInstructions {

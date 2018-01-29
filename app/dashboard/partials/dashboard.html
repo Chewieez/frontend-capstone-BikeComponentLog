@@ -12,18 +12,15 @@
         <md-fab-actions>
             <md-button ng-if="currentBike" class="fabButton md-icon-button" ng-click="sendToAddComponent()">
                 <md-icon class="speedDialButtonIcon" md-svg-src="/images/noun_168563_cc-crankset.svg"></md-icon>
-                <!-- <div class="speedDialButtonText"> Add Component</div> -->
                 <md-tooltip md-direction="left">Add New Component</md-tooltip>
             </md-button>
             <md-button aria-label="Add Bike" class="fabButton md-icon-button" ng-click="sendToAddBike()">
                 <md-icon class="md-icon-button speedDialButtonIcon" md-svg-src="/images/noun_1067030_cc.svg"></md-icon>
-                <!-- <div class="speedDialButtonText">Add Bike</div> -->
                 <md-tooltip md-direction="left">Add New Bike</md-tooltip>
             </md-button>
 
             <md-button ng-if="currentUserProfile.stravaId" class="fabButton md-icon-button" ng-click="importBikes()">
                 <md-icon class="md-icon-button speedDialButtonIcon" md-svg-src="/images/noun_1067030_cc.svg" style="color: tomato;"></md-icon>
-                <!-- <div class="speedDialButtonText">Import Bike</div> -->
                 <md-tooltip md-direction="left">Import Bike from Strava</md-tooltip>
             </md-button>
 
@@ -40,10 +37,7 @@
     </div>
 
     <div class="dashboard__header" layout layout-align="center">
-        
-        <!-- <img src="./images/illustration-bicycle-parts-in-vintage-style-royalty-free-photo-best-stock-vector-huffy-cat-1043x1043_trans.png" class="dashboard__headerImage" alt="BikeTracker Icon"/> -->
         <img src="./images/bikeHeader_dreamstime_71468702_web.png" class="dashboard__headerImage" alt="BikeTracker Icon"/>
-        <!-- <h1 class="dashboard__headerText"> Bike Tracker</h1> -->
     </div>
 
 
@@ -72,16 +66,18 @@
                 </md-input-container>
             </div>
 
-            <div ng-if="!currentUserProfile" class="ng-cloak" ng-cloak>
-                <h3>Create a user profile first, then add a bike.</h3>
+            <div ng-if="!currentUserProfile" class="ng-cloak" layout="column" layout-align="center center" ng-cloak>
+                <h2>Create a user profile first, then add a bike.</h2>
                 <md-button ng-href="/#!/profile" class="md-raised md-primary">Create Profile</md-button>
             </div>
 
 
-            <div ng-show="bikes.length === 0" class="bikeView__addBikeButtons ng-cloak" layout="column" layout-align="center center" ng-cloak>
-                <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components.</h2>
-                <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
+            <div ng-show="bikes.length === 0 && currentUserProfile" class="bikeView__addBikeButtons ng-cloak" layout="column" layout-align="center center" ng-cloak>
+                <h2 ng-if="!currentUserProfile.stravaId">Add a bike to start tracking your components. </h2>
                 <md-button class="md-raised md-primary" ng-click="sendToAddBike()">Add A Bike</md-button>
+                <h2 ng-if="!currentUserProfile.stravaId">Or link your Strava account on your Profile Page to import your saved bikes.</h2>
+                <h2 ng-if="currentUserProfile.stravaId">Choose an option to start tracking a bike and it's components.</h2>
+                <md-button ng-if="!currentUserProfile.stravaId" class="md-raised" ng-href="/#!/profile">Profile</md-button>
                 <md-button ng-if="currentUserProfile.stravaId" class="md-raised md-warn" ng-click="importBikes()">Import Bike from Strava</md-button>
             </div>
         

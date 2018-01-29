@@ -21,10 +21,6 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         $scope.newComponent.type = {}
 
-        // set the starting value of mileage to 0
-        // $scope.newComponent.mileage = 0
-        
-
         // create an array to hold images
         $scope.newComponent.images = []
 

@@ -42,7 +42,6 @@ angular.module("BikeLogApp").factory("WishlistFactory", function ($http) {
                             .map(key => {
                                 return wishes[key]
                             })
-                        console.log("wish cached: ",this.wishCache)
                         return this.wishCache
                     }
                 })

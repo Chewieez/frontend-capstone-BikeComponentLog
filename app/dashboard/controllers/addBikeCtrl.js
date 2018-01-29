@@ -148,7 +148,6 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
             // store the newly edited bike back into Firebase
             BikeFactory.editBike($scope.newBike).then((response) => {
-                console.log("edit bike response", response)
                 BikeFactory.editMode = false
                 $scope.editMode = false
 
@@ -166,8 +165,6 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.newBike.mileage = 0
         $scope.bikeForm.$setPristine();
 
-        // // send user back to the dashboard
-        // $location.url("/dashboard")
 
     }
 

@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
+angular.module("BikeLogApp").factory("BikeFactory", function ($http, $mdToast) {
     // store firebase url for later user
     const firebaseURL = "https://bike-component-log.firebaseio.com/bikes"
 
@@ -51,7 +51,6 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
                                 // bikes[key].fbId = key
                                 return bikes[key]
                             })
-                        console.log("bikes cached: ",this.bikesCache)
                         return this.bikesCache
                     }
                 })
@@ -91,9 +90,19 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http) {
         "deleteImage": {    
             value: function(file) {
                 return firebase.storage().ref("/images/BikeImages/").child(file).delete().then(function () {
-                    console.log("File deleted")
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .parent($("#toast-container"))
+                            .textContent("Photo deleted")
+                            .hideDelay(2000)
+                    );
                 }).catch(function (error) {
-                    console.log("Uh-oh, an error occurred deleting!")
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .parent($("#toast-container"))
+                            .textContent("Uh oh, error deleting photo.")
+                            .hideDelay(3000)
+                    );
                 });
             }
         }, 

@@ -273,7 +273,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         BikeFactory.currentBike = {}
 
         BikeFactory.deleteBike(bike).then(()=>{
-            // let userComponents
 
             // get user components
             ComponentFactory.getUserComponents(user.uid).then(components => {
@@ -295,9 +294,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         // empty the currentBike cached in the factory
         BikeFactory.currentBike = null
         ComponentFactory.componentsCache = null
-        // reload the dashboard
-        //$route.reload
-        
     }
 
     // function to refresh the page and run Strava sync 
@@ -366,7 +362,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     };
     
     
-    
     // Code for sorting Comonents
     $scope.sortOrderArray = [
         {
@@ -394,14 +389,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     // object to hold the reverse order setting. Checkbox on partial controls the .setting value
     $scope.sortReverse = {}
     $scope.sortReverse.setting = false
-
-
-    // $scope.orderByFunction = function(sortSelector){
-    //     if (sortSelector.propName === "installationDate") {
-    //         return parseInt(sortSelector.propName);
-
-    //     }
-    // };
     
     // function to set the sort order of components section
     $scope.setSortOrder = (sortSelector) => {
@@ -415,7 +402,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             $scope.sortReverse.setting = false
             $scope.sortOrder = sortSelector.propName
         }
-
     }
 
     // changes the active state of a component when the user checks or unchecks the Active box
@@ -423,11 +409,13 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         comp.installationDate = Date.now()
 
         ComponentFactory.updateComponent(comp).then(r=> {
-            console.log("component updated")
-            
-            // do not need to run this to update components because angular will do that for me. 
-            // $scope.getComponents()
         })
+        $mdToast.show(
+            $mdToast.simple()
+                .parent($("#toast-container"))
+                .textContent("Component Active state updated")
+                .hideDelay(2000)
+        );
     }
 
     

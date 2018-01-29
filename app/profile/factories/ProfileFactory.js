@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").factory("ProfileFactory", function ($http) {
+angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $mdToast) {
     // store firebase url for later user
     const firebaseURL = "https://bike-component-log.firebaseio.com/users"
 
@@ -73,25 +73,21 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http) {
         "deleteImage": {    
             value: function(file) {
                 return firebase.storage().ref("/images/ProfileImages/").child(file).delete().then(function () {
-                    console.log("File deleted")
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .parent($("#toast-container"))
+                            .textContent("Photo deleted")
+                            .hideDelay(3000)
+                    );
                 }).catch(function (error) {
-                    console.log("Uh-oh, an error occurred deleting!")
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .parent($("#toast-container"))
+                            .textContent("Uh oh, error deleting photo.")
+                            .hideDelay(3000)
+                    );
                 });
             }
         }
-        // "addStravaId": {
-        //     value: function(UID) {
-        //         return firebase.auth().currentUser.getIdToken(true)
-        //         .then(idToken => {
-        //             return $http({
-        //                 "method": "PUT",
-        //                 "url": `${firebaseURL}/${userProfile.fbId}/stravaId.json?auth=${idToken}`,
-        //                 "data": stravaId
-        //             })
-        //         }).then(function(){
-        //             console.log("profile updated")
-        //         })
-        //     }
-        // },
     })
 })

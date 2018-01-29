@@ -109,7 +109,7 @@ angular.module("BikeLogApp").config(function ($routeProvider, $locationProvider)
         })
         .otherwise("/strava-response")
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix("!");
 })
     
 

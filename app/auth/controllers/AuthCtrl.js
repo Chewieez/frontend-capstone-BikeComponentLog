@@ -35,15 +35,16 @@ angular.module("BikeLogApp")
 
         $scope.registerUser = function (registerNewUser) {
             try {
-                AuthFactory.registerWithEmail(registerNewUser).then(function (didRegister) {
-                    $scope.logMeIn(registerNewUser)
-                })
+                AuthFactory.registerWithEmail(registerNewUser)
+                // .then(function (didRegister) {
+                //     $scope.logMeIn(registerNewUser)
+                // })
             } catch (error) {
                 console.log(error)
                 $mdToast.show(
                     $mdToast.simple()
                         .parent($("#toast-container"))
-                        .textContent("There is a problem with your email or password.")
+                        .textContent(error.message)
                         .hideDelay(2000)
                 )
             }

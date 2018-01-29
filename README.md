@@ -2,7 +2,7 @@
 
 Web Application to individually track each component on your bike and quickly discover the amount of miles accrued on the component and how long it's been installed on your bike. 
 
-<img src="https://drive.google.com/uc?id=1HS_kyNsI6rChMmcPlI36-ho0plAut-BW" alt="alt text" width="600" height="auto">
+<img src="https://drive.google.com/uc?id=1tPcBoqLm37iALGAAInPwwq9eGvGqami4" alt="alt text" width="600" height="auto">
 
 ### Built with:
 AngularJS and AngularJS-Material UI Component framework 

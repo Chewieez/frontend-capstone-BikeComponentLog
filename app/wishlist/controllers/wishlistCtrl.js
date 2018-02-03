@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $location, $mdDialog, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory, WishlistFactory) {
+angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $location, $mdDialog, $route, AuthFactory, BikeFactory, ComponentFactory, StravaOAuthFactory, ProfileFactory, WishlistFactory, $mdToast) {
 
     // turn gear spinner progress meter on while page is loading
     $scope.progressFlag = true
@@ -52,7 +52,12 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
             
             // save wish to firebase
             WishlistFactory.saveWish($scope.newWish).then(()=> {
-                // console.log("saved wish")
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent($("#toast-container"))
+                        .textContent("Wish saved!")
+                        .hideDelay(3000)
+                );
                 WishlistFactory.getUserWishes(user.uid).then(wishes=>{
                     $scope.wishes = wishes
                     $scope.createMode = false
@@ -63,7 +68,12 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
         } else {
             
             WishlistFactory.editWish($scope.newWish).then(()=> {
-                // console.log("updated wish")
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent($("#toast-container"))
+                        .textContent("Wish edited!")
+                        .hideDelay(3000)
+                );
                 WishlistFactory.getUserWishes(user.uid).then(wishes=>{
                     $scope.wishes = wishes
                     $scope.editMode = false
@@ -80,7 +90,12 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
 
     $scope.deleteWish = function(wish) {
         WishlistFactory.deleteWish(wish).then(()=> {
-            // console.log("deleted wish")
+            $mdToast.show(
+                $mdToast.simple()
+                    .parent($("#toast-container"))
+                    .textContent("Wish deleted")
+                    .hideDelay(3000)
+            );
             WishlistFactory.getUserWishes(user.uid).then(wishes=>{
                 $scope.wishes = wishes
             })

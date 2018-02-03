@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRAVA_CONFIG) {
+angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
 
     return Object.create(null, {
         "stravaId": {
@@ -11,31 +11,24 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http, STRA
             writable: true,
             enumerable: true     
         },
-        "getCode": {
-            value: function() {
+        "getStravaCallData": {
+            value: () => {
                 return $http({
-                    "method": "GET",
-                    "url": "https://www.strava.com/oauth/authorize?client_id=21849&response_type=code&redirect_uri=http://localhost:8080/#!/strava-response&state=logged&approval_prompt=auto"
-                }).then(r => {
-                    console.log(r)
+                    "url": "https://us-central1-bike-component-log.cloudfunctions.net/stravaInfo/"
                 })
             }
         },
         "getToken": {
-            value: (stravaCode) => {
+            value: (stravaCode, code) => {
                 return $http({
                     "method": "POST",
                     "url": "https://www.strava.com/oauth/token",
                     "data": {
-                        client_id: STRAVA_CONFIG.clientId,
-                        client_secret: STRAVA_CONFIG.clientSecret,
+                        client_id: 21849,
+                        client_secret: code,
                         code: stravaCode
                     }
                 })
-                // .then(response => {
-                //  this.stravaToken = response.data.access_token
-                //     return this.stravaToken
-                // })
             }
         },
         "getStravaProfile": {

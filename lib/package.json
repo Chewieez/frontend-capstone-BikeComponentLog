@@ -1,7 +1,7 @@
 {
   "name": "bikecomponentlog",
   "version": "1.0.0",
-  "description": "App to allow users to track the age and mileage of individual component on their bicycle",
+  "description": "App to allow users to track the mileage and time-since-installation of individual components on their bicycle",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,8 @@
   },
   "devDependencies": {
     "eslint": "^4.12.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-notify": "^0.4.5",
     "gruntify-eslint": "^4.0.0",

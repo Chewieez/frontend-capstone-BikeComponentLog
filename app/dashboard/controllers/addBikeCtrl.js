@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, $timeout, AuthFactory, BikeFactory, ComponentFactory) {
+angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, $timeout, AuthFactory, BikeFactory, ComponentFactory, $mdDialog, $mdToast, photoErrorPopup) {
 
     // set flag to control photo upload progress meter
     $scope.photoUploadProgress = {}
@@ -65,15 +65,27 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         // get the name of the file to upload
         let filename = document.getElementById("addPhoto__imageBtn");
         let file = filename.files[0]
-        BikeFactory.addImage(file).then(_url => {
+
+        //check file size, if too big, throw error and alert user, if not, save
+        if (file.size > 212500) {
             // hide the photo upload progress meter
             $scope.photoUploadProgress.flag = true
-            // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
-            $scope.$apply(function () {
+            
+            // show error dialog popup, using custom service "photoErrorPopup"
+            photoErrorPopup.showErrorDialog()
 
-                $scope.newBike.images.push(_url)
+        } else {
+            // Save photo to firebase
+            BikeFactory.addImage(file).then(_url => {
+                // hide the photo upload progress meter
+                $scope.photoUploadProgress.flag = true
+                // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
+                $scope.$apply(function () {
+    
+                    $scope.newBike.images.push(_url)
+                })
             })
-        })
+        }
     }
 
     // function to delete a photo
@@ -148,7 +160,6 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
 
             // store the newly edited bike back into Firebase
             BikeFactory.editBike($scope.newBike).then((response) => {
-                console.log("edit bike response", response)
                 BikeFactory.editMode = false
                 $scope.editMode = false
 
@@ -166,8 +177,6 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.newBike.mileage = 0
         $scope.bikeForm.$setPristine();
 
-        // // send user back to the dashboard
-        // $location.url("/dashboard")
 
     }
 

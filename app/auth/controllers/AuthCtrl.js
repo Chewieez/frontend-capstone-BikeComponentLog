@@ -35,33 +35,17 @@ angular.module("BikeLogApp")
 
         $scope.registerUser = function (registerNewUser) {
             try {
-                AuthFactory.registerWithEmail(registerNewUser).then(function (didRegister) {
-                    $scope.logMeIn(registerNewUser)
-                })
+                AuthFactory.registerWithEmail(registerNewUser)
+                    .then(function (didRegister) {
+                        $scope.logMeIn(registerNewUser)
+                    })
             } catch (error) {
                 console.log(error)
-                $mdToast.show(
-                    $mdToast.simple()
-                        .parent($("#toast-container"))
-                        .textContent("There is a problem with your email or password.")
-                        .hideDelay(2000)
-                )
             }
         }
 
         $scope.startLogin = () => {
             $scope.hasStarted = true;
-            
-            // $scope.$apply(()=>{
-            //     $anchorScroll.yOffset = 200;
-            //     $location.hash("loginUser");
-                
-            //     // call $anchorScroll()
-            //     $anchorScroll();
-            //     $scope.hasStarted = true;
-                
-
-            // })
 
         }
 

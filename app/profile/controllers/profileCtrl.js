@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route, $timeout, $location, ProfileFactory, AuthFactory, StravaOAuthFactory) {
+angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route, $timeout, $location, ProfileFactory, AuthFactory, StravaOAuthFactory, photoErrorPopup) {
     // get current user 
     const currentUser = AuthFactory.getUser()
     
@@ -69,31 +69,39 @@ angular.module("BikeLogApp").controller("profileCtrl", function ($scope, $route,
         $scope.editMode = false
     }
 
-
+    
     // create a function to run when a user uploads a file. Inside that function call $scope.saveImage()
     $scope.uploadFile = function() {
-        
         $scope.photoUploadProgress.flag = false
         $timeout( ()=>{
             $scope.saveImage()
-
         })
     }
 
     $scope.saveImage = () => {
         // get the name of the file to upload
-        let filename = document.getElementById("profile__imageBtn");
+        let filename = document.getElementById("addPhoto__imageBtn");
         let file = filename.files[0]
 
-        ProfileFactory.addImage(file).then(_url => {
+        //check file size, if too big, throw error and alert user, if not, save
+        if (file.size > 212500) {
             // hide the photo upload progress meter
             $scope.photoUploadProgress.flag = true
-            // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
-            $scope.$apply(function () {
+            
+            // show error dialog popup, using custom service "photoErrorPopup"
+            photoErrorPopup.showErrorDialog()
 
-                $scope.currentUserProfile.image = _url
+        } else {
+            ProfileFactory.addImage(file).then(_url => {
+            // hide the photo upload progress meter
+                $scope.photoUploadProgress.flag = true
+                // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
+                $scope.$apply(function () {
+
+                    $scope.currentUserProfile.image = _url
+                })
             })
-        })
+        }
     }
 
     // function to delete a photo

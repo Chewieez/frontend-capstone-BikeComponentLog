@@ -5,11 +5,15 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
         if (user) {
             currentUserData = user
             console.log("User is authenticated")
-            if ($location.url() !== "/dashboard") {
-                $timeout(function () {
-                    $location.url("/dashboard")
-                }, 500)
-            } else {
+            if ($location.url() === "/strava-response") {
+                $route.reload()
+            }
+            // else if ($location.url() !== "/dashboard") {
+            //     $timeout(function () {
+            //         $location.url("/dashboard")
+            //     }, 500)
+            // } 
+            else {
                 $route.reload()
             }
 
@@ -31,12 +35,12 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
                 return user ? true : false
             }
         },
-        getUser: { 
+        getUser: {
             value: () => currentUserData
             // value: () => firebase.auth().currentUser
         },
         logout: {
-            value: () => firebase.auth().signOut().then(()=>{
+            value: () => firebase.auth().signOut().then(() => {
                 $mdToast.show(
                     $mdToast.simple()
                         .parent($("#toast-container"))
@@ -48,8 +52,8 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
         authenticate: {
             value: credentials =>
                 firebase.auth()
-                    .signInWithEmailAndPassword(credentials.email,credentials.password)
-                    .catch(function (error) {
+                    .signInWithEmailAndPassword(credentials.email, credentials.password)
+                    .catch(function(error) {
                         console.log(error.code)
                         if (error.code === "auth/wrong-password") {
                             $mdToast.show(
@@ -62,7 +66,7 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
                             $mdToast.show(
                                 $mdToast.simple()
                                     .parent($("#toast-container"))
-                                    .textContent("There is a problem with your email")
+                                    .textContent("User not found, there maybe a problem with your email")
                                     .hideDelay(2000)
                             )
                         }
@@ -71,10 +75,16 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
         registerWithEmail: {
             value: user =>
                 firebase.auth()
-                    .createUserWithEmailAndPassword(
-                        user.email,
-                        user.password
-                    )
+                    .createUserWithEmailAndPassword(user.email,user.password)
+                    .catch(function(error) {
+                        console.log(error)
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .parent($("#toast-container"))
+                                .textContent("Error with sign in credentials.")
+                                .hideDelay(2000)
+                        )
+                    })
         }
     })
 })

@@ -1,22 +1,29 @@
-angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, $location, $timeout, StravaOAuthFactory, ProfileFactory, AuthFactory) {
+angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, $location, $timeout, StravaOAuthFactory, ProfileFactory, AuthFactory, $mdToast) {
 
-    //console.log("Loaded now")
     let stravaToken = ""
     let stravaId = ""
 
     // parse the Auth code out of the returned URL
     const stravaAuthCode = window.location.href.split("code=")[1].split("#")[0]
-    // console.log("stravaAuthCode: ", stravaAuthCode)
 
-    // trade the code for a token from Strava
-    StravaOAuthFactory.getToken(stravaAuthCode).then(response => {
-        stravaToken = response.data.access_token
-        StravaOAuthFactory.getStravaProfile(stravaToken).then(response => {
-            stravaId = response.data.id
+
+    // get info needed for api to make link to Strava
+    StravaOAuthFactory.getStravaCallData().then((response) => {
+        
+        let code = response.data;
+        
+        // trade the code for a token from Strava
+        StravaOAuthFactory.getToken(stravaAuthCode, code).then(response => {
             
+            stravaToken = response.data.access_token
+            StravaOAuthFactory.getStravaProfile(stravaToken).then(response => {
+                stravaId = response.data.id
+                    
+            })
         })
     })
-
+    
+ 
     // function runs on OK button click
     $scope.addStraveToProfile = function() {
         // get current user
@@ -31,11 +38,12 @@ angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, 
             userProfile.stravaToken = stravaToken
             // store the updated user profile in Firebase
             ProfileFactory.editProfile(userProfile).then( r => {
-                console.log("strava data added to profile")
-                // $scope.$apply = () => {
-
-                //     $location.url("/profile")
-                // }
+                $mdToast.show(
+                    $mdToast.simple()
+                        .parent($("#toast-container"))
+                        .textContent("Successfully linked your Strava account!")
+                        .hideDelay(3000)
+                );
             })
 
             // after a little bit of time, redirect user to profile. Setting timeout to make sure that when the user lands back in Profile page, firebase has been updated with the strava Id and the Profile page will reflect that the user has already connected with Strava. I attempted putting this inside a .then() after the ProfileFactory.editProfile() promise, but it was not working. 

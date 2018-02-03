@@ -18,7 +18,7 @@
 
             <br>
             <h1 class="header__entice tomato">
-            With TRACKd you'll always have this info at your finger tips! 
+            With <span class="header__appName">TRACKdMe</span> you'll always have this info at your finger tips! 
             </h1>
 
             <h3 class="header__websiteInstructions"> 
@@ -30,32 +30,41 @@
 
 
         <div ng-show="hasStarted" layout="column" layout-align="center stretch" id="loginUser" class="login__loginForm-c" layout-padding layout-margin>
-            <h1 class="login__header" layout> 
-                <span>
-                Login 
+            <form name="login">
+                <h1 class="login__header" layout> 
+                    <span>Login</span>
+                    <span flex></span>
+                    <span layout class="loginCancelBtn">
+                        <md-button class="md-icon-button">
+                            <md-icon md-font-icon="material" ng-click="cancel()">clear</md-icon>
+                        </md-button>
+                    </span>
+                </h1>
+                
+                <md-input-container class="md-block">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" ng-model="auth.email" autofocus required="string" />
+                    <div ng-messages="login.email.$error" role="alert">
+                        <div ng-message="required">Please enter a valid email address.</div>
+                        <div ng-message="email">This field must be formatted as a valid email address.</div>
+                    </div>
+                    
+                </md-input-container>
+                
+                <md-input-container class="md-block">
+                    <label for="password" >Password</label>
+                    <input type="password" name="password" ng-model="auth.password" ng-minlength="6" required="string" ng-required="true"/>
+                    <div ng-messages="login.password.$error" role="alert">
+                        <div ng-message="required">You must enter a password to proceed.</div>
+                        <div ng-message="minlength">Password needs to be atleast 6 characters long.</div>
+                    </div>
+                </md-input-container>
+                
+                <span class="loginForm__btns">
+                    <md-button class="md-raised md-primary" ng-click="logMeIn(auth)">Login</md-button>
+                    <md-button class="md-raised md-warn" ng-click="registerUser(auth)">Register</md-button>
                 </span>
-                <span flex></span>
-                <span layout class="loginCancelBtn">
-                    <md-button class="md-icon-button">
-                        <md-icon md-font-icon="material" ng-click="cancel()">clear</md-icon>
-                    </md-button>
-                </span>
-            </h1>
-            
-            <md-input-container class="md-block">
-                <label for="email">Email</label>
-                <input type="email" name="email" ng-model="auth.email" autofocus required="string" />
-            </md-input-container>
-            
-            <md-input-container class="md-block">
-                <label for="password" >Password</label>
-                <input type="password" ng-model="auth.password" required="string" />
-            </md-input-container>
-            
-            <span class="loginForm__btns">
-                <md-button class="md-raised md-primary" ng-click="logMeIn(auth)">Login</md-button>
-                <md-button class="md-raised md-warn" ng-click="registerUser(auth)">Register</md-button>
-            </span>
+            </form>
         </div>
     </div>
 

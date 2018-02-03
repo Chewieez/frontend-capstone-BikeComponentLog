@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $timeout, $location, $mdToast, AuthFactory, ComponentFactory, BikeFactory) {
+angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $timeout, $location, $mdToast, $mdDialog, AuthFactory, ComponentFactory, BikeFactory, photoErrorPopup) {
     // get the user in case we need their UID
     const user = AuthFactory.getUser()
 
@@ -20,10 +20,6 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         $scope.newComponent = {}
 
         $scope.newComponent.type = {}
-
-        // set the starting value of mileage to 0
-        // $scope.newComponent.mileage = 0
-        
 
         // create an array to hold images
         $scope.newComponent.images = []
@@ -80,20 +76,29 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
     
     
     $scope.saveImage = () => {
-        debugger
         // get the name of the file to upload
         let filename = document.getElementById("addPhoto__imageBtn");
         let file = filename.files[0]
 
-        ComponentFactory.addImage(file).then(_url => {
+        //check file size, if too big, throw error and alert user, if not, save
+        if (file.size > 212500) {
             // hide the photo upload progress meter
             $scope.photoUploadProgress.flag = true
-            // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
-            $scope.$apply(function () {
+            
+            // show error dialog popup
+            photoErrorPopup.showErrorDialog()
+            
+        } else {
+            ComponentFactory.addImage(file).then(_url => {
+            // hide the photo upload progress meter
+                $scope.photoUploadProgress.flag = true
+                // need to wrap this in a $apply to get the newBike.image to display in dom immediately upon successful upload
+                $scope.$apply(function () {
 
-                $scope.newComponent.images.push(_url)
+                    $scope.newComponent.images.push(_url)
+                })
             })
-        })
+        }
     }
 
     // function to delete a photo

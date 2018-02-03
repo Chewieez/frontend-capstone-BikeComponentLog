@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, $timeout, AuthFactory, BikeFactory, ComponentFactory, $mdDialog, $mdToast) {
+angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, $timeout, AuthFactory, BikeFactory, ComponentFactory, $mdDialog, $mdToast, photoErrorPopup) {
 
     // set flag to control photo upload progress meter
     $scope.photoUploadProgress = {}
@@ -58,20 +58,6 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         })
     }
 
-    // error dialog popup to show when user tried to upload a photo that exceedes maximum file size set
-    $scope.showErrorDialog = function(ev) {
-        // Appending dialog to document.body to cover sidenav in docs app
-        $mdDialog.show(
-            $mdDialog.alert()
-                .parent(angular.element(document.querySelector("#popupContainer")))
-                .clickOutsideToClose(true)
-                .title("Photo Upload Error")
-                .textContent("Photo File Size must not exceed 1.6mb.")
-                .ariaLabel("Photo Upload Error, Photo File Size must not exceed 1.6mb.")
-                .ok("OK")
-                .targetEvent(ev)
-        );
-    };
 
     // function to save the users photos of their bike
     $scope.saveImage = () => {
@@ -85,9 +71,9 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
             // hide the photo upload progress meter
             $scope.photoUploadProgress.flag = true
             
-            // show error dialog popup
-            $scope.showErrorDialog()
-            
+            // show error dialog popup, using custom service "photoErrorPopup"
+            photoErrorPopup.showErrorDialog()
+
         } else {
             // Save photo to firebase
             BikeFactory.addImage(file).then(_url => {

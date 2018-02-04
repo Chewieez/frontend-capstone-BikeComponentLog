@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").service("photoErrorPopup", function($mdDialog){
+angular.module("photoErrorPopupService", []).service("PhotoErrorPopupService", function($mdDialog){
     return {
         showErrorDialog: function(ev){
             $mdDialog.show(

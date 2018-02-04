@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, $timeout, AuthFactory, BikeFactory, ComponentFactory, $mdDialog, $mdToast, photoErrorPopup) {
+angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $location, $timeout, AuthFactory, BikeFactory, ComponentFactory, $mdDialog, $mdToast, PhotoErrorPopupService) {
 
     // set flag to control photo upload progress meter
     $scope.photoUploadProgress = {}
@@ -67,12 +67,12 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         let file = filename.files[0]
 
         //check file size, if too big, throw error and alert user, if not, save
-        if (file.size > 212500) {
+        if (file.size > 1677721) {
             // hide the photo upload progress meter
             $scope.photoUploadProgress.flag = true
             
-            // show error dialog popup, using custom service "photoErrorPopup"
-            photoErrorPopup.showErrorDialog()
+            // show error dialog popup, using custom service "PhotoErrorPopupService"
+            PhotoErrorPopupService.showErrorDialog()
 
         } else {
             // Save photo to firebase

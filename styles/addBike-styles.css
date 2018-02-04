@@ -1,0 +1,19 @@
+/* AddBike CSS */
+
+.addBike__form {
+    width: 50%;
+}
+
+.addBike__photoUpload, .addBike__allImages {
+    padding-bottom: 2em;
+}
+
+.addBike__image {
+    width: auto;
+    max-width: 50%;
+    height:150px;
+}
+
+.imageDeleteBtn {
+    margin-bottom: 100px !important;
+}

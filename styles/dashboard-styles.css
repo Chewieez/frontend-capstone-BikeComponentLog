@@ -1,0 +1,213 @@
+/* Dashboard Styles */
+
+.dashboard__header {
+    margin-top: -35px;
+}
+
+.dashboard__header.ng-hide {
+    opacity: 0;
+}
+
+.dashboard__headerImage {
+    height: 55%;
+    width: 55%;
+    transition: max-height linear .4s;
+    max-width: 650px;
+    max-height: 352px;
+}
+
+.dashboard__headerImage.ng-hide {
+    max-height: 0;
+
+}
+.dashboard__headerText {
+    font-size: 4em;
+    padding-top: .2em;
+    padding-left: .2em;
+}
+
+.bikeView {
+    padding-bottom: 2em;
+}
+
+.bikeView__dropdown {
+    width: 40%;
+}
+
+.bikeView__dropdown-ic {
+    width: 100%;
+}
+
+.bikeView__details {
+    width: 50%;
+    max-width: 700px !important;
+}
+
+.bikeView__extraDetails,
+.bikeView__bikeImages {
+    width: 98.5%;
+}
+
+.bikeView__extraDetails p {
+    margin-bottom: .5em;
+}
+
+.bikeImages__bikeImage-c {
+    margin: .2em;
+}
+
+.bikeImages__bikeImage,
+.bikeImages__bikeImageWhiteBox
+ {
+    border-radius: 4px;
+}
+
+.imageLightbox__image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.imageLightbox__content {
+    padding-top: .1em !important;
+}
+
+
+.bikeView__bikeHeader {
+    margin-top: .4em;
+    margin-left: .3em;
+    font-weight: 400;
+}
+
+.dotCtrlMenu {
+    margin-right: 0 !important;
+    margin-top: .2em;
+    padding-right: 0 !important;
+}
+
+.bikeView__mileage {
+    padding-top: .9em;
+}
+
+.poweredByStravaIcon {
+    padding-top: .7em;
+    padding-left: .5em;
+    padding-right: .4em;
+    width: 150px;
+    height: auto;
+    /* border: 1px solid grey; */
+}
+
+.componentView__componentSearchSort {
+    padding-left: 2.5em;
+}
+
+.componentSearch__input {
+    width: 100%;
+}
+
+.componentView__details {
+    width: 50%;
+    max-width: 600px !important;
+}
+
+.componentDivider {
+    background-color: blue;
+}
+
+md-card {
+    border-radius: 4px;
+}
+
+md-card-header {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+md-card md-card-header md-card-avatar md-icon {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.componentView__compIcon {
+    padding-top: 0;
+    padding-left: 0;
+    padding-bottom: .4em;
+    width: 100%;
+    height: 100%;
+}
+
+.componentView__header-c {
+    padding-top: .8em;
+    padding-right: 10px;
+    padding-bottom: .8em;
+}
+
+.componentView__compHeader {
+    padding-left: .7em;
+}
+
+.compHeader__subHeader {
+    font-size: 1.1em;
+    color: white !important;
+}
+
+md-card-header-text .compHeader__title {
+    font-size: 1.2em !important;
+    text-transform: uppercase;
+}
+
+.comp__dotCtrlMenu {
+    margin-top: 0;
+    padding-top: 0 !important;
+}
+
+.comp__activeCheckbox {
+    margin: 0 !important;
+    padding: 0;
+    font-size: 1.2em;
+    font-weight: normal;
+}
+
+.compImage,
+.compImageWhiteBox {
+    border-radius: 4px;
+}
+
+.compview__ExtraDetails {
+    width: 99%;
+}
+
+.compExtraDetails__header {
+    margin-left: .2em;
+}
+
+.compExtraDetails__notesHeader,
+.compExtraDetails__notes {
+    margin-top: .5em;
+    margin-left: .5em;
+}
+
+.componentSearchSort__sortDropDown {
+    display:inline-block; 
+    width: 100%; 
+    min-width: 150px;
+    margin-top: 1.2em; 
+}
+
+.componentSearchSort__reverseSwitch {
+    margin-left: .5em !important; 
+}
+
+.componentSearchSort__activeSwitch {
+    margin-right: 1.2em !important; 
+}
+
+.componentSearchSort__reverseSwitch,
+.componentSearchSort__activeSwitch {
+    display: inline-block; 
+    margin-top: 1.8em !important;   
+    font-size: .9em !important;
+    color: gray;
+}
+

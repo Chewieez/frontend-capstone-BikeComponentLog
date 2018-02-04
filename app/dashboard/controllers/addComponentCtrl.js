@@ -1,4 +1,4 @@
-angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $timeout, $location, $mdToast, $mdDialog, AuthFactory, ComponentFactory, BikeFactory, photoErrorPopup) {
+angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $route, $timeout, $location, $mdToast, $mdDialog, AuthFactory, ComponentFactory, BikeFactory, PhotoErrorPopupService) {
     // get the user in case we need their UID
     const user = AuthFactory.getUser()
 
@@ -81,12 +81,12 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         let file = filename.files[0]
 
         //check file size, if too big, throw error and alert user, if not, save
-        if (file.size > 212500) {
+        if (file.size > 1677721) {
             // hide the photo upload progress meter
             $scope.photoUploadProgress.flag = true
             
             // show error dialog popup
-            photoErrorPopup.showErrorDialog()
+            PhotoErrorPopupService.showErrorDialog()
             
         } else {
             ComponentFactory.addImage(file).then(_url => {

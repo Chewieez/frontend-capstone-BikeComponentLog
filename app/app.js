@@ -48,29 +48,6 @@ app.directive("customOnChange", function() {
 });
 
 
-// custom service to hold a function to display a Photo Upload Error. To use service, pass in "photoErrorPopup" as a function parameter in the Controller where you need to call the function.
-// app.service("photoErrorPopup", function($mdDialog){
-    
-//     return {
-//         // error dialog popup to show when user tried to upload a photo that exceedes maximum file size set
-//         showErrorDialog: function(ev){
-//             // Appending dialog to document.body to cover sidenav in docs app
-//             $mdDialog.show(
-//                 $mdDialog.alert()
-//                     .parent(angular.element(document.querySelector("#popupContainer")))
-//                     .clickOutsideToClose(true)
-//                     .title("Photo Upload Error")
-//                     .textContent("Photo File Size must not exceed 1.6mb.")
-//                     .ariaLabel("Photo Upload Error, Photo File Size must not exceed 1.6mb.")
-//                     .ok("OK")
-//                     .targetEvent(ev)
-//             );
-        
-//         }
-//     }
-// });
-
-
 angular.module("BikeLogApp").config(function ($routeProvider, $locationProvider) {
     /**
      * Configure all Angular application routes here

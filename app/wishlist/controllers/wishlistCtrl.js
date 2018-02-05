@@ -9,7 +9,7 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     $scope.newWish = {}
 
 
-    // delete confirmation prompt code 
+    // delete wish confirmation prompt code 
     $scope.showConfirm = function(ev, wish) {
         // Appending dialog to document.body to cover sidenav in docs app
         var confirm = $mdDialog.confirm()
@@ -43,7 +43,7 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     }
 
     $scope.saveWish = function() {
-
+        // check if not currently in edit mode, meaning the user is creating a new wish
         if (!$scope.editMode) {
             // attach the users uid
             $scope.newWish.userId = user.uid
@@ -66,7 +66,8 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
             })
             
         } else {
-            
+            // if currently in edit mode
+            // save the user's changes to their current wish
             WishlistFactory.editWish($scope.newWish).then(()=> {
                 $mdToast.show(
                     $mdToast.simple()
@@ -83,11 +84,13 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
         }
     }
 
+    // function to set edit mode
     $scope.editWish = function (wish) {
         $scope.editMode = true
         $scope.newWish = wish
     }
 
+    // delete wish function
     $scope.deleteWish = function(wish) {
         WishlistFactory.deleteWish(wish).then(()=> {
             $mdToast.show(
@@ -102,6 +105,7 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
         })
     }
 
+    // allows user to cancel editing or creating a new wish
     $scope.cancelWish = function() {
         $scope.editMode = false
         $scope.createMode = false
@@ -124,8 +128,5 @@ angular.module("BikeLogApp").controller("wishlistCtrl", function ($scope, $locat
     $scope.setSortOrder = (sortSelector) => {
 
         $scope.sortOrder = sortSelector.propName
-
     }
-
-
 })

@@ -1,6 +1,8 @@
 <div class="addMileage">
     <div layout="column" layout-align="center center" class="addMileage__modalContent">
-        <h2> All miles added to your {{ currentBike.brandName }} {{currentBike.modelName }} will also be added to all active components.</h2>
+        <h2> All miles added to your {{ currentBike.brandName }} {{currentBike.modelName }}
+            <br>
+             will also be added to all active components.</h2>
         <h3>Current Mileage:  {{ currentBike.mileage }} miles.</h3>
         
         <md-input-container>
@@ -12,5 +14,4 @@
             <md-button class="md-warn" ng-click="cancel()">Cancel</md-button>
         </div>
     </div>
-
 </div>

@@ -6,7 +6,10 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
         // turn gear spinner progress meter on while page is loading
         $scope.progressFlag = true
 
+        // array to hold bikes imported from user's strava account
         $scope.bikesToImport = []
+
+        // flag to hold a boolean of whether the user has bikes from Strava to import
         $scope.stravaReturnFlag = false
         
         let allBikesFromStrava = []
@@ -43,6 +46,7 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
                             }
                         })
                     }).then(()=>{
+                        // if the user has some bikes from their strava account to import, make flag True, else False.
                         if ($scope.bikesToImport.length === 0) {
                             $scope.stravaReturnFlag = true
                         } else {
@@ -84,14 +88,11 @@ angular.module("BikeLogApp").controller("importStravaBikesCtrl", function ($scop
                 // remove the imported bike from the list of bike available to import
                 $scope.bikesToImport.splice(bikeIndex,1)
             }
-
         }
         
         // function to send user to dashboard when they click the finished button
         $scope.toDashboard = function() {
             $location.url("/dashboard")
         }
-        
     }
-
 })

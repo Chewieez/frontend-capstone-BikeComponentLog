@@ -74,7 +74,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
     }
     
     
-    
+
     $scope.saveImage = () => {
         // get the name of the file to upload
         let filename = document.getElementById("addPhoto__imageBtn");
@@ -149,10 +149,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
         //convert time to milliseconds
         $scope.newComponent.installationDate = $scope.newComponent.installationDate.getTime()
        
-        // trying to fix sorting by installation date
-        // make sure an integer is stored, not a string
-        // $scope.newComponent.installationDate = parseInt($scope.newComponent.installationDate)
-
+        
         $scope.showSuccessToast = (newComponent) => {
             // show toast stating your component has been saved
             $mdToast.show(
@@ -172,7 +169,6 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
                 // need to wrap this in $scope.apply to get it to work inside the .then().
                 $scope.$apply(function() {
                     $scope.showSuccessToast()
-                    //     $location.url("/dashboard")
                 })
 
             })
@@ -195,10 +191,7 @@ angular.module("BikeLogApp").controller("addComponentCtrl", function ($scope, $r
 
         // Reset the form after successful upload
         $scope.newComponent = {}
-        // prepopulate the mileage box to 0
-        // $scope.newComponent.mileage = 0
         $scope.componentForm.$setPristine()
-
 
     }
 

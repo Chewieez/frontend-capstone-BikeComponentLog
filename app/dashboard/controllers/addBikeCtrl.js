@@ -16,11 +16,7 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         $scope.newBike = {}
         $scope.newBike.images = []
 
-        // // set the starting value of mileage to 0
-        // $scope.newBike.mileage = 0
-
         //sets the default date purchased to today's date. User can then change to which ever date they'd like. 
-        // $scope.newBike.purchaseDate = new Date(new Date().toISOString().split("T")[0])
         if (!$scope.newBike.purchaseDate) {
             $scope.newBike.purchaseDate = new Date($scope.maxDate)
         }
@@ -176,7 +172,6 @@ angular.module("BikeLogApp").controller("addBikeCtrl", function ($scope, $locati
         // prepopulate the mileage box to 0
         $scope.newBike.mileage = 0
         $scope.bikeForm.$setPristine();
-
 
     }
 

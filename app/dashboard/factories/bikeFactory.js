@@ -1,5 +1,5 @@
 angular.module("BikeLogApp").factory("BikeFactory", function ($http, $mdToast) {
-    // store firebase url for later user
+    // store firebase url for later use
     const firebaseURL = "https://bike-component-log.firebaseio.com/bikes"
 
     // create object with methods we'll use to manage user profiles in firebase

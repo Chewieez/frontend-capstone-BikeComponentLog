@@ -17,8 +17,8 @@ Firebase
 
 ### To Install
 1. Clone repo
-1. Run an npm install from the root directory
-1. Rename file `strava.example.Client` to `strava.Client.js` and put in placeholder values for ClientID & secret
+1. In terminal, run `npm install` from the root directory
+1. Rename file `strava.example.Client` to `strava.Client.js` and put in placeholder values for ClientID & secret.
 1. If needed, install HTTP-Server. (npm http-server) from the root directory
 1. Run HTTP-Server
 1. Point your browser to localhost:XXXX (XXXX = whichever port you chose for your HTTP server)

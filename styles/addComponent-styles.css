@@ -1,0 +1,17 @@
+/*                  */
+/* AddComponent CSS */
+/*                  */
+
+.addComponent__photoUpload, .addComponent__allImages {
+    padding-bottom: 2em;
+}
+
+.addComponent__image {
+    width: auto;
+    max-width: 50%;
+    height:150px;
+}
+
+.addComponent__form {
+    width: 50%;
+}

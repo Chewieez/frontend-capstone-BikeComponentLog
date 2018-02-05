@@ -1,0 +1,47 @@
+/*              */
+/* Wishlist CSS */
+/*              */
+
+.wishView__wishSearchSort {
+    padding-left: 2.5em;
+}
+
+.wish__date {
+    font-size: .7em !important;
+    color: grey;
+}
+
+.addWishButton:focus {
+    outline: none !important;
+    border: 0 !important;
+}
+
+.wishlist__createForm-c {
+    width: 100%;
+}
+
+.wishlist__createForm {
+    width: 50%;
+}
+
+.wishlist__itemList {
+    width: 100%;
+}
+
+.wishAccordionList {
+    width: 70%;
+}
+
+.wishView__wishSort {
+    display:inline-block; 
+    width:100%;
+}
+
+.wishView__reverseSwitch {
+    margin-right: .8em !important;
+    margin-left: 1em !important;
+    margin-top: 1.2em !important;
+    color: grey;
+    font-size: .9em;
+}
+

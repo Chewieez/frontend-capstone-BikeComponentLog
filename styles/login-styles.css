@@ -1,0 +1,83 @@
+/*              */
+/* Login Styles */
+/*              */
+
+.welcome__header {
+    width: 100%;
+    height: 100vh;
+    background-image: url("../images/IMG_6448_web.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header__siteDescription {
+    width: 50%;
+    background-color: white;
+    border-radius: 4px;
+    padding: 0 1.4em 1em;
+    margin-top: 3em;
+}
+
+.header__titleQuestion {
+    font-weight: 400;
+    margin-top: .3em;
+    margin-left: .2em;
+}
+
+.header__questions {
+    margin-left: 1em;
+}
+
+.header__entice {
+    font-weight: 400;
+    text-align: center;
+}
+
+.header__appName {
+    font-family: "Allerta Stencil";
+}
+
+.header__websiteInstructions {
+    margin-left: 1em;
+    line-height: 170% !important;
+}
+
+.header__stravaLogo {
+    width: 210px;
+    height: auto;
+}
+
+.loginGetStartedBtn {
+    margin-top: 2em;
+    padding: .5em;
+    font-size: 1.3em;
+}
+
+.login__loginForm-c {
+    background-color: white;
+    width: 40%;
+    /* height: 40%; */
+    margin-top: 40px;
+    border-radius: 4px;
+    transition: all linear .3s;
+}
+
+.login__loginForm-c.ng-hide {
+    opacity: 0;
+}
+
+
+.loginCancelBtn {
+    margin: 0 !important;
+    margin-right: -.7em !important;
+    margin-top: -.6em !important;
+    padding: 0 !important;
+}
+
+
+.login__header {
+    margin-left: 0;
+    font-weight: 300;
+}
+
+

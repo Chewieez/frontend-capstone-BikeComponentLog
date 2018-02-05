@@ -18,7 +18,6 @@ angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, 
             stravaToken = response.data.access_token
             StravaOAuthFactory.getStravaProfile(stravaToken).then(response => {
                 stravaId = response.data.id
-                    
             })
         })
     })
@@ -53,8 +52,4 @@ angular.module("BikeLogApp").controller("stravaResponseCtrl", function ($scope, 
             
         })
     }
-
-
-
-
 })

@@ -1,5 +1,7 @@
+/*                  */
 /* Site wide styles */
 /*                  */
+
 
 /* This is here because I have my angulgarJS script at the bottom of the body section and not in the head of html doc. */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -23,44 +25,11 @@ md-checkbox.md-checked .md-icon {
     background-color: #FF5722;
 }
 
-/* FAB button styles */
-.md-fab-bottom-right {
-    position:fixed !important;
-    margin-bottom: 2em;
-}
-
-.speedDialButtonText {
-    padding: 0;
-    margin: 0;
-    font-size: .8em;
-}
-
-.fabButton {
-    width: 75% !important;
-    height: 75% !important;
-    background-color: white;
-    border-radius: 50%;
-    padding-bottom: 4px !important;
-}
-
-.fabButton:hover {
-    background-color: rgba(197, 197, 197, 0.774) !important;
-}
-
-.speedDialButtonIcon {
-    width: 50px; 
-    height: 45px;
-    margin-right: 2px;
-}
 
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* background-image: url("../images/IMG_6448_crop_web.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: 0 48px; */
 }
 
 h4, h5, h6 {
@@ -105,7 +74,6 @@ footer {
     font-size: .9em;
     background-color: tomato;
     color: white;
-    /* height: 100%; */
     width: 100%;
     padding: .3em .6em;
 }
@@ -194,15 +162,17 @@ footer {
     font-size: 1.3em;
 }
  
-
+/*                   */
 /* Add Mileage Modal */
+/*                   */
 
 .addMileage__modalContent {
     padding: 3em;
 }
 
-
+/*                      */
 /* Photo Upload Styling */
+/*                      */
 
 .addPhoto__imageBtnIcon {
     margin-right: .2em;
@@ -211,23 +181,6 @@ footer {
 .addPhoto__progressCircle {
     padding-top: .9em;
     padding-left: 3em;
-}
-
-
-
-
-/* Import Bike Styles */
-
-.importBike__content {
-    width: 50%;
-}
-
-.importBike__finishedBtn {
-    margin-top: 2.3em;
-}
-
-.importBike__bikeName {
-    margin-top: 1.2em;
 }
 
 
@@ -271,9 +224,6 @@ footer {
     margin: 50px auto;
   }
 
-
-
-
   @-moz-keyframes spin {
     100% {
       -moz-transform: rotate(360deg);
@@ -291,12 +241,9 @@ footer {
     }
 }
 
-
-
-
-
-/* Media Query */
-/*  */
+/*               */
+/* Media Queries */
+/*               */
 @media screen and (max-width: 700px) {
     .bikeView__details,
     .componentView__details,

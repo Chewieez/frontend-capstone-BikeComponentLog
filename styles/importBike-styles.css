@@ -1,0 +1,15 @@
+/*                    */
+/* Import Bike Styles */
+/*                    */
+
+.importBike__content {
+    width: 50%;
+}
+
+.importBike__finishedBtn {
+    margin-top: 2.3em;
+}
+
+.importBike__bikeName {
+    margin-top: 1.2em;
+}

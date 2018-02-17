@@ -2,7 +2,11 @@
 
 Web Application to individually track each component on your bike and quickly discover the amount of miles accrued on the component and how long it's been installed on your bike. 
 
-<img src="https://drive.google.com/uc?id=1tPcBoqLm37iALGAAInPwwq9eGvGqami4" alt="alt text" width="600" height="auto">
+## Site Demo
+<img src="https://drive.google.com/uc?id=19kVOp_Po43iSSsgzTfb7X8r9HOWA45c2"  alt="TrackdMe Demo gif" width="800" height="auto">
+
+## Initial Account Setup
+<img src="https://drive.google.com/uc?id=1qqE-uX62ct5svzUPipP2qMAZ4XZaZIFI"  alt="TrackdMe Setup New Account gif" width="800" height="auto">
 
 ### Built with:
 AngularJS and AngularJS-Material UI Component framework 

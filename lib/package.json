@@ -13,13 +13,16 @@
     "angular-material": "^1.1.5",
     "angular-route": "^1.6.7",
     "firebase": "^4.7.0",
-    "grunt": "^1.0.1"
+    "grunt": "^1.0.3"
   },
   "devDependencies": {
+    "angular-animate": "^1.6.10",
+    "angular-aria": "^1.6.10",
+    "angular-messages": "^1.6.10",
     "eslint": "^4.12.1",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-watch": "^1.1.0",
     "grunt-notify": "^0.4.5",
     "gruntify-eslint": "^4.0.0",
     "v-accordion": "^1.6.0"

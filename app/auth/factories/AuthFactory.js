@@ -1,10 +1,11 @@
 angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $mdToast, $rootScope, $location, $route) {
-    let currentUserData = null
+    let currentUserData = null;
+    let stravaUserDetail = {};
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            currentUserData = user
-            console.log("User is authenticated")
+            currentUserData = user;
+
             if ($location.url() === "/strava-response") {
                 $route.reload()
             }

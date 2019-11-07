@@ -27,17 +27,17 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
             enumerable: true
         },
         "getStravaCallData": {
-            value: () => {
+            value: function() {
                 return $http({
                     "url": "https://us-central1-bike-component-log.cloudfunctions.net/stravaInfo/"
-                })
+                });
             }
         },
         "refreshActivityToken": {
-            value: (refreshToken, clientS) => {
+            value: function(refreshToken, clientS) {
                 return $http({
                     "method": "POST",
-                    "url": 'https://www.strava.com/api/v3/oauth/token',
+                    "url": "https://www.strava.com/api/v3/oauth/token",
                     data: {
                         client_id: 21849,
                         client_secret: clientS,
@@ -50,11 +50,12 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
                         this.stravaActivityTokenExpirationDate = response.data.expires_at;
                         this.stravaRefreshToken = response.data.refresh_token;
                     }
+                    return response;
                 });
             }
         },
         "getActivityToken": {
-            value: (stravaCode, clientS) => {
+            value: function(stravaCode, clientS) {
                 return $http({
                     "method": "POST",
                     "url": "https://www.strava.com/oauth/token",
@@ -67,11 +68,13 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
                     this.stravaActivityToken = response.data.access_token;
                     this.stravaActivityTokenExpirationDate = response.data.expires_at;
                     this.stravaRefreshToken = response.data.refresh_token;
+
+                    return true;
                 });
             }
         },
         "getToken": {
-            value: (stravaCode, code) => {
+            value: function(stravaCode, code) {
                 return $http({
                     "method": "POST",
                     "url": "https://www.strava.com/oauth/token",
@@ -84,18 +87,30 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
             }
         },
         "getStravaProfile": {
-            value: () => {
-                // check if strava activity token is still valid
+            value: function() {
+                // is strava token still active? 
                 if (this.stravaActivityTokenExpirationDate < Date.now()) {
                     return $http({
                         "method": "GET",
                         "url": `https://www.strava.com/api/v3/athlete?access_token=${this.stravaActivityToken}`,
                     })
-                } else {
-                    // refresh the activity token first, then make the call for bike data
-                    this.getStravaCallData().then(response => {
+                } else if (this.stravaRefreshToken) {
+                    // refresh the activity token first, then make the call for profile
+                    return this.getStravaCallData().then(response => {
                         if (response && response.data) {
-                            this.refreshActivityToken(this.stravaRefreshToken, response.data).then(response => {
+                            return this.refreshActivityToken(this.stravaRefreshToken, response.data).then(response => {
+                                return $http({
+                                    "method": "GET",
+                                    "url": `https://www.strava.com/api/v3/athlete?access_token=${this.stravaActivityToken}`,
+                                })
+                            })
+                        }
+                    })
+                } else {
+                    // get an the activity token first, then make the call for profile
+                    return this.getStravaCallData().then(response => {
+                        if (response && response.data) {
+                            return this.getActivityToken(this.stravaCode, response.data).then(response => {
                                 return $http({
                                     "method": "GET",
                                     "url": `https://www.strava.com/api/v3/athlete?access_token=${this.stravaActivityToken}`,
@@ -107,22 +122,34 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
             }
         },
         "getBikeData": {
-            value: (bikeId) => {
-                // check if strava activity token is still valid
-                if (this.stravaActivityTokenExpirationDate < Date.now()) {
+            value: function(bikeId) {
+                // is strava token still active? 
+                if (this.stravaActivityTokenExpirationDate && this.stravaActivityTokenExpirationDate < Date.now()) {
                     return $http({
                         "method": "GET",
                         "url": `https://www.strava.com/api/v3/gear/${bikeId}?access_token=${this.stravaActivityToken}`
                     });
-                } else {
+                } else if (this.stravaRefreshToken) {
                     // refresh the activity token first, then make the call for bike data
-                    this.getStravaCallData().then(response => {
+                    return this.getStravaCallData().then(response => {
                         if (response && response.data) {
-                            this.refreshActivityToken(this.stravaRefreshToken, response.data).then(response => {
+                            return this.refreshActivityToken(this.stravaRefreshToken, response.data).then(response => {
                                 return $http({
                                     "method": "GET",
                                     "url": `https://www.strava.com/api/v3/gear/${bikeId}?access_token=${this.stravaActivityToken}`
                                 });
+                            })
+                        }
+                    })
+                } else {
+                    // get an the activity token first, then make the call for profile
+                    return this.getStravaCallData().then(response => {
+                        if (response) {
+                            return this.getActivityToken(this.stravaCode, response.data).then(isSuccessful => {
+                                return $http({
+                                    "method": "GET",
+                                    "url": `https://www.strava.com/api/v3/gear/${bikeId}?access_token=${this.stravaActivityToken}`
+                                })
                             })
                         }
                     })

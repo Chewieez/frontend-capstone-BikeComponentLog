@@ -38,8 +38,9 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http, $mdToast) {
                     })
                 })
             }
-        },"getUserBikes": {
-            "value": function (UID) {
+        },
+        "getUserBikes": {
+            "value": function(UID) {
                 return $http({
                     method: "GET",
                     url: `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"`

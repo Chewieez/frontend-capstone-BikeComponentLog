@@ -39,16 +39,13 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 }, 500)
             }
 
-
             // Old code to scroll bike details to top of page when a bike is selected
             // $scope.scrollUpBikeDetails = function() {
-
             //     let id = $location.hash();
             //     $location.hash("currentBikeDetails");
             //     $anchorScroll()
             //     $location.hash(id);
             // };
-
         })
     }
 
@@ -85,6 +82,7 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
     // get current user Profile to check for a link to Strava. Update the mileage of any bikes the user has stored in Strava and Bike Log
     ProfileFactory.getProfile(user.uid).then(profile => {
         $scope.currentUserProfile = profile
+        StravaOAuthFactory.stravaCode = profile.stravaCode;
 
         // if the user has linked Strava, go and get their bike data and update the mileage on firebase to reflect their miles on Strava
         BikeFactory.getUserBikes(user.uid).then(response => {
@@ -95,87 +93,72 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                 // check if the user has a Strava Id attached
                 if ($scope.currentUserProfile && $scope.currentUserProfile.stravaId) {
+                    
                     // check if the user has bikes linked to Strava
-                    let linkedBikes = []
-
                     // filter out the bikes that have a stravaId property
-                    linkedBikes = allBikes.filter(bike => bike.stravaBikeId !== 0)
+                    const linkedBikes = allBikes.filter(bike => bike.stravaBikeId !== 0)
 
-                    if (linkedBikes) {
-                        let stravaId = ProfileFactory.profileCache.stravaId
+                    if (linkedBikes && linkedBikes.length > 0) {
+                        // iterate of the linkedBikes array and get mileage for each bike
+                        linkedBikes.forEach(bike => {
+                            // get the stravaBikeId
+                            const stravaBikeId = bike.stravaBikeId
 
-                        // retrieve a activity token to link with the user's Strava account
-                        StravaOAuthFactory.getStravaCallData().then(response => {
-                            if (response && response.data) {
-                                StravaOAuthFactory.getActivityToken($scope.currentUserProfile.stravaCode, response.data).then(response => {
+                            // reach out to Strava for updated mileage
+                            StravaOAuthFactory.getBikeData(stravaBikeId).then(bikeData => {
+                                // convert meters from strava to miles
+                                const newMileage = Math.round(bikeData.data.distance * 0.00062137)
 
+                                // check if mileage is greater than current saved miles. 
+                                if (bike.mileage < newMileage) {
+                                    // get the difference in mileage and add it to all of the tracked components
+                                    const mileageDifference = newMileage - bike.mileage
 
-                                    // iterate of the linkedBikes array and get mileage for each bike
-                                    linkedBikes.forEach(bike => {
-                                        // get the stravaBikeId
-                                        let stravaBikeId = bike.stravaBikeId
+                                    // assign the new mileage amount to the bike object
+                                    bike.mileage = newMileage
 
-                                        // reach out to Strava for updated mileage
-                                        StravaOAuthFactory.getBikeData(stravaBikeId).then(bikeData => {
-                                            // convert meters from strava to miles
-                                            const newMileage = Math.round(bikeData.data.distance * 0.00062137)
-                                            // check if mileage is greater than current saved miles. 
-                                            if (bike.mileage < newMileage) {
+                                    let thisBikesComponents = ComponentFactory.componentsCache.filter(comp => {
+                                        return comp.bikeFbId === bike.fbId
+                                    })
 
-                                                // get the difference in mileage and add it to all of the tracked components
-                                                let mileageDifference = newMileage - bike.mileage
+                                    thisBikesComponents.forEach(comp => {
+                                        // only update components that are marked as "Active"
+                                        if (comp.active) {
+                                            // add the updated mileage amount to all the components
+                                            comp.mileage += mileageDifference
 
-                                                // assign the new mileage amount to the bike object
-                                                bike.mileage = newMileage
+                                            // store the updated component data in firebase 
+                                            ComponentFactory.updateComponent(comp)
+                                        }
+                                    })
 
-                                                let thisBikesComponents = ComponentFactory.componentsCache.filter(comp => {
-                                                    return comp.bikeFbId === bike.fbId
-                                                })
+                                    BikeFactory.editBike(bike).then(r => {
+                                        // get the freshed data from the users Bikes
+                                        BikeFactory.getUserBikes(user.uid).then(response => {
+                                            // store the updated bikes from firebase
+                                            let allUpdatedBikes = response
 
-                                                thisBikesComponents.forEach(comp => {
+                                            // set the $scope.bikes array to all the updated bikes
+                                            $scope.bikes = allUpdatedBikes
 
-                                                    // only update components that are marked as "Active"
-                                                    if (comp.active) {
-                                                        // add the updated mileage amount to all the components
-                                                        comp.mileage += mileageDifference
+                                            // hide progress meter and show page content
+                                            $scope.progressFlag = false
+                                        })
 
-                                                        // store the updated component data in firebase 
-                                                        ComponentFactory.updateComponent(comp)
-                                                    }
-                                                })
-
-
-                                                BikeFactory.editBike(bike).then(r => {
-
-                                                    // get the freshed data from the users Bikes
-                                                    BikeFactory.getUserBikes(user.uid).then(response => {
-                                                        // store the updated bikes from firebase
-                                                        let allUpdatedBikes = response
-
-                                                        // set the $scope.bikes array to all the updated bikes
-                                                        $scope.bikes = allUpdatedBikes
-
-                                                        // hide progress meter and show page content
-                                                        $scope.progressFlag = false
-                                                    })
-
-                                                    // show toast stating your mileage is up to date
-                                                    $mdToast.show(
-                                                        $mdToast.simple()
-                                                            .parent($("#toast-container"))
-                                                            .textContent("Bike mileage synced with Strava!")
-                                                            .hideDelay(2000)
-                                                    );
-                                                });
-                                            } else {
-                                                // hide progress meter and show page content
-                                                $scope.progressFlag = false
-                                            }
-                                            /* end of if/else statement to check if new mileage is greater */
-                                        });
+                                        // show toast stating your mileage is up to date
+                                        $mdToast.show(
+                                            $mdToast.simple()
+                                                .parent($("#toast-container"))
+                                                .textContent("Bike mileage synced with Strava!")
+                                                .hideDelay(2000)
+                                        );
                                     });
-                                });
-                            }
+                                } else {
+                                    // hide progress meter and show page content
+                                    $scope.progressFlag = false
+                                }
+                                /* end of if/else statement to check if new mileage is greater */
+                            });
                         });
                     }
                     /* end of IF statement to check if connected to Strava  */
@@ -191,15 +174,10 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
 
                     // turn off the spinning progress meter
                     $scope.progressFlag = false
-
                 })
             })
         })
-
     })
-
-
-
 
     // function to send the user to the Add Bike page
     $scope.sendToAddBike = function () {
@@ -235,8 +213,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
         })
     }
 
-
-
     // function to delete a component
     $scope.deleteComponent = function (comp) {
 
@@ -270,8 +246,6 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
             )
         })
     }
-
-
 
     // function to delete a bike
     $scope.deleteBike = function (bike) {
@@ -423,7 +397,4 @@ angular.module("BikeLogApp").controller("dashboardCtrl", function ($scope, $loca
                 .hideDelay(2000)
         );
     }
-
-
-
-})    
+});    

@@ -9,7 +9,7 @@
   "author": "Greg Lawrence",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.6.7",
+    "angular": "^1.8.0",
     "angular-material": "^1.1.5",
     "angular-route": "^1.6.7",
     "firebase": "^4.7.0",

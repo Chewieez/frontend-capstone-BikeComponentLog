@@ -47,17 +47,18 @@ angular.module("BikeLogApp").factory("ProfileFactory", function ($http, $mdToast
         },
         "getProfile": {
             value: function (UID) {
-                // let currentUserProfile = {}
-                return $http({
-                    "method": "GET",
-                    "url": `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"`
-                }).then(response => {
-                    // cache user profile
-                    for (let key in response.data) {
-                        this.profileCache = response.data[key]
-                    }
-                    return this.profileCache
-                })
+                return firebase.auth().currentUser.getIdToken(true).then(idToken => {
+                    return $http({
+                        "method": "GET",
+                        "url": `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"&auth=${idToken}`
+                    }).then(response => {
+                        // cache user profile
+                        for (let key in response.data) {
+                            this.profileCache = response.data[key]
+                        }
+                        return this.profileCache
+                    })
+                });
             }
         },
         "addImage": {

@@ -166,6 +166,7 @@ md-card-header-text .compHeader__title {
 .comp__activeCheckbox {
     margin: 0 !important;
     padding: 0;
+    top: -10px;
     font-size: 1.2em;
     font-weight: normal;
 }

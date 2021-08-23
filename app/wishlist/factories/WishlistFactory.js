@@ -32,19 +32,21 @@ angular.module("BikeLogApp").factory("WishlistFactory", function ($http) {
         },
         "getUserWishes": {
             "value": function (UID) {
-                return $http({
-                    method: "GET",
-                    url: `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"`
-                }).then(response => {
-                    if (response.data) {
-                        const wishes = response.data
-                        this.wishCache = Object.keys(wishes)
-                            .map(key => {
-                                return wishes[key]
-                            })
-                        return this.wishCache
-                    }
-                })
+                return firebase.auth().currentUser.getIdToken(true).then(idToken => {
+                    return $http({
+                        method: "GET",
+                        url: `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"&auth=${idToken}`
+                    }).then(response => {
+                        if (response.data) {
+                            const wishes = response.data
+                            this.wishCache = Object.keys(wishes)
+                                .map(key => {
+                                    return wishes[key]
+                                })
+                            return this.wishCache
+                        }
+                    })
+                });
             }
         },
         "editWish": {

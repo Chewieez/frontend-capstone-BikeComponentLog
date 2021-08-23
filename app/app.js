@@ -1,5 +1,25 @@
 const app = angular.module("BikeLogApp", ["ngRoute", "ngAnimate", "ngMaterial", "ngMessages", "vAccordion", "photoErrorPopupService"]);
 
+require("./app.Config.js");
+require("./auth/factories/AuthFactory.js");
+require("./auth/controllers/AuthCtrl.js");
+require("./navigation/controllers/navCtrl.js");
+require("./profile/controllers/profileCtrl.js");
+require("./profile/factories/ProfileFactory.js");
+require("./dashboard/factories/BikeFactory.js");
+require("./StravaAuth/factories/StravaOAuthFactory.js");
+require("./dashboard/factories/ComponentFactory.js");
+require("./wishlist/factories/WishlistFactory.js");
+require("./StravaAuth/controllers/stravaResponseCtrl.js");
+require("./dashboard/controllers/dashboardCtrl.js");
+require("./dashboard/controllers/addBikeCtrl.js");
+require("./dashboard/controllers/addComponentCtrl.js");
+require("./StravaAuth/controllers/importStravaBikesCtrl.js");
+require("./dashboard/controllers/addMileageCtrl.js");
+require("./wishlist/controllers/wishlistCtrl.js");
+require("./dashboard/controllers/displayPhotoCtrl.js");
+require("./photoErrorPopupService.js");
+
 angular.module("BikeLogApp").run(function (FIREBASE_CONFIG) {
     firebase.initializeApp(FIREBASE_CONFIG)
 })
@@ -107,6 +127,22 @@ angular.module("BikeLogApp").config(function ($routeProvider, $locationProvider)
     $locationProvider.html5Mode(true).hashPrefix("!");
 })
     
-
-
-
+// require("./app.Config.js");
+// require("./auth/factories/AuthFactory.js");
+// require("./auth/controllers/AuthCtrl.js");
+// require("./navigation/controllers/navCtrl.js");
+// require("./profile/controllers/profileCtrl.js");
+// require("./profile/factories/ProfileFactory.js");
+// require("./dashboard/factories/BikeFactory.js");
+// require("./StravaAuth/factories/StravaOAuthFactory.js");
+// require("./dashboard/factories/ComponentFactory.js");
+// require("./wishlist/factories/WishlistFactory.js");
+// require("./StravaAuth/controllers/stravaResponseCtrl.js");
+// require("./dashboard/controllers/dashboardCtrl.js");
+// require("./dashboard/controllers/addBikeCtrl.js");
+// require("./dashboard/controllers/addComponentCtrl.js");
+// require("./StravaAuth/controllers/importStravaBikesCtrl.js");
+// require("./dashboard/controllers/addMileageCtrl.js");
+// require("./wishlist/controllers/wishlistCtrl.js");
+// require("./dashboard/controllers/displayPhotoCtrl.js");
+// require("./photoErrorPopupService.js");

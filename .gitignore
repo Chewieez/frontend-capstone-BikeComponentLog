@@ -2,3 +2,4 @@ node_modules
 .DS_Store
 strava.Client.js
 public
+lib/dist

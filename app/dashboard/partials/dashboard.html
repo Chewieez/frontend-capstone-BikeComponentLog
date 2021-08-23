@@ -248,7 +248,7 @@
                         <!-- <md-card-actions>    </md-card-actions> -->
                         <md-card-content>
                             <span>
-                                <h5 layout>
+                                <h5 layout style="height: 1.1em;">
                                     <span>
                                         Mileage:
                                     </span>
@@ -264,8 +264,7 @@
                             <span ng-if="comp.installationDate" layout>
                                 <span ng-show="comp.active">
                                     <h5>Installed for:</h5>
-                                   <!-- <p> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }} months </p> -->
-                                   <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) < 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }}  months </p>
+                                   <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) <= 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 | number:0 }}  months </p>
                                    <p ng-show="((todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30) > 12"> {{ (todaysDate - comp.installationDate) / 1000 / 3600 / 24 / 30 / 12 | number:1 }}  years </p>
                                   
                                    <!-- <span>Component age: {{ todaysDate | amDifference: comp.installationDate : 'days' }}</span> -->
@@ -319,5 +318,4 @@
         <!-- End of ComponentView -->
     </div>
     <!-- End of dashboard content -->
-    
 </div>

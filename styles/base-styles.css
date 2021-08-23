@@ -12,7 +12,15 @@ md-checkbox.md-checked .md-icon {
     color: white !important;
 }
 
-/* Overidding colors for accordion elements */
+
+/* Upgrading angular-material seems to have required this change to the color of some icon/elements */
+.md-raised.md-warn:not([disabled]),
+.md-button.md-default-theme.md-fab md-icon, .md-button.md-fab md-icon,
+.addWishButton {
+    color: #fff !important;
+}
+
+/* Overriding colors for accordion elements */
 .vAccordion--default v-pane-header:hover, .vAccordion--default v-pane-header:focus {
     color: #FF5722; 
 }

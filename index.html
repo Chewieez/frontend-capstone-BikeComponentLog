@@ -1,98 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Track the mileage and age of your bicycle components with TrackMe. Manually add mileage after each ride or sync with Strava.com and your miles will automatically be added after every ride you log on Strava.com. You'll always know how many miles are on your chain with TrackdMe, or your brakes, tires, etc." />
-    <meta property="og:title" content="TRACKdMe - The Bicycle Component Tracker" />
-    <meta property="og:image" content="http://trackd.me/images/trackdmescreenshot.png" />
-    <meta property="og:description" content="Track the mileage and age of your bicycle components with TrackMe. Manually add mileage after each ride or sync with Strava.com and your miles will automatically be added after every ride you log on Strava.com. You'll always know how many miles are on your chain with TrackdMe, or your brakes, tires, etc." />
-    <meta property="og:url" content="https://trackd.me" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Allerta+Stencil">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/v-accordion@1.6.0/dist/v-accordion.min.css" rel="stylesheet" />
-    <link href="./styles/base-styles.css" rel="stylesheet">
-    <link href="./styles/dashboard-styles.css" rel="stylesheet">
-    <link href="./styles/addBike-styles.css" rel="stylesheet">
-    <link href="./styles/addComponent-styles.css" rel="stylesheet">
-    <link href="./styles/wishlist-styles.css" rel="stylesheet">
-    <link href="./styles/profile-styles.css" rel="stylesheet">
-    <link href="./styles/login-styles.css" rel="stylesheet">
-    <link href="./styles/importBike-styles.css" rel="stylesheet">
-    <title>TRACKdMe - The Bicycle Component Tracker</title>
-
-</head>
-
-<body ng-app="BikeLogApp" layout="column">
-        
-    <!-- Navbar -->
-    <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar" ng-cloak flex="none"></nav>
-    
-    <!-- Wrapping this in md-content allows the main page content to be scrollable, outside of the footer. This combined with nav and footer set to flex="none" gives a sticky header and footer.-->
-    <md-content>
-        <!-- Main site content will be dynamically placed here -->
-        <div ng-view flex></div>
-    </md-content>
-    
-    <div flex></div>
-    
-    <!--  toast messages will be placed here, so that they are always viewable, even when the user has scrolled down the page -->
-    <div id="toast-container"></div>
-
-
-    <footer ng-cloak flex="none" layout md-colors="{background: 'primary'}">
-        <span class="footer__copyright">
-            &copy2018 &nbsp Built by: <a href="https://www.greglawrence.me">Greg Lawrence</a> with help from the developer community.
-        </span>
-        <span flex></span>
-        <span class="footer__licenses">
-            Credits
-        </span>
-    </footer>
-
-
-
-    <!-- ALL THE SCRIPTS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Angular Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <!-- accordion plugin -->
-    <script src="https://cdn.jsdelivr.net/npm/v-accordion@1.6.0/dist/v-accordion.min.js"></script>
-    <!-- Material Icons -->
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
-    <!-- Angular Material Library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <!-- App scripts -->
-    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-    <!-- Site JS files -->
-    <script src="./app/app.js"></script>
-    <script src="./app/app.Config.js"></script>
-    <script src="./app/auth/factories/AuthFactory.js"></script>
-    <script src="./app/auth/controllers/AuthCtrl.js"></script>
-    <script src="./app/navigation/controllers/navCtrl.js"></script>
-    <script src="./app/profile/controllers/profileCtrl.js"></script>
-    <script src="./app/profile/factories/ProfileFactory.js"></script>
-    <script src="./app/dashboard/factories/BikeFactory.js"></script>
-    <script src="./app/StravaAuth/factories/StravaOAuthFactory.js"></script>
-    <script src="./app/dashboard/factories/ComponentFactory.js"></script>
-    <script src="./app/wishlist/factories/WishlistFactory.js"></script>
-    <script src="./app/StravaAuth/controllers/stravaResponseCtrl.js"></script>
-    <script src="./app/dashboard/controllers/dashboardCtrl.js"></script>
-    <script src="./app/dashboard/controllers/addBikeCtrl.js"></script>
-    <script src="./app/dashboard/controllers/addComponentCtrl.js"></script>
-    <script src="./app/StravaAuth/controllers/importStravaBikesCtrl.js"></script>
-    <script src="./app/dashboard/controllers/addMileageCtrl.js"></script>
-    <script src="./app/wishlist/controllers/wishlistCtrl.js"></script>
-    <script src="./app/dashboard/controllers/displayPhotoCtrl.js"></script>
-    <script src="./app/photoErrorPopupService.js"></script>
-
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <base href="/">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="Track the mileage and age of your bicycle components with TrackMe. Manually add mileage after each ride or sync with Strava.com and your miles will automatically be added after every ride you log on Strava.com. You'll always know how many miles are on your chain with TrackdMe, or your brakes, tires, etc." />
+        <meta property="og:title" content="TRACKdMe - The Bicycle Component Tracker" />
+        <meta property="og:image" content="http://trackd.me/images/trackdmescreenshot.png" />
+        <meta property="og:description" content="Track the mileage and age of your bicycle components with TrackMe. Manually add mileage after each ride or sync with Strava.com and your miles will automatically be added after every ride you log on Strava.com. You'll always know how many miles are on your chain with TrackdMe, or your brakes, tires, etc." />
+        <meta property="og:url" content="https://trackd.me" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic|Allerta+Stencil" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.3/angular-material.min.css"  rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/v-accordion@1.6.0/dist/v-accordion.min.css" rel="stylesheet">
+        <link href="./styles/base-styles.css" rel="stylesheet">
+        <link href="./styles/dashboard-styles.css" rel="stylesheet">
+        <link href="./styles/addBike-styles.css" rel="stylesheet">
+        <link href="./styles/addComponent-styles.css" rel="stylesheet">
+        <link href="./styles/wishlist-styles.css" rel="stylesheet">
+        <link href="./styles/profile-styles.css" rel="stylesheet">
+        <link href="./styles/login-styles.css" rel="stylesheet">
+        <link href="./styles/importBike-styles.css" rel="stylesheet">
+        <title>TRACKdMe - The Bicycle Component Tracker</title>
+    </head>
+    <body ng-app="BikeLogApp" layout="column">
+        <!-- Navbar -->
+        <nav ng-include="'app/navigation/partials/navigation.html'" class="navbar" ng-cloak flex="none"></nav>
+        <!-- Wrapping this in md-content allows the main page content to be scrollable, outside of the footer. This combined with nav and footer set to flex="none" gives a sticky header and footer.-->
+        <md-content>
+            <!-- Main site content will be dynamically placed here -->
+            <div ng-view flex></div>
+        </md-content>
+        <div flex></div>
+        <!--  toast messages will be placed here, so that they are always viewable, even when the user has scrolled down the page -->
+        <div id="toast-container"></div>
+        <footer ng-cloak flex="none" layout md-colors="{background: 'primary'}">
+            <span class="footer__copyright">
+                &copy<span id="currentYear"></span> &nbsp Built by: <a href="https://www.greglawrence.me">Greg Lawrence</a> with help from the developer community.
+            </span>
+            <span flex></span>
+            <span class="footer__licenses">
+                Credits
+            </span>
+        </footer>
+        <script>
+            const currentYearEl = document.querySelector("#currentYear");
+            if (currentYearEl) {currentYearEl.innerHTML = new Date().getFullYear()}
+        </script>
+        <script src="./lib/dist/bundle.js"></script>
+        <!-- Material Icons -->
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+        <!-- Firebase can't be bundled due to esmodule format errors -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+    </body>
 </html>

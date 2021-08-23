@@ -41,20 +41,22 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http, $mdToast) {
         },
         "getUserBikes": {
             "value": function(UID) {
-                return $http({
-                    method: "GET",
-                    url: `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"`
-                }).then(response => {
-                    if (response.data) {
-                        const bikes = response.data
-                        this.bikesCache = Object.keys(bikes)
-                            .map(key => {
-                                // bikes[key].fbId = key
-                                return bikes[key]
-                            })
-                        return this.bikesCache
-                    }
-                })
+                return firebase.auth().currentUser.getIdToken(true).then(idToken => {
+                    return $http({
+                        method: "GET",
+                        url: `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"&auth=${idToken}`
+                    }).then(response => {
+                        if (response.data) {
+                            const bikes = response.data
+                            this.bikesCache = Object.keys(bikes)
+                                .map(key => {
+                                    // bikes[key].fbId = key
+                                    return bikes[key]
+                                })
+                            return this.bikesCache
+                        }
+                    })
+                });
             }
         },
         "editBike": {
@@ -107,6 +109,5 @@ angular.module("BikeLogApp").factory("BikeFactory", function ($http, $mdToast) {
                 });
             }
         }, 
-    })
-    
-})
+    });
+});

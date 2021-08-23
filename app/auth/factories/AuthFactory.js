@@ -86,6 +86,12 @@ angular.module("BikeLogApp").factory("AuthFactory", function ($http, $timeout, $
                                 .hideDelay(2000)
                         )
                     })
+        },
+        getIdToken: {
+            value: () =>
+                firebase.auth()
+                    .currentUser
+                    .getIdToken(true)
         }
     })
 })

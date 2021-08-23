@@ -89,7 +89,7 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
         "getStravaProfile": {
             value: function() {
                 // is strava token still active? 
-                if (this.stravaActivityTokenExpirationDate < Date.now()) {
+                if (this.stravaActivityTokenExpirationDate && (this.stravaActivityTokenExpirationDate < Date.now())) {
                     return $http({
                         "method": "GET",
                         "url": `https://www.strava.com/api/v3/athlete?access_token=${this.stravaActivityToken}`,

@@ -52,19 +52,21 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http, $mdToa
         },
         "getUserComponents": {
             "value": function (UID) {
-                return $http({
-                    method: "GET",
-                    url: `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"`
-                }).then(response => {
-                    const components = response.data
-                    if (components) {
-                        this.componentsCache = Object.keys(components)
+                return firebase.auth().currentUser.getIdToken(true).then(idToken => {
+                    return $http({
+                        method: "GET",
+                        url: `${firebaseURL}/.json?orderBy="userId"&equalTo="${UID}"&auth=${idToken}`
+                    }).then(response => {
+                        const components = response.data
+                        if (components) {
+                            this.componentsCache = Object.keys(components)
                             .map(key => {
                                 return components[key]
                             })
-                        return this.componentsCache
-                    }
-                })
+                            return this.componentsCache
+                        }
+                    })
+                });
             }
         },
         "deleteComponent": {
@@ -136,8 +138,7 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http, $mdToa
                 {
                     "name": "crankset",
                     "tips": "https://www.parktool.com/blog/repair-help/how-to-remove-and-install-a-crank",
-                    "icon":
-                    "./images/noun_168563_cc-crankset.svg"
+                    "icon": "./images/noun_168563_cc-crankset.svg"
                 },
                 {
                     "name": "derailleur - front",
@@ -214,11 +215,8 @@ angular.module("BikeLogApp").factory("ComponentFactory", function ($http, $mdToa
                     "tips": "https://www.parktool.com/blog/repair-help/wheel-removal-and-installation",
                     "icon": "./images/component-icons/noun_894117_cc-wheel.svg"
                 },
-                
             ],
             enumerable: true
         }
-
     })
-
 })

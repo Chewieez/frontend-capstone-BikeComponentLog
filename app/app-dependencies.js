@@ -1,5 +1,5 @@
 const jQuery$ = require("../lib/node_modules/jquery/dist/jquery");
-const angularPackage = require("../lib/node_modules/angular");
+const angular = require("../lib/node_modules/angular/angular");
 const angularAnimate = require("../lib/node_modules/angular-animate");
 const angularAria = require("../lib/node_modules/angular-aria");
 const angularMessages = require("../lib/node_modules/angular-messages");

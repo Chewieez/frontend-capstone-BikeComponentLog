@@ -37,7 +37,7 @@
         <div id="toast-container"></div>
         <footer ng-cloak flex="none" layout md-colors="{background: 'primary'}">
             <span class="footer__copyright">
-                &copy<span id="currentYear"></span> &nbsp Built by: <a href="https://www.greglawrence.me">Greg Lawrence</a> with help from the developer community.
+                &copy;<span id="currentYear"></span> &nbsp; Built by: <a href="https://www.greglawrence.me">Greg Lawrence</a> with help from the developer community.
             </span>
             <span flex></span>
             <span class="footer__licenses">
@@ -48,10 +48,42 @@
             const currentYearEl = document.querySelector("#currentYear");
             if (currentYearEl) {currentYearEl.innerHTML = new Date().getFullYear()}
         </script>
-        <script src="./lib/dist/bundle.js"></script>
+        <!-- ALL THE SCRIPTS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Angular Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-animate.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+        <!-- accordion plugin -->
+        <script src="https://cdn.jsdelivr.net/npm/v-accordion@1.6.0/dist/v-accordion.min.js"></script>
         <!-- Material Icons -->
         <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
-        <!-- Firebase can't be bundled due to esmodule format errors -->
+        <!-- Angular Material Library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.2.3/angular-material.min.js"></script>
+        <!-- App scripts -->
         <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+        <!-- Site JS files -->
+        <script src="./app/app.js"></script>
+        <script src="./app/app.Config.js"></script>
+        <script src="./app/auth/factories/AuthFactory.js"></script>
+        <script src="./app/auth/controllers/AuthCtrl.js"></script>
+        <script src="./app/navigation/controllers/navCtrl.js"></script>
+        <script src="./app/profile/controllers/profileCtrl.js"></script>
+        <script src="./app/profile/factories/ProfileFactory.js"></script>
+        <script src="./app/dashboard/factories/BikeFactory.js"></script>
+        <script src="./app/StravaAuth/factories/StravaOAuthFactory.js"></script>
+        <script src="./app/dashboard/factories/ComponentFactory.js"></script>
+        <script src="./app/wishlist/factories/WishlistFactory.js"></script>
+        <script src="./app/StravaAuth/controllers/stravaResponseCtrl.js"></script>
+        <script src="./app/dashboard/controllers/dashboardCtrl.js"></script>
+        <script src="./app/dashboard/controllers/addBikeCtrl.js"></script>
+        <script src="./app/dashboard/controllers/addComponentCtrl.js"></script>
+        <script src="./app/StravaAuth/controllers/importStravaBikesCtrl.js"></script>
+        <script src="./app/dashboard/controllers/addMileageCtrl.js"></script>
+        <script src="./app/wishlist/controllers/wishlistCtrl.js"></script>
+        <script src="./app/dashboard/controllers/displayPhotoCtrl.js"></script>
+        <script src="./app/photoErrorPopupService.js"></script>
     </body>
 </html>

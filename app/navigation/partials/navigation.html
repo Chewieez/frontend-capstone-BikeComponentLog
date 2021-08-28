@@ -28,7 +28,7 @@
 
         <!-- offset value pushes the dropdown menu down to line up with the bottom of navbar -->
         <md-menu ng-if="isAuthenticated()" md-offset="0 69">
-            <md-button aria-label="User menu" class="nav__profile" ng-click="$mdOpenMenu($event)">
+            <md-button aria-label="User menu" class="nav__profile" ng-click="$mdMenu.open($event)">
                 <img ng-src="{{currentUserProfile.image}}" class="nav__profileImage" ng-show="currentUserProfile.image" />
                 <md-icon ng-show="!currentUserProfile.image" md-font-icon="material-icons" class="nav__defaultProfileImage">account_circle</md-icon>
             </md-button>

@@ -69,7 +69,7 @@ angular.module("BikeLogApp").factory("StravaOAuthFactory", function ($http) {
                     this.stravaActivityTokenExpirationDate = response.data.expires_at;
                     this.stravaRefreshToken = response.data.refresh_token;
 
-                    return true;
+                    return response;
                 });
             }
         },
